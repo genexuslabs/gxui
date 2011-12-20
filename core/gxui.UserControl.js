@@ -1,0 +1,354 @@
+/// <reference path="..\VStudio\vswd-ext_2.2.js" />
+/**
+* @class gxui.UserControl
+* Abstract base class for gxui UserControls.
+*/
+gxui.UserControl = function(options) {
+	this.setOptions(options)
+	this.initialize();
+};
+
+Ext.extend(gxui.UserControl, Ext.util.Observable, {
+	//private
+	setOptions: function(options) {
+		this.options = {
+			register: true
+		};
+
+		for (property in (options || {})) {
+			this.options[property] = options[property];
+		}
+	},
+
+	//private
+	initialize: function() {
+		this.rendered = false;
+
+		this.addEvents({
+			/**
+			* @event show
+			* Fires after the User Control has been shown.
+			* @param {gxui.UserControl} this
+			*/
+			"show": true,
+			/**
+			* @event destroy
+			* Fires after the User Control is destroyed.
+			* @param {gxui.UserControl} this
+			*/
+			"destroy": true
+		});
+
+		if (this.options.register)
+			this.register();
+	},
+
+	/**
+	* Shows the user control and fires the 'show' event after showing it.
+	*/
+	show: function() {
+		try {
+			if (!this.rendered) {
+				this.rendered = true;
+				this.onRender();
+			}
+			else {
+				if (this.onRefresh)
+					this.onRefresh();
+			}
+		}
+		catch (e) {
+			gx.dbg.logEx(e, 'gxui.js', 'show');
+		}
+		finally {
+			this.fireEvent("show", this);
+		}
+	},
+
+	/**
+	* Force the user control rendering.
+	*/
+	forceRendering: function() {
+		this.rendered = false;
+	},
+
+	/**
+	* Destroys the user control and fires the 'destroy' event after destroying it. Each User Control must implement 
+	* in the onDestroy method the destruction of the User Control.
+	*/
+	destroy: function() {
+		try {
+			this.onDestroy();
+		}
+		catch (e) {
+			gx.dbg.logEx(e, 'gxui.js', 'destroy');
+		}
+
+		this.fireEvent("destroy", this);
+	},
+
+	/**
+	* Called by show method to render the User Control. This method has no default implementation
+	* so it must be provided by inheriting classes.
+	*/
+	onRender: Ext.emptyFn,
+
+	/**
+	* Called by show method instead of the onRender method, from the second time onwards, to refresh the User Control.
+	* This method has no default implementation so it must be provided by inheriting classes.
+	*/
+	onRefresh: Ext.emptyFn,
+
+	/**
+	* Called by destroy method to destroy the User Control. This method has a default implementation and can be 
+	* overriden. The default implementation relays on a correct implementation of getUnderlyingControl method.
+	*/
+	onDestroy: function() {
+		var c = this.getUnderlyingControl();
+		if (c) {
+			var ct = c.ownerCt;
+			if (ct) {
+				if (ct.remove) {
+					ct.remove(c);
+				}
+			}
+			else {
+				if (c.destroy) {
+					c.destroy();
+				}
+			}
+		}
+	},
+
+	/**
+	* Returns the underlying control associated to the UserControl.  This method has no default implementation
+	* so it MUST be provided by inheriting classes.
+	*/
+	getUnderlyingControl: Ext.emptyFn,
+
+	//private
+	/**
+	* Registers the User Control
+	*/
+	register: function() {
+		gxui.UserControlManager.register(this);
+	},
+
+	//private
+	/**
+	* Registers the User Control
+	*/
+	unregister: function() {
+		gxui.UserControlManager.unregister(this);
+	},
+
+	//private
+	/**
+	* Registers the User Control as a container.
+	*/
+	registerCt: function(el, addFn, doLayoutFn, scope) {
+		gxui.UserControlManager.registerContainer(this, el, addFn, doLayoutFn, scope);
+	},
+
+	//private
+	/**
+	* Unregister the user Control to its parent container.
+	*/
+	unregisterCt: function(toRem) {
+		gxui.UserControlManager.unregisterContainer(toRem);
+	},
+
+	//private
+	/**
+	* Adds the User Control to its parent container.
+	*/
+	addToParentContainer: function(uc) {
+		gxui.afterShow(function() {
+			try {
+				var el = Ext.get(this.getContainerControl());
+				this.checkIfInline(el);
+				for (var el = Ext.get(this.getContainerControl()); el; el = el.parent("div")) {
+					var ct = gxui.UserControlManager.isRegisteredContainer(el.dom)
+					this.checkIfInline(el);
+					if (ct) {
+						if (ct.addFn) {
+							ct.addFn.createDelegate(ct.scope)(uc);
+							if (ct.doLayoutFn)
+								ct.doLayoutFn.createDelegate(ct.scope);
+						}
+						return;
+					}
+				}
+			}
+			catch (e) {
+				gx.dbg.logEx(e, 'gxui.js', 'afterShowHandler->' + this.getUniqueId());
+			}
+		}, this);
+	},
+
+	checkIfInline: function(el) {
+		if (el.id.indexOf("gxHTMLWrp") >= 0 || el.hasClass("gx_usercontrol") || el.hasClass("gxui-uc-container"))
+			el.setStyle("display", "inline");
+	},
+
+	getUniqueId: function() {
+		return "gxui-" + (this.ParentObject ? this.ParentObject.CmpContext || "" + "-" + this.ParentObject.ServerClass || "" : "") + "-" + this.ControlName;
+	}
+});
+
+/**
+* @class gxui.UserControlManager
+* Class for managing gxui UserControls.
+* @singleton
+*/
+gxui.UserControlManager = function() {
+	var ucList = [];
+	var ctList = [];
+
+	var afterShowEvent;
+
+	var initAfterShow = function() {
+		afterShowEvent = new Ext.util.Event();
+	};
+
+	var ucShowListener = function(uc) {
+		try {
+			var ucListItem = this.isRegisteredUC(uc)
+			if (ucListItem) {
+				ucListItem.shown = true;
+			}
+
+			var allShown = true;
+			Ext.each(ucList, function(item) {
+				return allShown = item.shown && allShown;
+			}, this);
+
+			if (allShown && afterShowEvent) {
+				afterShowEvent.fire();
+				Ext.each(ucList, function(item) {
+					// Fire doLayout function in those controls that don't have a parent control.
+					var extUC = item.uc.getUnderlyingControl();
+					if (extUC && !extUC.ownerCt && extUC.doLayout) {
+						extUC.doLayout();
+					}
+					item.shown = false;
+				}, this);
+			}
+		}
+		catch (e) {
+			gx.dbg.logEx(e, 'gxui.js', 'ucShowListener');
+		}
+	};
+
+	return {
+		getUCList: function() {
+			var l = [];
+			Ext.each(ucList, function(item) {
+				l.push(item.uc);
+			});
+			return l;
+		},
+
+		getContainersList: function() {
+			return ctList;
+		},
+
+		register: function(uc) {
+			ucList.push({
+				uc: uc,
+				shown: false
+			});
+
+			uc.on("show", ucShowListener, this);
+
+			uc.on("destroy", function(uc) {
+				this.unregister(uc);
+				this.unregisterContainer(uc);
+				if (uc.afterShowHandler)
+					afterShowEvent.removeListener(uc.afterShowHandler, uc);
+			}, this);
+		},
+
+		unregister: function(uc) {
+			var toRem = this.isRegisteredUC(uc);
+			if (toRem)
+				ucList.remove(toRem);
+		},
+
+		registerContainer: function(uc, el, addFn, doLayoutFn, scope) {
+			ctList.push({
+				uc: uc,
+				el: el,
+				addFn: addFn,
+				doLayoutFn: doLayoutFn,
+				scope: scope
+			});
+		},
+
+		unregisterContainer: function(obj) {
+			toRem = this.isRegisteredContainer(obj);
+			if (toRem)
+				ctList.remove(toRem);
+		},
+
+		isRegisteredUC: function(uc) {
+			var obj = null;
+
+			Ext.each(ucList, function(item) {
+				if (uc == item.uc) {
+					obj = item;
+					return false;
+				}
+			}, this);
+
+			return obj;
+		},
+
+		isRegisteredContainer: function(el) {
+			var ct = null;
+
+			if (el.layout) {
+				Ext.each(ctList, function(item) {
+					if (el == item.scope) {
+						ct = item;
+						return false;
+					}
+				}, this);
+			}
+			else
+				if (el.tagName) { // If el argument is a HTMLElement
+				Ext.each(ctList, function(item) {
+					if (el == item.el) {
+						ct = item;
+						return false;
+					}
+				}, this);
+			}
+			else { // If el argument is a gxui.UserControl
+				uc = el;
+				Ext.each(ctList, function(item) {
+					if (uc == item.uc) {
+						ct = item;
+						return false;
+					}
+				}, this);
+			}
+
+			return ct;
+		},
+
+		/**
+		* Fires after the show method of all the registered User Controls has been executed.
+		* @param {Function} fn The method the event invokes
+		* @param {Object} scope (optional) An object that becomes the scope of the handler
+		* @param {boolean} options (optional) An object containing standard Ext.EventManager.addListener options
+		*/
+		afterShow: function(fn, scope, options) {
+			if (!afterShowEvent)
+				initAfterShow();
+
+			scope.afterShowHandler = fn;
+			afterShowEvent.addListener(fn, scope, options)
+		}
+	};
+} ();

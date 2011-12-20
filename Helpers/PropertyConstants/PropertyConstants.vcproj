@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9,00"
+	Name="PropertyConstants"
+	ProjectGUID="{E66C2F7A-A4DD-4C3B-B84C-4307C01A1480}"
+	RootNamespace="PropertyConstants"
+	Keyword="MakeFileProj"
+	TargetFrameworkVersion="131072"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="..\Base"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="&quot;$(FrameworkDir)\$(FrameworkVersion)\msbuild.exe&quot; &quot;$(ProjectDir)PropertyConstants.msbuild&quot; /t:Build"
+				ReBuildCommandLine="&quot;$(FrameworkDir)\$(FrameworkVersion)\msbuild.exe&quot; &quot;$(ProjectDir)PropertyConstants.msbuild&quot; /t:Rebuild"
+				CleanCommandLine="&quot;$(FrameworkDir)\$(FrameworkVersion)\msbuild.exe&quot; &quot;$(ProjectDir)PropertyConstants.msbuild&quot; /t:Clean"
+				Output="PropertyConstants.cs"
+				PreprocessorDefinitions="WIN32;_DEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="..\Base"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="&quot;$(FrameworkDir)\$(FrameworkVersion)\msbuild.exe&quot; &quot;$(ProjectDir)PropertyConstants.msbuild&quot; /t:Build"
+				ReBuildCommandLine="&quot;$(FrameworkDir)\$(FrameworkVersion)\msbuild.exe&quot; &quot;$(ProjectDir)PropertyConstants.msbuild&quot; /t:Rebuild"
+				CleanCommandLine="&quot;$(FrameworkDir)\$(FrameworkVersion)\msbuild.exe&quot; &quot;$(ProjectDir)PropertyConstants.msbuild&quot; /t:Clean"
+				Output="PropertyConstants.cs"
+				PreprocessorDefinitions="WIN32;NDEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<File
+			RelativePath=".\PropertyConstants.msbuild"
+			>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

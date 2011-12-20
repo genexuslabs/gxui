@@ -1,0 +1,38 @@
+﻿<?xml version="1.0"?>
+<ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Version>1.1.0.393</Version>
+	<IncludeInControlInfo>false</IncludeInControlInfo>
+	<RuntimeRender>gxui-all.js</RuntimeRender>
+	<HeightPropertyName>Height</HeightPropertyName>
+	<WidthPropertyName>Width</WidthPropertyName>
+	<ResizeSupported>true</ResizeSupported>
+	<ObjClass>gxui.ThumbnailView</ObjClass>
+	<Description>gxui.ThumbnailView</Description>
+	<Id>8e0ecc00-76dc-11dd-ad8b-0800200c9a66</Id>
+	<Name>gxui.ThumbnailView</Name>
+	<ShowMethod>show</ShowMethod>
+	<ReferencedFiles>
+		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
+		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
+		<SharedFile>ext/ext-all.js</SharedFile>
+	</ReferencedFiles>
+	<SupportFiles>
+		<Directory>resources</Directory>
+		<SharedDirectory>ext/resources</SharedDirectory>
+	</SupportFiles>
+	<Constructor>
+		<Parameters />
+		<Name>gxui.ThumbnailView</Name>
+	</Constructor>
+	<Categories>
+		<Category>gxui Library</Category>
+	</Categories>
+	<PropertiesDefinition>ThumbnailView/design/ThumbnailViewProperties.xml</PropertiesDefinition>
+	<DesignRender>ThumbnailView/design/ThumbnailViewRender.xsl</DesignRender>
+	<ToolboxIcon>ThumbnailView/design/ThumbnailView.ico</ToolboxIcon>
+	<Events>
+		<Event>ItemClick</Event>
+		<Event>ItemDoubleClick</Event>
+	</Events>
+	<Actions />
+</ControlDefinition>

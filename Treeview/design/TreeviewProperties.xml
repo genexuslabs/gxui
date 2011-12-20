@@ -1,0 +1,549 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../Properties.xslt"?>
+<Content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Object id="gxui.Treeview">
+		<Group>
+			<Name>General</Name>
+			<Type>Main</Type>
+			<Children>
+				<Prop>
+					<Id>Width</Id>
+					<Name>Width</Name>
+					<Type>Integer</Type>
+					<Default>100</Default>
+					<Metadata />
+					<Description>Control width.</Description>
+				</Prop>
+				<Prop>
+					<Id>Height</Id>
+					<Name>Height</Name>
+					<Type>Integer</Type>
+					<Default>100</Default>
+					<Metadata />
+					<Description>Control height.</Description>
+				</Prop>
+				<Prop>
+					<Id>AddToParentGxUIControl</Id>
+					<Name>AddToParentGxUIControl</Name>
+					<Type>Boolean</Type>
+					<Default>true</Default>
+					<Metadata />
+					<Description>True to add the control to its parent GxUI control (if there's one). Defaults to true.</Description>
+				</Prop>
+				<Group>
+					<Name>Behavior</Name>
+					<Children>
+						<Prop>
+							<Id>Multiselection</Id>
+							<Name>Multiselection</Name>
+							<Type>Boolean</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Description>True to enable multiselection of tree nodes.</Description>
+						</Prop>
+						<Prop>
+							<Id>Editable</Id>
+							<Name>Editable</Name>
+							<Type>Boolean</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Description>True to enable node text editing. When a node's text is changed, the NodeEdit event is raised.</Description>
+						</Prop>
+						<Group>
+							<Name>Checkbox</Name>
+							<Children>
+								<Prop>
+									<Id>EnableCheckbox</Id>
+									<Name>EnableCheckbox</Name>
+									<Type>Boolean</Type>
+									<Default>false</Default>
+									<Metadata />
+									<Description>True to enable the rendering of a checked checkbox for the nodes of the tree (defaults to false).</Description>
+								</Prop>
+								<Prop>
+									<Id>CheckedNodes</Id>
+									<Name>CheckedNodes</Name>
+									<Type>Custom</Type>
+									<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+									<Metadata>
+										<Value name="FlagSetValueMethod">SetCheckedNodes</Value>
+										<Value name="FlagGetValueMethod">GetCheckedNodes</Value>
+										<Value name="FlagDataTypeFilter"></Value>
+										<Value name="FlagHideVariables">false</Value>
+										<Value name="FlagHideAttributes">true</Value>
+									</Metadata>
+									<Description>The variable where the ids of the checked nodes are stored.</Description>
+								</Prop>
+								<Prop>
+									<Id>UncheckedNodes</Id>
+									<Name>UncheckedNodes</Name>
+									<Type>Custom</Type>
+									<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+									<Metadata>
+										<Value name="FlagSetValueMethod">SetUncheckedNodes</Value>
+										<Value name="FlagGetValueMethod">GetUncheckedNodes</Value>
+										<Value name="FlagDataTypeFilter"></Value>
+										<Value name="FlagHideVariables">false</Value>
+										<Value name="FlagHideAttributes">true</Value>
+									</Metadata>
+									<Description>The variable where the ids of the unchecked nodes are stored.</Description>
+								</Prop>
+							</Children>
+						</Group>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Appareance</Name>
+					<Children>
+						<Prop>
+							<Id>Title</Id>
+							<Name>Title</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>The title text to display in the panel header.</Description>
+						</Prop>
+						<Prop>
+							<Id>IconCls</Id>
+							<Name>IconCls</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>A CSS class that will provide a background image to be used as the panel header icon.</Description>
+						</Prop>
+						<Prop>
+							<Id>Cls</Id>
+							<Name>Cls</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>An optional extra CSS class that will be added to this control's element. This can be useful for adding customized styles to the component or any of its children using standard CSS rules.</Description>
+						</Prop>
+						<Prop>
+							<Id>Frame</Id>
+							<Name>Frame</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to render the panel with custom rounded borders, false to render with plain 1px square borders.</Description>
+						</Prop>
+						<Prop>
+							<Id>Border</Id>
+							<Name>Border</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to display the borders of the panel's body element, false to hide them (defaults to true).</Description>
+						</Prop>
+						<Prop>
+							<Id>AutoScroll</Id>
+							<Name>AutoScroll</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to show scroll bars automatically when necessary, false to clip any overflowing content (defaults to false).</Description>
+						</Prop>
+						<Prop>
+							<Id>Animate</Id>
+							<Name>Animate</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to enable animated expand/collapse.</Description>
+						</Prop>
+						<Prop>
+							<Id>ExpandAll</Id>
+							<Name>ExpandAll</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to show the tree with all the nodes initially expanded.</Description>
+						</Prop>
+						<Prop>
+							<Id>ShowLines</Id>
+							<Name>ShowLines</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>False to disable tree lines.</Description>
+						</Prop>
+						<Prop>
+							<Id>Sort</Id>
+							<Name>Sort</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to sort the nodes.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Root</Name>
+					<Children>
+						<Prop>
+							<Id>RootId</Id>
+							<Name>RootId</Name>
+							<Type>Text</Type>
+							<Default>ROOT</Default>
+							<Metadata />
+							<Description>Root node identifier. If one is not specified, one is generated.</Description>
+						</Prop>
+						<Prop>
+							<Id>RootVisible</Id>
+							<Name>RootVisible</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>False to hide the root node.</Description>
+						</Prop>
+						<Prop>
+							<Id>RootText</Id>
+							<Name>RootText</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>Text for the root node.</Description>
+						</Prop>
+						<Prop>
+							<Id>RootIcon</Id>
+							<Name>RootIcon</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>The path to an icon for the node. The preferred way to do this is to use the cls or iconCls attributes (here a CSS class defined in the Theme can be specified) and add the icon via a CSS background image.</Description>
+						</Prop>
+						<Prop>
+							<Id>RootCls</Id>
+							<Name>RootCls</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>A CSS class to be added to the root node (here a CSS class defined in the Theme can be specified).</Description>
+						</Prop>
+						<Prop>
+							<Id>RootIconCls</Id>
+							<Name>RootIconCls</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>A CSS class to be added to the root node icon element for applying CSS background images (here a CSS class defined in the Theme can be specified).</Description>
+						</Prop>
+						<Prop>
+							<Id>ExpandRoot</Id>
+							<Name>ExpandRoot</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to show the tree with the root node expanded.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
+					<Name>DragDrop</Name>
+					<Children>
+						<Prop>
+							<Id>EnableDragDrop</Id>
+							<Name>EnableDragDrop</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to enable drag and drop of nodes.</Description>
+						</Prop>
+						<Prop>
+							<Id>DragDropGroup</Id>
+							<Name>DragDropGroup</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>A named drag drop group to which this object belongs. If a group is specified, then this object will only interact with other drag drop objects in the same group (defaults to undefined).</Description>
+						</Prop>
+						<Prop>
+							<Id>AppendOnly</Id>
+							<Name>AppendOnly</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True if the tree should only allow append drops (use for trees which are sorted).</Description>
+						</Prop>
+						<Prop>
+							<Id>Scroll</Id>
+							<Name>Scroll</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to enable automatic scrolling during drag operations.</Description>
+						</Prop>
+						<Prop>
+							<Id>DropData</Id>
+							<Name>DropData</Name>
+							<Type>Custom</Type>
+							<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+							<Metadata>
+								<Value name="FlagSetValueMethod">SetDropData</Value>
+								<Value name="FlagGetValueMethod">GetDropData</Value>
+								<Value name="FlagDataTypeFilter"></Value>
+								<Value name="FlagHideVariables">False</Value>
+								<Value name="FlagHideAttributes">true</Value>
+							</Metadata>
+							<Description>The variable (must be a SDT) where data from a row dropped from a grid will be available. The fields of the dragged row are mapped to the fields of the SDT by name.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
+					<Name>EventBehavior</Name>
+					<Children>
+						<Prop>
+							<Id>DisableBranchEvents</Id>
+							<Name>DisableBranchEvents</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to disable click events for branch (node with children) nodes.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Context Notifying</Name>
+					<Children>
+						<Prop>
+							<Id>NotifyContext</Id>
+							<Name>NotifyContext</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+						</Prop>
+						<Prop>
+							<Id>NotifyDataType</Id>
+							<Name>NotifyDataType</Name>
+							<Type>Text</Type>
+							<Default>gxuiTreeNode</Default>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Data Bindings</Name>
+					<Children>
+						<Prop>
+							<Id>LazyLoading</Id>
+							<Name>LazyLoading</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to load the nodes through the URL specified in LoaderURL, false to load the nodes from the SDT variable specified in TreeNode property.</Description>
+						</Prop>
+						<Prop>
+							<Id>LoaderURL</Id>
+							<Name>LoaderURL</Name>
+							<Type>Text</Type>
+							<Default>TreeLoader</Default>
+							<Metadata />
+							<Description>The URL where the nodes will be retrieved. The data must be a JSON array (check gxuiTreeviewSampleLoader procedure for a sample).</Description>
+						</Prop>
+						<Prop>
+							<Id>Children</Id>
+							<Name>Children</Name>
+							<Type>Custom</Type>
+							<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+							<Metadata>
+								<Value name="FlagSetValueMethod">SetChildren</Value>
+								<Value name="FlagGetValueMethod">GetChildren</Value>
+								<Value name="FlagDataTypeFilter">gxuiTreeviewNode</Value>
+								<Value name="FlagHideVariables">False</Value>
+								<Value name="FlagHideAttributes">true</Value>
+							</Metadata>
+							<Description>The variable where the tree nodes are stored. The nodes can also be lazy loaded from a URL, through the LoaderURL property.</Description>
+						</Prop>
+						<Prop>
+							<Id>SelectedNodeData</Id>
+							<Name>SelectedNodeData</Name>
+							<Type>Custom</Type>
+							<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+							<Metadata>
+								<Value name="FlagSetValueMethod">SetSelectedNodeData</Value>
+								<Value name="FlagGetValueMethod">GetSelectedNodeData</Value>
+								<Value name="FlagDataTypeFilter"></Value>
+								<Value name="FlagHideVariables">False</Value>
+								<Value name="FlagHideAttributes">true</Value>
+							</Metadata>
+							<Description>The variable where the data associated to the selected node is stored (gxuiTreeViewNode.data property of the selected node).</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
+					<Name>State Management</Name>
+					<Children>
+						<Prop>
+							<Id>Stateful</Id>
+							<Name>Stateful</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>A flag which causes the Component to attempt to restore the state of internal properties from a saved state on startup.</Description>
+						</Prop>
+						<Prop>
+							<Id>StateId</Id>
+							<Name>StateId</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>The unique id for this component to use for state management purposes.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Prop>
+					<Id>SelectedNode</Id>
+					<Name>SelectedNode</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>Id of the selected node.</Description>
+				</Prop>
+				<Prop>
+					<Id>SelectedText</Id>
+					<Name>SelectedText</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>Text of the selected node.</Description>
+				</Prop>
+				<Prop>
+					<Id>SelectedIcon</Id>
+					<Name>SelectedIcon</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>Icon of the selected node.</Description>
+				</Prop>
+				<Prop>
+					<Id>SelectedNodeChecked</Id>
+					<Name>SelectedNodeChecked</Name>
+					<Type>Boolean</Type>
+					<Default>false</Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>Indicates if the selected node is checked (when EnableCheckBox = True)</Description>
+				</Prop>
+				<Prop>
+					<Id>DropTarget</Id>
+					<Name>DropTarget</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>Id of the node targeted for a drop.</Description>
+				</Prop>
+				<Prop>
+					<Id>DropNode</Id>
+					<Name>DropNode</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>Id of the dropped node.</Description>
+				</Prop>
+				<Prop>
+					<Id>DropPoint</Id>
+					<Name>DropPoint</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>The point of the drop - append, above or below.</Description>
+				</Prop>
+				<Prop>
+					<Id>NodeEditText</Id>
+					<Name>NodeEditText</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>The node text after it was edited.</Description>
+				</Prop>
+				<Prop>
+					<Id>DropAllowed</Id>
+					<Name>DropAllowed</Name>
+					<Type>Boolean</Type>
+					<Default>true</Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>Indicates if dropping a node (DropNode) is allowed over the current node (DropTarget). Should be set to true or false in the NodeOver event (defaults to true).</Description>
+				</Prop>
+			</Children>
+		</Group>
+	</Object>
+</Content>

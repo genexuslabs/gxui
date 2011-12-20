@@ -1,0 +1,1420 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../Properties.xslt"?>
+<Content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Object id="gxui.Layout">
+		<Group>
+			<Name>General</Name>
+			<Type>Main</Type>
+			<Children>
+				<Prop>
+					<Id>Width</Id>
+					<Name>Width</Name>
+					<Type>Integer</Type>
+					<Default>100</Default>
+					<Metadata />
+					<Description>Control width. Ignored if Nested is false.</Description>
+				</Prop>
+				<Prop>
+					<Id>Height</Id>
+					<Name>Height</Name>
+					<Type>Integer</Type>
+					<Default>100</Default>
+					<Metadata />
+					<Description>Control height. Ignored if Nested is false.</Description>
+				</Prop>
+				<Prop>
+					<Id>Cls</Id>
+					<Name>Cls</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">DesignTime</Value>
+					</Metadata>
+					<Description>An optional extra CSS class that will be added to this control's element. This can be useful for adding customized styles to the component or any of its children using standard CSS rules.</Description>
+				</Prop>
+				<Prop>
+					<Id>Nested</Id>
+					<Name>Nested</Name>
+					<Type>Combo</Type>
+					<Default>false</Default>
+					<Metadata>
+						<Value name="FlagScope">DesignTime</Value>
+					</Metadata>
+					<Values>
+						<Value id="true" desc="True"/>
+						<Value id="false" desc="False"/>
+					</Values>
+					<Description>Set to true if you want to nest this control inside another control. Set to false if you want it to render itself to the document body, and automatically size itself to the size of the browser viewport and manage window resizing.</Description>
+				</Prop>
+				<Group>
+					<Name>Regions</Name>
+					<Children>
+						<Group>
+							<Name>North</Name>
+							<Children>
+								<Prop>
+									<Id>NorthHidden</Id>
+									<Name>NorthHidden</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true if you want to hide this region.</Description>
+								</Prop>
+								<Prop>
+									<Id>NorthSplit</Id>
+									<Name>NorthSplit</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true if you want to enable a splitbar in this region.</Description>
+								</Prop>
+								<Prop>
+									<Id>NorthAutoScroll</Id>
+									<Name>NorthAutoScroll</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true True to show scroll bars automatically when necessary, false to clip any overflowing content.</Description>
+								</Prop>
+								<Prop>
+									<Id>NorthMargins</Id>
+									<Name>NorthMargins</Name>
+									<Type>Text</Type>
+									<Default>0,0,0,0</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>Region margins in the format: top, right, bottom, left.</Description>
+								</Prop>
+								<Prop>
+									<Id>NorthBorder</Id>
+									<Name>NorthBorder</Name>
+									<Type>Boolean</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>True to display the borders of the region's body element, false to hide them (defaults to true).</Description>
+								</Prop>
+								<Prop>
+									<Id>NorthLayout</Id>
+									<Name>NorthLayout</Name>
+									<Type>Combo</Type>
+									<Default>fit</Default>
+									<Metadata />
+									<Values>
+										<Value id="default" desc="Default" />
+										<Value id="fit" desc="Fit" />
+									</Values>
+									<Description>The layout type to be used in this container.</Description>
+								</Prop>
+								<Prop>
+									<Id>NorthDragDropMode</Id>
+									<Name>NorthDragDropMode</Name>
+									<Type>Combo</Type>
+									<Default>disabled</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="disabled" desc="Disabled"/>
+										<Value id="portal" desc="Portal"/>
+										<Value id="floating" desc="Floating"/>
+									</Values>
+									<Description>Region panels drag/drop mode. Set to Portal if you want the panels to be layed out in a grid fashion and to allow panel draggin in a portal fashion. Set to Floating if you want to allow the panels to float freely over the region. Set to disabled for default behavior.</Description>
+								</Prop>
+								<Group>
+									<Name>North Title Bar</Name>
+									<Children>
+										<Prop>
+											<Id>NorthTitleBar</Id>
+											<Name>NorthTitleBar</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to show the title bar on top of the region.</Description>
+										</Prop>
+										<Prop>
+											<Id>NorthTitle</Id>
+											<Name>NorthTitle</Name>
+											<Type>Text</Type>
+											<Default>North</Default>
+											<Metadata />
+											<Description>The title text to display in the title bar. When a title is specified the header element will automatically be created and displayed unless the title bar is explicitly set to false.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>North Size</Name>
+									<Children>
+										<Prop>
+											<Id>NorthHeight</Id>
+											<Name>NorthHeight</Name>
+											<Type>Integer</Type>
+											<Default>100</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Region height in pixels.</Description>
+										</Prop>
+										<Prop>
+											<Id>NorthMinHeight</Id>
+											<Name>NorthMinHeight</Name>
+											<Type>Integer</Type>
+											<Default>0</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Region minimum height in pixels.</Description>
+										</Prop>
+										<Prop>
+											<Id>NorthMaxHeight</Id>
+											<Name>NorthMaxHeight</Name>
+											<Type>Integer</Type>
+											<Default>300</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Region maximum height in pixels.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>North Collapsing</Name>
+									<Children>
+										<Prop>
+											<Id>NorthCollapsible</Id>
+											<Name>NorthCollapsible</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
+										</Prop>
+										<Prop>
+											<Id>NorthCollapsed</Id>
+											<Name>NorthCollapsed</Name>
+											<Type>Combo</Type>
+											<Default>false</Default>
+											<Metadata/>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to render the region collapsed, false to render it expanded.</Description>
+										</Prop>
+										<Prop>
+											<Id>NorthCollapseMode</Id>
+											<Name>NorthCollapseMode</Name>
+											<Type>Combo</Type>
+											<Default>undefined</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="undefined" desc="Normal"/>
+												<Value id="mini" desc="Mini"/>
+											</Values>
+											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
+										</Prop>
+										<Prop>
+											<Id>NorthCollapsedMargins</Id>
+											<Name>NorthCollapsedMargins</Name>
+											<Type>Text</Type>
+											<Default>0,0,0,0</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Region margins when collapsed, in the format: top, right, bottom, left.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>North Floating</Name>
+									<Children>
+										<Prop>
+											<Id>NorthFloatable</Id>
+											<Name>NorthFloatable</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to allow clicking a collapsed region's bar to display the region's panel floated above the layout, false to force the user to fully expand a collapsed region by clicking the expand button to see it again.</Description>
+										</Prop>
+										<Prop>
+											<Id>NorthAutoHide</Id>
+											<Name>NorthAutoHide</Name>
+											<Type>Combo</Type>
+											<Default>false</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>When a collapsed region's bar is clicked, the region's panel will be displayed as a floated panel. If autoHide is true, the panel will automatically hide after the user mouses out of the panel. If autoHide is false, the panel will continue to display until the user clicks outside of the panel.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>North Animation</Name>
+									<Children>
+										<Prop>
+											<Id>NorthAnimate</Id>
+											<Name>NorthAnimate</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to animate resizing, collapsing and floating actions.</Description>
+										</Prop>
+										<Prop>
+											<Id>NorthDuration</Id>
+											<Name>NorthDuration</Name>
+											<Type>Integer</Type>
+											<Default>300</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Animation duration if Animate is true.</Description>
+										</Prop>
+									</Children>
+								</Group>
+							</Children>
+						</Group>
+						<Group>
+							<Name>South</Name>
+							<Children>
+								<Prop>
+									<Id>SouthHidden</Id>
+									<Name>SouthHidden</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata/>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true if you want to hide this region.</Description>
+								</Prop>
+								<Prop>
+									<Id>SouthSplit</Id>
+									<Name>SouthSplit</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true if you want to enable a splitbar in this region.</Description>
+								</Prop>
+								<Prop>
+									<Id>SouthAutoScroll</Id>
+									<Name>SouthAutoScroll</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true True to show scroll bars automatically when necessary, false to clip any overflowing content.</Description>
+								</Prop>
+								<Prop>
+									<Id>SouthMargins</Id>
+									<Name>SouthMargins</Name>
+									<Type>Text</Type>
+									<Default>0,0,0,0</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>Region margins in the format: top, right, bottom, left.</Description>
+								</Prop>
+								<Prop>
+									<Id>SouthBorder</Id>
+									<Name>SouthBorder</Name>
+									<Type>Boolean</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>True to display the borders of the region's body element, false to hide them (defaults to true).</Description>
+								</Prop>
+								<Prop>
+									<Id>SouthLayout</Id>
+									<Name>SouthLayout</Name>
+									<Type>Combo</Type>
+									<Default>fit</Default>
+									<Metadata />
+									<Values>
+										<Value id="default" desc="Default" />
+										<Value id="fit" desc="Fit" />
+									</Values>
+									<Description>The layout type to be used in this container.</Description>
+								</Prop>
+								<Prop>
+									<Id>SouthDragDropMode</Id>
+									<Name>SouthDragDropMode</Name>
+									<Type>Combo</Type>
+									<Default>disabled</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="disabled" desc="Disabled"/>
+										<Value id="portal" desc="Portal"/>
+										<Value id="floating" desc="Floating"/>
+									</Values>
+									<Description>Region panels drag/drop mode. Set to Portal if you want the panels to be layed out in a grid. Set to Floating if you want to allow the panels to float freely on the region.</Description>
+								</Prop>
+								<Group>
+									<Name>South Title Bar</Name>
+									<Children>
+										<Prop>
+											<Id>SouthTitleBar</Id>
+											<Name>SouthTitleBar</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to show the title bar on top of the region.</Description>
+										</Prop>
+										<Prop>
+											<Id>SouthTitle</Id>
+											<Name>SouthTitle</Name>
+											<Type>Text</Type>
+											<Default>South</Default>
+											<Metadata/>
+											<Description>The title text to display in the title bar. When a title is specified the header element will automatically be created and displayed unless the title bar is explicitly set to false.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>South Size</Name>
+									<Children>
+										<Prop>
+											<Id>SouthHeight</Id>
+											<Name>SouthHeight</Name>
+											<Type>Integer</Type>
+											<Default>100</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Region height in pixels.</Description>
+										</Prop>
+										<Prop>
+											<Id>SouthMinHeight</Id>
+											<Name>SouthMinHeight</Name>
+											<Type>Integer</Type>
+											<Default>0</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Region minimum height in pixels.</Description>
+										</Prop>
+										<Prop>
+											<Id>SouthMaxHeight</Id>
+											<Name>SouthMaxHeight</Name>
+											<Type>Integer</Type>
+											<Default>300</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Region maximum height in pixels.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>South Collapsing</Name>
+									<Children>
+										<Prop>
+											<Id>SouthCollapsible</Id>
+											<Name>SouthCollapsible</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
+										</Prop>
+										<Prop>
+											<Id>SouthCollapseMode</Id>
+											<Name>SouthCollapseMode</Name>
+											<Type>Combo</Type>
+											<Default>undefined</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="undefined" desc="Normal"/>
+												<Value id="mini" desc="Mini"/>
+											</Values>
+											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
+										</Prop>
+										<Prop>
+											<Id>SouthCollapsed</Id>
+											<Name>SouthCollapsed</Name>
+											<Type>Combo</Type>
+											<Default>false</Default>
+											<Metadata/>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to render the region collapsed, false to render it expanded.</Description>
+										</Prop>
+										<Prop>
+											<Id>SouthCollapsedMargins</Id>
+											<Name>SouthCollapsedMargins</Name>
+											<Type>Text</Type>
+											<Default>0,0,0,0</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Region margins when collapsed, in the format: top, right, bottom, left.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>South Floating</Name>
+									<Children>
+										<Prop>
+											<Id>SouthFloatable</Id>
+											<Name>SouthFloatable</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to allow clicking a collapsed region's bar to display the region's panel floated above the layout, false to force the user to fully expand a collapsed region by clicking the expand button to see it again.</Description>
+										</Prop>
+										<Prop>
+											<Id>SouthAutoHide</Id>
+											<Name>SouthAutoHide</Name>
+											<Type>Combo</Type>
+											<Default>false</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>When a collapsed region's bar is clicked, the region's panel will be displayed as a floated panel. If autoHide is true, the panel will automatically hide after the user mouses out of the panel. If autoHide is false, the panel will continue to display until the user clicks outside of the panel.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>South Animation</Name>
+									<Children>
+										<Prop>
+											<Id>SouthAnimate</Id>
+											<Name>SouthAnimate</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to animate resizing, collapsing and floating actions.</Description>
+										</Prop>
+										<Prop>
+											<Id>SouthDuration</Id>
+											<Name>SouthDuration</Name>
+											<Type>Integer</Type>
+											<Default>300</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Animation duration if Animate is true.</Description>
+										</Prop>
+									</Children>
+								</Group>
+							</Children>
+						</Group>
+						<Group>
+							<Name>West</Name>
+							<Children>
+								<Prop>
+									<Id>WestHidden</Id>
+									<Name>WestHidden</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata/>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true if you want to hide this region.</Description>
+								</Prop>
+								<Prop>
+									<Id>WestSplit</Id>
+									<Name>WestSplit</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true if you want to enable a splitbar in this region.</Description>
+								</Prop>
+								<Prop>
+									<Id>WestAutoScroll</Id>
+									<Name>WestAutoScroll</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true True to show scroll bars automatically when necessary, false to clip any overflowing content.</Description>
+								</Prop>
+								<Prop>
+									<Id>WestMargins</Id>
+									<Name>WestMargins</Name>
+									<Type>Text</Type>
+									<Default>0,0,0,0</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>Region margins in the format: top, right, bottom, left.</Description>
+								</Prop>
+								<Prop>
+									<Id>WestBorder</Id>
+									<Name>WestBorder</Name>
+									<Type>Boolean</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>True to display the borders of the region's body element, false to hide them (defaults to true).</Description>
+								</Prop>
+								<Prop>
+									<Id>WestLayout</Id>
+									<Name>WestLayout</Name>
+									<Type>Combo</Type>
+									<Default>fit</Default>
+									<Metadata />
+									<Values>
+										<Value id="default" desc="Default" />
+										<Value id="fit" desc="Fit" />
+									</Values>
+									<Description>The layout type to be used in this container.</Description>
+								</Prop>
+								<Prop>
+									<Id>WestDragDropMode</Id>
+									<Name>WestDragDropMode</Name>
+									<Type>Combo</Type>
+									<Default>disabled</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="disabled" desc="Disabled"/>
+										<Value id="portal" desc="Portal"/>
+										<Value id="floating" desc="Floating"/>
+									</Values>
+									<Description>Region panels drag/drop mode. Set to Portal if you want the panels to be layed out in a grid. Set to Floating if you want to allow the panels to float freely on the region.</Description>
+								</Prop>
+								<Group>
+									<Name>West Title Bar</Name>
+									<Children>
+										<Prop>
+											<Id>WestTitleBar</Id>
+											<Name>WestTitleBar</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to show the title bar on top of the region.</Description>
+										</Prop>
+										<Prop>
+											<Id>WestTitle</Id>
+											<Name>WestTitle</Name>
+											<Type>Text</Type>
+											<Default>West</Default>
+											<Metadata/>
+											<Description>The title text to display in the title bar. When a title is specified the header element will automatically be created and displayed unless the title bar is explicitly set to false.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>West Size</Name>
+									<Children>
+										<Prop>
+											<Id>WestWidth</Id>
+											<Name>WestWidth</Name>
+											<Type>Integer</Type>
+											<Default>200</Default>
+											<Metadata/>
+											<Description>Region width in pixels.</Description>
+										</Prop>
+										<Prop>
+											<Id>WestMinWidth</Id>
+											<Name>WestMinWidth</Name>
+											<Type>Integer</Type>
+											<Default>50</Default>
+											<Metadata/>
+											<Description>Region minimum width in pixels.</Description>
+										</Prop>
+										<Prop>
+											<Id>WestMaxWidth</Id>
+											<Name>WestMaxWidth</Name>
+											<Type>Integer</Type>
+											<Default>400</Default>
+											<Metadata/>
+											<Description>Region maximum width in pixels.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>West Collapsing</Name>
+									<Children>
+										<Prop>
+											<Id>WestCollapsible</Id>
+											<Name>WestCollapsible</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
+										</Prop>
+										<Prop>
+											<Id>WestCollapseMode</Id>
+											<Name>WestCollapseMode</Name>
+											<Type>Combo</Type>
+											<Default>undefined</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="undefined" desc="Normal"/>
+												<Value id="mini" desc="Mini"/>
+											</Values>
+											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
+										</Prop>
+										<Prop>
+											<Id>WestCollapsed</Id>
+											<Name>WestCollapsed</Name>
+											<Type>Combo</Type>
+											<Default>false</Default>
+											<Metadata/>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to render the region collapsed, false to render it expanded.</Description>
+										</Prop>
+										<Prop>
+											<Id>WestCollapsedMargins</Id>
+											<Name>WestCollapsedMargins</Name>
+											<Type>Text</Type>
+											<Default>0,0,0,0</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Region margins when collapsed, in the format: top, right, bottom, left.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>West Floating</Name>
+									<Children>
+										<Prop>
+											<Id>WestFloatable</Id>
+											<Name>WestFloatable</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to allow clicking a collapsed region's bar to display the region's panel floated above the layout, false to force the user to fully expand a collapsed region by clicking the expand button to see it again.</Description>
+										</Prop>
+										<Prop>
+											<Id>WestAutoHide</Id>
+											<Name>WestAutoHide</Name>
+											<Type>Combo</Type>
+											<Default>false</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>When a collapsed region's bar is clicked, the region's panel will be displayed as a floated panel. If autoHide is true, the panel will automatically hide after the user mouses out of the panel. If autoHide is false, the panel will continue to display until the user clicks outside of the panel.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>West Animation</Name>
+									<Children>
+										<Prop>
+											<Id>WestAnimate</Id>
+											<Name>WestAnimate</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to animate resizing, collapsing and floating actions.</Description>
+										</Prop>
+										<Prop>
+											<Id>WestDuration</Id>
+											<Name>WestDuration</Name>
+											<Type>Integer</Type>
+											<Default>300</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Animation duration if Animate is true.</Description>
+										</Prop>
+									</Children>
+								</Group>
+							</Children>
+						</Group>
+						<Group>
+							<Name>Center</Name>
+							<Children>
+								<Prop>
+									<Id>CenterHidden</Id>
+									<Name>CenterHidden</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata/>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true if you want to hide this region.</Description>
+								</Prop>
+								<Prop>
+									<Id>CenterSplit</Id>
+									<Name>CenterSplit</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true if you want to enable a splitbar in this region.</Description>
+								</Prop>
+								<Prop>
+									<Id>CenterAutoScroll</Id>
+									<Name>CenterAutoScroll</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true True to show scroll bars automatically when necessary, false to clip any overflowing content.</Description>
+								</Prop>
+								<Prop>
+									<Id>CenterMargins</Id>
+									<Name>CenterMargins</Name>
+									<Type>Text</Type>
+									<Default>0,0,0,0</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>Region margins in the format: top, right, bottom, left.</Description>
+								</Prop>
+								<Prop>
+									<Id>CenterBorder</Id>
+									<Name>CenterBorder</Name>
+									<Type>Boolean</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>True to display the borders of the region's body element, false to hide them (defaults to true).</Description>
+								</Prop>
+								<Prop>
+									<Id>CenterLayout</Id>
+									<Name>CenterLayout</Name>
+									<Type>Combo</Type>
+									<Default>fit</Default>
+									<Metadata />
+									<Values>
+										<Value id="default" desc="Default" />
+										<Value id="fit" desc="Fit" />
+									</Values>
+									<Description>The layout type to be used in this container.</Description>
+								</Prop>
+								<Prop>
+									<Id>CenterDragDropMode</Id>
+									<Name>CenterDragDropMode</Name>
+									<Type>Combo</Type>
+									<Default>disabled</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="disabled" desc="Disabled"/>
+										<Value id="portal" desc="Portal"/>
+										<Value id="floating" desc="Floating"/>
+									</Values>
+									<Description>Region panels drag/drop mode. Set to Portal if you want the panels to be layed out in a grid. Set to Floating if you want to allow the panels to float freely on the region.</Description>
+								</Prop>
+								<Group>
+									<Name>Center Title Bar</Name>
+									<Children>
+										<Prop>
+											<Id>CenterTitleBar</Id>
+											<Name>CenterTitleBar</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to show the title bar on top of the region.</Description>
+										</Prop>
+										<Prop>
+											<Id>CenterTitle</Id>
+											<Name>CenterTitle</Name>
+											<Type>Text</Type>
+											<Default>Center</Default>
+											<Metadata/>
+											<Description>The title text to display in the title bar. When a title is specified the header element will automatically be created and displayed unless the title bar is explicitly set to false.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>Center Size</Name>
+									<Children>
+										<Prop>
+											<Id>CenterWidth</Id>
+											<Name>CenterWidth</Name>
+											<Type>Integer</Type>
+											<Default>400</Default>
+											<Metadata/>
+											<Description>Region width in pixels.</Description>
+										</Prop>
+										<Prop>
+											<Id>CenterMinWidth</Id>
+											<Name>CenterMinWidth</Name>
+											<Type>Integer</Type>
+											<Default>200</Default>
+											<Metadata/>
+											<Description>Region minimum width in pixels.</Description>
+										</Prop>
+										<Prop>
+											<Id>CenterMaxWidth</Id>
+											<Name>CenterMaxWidth</Name>
+											<Type>Integer</Type>
+											<Default>800</Default>
+											<Metadata/>
+											<Description>Region maximum width in pixels.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>Center Collapsing</Name>
+									<Children>
+										<Prop>
+											<Id>CenterCollapsible</Id>
+											<Name>CenterCollapsible</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
+										</Prop>
+										<Prop>
+											<Id>CenterCollapseMode</Id>
+											<Name>CenterCollapseMode</Name>
+											<Type>Combo</Type>
+											<Default>undefined</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="undefined" desc="Normal"/>
+												<Value id="mini" desc="Mini"/>
+											</Values>
+											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
+										</Prop>
+										<Prop>
+											<Id>CenterCollapsed</Id>
+											<Name>CenterCollapsed</Name>
+											<Type>Combo</Type>
+											<Default>false</Default>
+											<Metadata/>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to render the region collapsed, false to render it expanded.</Description>
+										</Prop>
+										<Prop>
+											<Id>CenterCollapsedMargins</Id>
+											<Name>CenterCollapsedMargins</Name>
+											<Type>Text</Type>
+											<Default>0,0,0,0</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Region margins when collapsed, in the format: top, right, bottom, left.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>Center Floating</Name>
+									<Children>
+										<Prop>
+											<Id>CenterFloatable</Id>
+											<Name>CenterFloatable</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to allow clicking a collapsed region's bar to display the region's panel floated above the layout, false to force the user to fully expand a collapsed region by clicking the expand button to see it again.</Description>
+										</Prop>
+										<Prop>
+											<Id>CenterAutoHide</Id>
+											<Name>CenterAutoHide</Name>
+											<Type>Combo</Type>
+											<Default>false</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>When a collapsed region's bar is clicked, the region's panel will be displayed as a floated panel. If autoHide is true, the panel will automatically hide after the user mouses out of the panel. If autoHide is false, the panel will continue to display until the user clicks outside of the panel.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>Center Animation</Name>
+									<Children>
+										<Prop>
+											<Id>CenterAnimate</Id>
+											<Name>CenterAnimate</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to animate resizing, collapsing and floating actions.</Description>
+										</Prop>
+										<Prop>
+											<Id>CenterDuration</Id>
+											<Name>CenterDuration</Name>
+											<Type>Integer</Type>
+											<Default>300</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Animation duration if Animate is true.</Description>
+										</Prop>
+									</Children>
+								</Group>
+							</Children>
+						</Group>
+						<Group>
+							<Name>East</Name>
+							<Children>
+								<Prop>
+									<Id>EastHidden</Id>
+									<Name>EastHidden</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata/>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true if you want to hide this region.</Description>
+								</Prop>
+								<Prop>
+									<Id>EastSplit</Id>
+									<Name>EastSplit</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true if you want to enable a splitbar in this region.</Description>
+								</Prop>
+								<Prop>
+									<Id>EastAutoScroll</Id>
+									<Name>EastAutoScroll</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="true" desc="True"/>
+										<Value id="false" desc="False"/>
+									</Values>
+									<Description>Set to true True to show scroll bars automatically when necessary, false to clip any overflowing content.</Description>
+								</Prop>
+								<Prop>
+									<Id>EastMargins</Id>
+									<Name>EastMargins</Name>
+									<Type>Text</Type>
+									<Default>0,0,0,0</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>Region margins in the format: top, right, bottom, left.</Description>
+								</Prop>
+								<Prop>
+									<Id>EastBorder</Id>
+									<Name>EastBorder</Name>
+									<Type>Boolean</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>True to display the borders of the region's body element, false to hide them (defaults to true).</Description>
+								</Prop>
+								<Prop>
+									<Id>EastLayout</Id>
+									<Name>EastLayout</Name>
+									<Type>Combo</Type>
+									<Default>fit</Default>
+									<Metadata />
+									<Values>
+										<Value id="default" desc="Default" />
+										<Value id="fit" desc="Fit" />
+									</Values>
+									<Description>The layout type to be used in this container.</Description>
+								</Prop>
+								<Prop>
+									<Id>EastDragDropMode</Id>
+									<Name>EastDragDropMode</Name>
+									<Type>Combo</Type>
+									<Default>disabled</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="disabled" desc="Disabled"/>
+										<Value id="portal" desc="Portal"/>
+										<Value id="floating" desc="Floating"/>
+									</Values>
+									<Description>Region panels drag/drop mode. Set to Portal if you want the panels to be layed out in a grid. Set to Floating if you want to allow the panels to float freely on the region.</Description>
+								</Prop>
+								<Group>
+									<Name>East Title Bar</Name>
+									<Children>
+										<Prop>
+											<Id>EastTitleBar</Id>
+											<Name>EastTitleBar</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to show the title bar on top of the region.</Description>
+										</Prop>
+										<Prop>
+											<Id>EastTitle</Id>
+											<Name>EastTitle</Name>
+											<Type>Text</Type>
+											<Default>East</Default>
+											<Metadata/>
+											<Description>The title text to display in the title bar. When a title is specified the header element will automatically be created and displayed unless the title bar is explicitly set to false.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>East Size</Name>
+									<Children>
+										<Prop>
+											<Id>EastWidth</Id>
+											<Name>EastWidth</Name>
+											<Type>Integer</Type>
+											<Default>200</Default>
+											<Metadata/>
+											<Description>Region width in pixels.</Description>
+										</Prop>
+										<Prop>
+											<Id>EastMinWidth</Id>
+											<Name>EastMinWidth</Name>
+											<Type>Integer</Type>
+											<Default>50</Default>
+											<Metadata/>
+											<Description>Region minimum width in pixels.</Description>
+										</Prop>
+										<Prop>
+											<Id>EastMaxWidth</Id>
+											<Name>EastMaxWidth</Name>
+											<Type>Integer</Type>
+											<Default>400</Default>
+											<Metadata/>
+											<Description>Region maximum width in pixels.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>East Collapsing</Name>
+									<Children>
+										<Prop>
+											<Id>EastCollapsible</Id>
+											<Name>EastCollapsible</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
+										</Prop>
+										<Prop>
+											<Id>EastCollapseMode</Id>
+											<Name>EastCollapseMode</Name>
+											<Type>Combo</Type>
+											<Default>undefined</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="undefined" desc="Normal"/>
+												<Value id="mini" desc="Mini"/>
+											</Values>
+											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
+										</Prop>
+										<Prop>
+											<Id>EastCollapsed</Id>
+											<Name>EastCollapsed</Name>
+											<Type>Combo</Type>
+											<Default>false</Default>
+											<Metadata/>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to render the region collapsed, false to render it expanded.</Description>
+										</Prop>
+										<Prop>
+											<Id>EastCollapsedMargins</Id>
+											<Name>EastCollapsedMargins</Name>
+											<Type>Text</Type>
+											<Default>0,0,0,0</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Region margins when collapsed, in the format: top, right, bottom, left.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>East Floating</Name>
+									<Children>
+										<Prop>
+											<Id>EastFloatable</Id>
+											<Name>EastFloatable</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to allow clicking a collapsed region's bar to display the region's panel floated above the layout, false to force the user to fully expand a collapsed region by clicking the expand button to see it again.</Description>
+										</Prop>
+										<Prop>
+											<Id>EastAutoHide</Id>
+											<Name>EastAutoHide</Name>
+											<Type>Combo</Type>
+											<Default>false</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>When a collapsed region's bar is clicked, the region's panel will be displayed as a floated panel. If autoHide is true, the panel will automatically hide after the user mouses out of the panel. If autoHide is false, the panel will continue to display until the user clicks outside of the panel.</Description>
+										</Prop>
+									</Children>
+								</Group>
+								<Group>
+									<Name>East Animation</Name>
+									<Children>
+										<Prop>
+											<Id>EastAnimate</Id>
+											<Name>EastAnimate</Name>
+											<Type>Combo</Type>
+											<Default>true</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Values>
+												<Value id="true" desc="True"/>
+												<Value id="false" desc="False"/>
+											</Values>
+											<Description>True to animate resizing, collapsing and floating actions.</Description>
+										</Prop>
+										<Prop>
+											<Id>EastDuration</Id>
+											<Name>EastDuration</Name>
+											<Type>Integer</Type>
+											<Default>300</Default>
+											<Metadata>
+												<Value name="FlagScope">DesignTime</Value>
+											</Metadata>
+											<Description>Animation duration if Animate is true.</Description>
+										</Prop>
+									</Children>
+								</Group>
+							</Children>
+						</Group>
+					</Children>
+				</Group>
+				<Group>
+					<Name>State Management</Name>
+					<Children>
+						<Prop>
+							<Id>Stateful</Id>
+							<Name>Stateful</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>A flag which causes the Component to attempt to restore the state of internal properties from a saved state on startup.</Description>
+						</Prop>
+						<Prop>
+							<Id>StateId</Id>
+							<Name>StateId</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>The unique id for this component to use for state management purposes.</Description>
+						</Prop>
+					</Children>
+				</Group>
+			</Children>
+		</Group>
+	</Object>
+</Content>

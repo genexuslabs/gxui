@@ -1,0 +1,371 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../Properties.xslt"?>
+<Content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Object id="gxui.GridExtension">
+		<Group>
+			<Name>General</Name>
+			<Type>Main</Type>
+			<Children>
+				<Prop>
+					<Id>GridHeight</Id>
+					<Name>GridHeight</Name>
+					<Type>Integer</Type>
+					<Default>400</Default>
+					<Metadata />
+					<Description>Control height.</Description>
+				</Prop>
+				<Prop>
+					<Id>Title</Id>
+					<Name>Title</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata />
+					<Description>Optional title for the grid.</Description>
+				</Prop>
+				<Prop>
+					<Id>AddToParentGxUIControl</Id>
+					<Name>AddToParentGxUIControl</Name>
+					<Type>Boolean</Type>
+					<Default>true</Default>
+					<Metadata>
+						<Value name="FlagScope">DesignTime</Value>
+					</Metadata>
+					<Description>True to add the control to its parent GxUI control (if there's one). Defaults to true.</Description>
+				</Prop>
+				<Group>
+					<Name>Appearance</Name>
+					<Children>
+						<Prop>
+							<Id>AutoHeight</Id>
+							<Name>AutoHeight</Name>
+							<Type>Boolean</Type>
+							<Default>true</Default>
+							<Metadata>
+								<Value name="FlagScope">DesignTime</Value>
+							</Metadata>
+							<Description>True to use height:'auto', false to use fixed height.</Description>
+						</Prop>
+						<Prop>
+							<Id>DefaultColumnWidth</Id>
+							<Name>DefaultColumnWidth</Name>
+							<Type>Integer</Type>
+							<Default>100</Default>
+							<Metadata>
+								<Value name="FlagScope">DesignTime</Value>
+							</Metadata>
+							<Description>The width of columns which have no width specified (defaults to 100).</Description>
+						</Prop>
+						<Prop>
+							<Id>UseThemeClasses</Id>
+							<Name>UseThemeClasses</Name>
+							<Type>Boolean</Type>
+							<Default>false</Default>
+							<Metadata>
+								<Value name="FlagScope">DesignTime</Value>
+							</Metadata>
+							<Description>True to use the Theme classes asigned to the grid and columns, false to ignore them.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Behavior</Name>
+					<Children>
+						<Prop>
+							<Id>EnableColumnLocking</Id>
+							<Name>EnableColumnLocking</Name>
+							<Type>Boolean</Type>
+							<Default>false</Default>
+							<Metadata>
+								<Value name="FlagScope">DesignTime</Value>
+							</Metadata>
+							<Description>True to allow column locking ala Ms Excel's "Freeze Panes" option.</Description>
+						</Prop>
+						<Prop>
+							<Id>SelectionModel</Id>
+							<Name>SelectionModel</Name>
+							<Type>Combo</Type>
+							<Default>RowSelectionModel</Default>
+							<Metadata>
+								<Value name="FlagScope">DesignTime</Value>
+							</Metadata>
+							<Values>
+								<Value id="RowSelectionModel" desc="Row" />
+								<Value id="CheckBoxSelectionModel" desc="Checkbox" />
+								<Value id="SmartCheckBoxSelectionModel" desc="SmartCheckbox" />
+								<Value id="RadioSelectionModel" desc="Radio" />
+							</Values>
+							<Description>The selection model to use with the grid: RowSelectionModel (rows are selected by clicking on the row) or CheckBoxSelectionModel (a check box appears in the first column of the grid).</Description>
+						</Prop>
+						<Group>
+							<Name>DragDrop</Name>
+							<Children>
+								<Prop>
+									<Id>DragDropGroup</Id>
+									<Name>DragDropGroup</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>A named drag drop group to which this object belongs. If a group is specified, then this object will only interact with other drag drop objects in the same group (defaults to undefined).</Description>
+								</Prop>
+								<Prop>
+									<Id>DragDropText</Id>
+									<Name>DragDropText</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata />
+									<Description>Configures the text in the drag proxy.</Description>
+								</Prop>
+								<Prop>
+									<Id>PrimaryButtonOnly</Id>
+									<Name>PrimaryButtonOnly</Name>
+									<Type>Boolean</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>Set to false to allow drag and drop to start with any mouse click that is propogated by the browser.</Description>
+								</Prop>
+							</Children>
+						</Group>
+						<Group>
+							<Name>Grouping</Name>
+							<Children>
+								<Prop>
+									<Id>Grouping</Id>
+									<Name>Grouping</Name>
+									<Type>Boolean</Type>
+									<Default>false</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>True to allow grouping.</Description>
+								</Prop>
+								<Prop>
+									<Id>GroupField</Id>
+									<Name>GroupField</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata/>
+									<Description>The name (as specified in the Record's Field definition) of the field to group on.</Description>
+								</Prop>
+								<Prop>
+									<Id>HideGroupedField</Id>
+									<Name>HideGroupedField</Name>
+									<Type>Boolean</Type>
+									<Default>false</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>True to hide the grouping field.</Description>
+								</Prop>
+								<Prop>
+									<Id>GroupTemplate</Id>
+									<Name>GroupTemplate</Name>
+									<Type>Text</Type>
+									<Default>{text}</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>
+										The template used to render the group header. This is used to format an object which contains the following properties:
+
+										* group : String
+										The rendered value of the group field. By default this is the unchanged value of the group field. If a groupRenderer is specified, it is the result of a call to that.
+
+										* gvalue : Object
+										The raw value of the group field.
+
+										* text : String
+										The configured header (If showGroupName is true) plus the renderedgroup field value.
+
+										* groupId : String
+										A unique, generated ID which is applied to the View Element which contains the group.
+
+										* startRow : Number
+										The row index of the Record which caused group change.
+
+										* rs : Array
+										.Contains a single element: The Record providing the data for the row which caused group change.
+
+										* cls : String
+										The generated class name string to apply to the group header Element.
+
+										* style : String
+										The inline style rules to apply to the group header Element.
+
+										Example: {text} ({[values.rs.length]} {[values.rs.length > 1 ? "Items" : "Item"]})
+									</Description>
+								</Prop>
+							</Children>
+						</Group>
+						<Group>
+							<Name>Columns</Name>
+							<Children>
+								<Prop>
+									<Id>ForceFit</Id>
+									<Name>ForceFit</Name>
+									<Type>Boolean</Type>
+									<Default>false</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>True to auto expand/contract the size of the columns to fit the grid width and prevent horizontal scrolling.</Description>
+								</Prop>
+								<Prop>
+									<Id>MinColumnWidth</Id>
+									<Name>MinColumnWidth</Name>
+									<Type>Integer</Type>
+									<Default>25</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>The minimum width a column can be resized to.</Description>
+								</Prop>
+								<Prop>
+									<Id>EnableColumnHide</Id>
+									<Name>EnableColumnHide</Name>
+									<Type>Boolean</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>True to enable hiding of columns with the header context menu.</Description>
+								</Prop>
+								<Prop>
+									<Id>EnableColumnMove</Id>
+									<Name>EnableColumnMove</Name>
+									<Type>Boolean</Type>
+									<Default>true</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Description>True to enable drag and drop reorder of columns.</Description>
+								</Prop>
+							</Children>
+						</Group>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Sorting</Name>
+					<Children>
+						<Prop>
+							<Id>RemoteSort</Id>
+							<Name>RemoteSort</Name>
+							<Type>Boolean</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Description>Indicates if sort operations will be performed locally (on the current page) or remotely over the whole data set.</Description>
+						</Prop>
+						<Prop>
+							<Id>SortField</Id>
+							<Name>SortField</Name>
+							<Type>Text</Type>
+							<Default />
+							<Metadata />
+							<Description>The field used to sort the grid.</Description>
+						</Prop>
+						<Prop>
+							<Id>SortOrder</Id>
+							<Name>SortOrder</Name>
+							<Type>Combo</Type>
+							<Default>ASC</Default>
+							<Values>
+								<Value id="ASC" desc="Ascendent" />
+								<Value id="DESC" desc="Descendent" />
+							</Values>
+							<Metadata />
+							<Description>The sort order of the grid (ASC|DESC). Defaults to ASC.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Paging</Name>
+					<Children>
+						<Group>
+							<Name>PagingTexts</Name>
+							<Children>
+								<Prop>
+									<Id>FirstText</Id>
+									<Name>FirstText</Name>
+									<Type>Text</Type>
+									<Default>First Page</Default>
+									<Metadata />
+									<Description>Customizable piece of the default paging text (defaults to "First Page").</Description>
+								</Prop>
+								<Prop>
+									<Id>LastText</Id>
+									<Name>LastText</Name>
+									<Type>Text</Type>
+									<Default>Last Page</Default>
+									<Metadata />
+									<Description>Customizable piece of the default paging text (defaults to "Last Page").</Description>
+								</Prop>
+								<Prop>
+									<Id>NextText</Id>
+									<Name>NextText</Name>
+									<Type>Text</Type>
+									<Default>Next Page</Default>
+									<Metadata />
+									<Description>Customizable piece of the default paging text (defaults to "Next Page").</Description>
+								</Prop>
+								<Prop>
+									<Id>PreviousText</Id>
+									<Name>PreviousText</Name>
+									<Type>Text</Type>
+									<Default>Previous Page</Default>
+									<Metadata />
+									<Description>Customizable piece of the default paging text (defaults to "Previous Page").</Description>
+								</Prop>
+								<Prop>
+									<Id>RefreshText</Id>
+									<Name>RefreshText</Name>
+									<Type>Text</Type>
+									<Default>Refresh</Default>
+									<Metadata />
+									<Description>Customizable piece of the default paging text (defaults to "Refresh").</Description>
+								</Prop>
+							</Children>
+						</Group>
+					</Children>
+				</Group>
+				<Group>
+					<Name>State Management</Name>
+					<Children>
+						<Prop>
+							<Id>Stateful</Id>
+							<Name>Stateful</Name>
+							<Type>Boolean</Type>
+							<Default>true</Default>
+							<Metadata>
+								<Value name="FlagScope">DesignTime</Value>
+							</Metadata>
+							<Description>A flag which causes the Component to attempt to restore the state of internal properties from a saved state on startup.</Description>
+						</Prop>
+						<Prop>
+							<Id>StateId</Id>
+							<Name>StateId</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata>
+								<Value name="FlagScope">DesignTime</Value>
+							</Metadata>
+							<Description>The unique id for this component to use for state management purposes.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Prop>
+					<Id>SelectedRow</Id>
+					<Name>SelectedRow</Name>
+					<Type>Integer</Type>
+					<Default>0</Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>The index of the selected row. Changing this property changes the selected row.</Description>
+				</Prop>
+			</Children>
+		</Group>
+	</Object>
+</Content>

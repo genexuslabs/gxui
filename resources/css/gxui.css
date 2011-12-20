@@ -1,0 +1,48 @@
+.x-portlet .x-panel-body {
+    background-color:transparent;
+}
+
+/* Workaround for Grid column menu options overlapping bug */
+.ext-ie .x-menu-item-icon {left: -24px; top: 0px;}
+.ext-strict .x-menu-item-icon {left: 3px; top: 3px;}
+.ext-ie6 .x-menu-item-icon {left: -24px; top: 0px;}
+/***********************************************************/
+
+.x-tab-strip-dirty:after {
+	content: "*";
+}
+
+.auto-width-tab-strip ul.x-tab-strip, .auto-width-tab-strip .x-tab-strip-wrap {
+	width: auto !important;
+}
+
+/* FileUploadField */
+.x-form-file-wrap {
+    position: relative;
+    height: 22px;
+}
+.x-form-file-wrap .x-form-file {
+	position: absolute;
+	right: 0;
+	-moz-opacity: 0;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+    height: 22px;
+}
+.x-form-file-wrap .x-form-file-btn {
+	position: absolute;
+	right: 0;
+	z-index: 1;
+}
+.x-form-file-wrap .x-form-file-text {
+    position: absolute;
+    left: 0;
+    z-index: 3;
+    color: #777;
+}
+
+/* x-small-editor fix because it shows bigger than expected in Safari/Chrome */
+.ext-safari .x-small-editor .x-form-text, .ext-chrome .x-small-editor .x-form-text {
+    font-size: 11px;
+}

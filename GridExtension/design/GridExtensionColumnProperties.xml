@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../Properties.xslt"?>
+<Content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Object id="gxui.GridExtensionColumn">
+		<Group>
+			<Name>General</Name>
+			<Type>Main</Type>
+			<Children>
+				<Prop>
+					<Id>Lock</Id>
+					<Name>Lock</Name>
+					<Type>Boolean</Type>
+					<Default>false</Default>
+					<Metadata />
+					<Description>True to initially render this column as locked.</Description>
+				</Prop>
+				<Prop>
+					<Id>Resizable</Id>
+					<Name>Resizable</Name>
+					<Type>Boolean</Type>
+					<Default>true</Default>
+					<Metadata />
+					<Description>False to disable column resizing. Defaults to true.</Description>
+				</Prop>
+				<Prop>
+					<Id>Sortable</Id>
+					<Name>Sortable</Name>
+					<Type>Boolean</Type>
+					<Default>false</Default>
+					<Metadata />
+					<Description>True if sorting is to be allowed on this column.</Description>
+				</Prop>
+				<Prop>
+					<Id>Hidden</Id>
+					<Name>Hidden</Name>
+					<Type>Boolean</Type>
+					<Default>false</Default>
+					<Metadata />
+					<Description>True to initially render the column hidden.</Description>
+				</Prop>
+				<Prop>
+					<Id>Hideable</Id>
+					<Name>Hideable</Name>
+					<Type>Boolean</Type>
+					<Default>true</Default>
+					<Metadata />
+					<Description>Specify as false to prevent the user from hiding this column (defaults to true).</Description>
+				</Prop>
+				<Prop>
+					<Id>MenuDisabled</Id>
+					<Name>MenuDisabled</Name>
+					<Type>Boolean</Type>
+					<Default>false</Default>
+					<Metadata />
+					<Description>True to disable the column menu. Defaults to false.</Description>
+				</Prop>
+				<Prop>
+					<Id>AutoExpand</Id>
+					<Name>AutoExpand</Name>
+					<Type>Boolean</Type>
+					<Default>false</Default>
+					<Metadata />
+					<Description>True if this column should expand to fill unused space in the grid.</Description>
+				</Prop>
+			</Children>
+		</Group>
+	</Object>
+</Content>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0"?>
+<ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Version>1.1.0.378</Version>
+	<IncludeInControlInfo>false</IncludeInControlInfo>
+	<RuntimeRender>gxui-all.js</RuntimeRender>
+	<ResizeSupported>false</ResizeSupported>
+	<ObjClass>gxui.Viewport</ObjClass>
+	<Description>gxui.Viewport</Description>
+	<Id>b75741d0-56b2-11de-8a39-0800200c9a66</Id>
+	<Name>gxui.Viewport</Name>
+	<ShowMethod>show</ShowMethod>
+	<ReferencedFiles>
+		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
+		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
+		<SharedFile>ext/ext-all.js</SharedFile>
+		<File>gxui-all.css</File>
+	</ReferencedFiles>
+	<SupportFiles>
+		<Directory>resources</Directory>
+		<SharedDirectory>ext/resources</SharedDirectory>
+	</SupportFiles>
+	<Constructor>
+		<Parameters />
+		<Name>gxui.Viewport</Name>
+	</Constructor>
+	<Categories>
+		<Category>gxui Library</Category>
+	</Categories>
+	<PropertiesDefinition>Viewport/design/ViewportProperties.xml</PropertiesDefinition>
+	<DesignRender>Viewport/design/ViewportRender.xsl</DesignRender>
+	<DesignerRenderHelper>Artech.UC.gxui.Renders.UserControl</DesignerRenderHelper>
+	<ToolboxIcon>Viewport/design/viewport.ico</ToolboxIcon>
+	<Events />
+	<Actions />
+</ControlDefinition>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0"?>
+<ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Version>1.1.0.378</Version>
+	<IncludeInControlInfo>false</IncludeInControlInfo>
+	<RuntimeRender>gxui-all.js</RuntimeRender>
+	<HeightPropertyName>Height</HeightPropertyName>
+	<WidthPropertyName>Widht</WidthPropertyName>
+	<ResizeSupported>true</ResizeSupported>
+	<ObjClass>gxui.Message</ObjClass>
+	<Description>gxui.Message</Description>
+	<Id>b1acb802-cccc-4bfe-9b42-5596764679d9</Id>
+	<Name>gxui.Message</Name>
+	<ShowMethod>show</ShowMethod>
+	<ReferencedFiles>
+		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
+		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
+		<SharedFile>ext/ext-all.js</SharedFile>
+		<File>gxui-all.css</File>
+	</ReferencedFiles>
+	<SupportFiles>
+		<Directory>resources</Directory>
+		<SharedDirectory>ext/resources</SharedDirectory>
+	</SupportFiles>
+	<Constructor>
+		<Parameters />
+		<Name>gxui.Message</Name>
+	</Constructor>
+	<Categories>
+		<Category>gxui Library</Category>
+	</Categories>
+	<PropertiesDefinition>Message/design/MessageProperties.xml</PropertiesDefinition>
+	<DesignRender>Message/design/MessageRender.xsl</DesignRender>
+	<DesignerRenderHelper>Artech.UC.gxui.Renders.UserControl</DesignerRenderHelper>
+	<ToolboxIcon>Message/design/Message.ico</ToolboxIcon>
+	<Events />
+	<Actions />
+	<Methods>
+		<Method>
+			<Name>ShowMessage</Name>
+			<Signature>ShowMessage(title:Character, message:Character)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+				<Parameter>Character</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
+			<Name>ShowMessage</Name>
+			<Signature>ShowMessage(title:Character, message:Character, type:Character)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+				<Parameter>Character</Parameter>
+				<Parameter>Character</Parameter>
+			</Parameters>
+		</Method>
+	</Methods>
+</ControlDefinition>

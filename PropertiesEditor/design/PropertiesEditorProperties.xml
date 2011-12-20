@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../Properties.xslt"?>
+<Content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Object id="gxui.PropertiesEditor">
+		<Group>
+			<Name>General</Name>
+			<Type>Main</Type>
+			<Children>
+				<Prop>
+					<Id>Width</Id>
+					<Name>Width</Name>
+					<Type>Integer</Type>
+					<Default>300</Default>
+					<Metadata />
+					<Description>Control width.</Description>
+				</Prop>
+				<Prop>
+					<Id>Height</Id>
+					<Name>Height</Name>
+					<Type>Integer</Type>
+					<Default>300</Default>
+					<Metadata />
+					<Description>Control height.</Description>
+				</Prop>
+				<Prop>
+					<Id>ReadOnly</Id>
+					<Name>ReadOnly</Name>
+					<Type>Boolean</Type>
+					<Default>false</Default>
+					<Metadata />
+					<Description>Set to true if the property editor is read only. Defaults to false.</Description>
+				</Prop>
+				<Prop>
+					<Id>DefinitionsLoaderURL</Id>
+					<Name>DefinitionsLoaderURL</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata />
+					<Description>The URL where the properties definitions of the object are retrieved.</Description>
+				</Prop>
+				<Prop>
+					<Id>PropertiesLoaderURL</Id>
+					<Name>PropertiesLoaderURL</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata />
+					<Description>The URL where the properties values of the object are retrieved.</Description>
+				</Prop>
+				<Prop>
+					<Id>EnableContextMenu</Id>
+					<Name>EnableContextMenu</Name>
+					<Type>Boolean</Type>
+					<Default>false</Default>
+					<Metadata />
+					<Description>Set to true to enable the context menu.</Description>
+				</Prop>
+				<Prop>
+					<Id>UseDefaultText</Id>
+					<Name>UseDefaultText</Name>
+					<Type>Text</Type>
+					<Default>Use Default</Default>
+					<Metadata />
+					<Description>Text to show in the context menu for the "Use Default" option.</Description>
+				</Prop>
+				<Group>
+					<Name>Appareance</Name>
+					<Children>
+						<Prop>
+							<Id>AutoHeight</Id>
+							<Name>AutoHeight</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to use height:'auto', false to use fixed height.</Description>
+						</Prop>
+						<Prop>
+							<Id>FilterEmptyText</Id>
+							<Name>FilterEmptyText</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>The text that will appear in the filter box when it is empty.</Description>
+						</Prop>
+						<Prop>
+							<Id>FilterBoxWidth</Id>
+							<Name>FilterBoxWidth</Name>
+							<Type>Integer</Type>
+							<Default>150</Default>
+							<Metadata />
+							<Description>The width of the filter box.</Description>
+						</Prop>
+						<Prop>
+							<Id>LoadingText</Id>
+							<Name>LoadingText</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>Text to show when the properties are being loaded.</Description>
+						</Prop>
+						<Group>
+							<Name>Icons</Name>
+							<Children>
+								<Prop>
+									<Id>IconOrderURL</Id>
+									<Name>IconOrderURL</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata />
+									<Description>The URL of the icon associated to the order button.</Description>
+								</Prop>
+								<Prop>
+									<Id>IconOrderTooltip</Id>
+									<Name>IconOrderTooltip</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata />
+									<Description>The tooltip of the order button.</Description>
+								</Prop>
+								<Prop>
+									<Id>IconExpandURL</Id>
+									<Name>IconExpandURL</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata />
+									<Description>The URL of the icon associated to the expand all button.</Description>
+								</Prop>
+								<Prop>
+									<Id>IconExpandTooltip</Id>
+									<Name>IconExpandTooltip</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata />
+									<Description>The tooltip of the expand all button.</Description>
+								</Prop>
+								<Prop>
+									<Id>IconCollapseURL</Id>
+									<Name>IconCollapseURL</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata />
+									<Description>The URL of the icon associated to the expand all button.</Description>
+								</Prop>
+								<Prop>
+									<Id>IconCollapseTooltip</Id>
+									<Name>IconCollapseTooltip</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata />
+									<Description>The tooltip of the collapse all button.</Description>
+								</Prop>
+								</Children>
+						</Group>
+					</Children>
+				</Group>
+				<Prop>
+					<Id>SelectedPropertyId</Id>
+					<Name>SelectedPropertyId</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>The selected property identifier.</Description>
+				</Prop>
+				<Prop>
+					<Id>SelectedPropertyValue</Id>
+					<Name>SelectedPropertyValue</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>The property value.</Description>
+				</Prop>
+				<Prop>
+					<Id>ObjectId</Id>
+					<Name>ObjectId</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>The identifier of the object whose property will be shown.</Description>
+				</Prop>
+				<Prop>
+					<Id>Refresh</Id>
+					<Name>Refresh</Name>
+					<Type>Boolean</Type>
+					<Default>true</Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+				</Prop>
+			</Children>
+		</Group>
+	</Object>
+</Content>

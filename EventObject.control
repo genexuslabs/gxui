@@ -1,0 +1,54 @@
+﻿<?xml version="1.0"?>
+<ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Version>1.1.0.378</Version>
+	<IncludeInControlInfo>false</IncludeInControlInfo>
+	<GxResources />
+	<RuntimeRender>gxui-all.js</RuntimeRender>
+	<HeightPropertyName>Height</HeightPropertyName>
+	<WidthPropertyName>Widht</WidthPropertyName>
+	<ResizeSupported>false</ResizeSupported>
+	<ObjClass>gxui.EventObject</ObjClass>
+	<Description>gxui.EventObject</Description>
+	<Id>4cc590e0-bfdc-11de-8a39-0800200c9a66</Id>
+	<Name>gxui.EventObject</Name>
+	<ShowMethod>show</ShowMethod>
+	<ReferencedFiles>
+		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
+		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
+		<SharedFile>ext/ext-all.js</SharedFile>
+		<File>gxui-all.css</File>
+	</ReferencedFiles>
+	<SupportFiles>
+		<Directory>resources</Directory>
+		<SharedDirectory>ext/resources</SharedDirectory>
+	</SupportFiles>
+	<Constructor>
+		<Parameters />
+		<Name>gxui.EventObject</Name>
+	</Constructor>
+	<Categories>
+		<Category>gxui Library</Category>
+	</Categories>
+	<PropertiesDefinition>EventObject/design/EventObjectProperties.xml</PropertiesDefinition>
+	<DesignRender>EventObject/design/EventObjectRender.xsl</DesignRender>
+	<DesignerRenderHelper>Artech.UC.gxui.Renders.UserControl</DesignerRenderHelper>
+	<ToolboxIcon>EventObject/design/EventObject.ico</ToolboxIcon>
+	<Events />
+	<Methods>
+		<Method>
+			<Name>PreventDefault</Name>
+			<Signature>PreventDefault()</Signature>
+			<Parameters />
+		</Method>
+		<Method>
+			<Name>StopEvent</Name>
+			<Signature>StopEvent()</Signature>
+			<Parameters />
+		</Method>
+		<Method>
+			<Name>StopPropagation</Name>
+			<Signature>StopPropagation()</Signature>
+			<Parameters />
+		</Method>
+	</Methods>
+</ControlDefinition>

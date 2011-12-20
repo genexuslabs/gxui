@@ -1,0 +1,114 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+	<Import Project="Common.msbuild"/>
+	<PropertyGroup>
+		<DeployGxuiDir>$(MSBuildProjectDirectory)\build\gxui</DeployGxuiDir>
+		<DeploySharedDir>$(MSBuildProjectDirectory)\build\shared</DeploySharedDir>
+	</PropertyGroup>
+
+	<Target Name="UpdateRevisionNumber" DependsOnTargets="LoadToolsInfo" Condition='$(Configuration)==Release'>
+		<!-- ### Version number ################################################ -->
+		<!--
+		  __Description__: takes the last revision number as the version number.
+		  -->
+		<SvnInfo LocalPath=".">
+			<Output TaskParameter="LastChangedRevision" PropertyName="Revision" />
+		</SvnInfo>
+
+		<Message Text="Revision number: $(Revision)"/>
+
+		<!-- ### Update jsb project file ################################################ -->
+		<!--
+		  __Description__: Updates version information with revision number.
+		  -->
+		<XmlRead XPath="/project/@version"
+				XmlFileName="gxui.jsb">
+			<Output TaskParameter="Value" PropertyName="Version" />
+		</XmlRead>
+
+		<ItemGroup>
+			<VersionText Include="$(Version)" />
+		</ItemGroup>
+
+		<RegexReplace Input="@(VersionText)" Expression="\(Build [0-9]+\)" Replacement="(Build $(Revision))" Count="1">
+			<Output ItemName ="ReplaceReturn" TaskParameter="Output" />
+		</RegexReplace>
+
+		<XmlUpdate XPath="/project/@version"
+				XmlFileName="gxui.jsb"
+				Value="@(ReplaceReturn)"/>
+
+		<!-- ### Update *.control files ################################################ -->
+		<!--
+		  __Description__: Updates version information within UserControl .control file with revision number.
+		  -->
+		<CreateItem Include ="*.control">
+			<Output ItemName ="ControlFiles" TaskParameter="Include"/>
+		</CreateItem>
+		<FileUpdate Files="@(ControlFiles)"
+		            Regex="(\d+)\.(\d+)\.(\d+)\.(\d+)"
+		            ReplacementText="$1.$2.$3.$(Revision)" />
+	</Target>
+
+	<Target Name="Clean">
+		<RemoveDir Directories="$(DeployGxuiDir);$(DeploySharedDir)" />
+	</Target>
+
+	<Target Name="Build" DependsOnTargets="LoadToolsInfo;UpdateRevisionNumber">
+		<!-- ### Build JS files ################################################ -->
+		<!--
+		  __Description__: Execute JSBuilder to build JS files.
+		  -->
+		<Exec Command='"Freezer\JSBuilder\JSBuildConsole.exe" /path=gxui.jsb /verbose'/>
+
+		<!-- ### Copy ExtJS files ################################################ -->
+		<!--
+		  __Description__: Copy ExtJS files to shared folder
+		  -->
+		<Exec IgnoreExitCode="true"
+				  Command='$(RobocopyExe) Freezer\Ext "$(DeploySharedDir)\Ext" /s /r:3 /w:10 /xd .svn /np /purge'>
+			<Output TaskParameter="ExitCode" ItemName="RobocopyExitCode"/>
+		</Exec>
+		<Error Text="Robocopy Error" Condition="'%(RobocopyExitCode.identity)'>7"/>
+		
+		<!-- ### Build and Deploy Helpers Solution ################################################ -->
+		<!--
+		  __Description__: Build Helpers Solution.
+		  -->
+		<MSBuild ContinueOnError="false"
+			Projects="Helpers\Artech.UC.gxui.sln"
+			Targets="$(Action)"
+			Properties="Configuration=$(Configuration);" />
+
+		<Exec Command='$(UpdaterExe) Helpers\Catalog.xml Helpers\ "$(DeployGxuiDir)"\ $(Configuration)'/>
+		
+		<CallTarget Targets="TouchDeployedFiles" />
+	</Target>
+	
+	<Target Name="TouchDeployedFiles">
+		<CreateItem Include ="$(DeployGxuiDir)\**\*.*">
+			<Output ItemName ="FilesToTouch" TaskParameter="Include"/>
+		</CreateItem>
+		<Touch Files="@(FilesToTouch)" />
+	</Target>
+
+	<Target Name="Rebuild" DependsOnTargets="Clean;Build">
+	</Target>
+
+	<Target Name="BuildAndDeployToGX" DependsOnTargets="LoadToolsInfo">
+		<Exec Command='$(UpdaterExe) gxuiGXCatalog.xml .\ "$(GXDir)"\ $(Configuration)'/>
+
+		<Delete Condition='$(Configuration)==Debug' Files='$(GXDir)\UserControls\gxui\gxui-all.original.js' ContinueOnError='true' />
+		<Copy Condition='$(Configuration)==Debug' SourceFiles='$(GXDir)\UserControls\gxui\gxui-all.js' DestinationFiles='$(GXDir)\UserControls\gxui\gxui-all.original.js' ContinueOnError='true' />
+		<Delete Condition='$(Configuration)==Debug' Files='$(GXDir)\UserControls\gxui\gxui-all.js' ContinueOnError='true' />
+		<Copy Condition='$(Configuration)==Debug' SourceFiles='$(GXDir)\UserControls\gxui\gxui-all-debug.js' DestinationFiles='$(GXDir)\UserControls\gxui\gxui-all.js' ContinueOnError='true' />
+	</Target>
+
+	<Target Name="BuildAndDeployToKB" DependsOnTargets="LoadToolsInfo">
+		<Exec Command='$(UpdaterExe) gxuiKBCatalog.xml .\ "$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)"\ $(Configuration)'/>
+
+		<Delete Condition='$(Configuration)==Debug' Files='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all.original.js' ContinueOnError='true' />
+		<Copy Condition='$(Configuration)==Debug' SourceFiles='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all.js' DestinationFiles='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all.original.js' ContinueOnError='true' />
+		<Delete Condition='$(Configuration)==Debug' Files='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all.js' ContinueOnError='true' />
+		<Copy Condition='$(Configuration)==Debug' SourceFiles='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all-debug.js' DestinationFiles='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all.js' ContinueOnError='true' />
+	</Target>
+</Project>

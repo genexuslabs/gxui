@@ -1,0 +1,36 @@
+﻿<?xml version="1.0"?>
+<ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Version>1.1.0.378</Version>
+	<IncludeInControlInfo>false</IncludeInControlInfo>
+	<RuntimeRender>gxui-all.js</RuntimeRender>
+	<HeightPropertyName>Height</HeightPropertyName>
+	<WidthPropertyName>Width</WidthPropertyName>
+	<ResizeSupported>true</ResizeSupported>
+	<ObjClass>gxui.Container</ObjClass>
+	<Description>gxui.Container</Description>
+	<Id>ea07eef0-ea1a-11dc-95ff-0800200c9a66</Id>
+	<Name>gxui.Container</Name>
+	<ShowMethod>show</ShowMethod>
+	<ReferencedFiles>
+		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
+		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
+		<SharedFile>ext/ext-all.js</SharedFile>
+	</ReferencedFiles>
+	<SupportFiles>
+		<Directory>resources</Directory>
+		<SharedDirectory>ext/resources</SharedDirectory>
+	</SupportFiles>
+	<Constructor>
+		<Parameters />
+		<Name>gxui.Container</Name>
+	</Constructor>
+	<Categories>
+		<Category>gxui Library</Category>
+	</Categories>
+	<PropertiesDefinition>Container/design/ContainerProperties.xml</PropertiesDefinition>
+	<DesignRender>Container/design/ContainerRender.xsl</DesignRender>
+	<DesignerRenderHelper>Artech.UC.gxui.Renders.UserControl</DesignerRenderHelper>
+	<ToolboxIcon>Container/design/container.ico</ToolboxIcon>
+	<Events />
+	<Actions />
+</ControlDefinition>

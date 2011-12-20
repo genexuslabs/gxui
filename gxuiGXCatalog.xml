@@ -1,0 +1,6 @@
+<Projects>
+	<Project Name="gxui" Location=".">
+		<Directory Location="build\gxui" Target="UserControls\gxui" />
+		<Directory Location="build\shared" Target="UserControls\shared" />
+	</Project>
+</Projects>

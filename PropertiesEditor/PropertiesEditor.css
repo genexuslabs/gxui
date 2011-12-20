@@ -1,0 +1,135 @@
+.x-column-tree .x-tree-node {
+	zoom:1;
+}
+.x-column-tree .x-tree-node-el {
+	zoom:1;
+}
+.x-column-tree .x-tree-selected {
+	background: #d9e8fb;
+}
+.x-column-tree  .x-tree-node a {
+	line-height:18px;
+	vertical-align:middle;
+}
+.x-column-tree  .x-tree-node a span{
+	
+}
+.x-column-tree  .x-tree-node .x-tree-selected a span{
+	background:transparent;
+	color:#000;
+}
+.x-tree-col {
+	float:left;
+	overflow:hidden;
+	padding:0 1px;
+	zoom:1;
+}
+
+.x-tree-col-text, .x-tree-hd-text {
+	overflow:hidden;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	padding:3px 3px 3px 5px;
+	white-space: nowrap;
+	font:normal 11px arial, tahoma, helvetica, sans-serif;
+}
+
+.x-tree-headers {
+	background: #f9f9f9 url(../../resources/images/default/grid/grid3-hrow.gif) repeat-x 0 bottom;
+	cursor:default;
+	zoom:1;
+}
+
+.x-tree-hd {
+	float:left;
+	overflow:hidden;
+	border-left:1px solid #eee;
+	border-right:1px solid #d0d0d0;
+}
+
+.task {
+	background-image:url(../shared/icons/fam/cog.png) !important;
+}
+.task-folder {
+	background-image:url(../shared/icons/fam/folder_go.png) !important;
+}
+
+.gxui-prop-panel .x-tree-col-text, .x-tree-hd-text {
+	padding: 3px 3px 1px 5px;
+}
+
+/*Buttons in toolbar*/
+.gxui-prop-panel .icon-collapse-all{
+	background-image: url(resources/images/iconCollapseAll.gif) !important;	
+}
+.gxui-prop-panel .icon-expand-all{
+	background-image: url(resources/images/iconExpandAll.gif) !important;	
+}
+
+.gxui-prop-panel .icon-order{
+	background-image: url(resources/images/iconOrder.gif) !important;	
+}
+
+.gxui-prop-panel .x-tree-headers{
+	display: none;
+}
+
+/*Filter in toolbar*/
+.gxui-prop-panel .gxui-prop-filter-active{
+	background: #FFFFE1 none;
+}
+
+/* Icon groups */
+.gxui-prop-panel .x-tree-node-expanded .x-tree-node-icon{
+	background-image: none !important;
+}
+/*Icon parent node when collapsed */
+.gxui-prop-panel .x-tree-node-collapsed .x-tree-node-icon{
+	background-image: none;
+}
+/*Icon parent and chield nodes */
+.gxui-prop-panel .x-tree-node-collapsed .x-tree-node-icon, .gxui-prop-panel .x-tree-node-expanded .x-tree-node-icon, .gxui-prop-panel .x-tree-node-leaf .x-tree-node-icon {
+	width: 0px !important;
+}
+/*Margin childs nodes texts*/
+.gxui-prop-panel .x-tree-no-lines .x-tree-elbow{
+	width: 0px;
+}
+/*Margin last childs nodes texts*/
+.gxui-prop-panel .x-tree-no-lines .x-tree-elbow-end{
+	width: 0px;
+}
+/*Icon parent node when collapsed */
+.gxui-prop-panel .x-tree-node-collapsed .x-tree-node-icon{
+	background-image: none !important;
+}
+
+/*Property Groups*/
+.gxui-prop-panel .x-tree-node .gxui-prop-category {
+	background-image:url(resources/images/property-grp-bkg.gif) !important;
+	background-repeat: repeat-y;
+}
+
+.gxui-prop-panel .x-tree-node .x-tree-selected {
+	background-image: none !important;
+}
+
+/*Property Grid lines grey*/
+.gxui-prop-panel .x-tree-label-col{
+	border-right:1px solid #f0f0f0;
+	margin-right:-1px;
+}
+.gxui-prop-panel .gxui-prop-category .x-tree-label-col{
+	border-right:0px;
+}
+.gxui-prop-panel .x-tree-node-el{
+	border-bottom:1px solid #f0f0f0;
+}
+.gxui-prop-panel .gxui-prop-category{
+	border-bottom:0px;
+	background-color:White;
+}
+
+.gxui-prop-panel .x-tree-value-col .x-tree-value-not-default{
+	font-weight:bold;
+}

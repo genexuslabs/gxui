@@ -1,0 +1,8 @@
+<Projects>
+	<Project Name="gxui" Location=".">
+		<Files Name="*.js" Location="build\gxui" Target="gxui" />
+		<Files Name="*.css" Location="build\gxui" Target="gxui" />
+		<Directory Location="build\gxui\resources" Target="gxui\resources" />
+		<Directory Location="build\shared" Target="shared" />
+	</Project>
+</Projects>

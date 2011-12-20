@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Options xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OutputSuffix />
+  <LastProject>C:\Temp\NewProject1.jsb</LastProject>
+  <Filter>$output;CVS;SCCS;RCS;rcs;</Filter>
+  <Files>*.js;*.control;*.xsl;*.dll;*.properties;*.gif;*.ico;*.xpz;*.xml;*.css;*.bmp</Files>
+  <JsdocPath>C:\Tools\JSDoc-1.10.2\jsdoc.pl</JsdocPath>
+  <JsdocArgs>-d $docPath $files</JsdocArgs>
+  <Reopen>true</Reopen>
+  <AutoSave>true</AutoSave>
+  <AutoCalc>false</AutoCalc>
+  <ClearOutputDir>true</ClearOutputDir>
+</Options>

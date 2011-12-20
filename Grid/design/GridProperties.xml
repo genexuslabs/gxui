@@ -1,0 +1,1052 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../Properties.xslt"?>
+<Content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Object id="gxui.Grid">
+		<Group>
+			<Name>General</Name>
+			<Type>Main</Type>
+			<Children>
+				<Prop>
+					<Id>Width</Id>
+					<Name>Width</Name>
+					<Type>Integer</Type>
+					<Default>100</Default>
+					<Metadata />
+					<Description>Control width.</Description>
+				</Prop>
+				<Prop>
+					<Id>Height</Id>
+					<Name>Height</Name>
+					<Type>Integer</Type>
+					<Default>100</Default>
+					<Metadata />
+					<Description>Control height.</Description>
+				</Prop>
+				<Group>
+					<Name>Appareance</Name>
+					<Children>
+						<Prop>
+							<Id>AutoWidth</Id>
+							<Name>AutoWidth</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to use width:'auto', false to use fixed width.</Description>
+						</Prop>
+						<Prop>
+							<Id>AutoHeight</Id>
+							<Name>AutoHeight</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to use height:'auto', false to use fixed height.</Description>
+						</Prop>
+						<Prop>
+							<Id>ForceFit</Id>
+							<Name>ForceFit</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to auto expand/contract the size of the columns to fit the grid width and prevent horizontal scrolling.</Description>
+						</Prop>
+						<Prop>
+							<Id>Title</Id>
+							<Name>Title</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>The title text to display in the panel header.</Description>
+						</Prop>
+						<Prop>
+							<Id>IconCls</Id>
+							<Name>IconCls</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>A CSS class that will provide a background image to be used as the panel header icon.</Description>
+						</Prop>
+						<Prop>
+							<Id>Cls</Id>
+							<Name>Cls</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>An optional extra CSS class that will be added to this control's element. This can be useful for adding customized styles to the component or any of its children using standard CSS rules.</Description>
+						</Prop>
+						<Prop>
+							<Id>Frame</Id>
+							<Name>Frame</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to render the panel with custom rounded borders, false to render with plain 1px square borders.</Description>
+						</Prop>
+						<Prop>
+							<Id>StripeRows</Id>
+							<Name>StripeRows</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to stripe the rows.</Description>
+						</Prop>
+						<Group>
+							<Name>Toolbar</Name>
+							<Children>
+								<Prop>
+									<Id>UseToolbar</Id>
+									<Name>UseToolbar</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to enable a buttons toolbar at the top of the grid.</Description>
+								</Prop>
+								<Prop>
+									<Id>ToolbarData</Id>
+									<Name>ToolbarData</Name>
+									<Type>Custom</Type>
+									<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+									<Metadata>
+										<Value name="FlagSetValueMethod">SetToolbarData</Value>
+										<Value name="FlagGetValueMethod">GetToolbarData</Value>
+										<Value name="FlagDataTypeFilter">gxuiToolbar</Value>
+										<Value name="FlagHideVariables">False</Value>
+										<Value name="FlagHideAttributes">true</Value>
+									</Metadata>
+									<Description>A gxuiToolbarData variable with a definition of the buttons to show in the toolbar.</Description>
+								</Prop>
+								<Group>
+									<Name>SearchField</Name>
+									<Children>
+										<Prop>
+											<Id>AddSearchField</Id>
+											<Name>AddSearchField</Name>
+											<Type>Combo</Type>
+											<Default>false</Default>
+											<Metadata />
+											<Values>
+												<Value id="true" desc="True" />
+												<Value id="false" desc="False" />
+											</Values>
+											<Description>True to enable a search bar.</Description>
+										</Prop>
+										<Prop>
+											<Id>SearchFieldWidth</Id>
+											<Name>SearchFieldWidth</Name>
+											<Type>Integer</Type>
+											<Default>200</Default>
+											<Metadata />
+											<Description>Control width.</Description>
+										</Prop>
+										<Prop>
+											<Id>SearchFieldAutoRefresh</Id>
+											<Name>SearchFieldAutoRefresh</Name>
+											<Type>Boolean</Type>
+											<Default>false</Default>
+											<Metadata />
+											<Description>True to enable auto refreshing of the grid (no need to press Enter). Defaults to false.</Description>
+										</Prop>
+										<Prop>
+											<Id>SearchFieldAutoRefreshTimeout</Id>
+											<Name>SearchFieldAutoRefreshTimeout</Name>
+											<Type>Integer</Type>
+											<Default>350</Default>
+											<Metadata />
+											<Description>Time (in miliseconds) to wait between key strokes to fire the automatic refresh.</Description>
+										</Prop>
+									</Children>
+								</Group>
+							</Children>
+						</Group>
+						<Group>
+							<Name>Filters</Name>
+							<Children>
+								<Prop>
+									<Id>UseFilters</Id>
+									<Name>UseFilters</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to enable filters.</Description>
+								</Prop>
+								<Prop>
+									<Id>FiltersMode</Id>
+									<Name>FiltersMode</Name>
+									<Type>Combo</Type>
+									<Default>menu</Default>
+									<Metadata />
+									<Values>
+										<Value id="menu" desc="Menu" />
+										<Value id="panel" desc="Panel" />
+									</Values>
+									<Description></Description>
+								</Prop>
+								<Prop>
+									<Id>LocalFilters</Id>
+									<Name>LocalFilters</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to use Ext.data.Store filter functions instead of server side filtering.</Description>
+								</Prop>
+								<Prop>
+									<Id>AutoReloadFilters</Id>
+									<Name>AutoReloadFilters</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to automagicly reload the datasource when a filter change happens.</Description>
+								</Prop>
+								<Prop>
+									<Id>FiltersStateId</Id>
+									<Name>FiltersStateId</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata />
+									<Description>Name of the Ext.data.Store value to be used to store state information.</Description>
+								</Prop>
+								<Prop>
+									<Id>FiltersCls</Id>
+									<Name>FiltersCls</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata />
+									<Description>The css class to be applied to column headers that active filters.</Description>
+								</Prop>
+								<Prop>
+									<Id>ShowFiltersMenu</Id>
+									<Name>ShowFiltersMenu</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to show the filter menus.</Description>
+								</Prop>
+								<Group>
+									<Name>FiltersTexts</Name>
+									<Children>
+										<Prop>
+											<Id>FiltersText</Id>
+											<Name>FiltersText</Name>
+											<Type>Text</Type>
+											<Default>Filters</Default>
+											<Metadata />
+											<Description>Customizable piece of the default filter text (defaults to "Filters") .</Description>
+										</Prop>
+										<Prop>
+											<Id>YesText</Id>
+											<Name>YesText</Name>
+											<Type>Text</Type>
+											<Default>Yes</Default>
+											<Metadata />
+											<Description>Customizable piece of the default filter text (defaults to "Yes") .</Description>
+										</Prop>
+										<Prop>
+											<Id>NoText</Id>
+											<Name>NoText</Name>
+											<Type>Text</Type>
+											<Default>No</Default>
+											<Metadata />
+											<Description>Customizable piece of the default filter text (defaults to "No") .</Description>
+										</Prop>
+										<Prop>
+											<Id>BeforeText</Id>
+											<Name>BeforeText</Name>
+											<Type>Text</Type>
+											<Default>Before</Default>
+											<Metadata />
+											<Description>Customizable piece of the default filter text (defaults to "Before") .</Description>
+										</Prop>
+										<Prop>
+											<Id>AfterText</Id>
+											<Name>AfterText</Name>
+											<Type>Text</Type>
+											<Default>After</Default>
+											<Metadata />
+											<Description>Customizable piece of the default filter text (defaults to "After") .</Description>
+										</Prop>
+										<Prop>
+											<Id>OnText</Id>
+											<Name>OnText</Name>
+											<Type>Text</Type>
+											<Default>On</Default>
+											<Metadata />
+											<Description>Customizable piece of the default filter text (defaults to "On") .</Description>
+										</Prop>
+									</Children>
+								</Group>
+							</Children>
+						</Group>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Behavior</Name>
+					<Children>
+						<Group>
+							<Name>Resize</Name>
+							<Children>
+								<Prop>
+									<Id>Resizable</Id>
+									<Name>Resizable</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to enable resizing of the grid.</Description>
+								</Prop>
+								<Prop>
+									<Id>MinWidth</Id>
+									<Name>MinWidth</Name>
+									<Type>Integer</Type>
+									<Default>100</Default>
+									<Metadata />
+									<Description>The minimum width for the element.</Description>
+								</Prop>
+								<Prop>
+									<Id>MaxWidth</Id>
+									<Name>MaxWidth</Name>
+									<Type>Integer</Type>
+									<Default>800</Default>
+									<Metadata />
+									<Description>The maximum width for the element.</Description>
+								</Prop>
+								<Prop>
+									<Id>MinHeight</Id>
+									<Name>MinHeight</Name>
+									<Type>Integer</Type>
+									<Default>100</Default>
+									<Metadata />
+									<Description>The minimum height for the element.</Description>
+								</Prop>
+								<Prop>
+									<Id>MaxHeight</Id>
+									<Name>MaxHeigt</Name>
+									<Type>Integer</Type>
+									<Default>600</Default>
+									<Metadata />
+									<Description>The maximum height for the element.</Description>
+								</Prop>
+								<Prop>
+									<Id>Wrap</Id>
+									<Name>Wrap</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to wrap the grid with a div if needed.</Description>
+								</Prop>
+								<Prop>
+									<Id>Pinned</Id>
+									<Name>Pinned</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to ensure that the resize handles are always visible, false to display them only when the user mouses over the resizable borders.</Description>
+								</Prop>
+								<Prop>
+									<Id>Handles</Id>
+									<Name>Handles</Name>
+									<Type>Text</Type>
+									<Default>s e se</Default>
+									<Metadata />
+									<Description>
+										String consisting of the resize handles to display.
+										'n'		north
+										's'		south
+										'e'		east
+										'w'		west
+										'nw'	northwest
+										'sw'	southwest
+										'se'	southeast
+										'ne'	northeast
+										'all'	all
+									</Description>
+								</Prop>
+							</Children>
+						</Group>
+						<Group>
+							<Name>Collapsing</Name>
+							<Children>
+								<Prop>
+									<Id>Collapsible</Id>
+									<Name>Collapsible</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to make the grid collapsible and have the expand/collapse toggle button automatically rendered into the header tool button area, false to keep the panel statically sized with no button.</Description>
+								</Prop>
+								<Prop>
+									<Id>AnimateCollapse</Id>
+									<Name>AnimateCollapse</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to animate the transition when the panel is collapsed, false to skip the animation.</Description>
+								</Prop>
+							</Children>
+						</Group>
+						<Group>
+							<Name>Selection</Name>
+							<Children>
+								<Prop>
+									<Id>TrackMouseOver</Id>
+									<Name>TrackMouseOver</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to highlight rows when the mouse is over.</Description>
+								</Prop>
+								<Prop>
+									<Id>SelectionModel</Id>
+									<Name>SelectionModel</Name>
+									<Type>Combo</Type>
+									<Default>RowSelectionModel</Default>
+									<Values>
+										<Value id="RowSelectionModel" desc="Row" />
+										<Value id="CheckBoxSelectionModel" desc="Checkbox" />
+										<Value id="SmartCheckBoxSelectionModel" desc="SmartCheckbox" />
+										<Value id="RadioSelectionModel" desc="Radio" />
+									</Values>
+									<Description>The selection model to use with the grid: RowSelectionModel (rows are selected by clicking on the row) or CheckBoxSelectionModel (a check box appears in the first column of the grid).</Description>
+								</Prop>
+								<Prop>
+									<Id>SingleSelect</Id>
+									<Name>SingleSelect</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to allow selection of only one row at a time (only applies if the selection model is RowSelectionModel.</Description>
+								</Prop>
+								<Prop>
+									<Id>LockSelections</Id>
+									<Name>LockSelections</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to lock the selections.</Description>
+								</Prop>
+								<Prop>
+									<Id>SelectedRowData</Id>
+									<Name>SelectedRowData</Name>
+									<Type>Custom</Type>
+									<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+									<Metadata>
+										<Value name="FlagSetValueMethod">SetSelectedRowData</Value>
+										<Value name="FlagGetValueMethod">GetSelectedRowData</Value>
+										<Value name="FlagDataTypeFilter"></Value>
+										<Value name="FlagHideVariables">False</Value>
+										<Value name="FlagHideAttributes">true</Value>
+									</Metadata>
+									<Description>The variable where the selected row data will be stored. If SingleSelect is false, it must be a collection.</Description>
+								</Prop>
+							</Children>
+						</Group>
+						<Group>
+							<Name>Grouping</Name>
+							<Children>
+								<Prop>
+									<Id>Grouping</Id>
+									<Name>Grouping</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata/>
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to allow grouping.</Description>
+								</Prop>
+								<Prop>
+									<Id>GroupField</Id>
+									<Name>GroupField</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata/>
+									<Description>The name (as specified in the Record's Field definition) of the field to group on.</Description>
+								</Prop>
+								<Prop>
+									<Id>HideGroupedField</Id>
+									<Name>HideGroupedField</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata/>
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to hide the grouping field.</Description>
+								</Prop>
+								<Prop>
+									<Id>GroupTemplate</Id>
+									<Name>GroupTemplate</Name>
+									<Type>Text</Type>
+									<Default>{text}</Default>
+									<Metadata/>
+									<Description>
+										The template used to render the group header. This is used to format an object which contains the following properties:
+
+										* group : String
+										The rendered value of the group field. By default this is the unchanged value of the group field. If a groupRenderer is specified, it is the result of a call to that.
+
+										* gvalue : Object
+										The raw value of the group field.
+
+										* text : String
+										The configured header (If showGroupName is true) plus the renderedgroup field value.
+
+										* groupId : String
+										A unique, generated ID which is applied to the View Element which contains the group.
+
+										* startRow : Number
+										The row index of the Record which caused group change.
+
+										* rs : Array
+										.Contains a single element: The Record providing the data for the row which caused group change.
+
+										* cls : String
+										The generated class name string to apply to the group header Element.
+
+										* style : String
+										The inline style rules to apply to the group header Element.
+
+										Example: {text} ({[values.rs.length]} {[values.rs.length > 1 ? "Items" : "Item"]})
+									</Description>
+								</Prop>
+							</Children>
+						</Group>
+						<!--						<Group>
+							<Name>RowExpander</Name>
+							<Children>						
+								<Prop>
+									<Id>RowExpander</Id>
+									<Name>RowExpander</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata>
+									    <Value name="FlagReadonly">True</Value>
+									</Metadata>
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+								</Prop>
+								<Prop>
+									<Id>ExpanderTemplate</Id>
+									<Name>ExpanderTemplate</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata>
+									    <Value name="FlagReadonly">True</Value>
+									</Metadata>
+								</Prop>	
+							</Children>
+						</Group>
+-->
+						<Group>
+							<Name>DragDrop</Name>
+							<Children>
+								<Prop>
+									<Id>EnableDragDrop</Id>
+									<Name>EnableDragDrop</Name>
+									<Type>Combo</Type>
+									<Default>false</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to enable drag and drop of rows.</Description>
+								</Prop>
+							</Children>
+						</Group>
+						<Group>
+							<Name>Columns</Name>
+							<Children>
+								<Prop>
+									<Id>AutoSizeColumns</Id>
+									<Name>AutoSizeColumns</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to auto expand the columns to fit the grid when the grid is created.</Description>
+								</Prop>
+								<Prop>
+									<Id>MinColumnWidth</Id>
+									<Name>MinColumnWidth</Name>
+									<Type>Integer</Type>
+									<Default>25</Default>
+									<Metadata />
+									<Description>The minimum width a column can be resized to.</Description>
+								</Prop>
+								<Prop>
+									<Id>EnableColumnHide</Id>
+									<Name>EnableColumnHide</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to enable hiding of columns with the header context menu.</Description>
+								</Prop>
+								<Prop>
+									<Id>EnableColumnMove</Id>
+									<Name>EnableColumnMove</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>True to enable drag and drop reorder of columns.</Description>
+								</Prop>
+								<Prop>
+									<Id>DefaultSortable</Id>
+									<Name>DefaultSortable</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>Default sortable of columns which have no sortable specified.</Description>
+								</Prop>
+								<Prop>
+									<Id>DefaultResizable</Id>
+									<Name>DefaultResizable</Name>
+									<Type>Combo</Type>
+									<Default>true</Default>
+									<Metadata />
+									<Values>
+										<Value id="true" desc="True" />
+										<Value id="false" desc="False" />
+									</Values>
+									<Description>Default resizable of columns which have no resizable specified.</Description>
+								</Prop>
+							</Children>
+						</Group>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Loading</Name>
+					<Children>
+						<Prop>
+							<Id>LoadingIndicator</Id>
+							<Name>LoadingIndicator</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to mask the grid while loading.</Description>
+						</Prop>
+						<Prop>
+							<Id>LoadingMsg</Id>
+							<Name>LoadingMsg</Name>
+							<Type>Text</Type>
+							<Default>Loading...</Default>
+							<Metadata />
+							<Description>The text to display in a centered message box, while the grid is loading.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Paging</Name>
+					<Children>
+						<Prop>
+							<Id>Paging</Id>
+							<Name>Paging</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to enable paging on the grid. When paging is enabled, a toolbar appears at the bottom of the grid, with paging buttons.</Description>
+						</Prop>
+						<Prop>
+							<Id>PageSize</Id>
+							<Name>PageSize</Name>
+							<Type>Integer</Type>
+							<Default>10</Default>
+							<Metadata />
+							<Description>The number of records to display per page.</Description>
+						</Prop>
+						<Prop>
+							<Id>DisplayInfo</Id>
+							<Name>DisplayInfo</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to display the DisplayMsg.</Description>
+						</Prop>
+						<Prop>
+							<Id>DisplayMsg</Id>
+							<Name>DisplayMsg</Name>
+							<Type>Text</Type>
+							<Default>Displaying results {0} - {1} of {2}</Default>
+							<Metadata />
+							<Description>The paging status message to display (defaults to "Displaying {0} - {1} of {2}"). Note that this string is formatted using the braced numbers 0-2 as tokens that are replaced by the values for start, end and total respectively. These tokens should be preserved when overriding this string if showing those values is desired.</Description>
+						</Prop>
+						<Prop>
+							<Id>EmptyMsg</Id>
+							<Name>EmptyMsg</Name>
+							<Type>Text</Type>
+							<Default>No results to display</Default>
+							<Metadata />
+							<Description>The message to display when no records are found (defaults to "No data to display").</Description>
+						</Prop>
+						<Group>
+							<Name>PagingTexts</Name>
+							<Children>
+								<Prop>
+									<Id>AfterPageText</Id>
+									<Name>AfterPageText</Name>
+									<Type>Text</Type>
+									<Default>of {0}</Default>
+									<Metadata />
+									<Description>Customizable piece of the default paging text (defaults to "of {0}") .</Description>
+								</Prop>
+								<Prop>
+									<Id>BeforePageText</Id>
+									<Name>BeforePageText</Name>
+									<Type>Text</Type>
+									<Default>Page</Default>
+									<Metadata />
+									<Description>Customizable piece of the default paging text (defaults to "Page").</Description>
+								</Prop>
+								<Prop>
+									<Id>FirstText</Id>
+									<Name>FirstText</Name>
+									<Type>Text</Type>
+									<Default>First Page</Default>
+									<Metadata />
+									<Description>Customizable piece of the default paging text (defaults to "First Page").</Description>
+								</Prop>
+								<Prop>
+									<Id>LastText</Id>
+									<Name>LastText</Name>
+									<Type>Text</Type>
+									<Default>Last Page</Default>
+									<Metadata />
+									<Description>Customizable piece of the default paging text (defaults to "Last Page").</Description>
+								</Prop>
+								<Prop>
+									<Id>NextText</Id>
+									<Name>NextText</Name>
+									<Type>Text</Type>
+									<Default>Next Page</Default>
+									<Metadata />
+									<Description>Customizable piece of the default paging text (defaults to "Next Page").</Description>
+								</Prop>
+								<Prop>
+									<Id>PreviousText</Id>
+									<Name>PreviousText</Name>
+									<Type>Text</Type>
+									<Default>Previous Page</Default>
+									<Metadata />
+									<Description>Customizable piece of the default paging text (defaults to "Previous Page").</Description>
+								</Prop>
+								<Prop>
+									<Id>RefreshText</Id>
+									<Name>RefreshText</Name>
+									<Type>Text</Type>
+									<Default>Refresh</Default>
+									<Metadata />
+									<Description>Customizable piece of the default paging text (defaults to "Refresh").</Description>
+								</Prop>
+							</Children>
+						</Group>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Sorting</Name>
+					<Children>
+						<Prop>
+							<Id>RemoteSort</Id>
+							<Name>RemoteSort</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>
+								True if sorting is to be handled by requesting the Proxy to provide a refreshed version of the data object in sorted order, as opposed to sorting the Record cache in place (defaults to false).
+
+								If remote sorting is specified, then clicking on a column header causes the current page to be requested from the server with the addition of the following two parameters:
+
+								* sort : String
+
+								The name (as specified in the Record's Field definition) of the field to sort on.
+								* dir : String
+
+								The direction of the sort, "ASC" or "DESC".
+							</Description>
+						</Prop>
+						<Prop>
+							<Id>DefaultSortField</Id>
+							<Name>DefaultSortField</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>The default name (as specified in the Record's Field definition) of the field to sort on.</Description>
+						</Prop>
+						<Prop>
+							<Id>DefaultSortDirection</Id>
+							<Name>DefaultSortDir</Name>
+							<Type>Combo</Type>
+							<Default></Default>
+							<Metadata />
+							<Values>
+								<Value id="ASC" desc="ASC" />
+								<Value id="DESC" desc="DESC" />
+							</Values>
+							<Description>The default direction of the sort.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Data Bindings</Name>
+					<Children>
+						<Prop>
+							<Id>ColumnModel</Id>
+							<Name>ColumnModel</Name>
+							<Type>Custom</Type>
+							<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+							<Metadata>
+								<Value name="FlagSetValueMethod">SetColumnModel</Value>
+								<Value name="FlagGetValueMethod">GetColumnModel</Value>
+								<Value name="FlagDataTypeFilter">gxuiGridColumnModel</Value>
+								<Value name="FlagHideVariables">False</Value>
+								<Value name="FlagHideAttributes">true</Value>
+							</Metadata>
+							<Description>A gxuiGridColumnModel variable with a definition of the columns of the grid.</Description>
+						</Prop>
+						<Group>
+							<Name>DataStore</Name>
+							<Children>
+								<Prop>
+									<Id>Data</Id>
+									<Name>Data</Name>
+									<Type>Custom</Type>
+									<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+									<Metadata>
+										<Value name="FlagSetValueMethod">SetData</Value>
+										<Value name="FlagGetValueMethod">GetData</Value>
+										<Value name="FlagDataTypeFilter"></Value>
+										<Value name="FlagHideVariables">False</Value>
+										<Value name="FlagHideAttributes">true</Value>
+									</Metadata>
+									<Description>The variable where the data to be shown in the grid is stored. The grid data can also be loaded from a URL, through the DataStoreURL property.</Description>
+								</Prop>
+								<Prop>
+									<Id>Root</Id>
+									<Name>Root</Name>
+									<Type>Text</Type>
+									<Default>Items</Default>
+									<Metadata />
+									<Description>The name of the property which contains the Collection of row objects.</Description>
+								</Prop>
+								<Prop>
+									<Id>DataStoreURL</Id>
+									<Name>DataStoreURL</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata />
+									<Description>The URL where the data to be shown in the grid will be retrieved. The data must be in XML format (for example, the URL of a main procedure, with call protocol HTTP, that returns a SDT in XML format).</Description>
+								</Prop>
+								<Prop>
+									<Id>DataStoreParms</Id>
+									<Name>DataStoreParms</Name>
+									<Type>Custom</Type>
+									<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+									<Metadata>
+										<Value name="FlagSetValueMethod">SetDataStoreParms</Value>
+										<Value name="FlagGetValueMethod">GetDataStoreParms</Value>
+										<Value name="FlagDataTypeFilter"></Value>
+										<Value name="FlagHideVariables">False</Value>
+										<Value name="FlagHideAttributes">true</Value>
+									</Metadata>
+									<Description>A SDT where each property is a parameter name and the property value is the parameter value. The parameters are sent in the POST message when the DataStoreURL is retreived.</Description>
+								</Prop>
+								<Prop>
+									<Id>Record</Id>
+									<Name>Record</Name>
+									<Type>Text</Type>
+									<Default>Item</Default>
+									<Metadata />
+									<Description>The Ext DomQuery path (supports Xpath) to the repeated element which contains record information, (only applies when DataStoreURL is specified).</Description>
+								</Prop>
+								<Prop>
+									<Id>Identifier</Id>
+									<Name>Identifier</Name>
+									<Type>Text</Type>
+									<Default>Id</Default>
+									<Metadata />
+									<Description>
+										If a data is retrieved from DataStoreURL:
+										The DomQuery path (supports Xpath) relative from the record element to the element that contains a record identifier value.
+
+										If data is retrieved from Data:
+										Name of the property within a row object that contains a record identifier value.
+									</Description>
+								</Prop>
+								<Prop>
+									<Id>Total</Id>
+									<Name>Total</Name>
+									<Type>Text</Type>
+									<Default>Total</Default>
+									<Metadata />
+									<Description>
+										If a data is retrieved from DataStoreURL:
+										The DomQuery path (supports Xpath) from which to retrieve the total number of records in the dataset. This is only needed if the whole dataset is not passed in one go, but is being paged from the remote server.
+
+										If data is retrieved from Data:
+										Name of the property from which to retrieve the total number of records in the dataset. This is only needed if the whole dataset is not passed in one go, but is being paged from the remote server.
+									</Description>
+								</Prop>
+							</Children>
+						</Group>
+					</Children>
+				</Group>
+				<Group>
+					<Name>State Management</Name>
+					<Children>
+						<Prop>
+							<Id>Stateful</Id>
+							<Name>Stateful</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>A flag which causes the Component to attempt to restore the state of internal properties from a saved state on startup.</Description>
+						</Prop>
+						<Prop>
+							<Id>StateId</Id>
+							<Name>StateId</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>The unique id for this component to use for state management purposes.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Prop>
+					<Id>ButtonPressedId</Id>
+					<Name>ButtonPressedId</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+				</Prop>
+				<Prop>
+					<Id>LoadExceptionError</Id>
+					<Name>LoadExceptionError</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+				</Prop>
+				<Prop>
+					<Id>EditFieldValue</Id>
+					<Name>EditFieldValue</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description>The the value of the edit field of the toolbar where the Enter key was pressed.</Description>
+				</Prop>
+			</Children>
+		</Group>
+	</Object>
+</Content>

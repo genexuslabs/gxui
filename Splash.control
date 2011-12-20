@@ -1,0 +1,36 @@
+﻿<?xml version="1.0"?>
+<ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Version>1.1.0.378</Version>
+	<IncludeInControlInfo>false</IncludeInControlInfo>
+	<RuntimeRender>gxui-all.js</RuntimeRender>
+	<HeightPropertyName>Height</HeightPropertyName>
+	<WidthPropertyName>Widht</WidthPropertyName>
+	<ResizeSupported>true</ResizeSupported>
+	<ObjClass>gxui.Splash</ObjClass>
+	<Description>gxui.Splash</Description>
+	<Id>b1acb802-cccc-4bfe-9b42-5596764679d9</Id>
+	<Name>gxui.Splash</Name>
+	<ShowMethod>show</ShowMethod>
+	<ReferencedFiles>
+		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
+		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
+		<SharedFile>ext/ext-all.js</SharedFile>
+		<File>gxui-all.css</File>
+	</ReferencedFiles>
+	<SupportFiles>
+		<Directory>resources</Directory>
+		<SharedDirectory>ext/resources</SharedDirectory>
+	</SupportFiles>
+	<Constructor>
+		<Parameters />
+		<Name>gxui.Splash</Name>
+	</Constructor>
+	<Categories>
+		<Category>gxui Library</Category>
+	</Categories>
+	<PropertiesDefinition>Splash/design/SplashProperties.xml</PropertiesDefinition>
+	<DesignRender>Splash/design/SplashRender.xsl</DesignRender>
+	<ToolboxIcon>Splash/design/splash.ico</ToolboxIcon>
+	<Events />
+	<Actions />
+</ControlDefinition>

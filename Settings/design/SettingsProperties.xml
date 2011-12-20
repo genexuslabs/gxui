@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../Properties.xslt"?>
+<Content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Object id="gxui.Settings">
+		<Group>
+			<Name>General</Name>
+			<Type>Main</Type>
+			<Children>
+				<Group>
+					<Name>State Management</Name>
+					<Children>
+						<Prop>
+							<Id>Enable</Id>
+							<Name>Enable</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to enable state management.</Description>
+						</Prop>
+						<Prop>
+							<Id>Provider</Id>
+							<Name>Provider</Name>
+							<Type>Combo</Type>
+							<Default>Cookie</Default>
+							<Metadata />
+							<Values>
+								<Value id="Cookie" desc="Cookie" />
+								<Value id="HTTP" desc="HTTP" />
+							</Values>
+							<Description>State management provider. If Cookie is selected, the state is stored in cookies. If HTTP is selected, state is stored in a remote server, through HTTP calls to the URL configured in SaveURL. Cookie is not recommended for production environments, with many controls.</Description>
+						</Prop>
+						<Prop>
+							<Id>InitialState</Id>
+							<Name>InitialState</Name>
+							<Type>Custom</Type>
+							<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+							<Metadata>
+								<Value name="FlagSetValueMethod">SetState</Value>
+								<Value name="FlagGetValueMethod">GetState</Value>
+								<Value name="FlagDataTypeFilter">gxuiState</Value>
+								<Value name="FlagHideVariables">False</Value>
+								<Value name="FlagHideAttributes">true</Value>
+							</Metadata>
+							<Description>The variable where the initial state are stored.</Description>
+						</Prop>
+						<Prop>
+							<Id>SaveURL</Id>
+							<Name>SaveURL</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Metadata />
+							<Description>The URL of the web service where the state changes will be notified.</Description>
+						</Prop>
+						<Prop>
+							<Id>Delay</Id>
+							<Name>Delay</Name>
+							<Type>Integer</Type>
+							<Default>750</Default>
+							<Metadata />
+							<Description>The milliseconds to delay the buffer changes.</Description>
+						</Prop>
+					</Children>
+				</Group>
+			</Children>
+		</Group>
+	</Object>
+</Content>

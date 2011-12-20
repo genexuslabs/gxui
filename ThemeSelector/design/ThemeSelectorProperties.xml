@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<Content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Object id="gxui.ThemeSelector">
+    <Group>
+      <Name>General</Name>
+      <Type>Main</Type>
+      <Children>
+        <Prop>
+          <Id>Width</Id>
+          <Name>Width</Name>
+          <Type>Text</Type>
+          <Default>100</Default>
+        </Prop>
+        <Prop>
+          <Id>Height</Id>
+          <Name>Height</Name>
+          <Type>Text</Type>
+          <Default>100</Default>
+        </Prop>
+        <Prop>
+          <Id>Css</Id>
+          <Name>Css</Name>
+          <Type>Text</Type>
+          <Default></Default>
+        </Prop>		
+		<Group>
+			<Name>DataBinding</Name>
+			<Children>
+				<Prop>
+					<Id>Themes</Id>
+					<Name>Themes</Name>
+					<Type>Custom</Type>
+					<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+					<Metadata>
+						<Value name="FlagSetValueMethod">SetThemes</Value>
+						<Value name="FlagGetValueMethod">GetThemes</Value>
+						<Value name="FlagDataTypeFilter">XThemes</Value>
+						<Value name="FlagHideVariables">False</Value>
+						<Value name="FlagHideAttributes">true</Value>
+					</Metadata>
+				</Prop>							
+			</Children>
+		</Group>			
+      </Children>
+    </Group>
+  </Object>
+</Content>

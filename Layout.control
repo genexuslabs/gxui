@@ -1,0 +1,84 @@
+﻿<?xml version="1.0"?>
+<ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Version>1.1.0.378</Version>
+	<IncludeInControlInfo>false</IncludeInControlInfo>
+	<RuntimeRender>gxui-all.js</RuntimeRender>
+	<GxResources />
+	<HeightPropertyName>Height</HeightPropertyName>
+	<WidthPropertyName>Widht</WidthPropertyName>
+	<ResizeSupported>false</ResizeSupported>
+	<ObjClass>gxui.Layout</ObjClass>
+	<Description>gxui.Layout</Description>
+	<Id>a4e188bc-0055-452c-ab2d-4fe9acb4950c</Id>
+	<Name>gxui.Layout</Name>
+	<ShowMethod>show</ShowMethod>
+	<ReferencedFiles>
+		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
+		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
+		<SharedFile>ext/ext-all.js</SharedFile>
+		<File>gxui-all.css</File>
+	</ReferencedFiles>
+	<SupportFiles>
+		<Directory>resources</Directory>
+		<SharedDirectory>ext/resources</SharedDirectory>
+	</SupportFiles>
+	<Methods>
+		<Method>
+			<Name>hideRegion</Name>
+			<Signature>hideRegion(regionKey:Character)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
+			<Name>showRegion</Name>
+			<Signature>showRegion(regionKey:Character)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
+			<Name>collapseRegion</Name>
+			<Signature>collapseRegion(regionKey:Character)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
+			<Name>collapseRegion</Name>
+			<Signature>collapseRegion(regionKey:Character, animate:Boolean)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+				<Parameter>Boolean</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
+			<Name>expandRegion</Name>
+			<Signature>expandRegion(regionKey:Character)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
+			<Name>expandRegion</Name>
+			<Signature>expandRegion(regionKey:Character, animate:Boolean)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+				<Parameter>Boolean</Parameter>
+			</Parameters>
+		</Method>
+	</Methods>
+	<Constructor>
+		<Parameters />
+		<Name>gxui.Layout</Name>
+	</Constructor>
+	<Categories>
+		<Category>gxui Library</Category>
+	</Categories>
+	<PropertiesDefinition>Layout/design/LayoutProperties.xml</PropertiesDefinition>
+	<DesignRender>Layout/design/LayoutRender.xsl</DesignRender>
+	<DesignerRenderHelper>Artech.UC.gxui.Renders.UserControl</DesignerRenderHelper>
+	<ToolboxIcon>Layout/design/layout.ico</ToolboxIcon>
+	<Events />
+	<Actions />
+</ControlDefinition>

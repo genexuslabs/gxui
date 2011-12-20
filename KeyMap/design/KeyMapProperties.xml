@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../Properties.xslt"?>
+<Content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Object id="gxui.KeyMap">
+		<Group>
+			<Name>General</Name>
+			<Type>Main</Type>
+			<Children>
+				<Prop>
+					<Id>Key</Id>
+					<Name>Key</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description></Description>
+				</Prop>
+				<Prop>
+					<Id>KeyCode</Id>
+					<Name>KeyCode</Name>
+					<Type>Integer</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">Runtime</Value>
+					</Metadata>
+					<Description></Description>
+				</Prop>
+			</Children>
+		</Group>
+	</Object>
+</Content>

@@ -1,0 +1,13 @@
+﻿<Projects>
+	<Project Name="Artech.UC.gxui" Location="Base">
+		<File Name="Artech.UC.gxui.dll" Target="." />
+		<File Name="Jayrock.dll" Target="." />
+		<File Name="Jayrock.Json.dll" Target="." />
+	</Project>
+	<Project Name="Artech.UC.gxui.Panel.PropertiesResolvers" Location="Panel\PropertiesResolvers">
+		<File Name="Artech.UC.gxui.Panel.PropertiesResolvers.dll" Target="." />
+	</Project>
+	<Project Name="Artech.UC.gxui.GridExtension.PropertiesResolvers" Location="GridExtension\PropertiesResolvers">
+		<File Name="Artech.UC.gxui.GridExtension.PropertiesResolvers.dll" Target="." />
+	</Project>
+</Projects>

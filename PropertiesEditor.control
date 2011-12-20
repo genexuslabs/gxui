@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Version>1.1.0.378</Version>
+	<IncludeInControlInfo>false</IncludeInControlInfo>
+	<GxResources>PropertiesEditor/design/PropertiesEditor.xpz</GxResources>
+	<RuntimeRender>gxui-all.js</RuntimeRender>
+	<HeightPropertyName>Height</HeightPropertyName>
+	<WidthPropertyName>Width</WidthPropertyName>
+	<ResizeSupported>true</ResizeSupported>
+	<ObjClass>gxui.PropertiesEditor</ObjClass>
+	<Description>gxui.PropertiesEditor</Description>
+	<Id>ed6edad0-792c-11dd-ad8b-0800200c9a66</Id>
+	<Name>gxui.PropertiesEditor</Name>
+	<ShowMethod>show</ShowMethod>
+	<ReferencedFiles>
+		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
+		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
+		<SharedFile>ext/ext-all.js</SharedFile>
+		<File>gxui-all.css</File>
+	</ReferencedFiles>
+	<SupportFiles>
+		<Directory>resources</Directory>
+		<SharedDirectory>ext/resources</SharedDirectory>
+	</SupportFiles>
+	<Constructor>
+		<Parameters />
+		<Name>gxui.PropertiesEditor</Name>
+	</Constructor>
+	<Categories>
+		<Category>gxui Library</Category>
+	</Categories>
+	<Methods>
+		<Method>
+			<Name>SetSelectedObjectId</Name>
+			<Signature>SetSelectedObjectId(id:Character)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
+			<Name>SetSelectedObject</Name>
+			<Signature>SetSelectedObject(props:SDT,defs:SDT)</Signature>
+			<Parameters>
+				<Parameter>SDT</Parameter>
+				<Parameter>SDT</Parameter>
+			</Parameters>
+		</Method>
+	</Methods>
+	<PropertiesDefinition>PropertiesEditor/design/PropertiesEditorProperties.xml</PropertiesDefinition>
+	<DesignRender>PropertiesEditor/design/PropertiesEditorRender.xsl</DesignRender>
+	<DesignerRenderHelper>Artech.UC.gxui.Renders.UserControl</DesignerRenderHelper>
+	<ToolboxIcon>PropertiesEditor/design/PropertiesEditor.ico</ToolboxIcon>
+	<Events>
+		<Event>GetDefault</Event>
+		<Event>PropertyChanged</Event>
+	</Events>
+	<Actions />
+</ControlDefinition>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0"?>
+<ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Version>1.1.0.378</Version>
+	<IncludeInControlInfo>false</IncludeInControlInfo>
+	<RuntimeRender>gxui-all.js</RuntimeRender>
+	<GxResources>ThemeSelector/design/ThemeSelector.xpz</GxResources>
+	<HeightPropertyName>Height</HeightPropertyName>
+	<WidthPropertyName>Widht</WidthPropertyName>
+	<ResizeSupported>true</ResizeSupported>
+	<ObjClass>gxui.ThemeSelector</ObjClass>
+	<Description>gxui.ThemeSelector</Description>
+	<Id>5f77845d-07c2-482e-aa12-972b87844a9e</Id>
+	<Name>gxui.ThemeSelector</Name>
+	<ShowMethod>show</ShowMethod>
+	<ReferencedFiles>
+		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
+		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
+		<SharedFile>ext/ext-all.js</SharedFile>
+		<File>gxui-all.css</File>
+	</ReferencedFiles>
+	<SupportFiles>
+		<Directory>resources</Directory>
+		<SharedDirectory>ext/resources</SharedDirectory>
+	</SupportFiles>
+	<Constructor>
+		<Parameters />
+		<Name>gxui.ThemeSelector</Name>
+	</Constructor>
+	<Categories>
+		<Category>gxui Library</Category>
+	</Categories>
+	<PropertiesDefinition>ThemeSelector/design/ThemeSelectorProperties.xml</PropertiesDefinition>
+	<DesignRender>ThemeSelector/design/ThemeSelectorRender.xsl</DesignRender>
+	<ToolboxIcon>ThemeSelector/design/themeselector.ico</ToolboxIcon>
+	<Events />
+	<Actions />
+</ControlDefinition>

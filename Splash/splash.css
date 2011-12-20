@@ -1,0 +1,16 @@
+
+.ext-el-mask-msg {
+}
+
+.ext-el-mask-msg div {
+    padding:5px 10px 5px 10px;
+    background: transparent;
+    border: 0px;
+    color:#333;
+    font:normal 9px tahoma, arial, helvetica, sans-serif;
+    cursor:wait;
+	position:bottom;
+}
+
+.x-mask-loading div {
+}
