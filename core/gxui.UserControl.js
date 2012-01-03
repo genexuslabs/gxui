@@ -1,14 +1,19 @@
-/// <reference path="..\VStudio\vswd-ext_2.2.js" />
 /**
 * @class gxui.UserControl
 * Abstract base class for gxui UserControls.
 */
-gxui.UserControl = function(options) {
-	this.setOptions(options)
-	this.initialize();
-};
+Ext.define('gxui.UserControl', {
+	mixins: {
+		observable: 'Ext.util.Observable'
+	},
 
-Ext.extend(gxui.UserControl, Ext.util.Observable, {
+	constructor: function(options) {
+		this.setOptions(options)
+		this.initialize();
+
+		return this;
+	},
+
 	//private
 	setOptions: function(options) {
 		this.options = {
@@ -49,8 +54,10 @@ Ext.extend(gxui.UserControl, Ext.util.Observable, {
 	show: function() {
 		try {
 			if (!this.rendered) {
-				this.rendered = true;
-				this.onRender();
+				Ext.onReady(function() {
+					this.rendered = true;
+					this.onRender();
+				}, this);
 			}
 			else {
 				if (this.onRefresh)
@@ -187,7 +194,7 @@ Ext.extend(gxui.UserControl, Ext.util.Observable, {
 	},
 
 	checkIfInline: function(el) {
-		if (el.id.indexOf("gxHTMLWrp") >= 0 || el.hasClass("gx_usercontrol") || el.hasClass("gxui-uc-container"))
+		if (el.id.indexOf("gxHTMLWrp") >= 0 || el.hasCls("gx_usercontrol") || el.hasCls("gxui-uc-container"))
 			el.setStyle("display", "inline");
 	},
 

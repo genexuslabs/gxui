@@ -39,7 +39,7 @@ gxui = function() {
 				expires: new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 365)) //365 days
 			}));
 
-			//////////////////////////////////////////////////////////////////////////////////////////
+/*			//////////////////////////////////////////////////////////////////////////////////////////
 			// This is a temporal fix for a problem with Chrome and FitLayout http://extjs.com/forum/showthread.php?p=312137#post312137
 			Ext.override(Ext.layout.FitLayout, {
 				onLayout: function(ct, target) {
@@ -99,6 +99,7 @@ gxui = function() {
 					}
 				});
 			}
+*/
 		},
 
 		/**

@@ -93,62 +93,6 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Accordion"
-			>
-			<File
-				RelativePath="..\..\Accordion.control"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Accordion\accordion.css"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Accordion\AccordionRender.js"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Accordion\Ext.ux.Accordion.js"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Accordion\Ext.ux.InfoPanel.js"
-				>
-			</File>
-			<Filter
-				Name="Design"
-				>
-				<File
-					RelativePath="..\..\Accordion\design\accordion.ico"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Accordion\design\AccordionProperties.xml"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Accordion\design\AccordionRender.xsl"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Accordion\design\expand.gif"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Accordion\design\ns-expand.gif"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Accordion\design\panel-title-light-bg.gif"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Accordion\design\tab-close-on.gif"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
 			Name="PropertiesEditor"
 			>
 			<File

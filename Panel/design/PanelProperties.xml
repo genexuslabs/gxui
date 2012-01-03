@@ -23,20 +23,6 @@
 					<Description>Control height.</Description>
 				</Prop>
 				<Prop>
-					<Id>Draggable</Id>
-					<Name>Draggable</Name>
-					<Type>Combo</Type>
-					<Default>false</Default>
-					<Metadata>
-						<Value name="FlagScope">DesignTime</Value>
-					</Metadata>
-					<Values>
-						<Value id="true" desc="True" />
-						<Value id="false" desc="False" />
-					</Values>
-					<Description>True to enable dragging of this panel.</Description>
-				</Prop>
-				<Prop>
 					<Id>ShowAsWindow</Id>
 					<Name>ShowAsWindow</Name>
 					<Type>Boolean</Type>
@@ -74,40 +60,28 @@
 					<Name>Appareance</Name>
 					<Children>
 						<Prop>
-							<Id>AutoWidth</Id>
-							<Name>AutoWidth</Name>
-							<Type>Combo</Type>
-							<Default>true</Default>
-							<Metadata>
-								<Value name="FlagScope">DesignTime</Value>
-							</Metadata>
-							<Values>
-								<Value id="true" desc="True" />
-								<Value id="false" desc="False" />
-							</Values>
-							<Description>True to use width:'auto', false to use fixed width.</Description>
-						</Prop>
-						<Prop>
-							<Id>AutoHeight</Id>
-							<Name>AutoHeight</Name>
-							<Type>Combo</Type>
-							<Default>false</Default>
-							<Metadata>
-								<Value name="FlagScope">DesignTime</Value>
-							</Metadata>
-							<Values>
-								<Value id="true" desc="True" />
-								<Value id="false" desc="False" />
-							</Values>
-							<Description>True to use height:'auto', false to use fixed height.</Description>
-						</Prop>
-						<Prop>
 							<Id>Title</Id>
 							<Name>Title</Name>
 							<Type>Text</Type>
 							<Default></Default>
 							<Metadata />
 							<Description>The title text to display in the panel header.</Description>
+						</Prop>
+						<Prop>
+							<Id>HeaderPosition</Id>
+							<Name>HeaderPosition</Name>
+							<Type>Combo</Type>
+							<Default>top</Default>
+							<Metadata>
+								<Value name="FlagScope">DesignTime</Value>
+							</Metadata>
+							<Values>
+								<Value id="top" desc="Top" />
+								<Value id="bottom" desc="Bottom" />
+								<Value id="left" desc="Left" />
+								<Value id="right" desc="Right" />
+							</Values>
+							<Description>Position of the panel header (defaults to Top).</Description>
 						</Prop>
 						<Prop>
 							<Id>IconCls</Id>
@@ -257,20 +231,6 @@
 									<Description>The maximum height for the element.</Description>
 								</Prop>
 								<Prop>
-									<Id>Pinned</Id>
-									<Name>Pinned</Name>
-									<Type>Combo</Type>
-									<Default>true</Default>
-									<Metadata>
-										<Value name="FlagScope">DesignTime</Value>
-									</Metadata>
-									<Values>
-										<Value id="true" desc="True" />
-										<Value id="false" desc="False" />
-									</Values>
-									<Description>True to ensure that the resize handles are always visible, false to display them only when the user mouses over the resizable borders.</Description>
-								</Prop>
-								<Prop>
 									<Id>Handles</Id>
 									<Name>Handles</Name>
 									<Type>Text</Type>
@@ -332,6 +292,22 @@
 										<Value id="false" desc="False" />
 									</Values>
 									<Description>True to animate the transition when the panel is collapsed, false to skip the animation.</Description>
+								</Prop>
+								<Prop>
+									<Id>CollapseDirection</Id>
+									<Name>CollapseDirection</Name>
+									<Type>Combo</Type>
+									<Default>top</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="top" desc="Top" />
+										<Value id="bottom" desc="Bottom" />
+										<Value id="left" desc="Left" />
+										<Value id="right" desc="Right" />
+									</Values>
+									<Description>The direction to collapse the Panel when the toggle button is clicked (defaults to HeaderPosition).</Description>
 								</Prop>
 							</Children>
 						</Group>

@@ -45,16 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimateCollapseResolver.cs" />
+    <Compile Include="CollapseDirectionResolver.cs" />
+    <Compile Include="CollapseDirectionDefaultResolver.cs" />
     <Compile Include="ModalResolver.cs" />
-    <Compile Include="PinnedResolver.cs" />
     <Compile Include="HandlesResolver.cs" />
     <Compile Include="MaxHeightResolver.cs" />
     <Compile Include="MinHeightResolver.cs" />
     <Compile Include="ResolverFactory.cs" />
-    <Compile Include="WidthResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="HeightResolver.cs" />
-    <Compile Include="DraggableResolver.cs" />
     <Compile Include="ShowAsWindowResolver.cs" />
     <Compile Include="MinWidthResolver.cs" />
     <Compile Include="MaxWidthResolver.cs" />

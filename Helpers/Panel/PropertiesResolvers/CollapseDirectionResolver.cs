@@ -6,7 +6,7 @@ using Artech.Genexus.Common.Resolvers;
 
 namespace Artech.UC.gxui.Panel.PropertiesResolvers
 {
-	public class PinnedResolver : ResolverBase, IVisibleResolver
+	public class CollapseDirectionResolver : ResolverBase, IVisibleResolver
 	{
 		public bool IsVisible(IPropertyBag properties)
 		{
@@ -14,14 +14,14 @@ namespace Artech.UC.gxui.Panel.PropertiesResolvers
 				return true;
 			else                                                                    // DesignTime            
 			{
-				string resizable = properties.GetPropertyValue<string>("Resizable");
-				return resizable == "true";
+				string collapsible = properties.GetPropertyValue<string>("Collapsible");
+				return collapsible == "true";
 			}
 		}
 
 		public string[] GetDependencies()
 		{
-			string[] dependencies = { "Resizable" };
+			string[] dependencies = { "Collapsible" };
 			return dependencies;
 		}
 	}

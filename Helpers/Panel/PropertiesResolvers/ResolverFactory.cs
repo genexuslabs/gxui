@@ -51,7 +51,13 @@ namespace Artech.UC.gxui.Panel.PropertiesResolvers
 
 		public IDefaultResolver GetDefaultResolver(string propName)
 		{
-			return null;
+			switch (propName)
+			{
+				case "CollapseDirection":
+					return new CollapseDirectionDefaultResolver();
+				default:
+					return null;
+			}
 		}
 
 		public IAfterSetValueHandler GetOnAfterSetValueHandler(string propName)
@@ -83,20 +89,8 @@ namespace Artech.UC.gxui.Panel.PropertiesResolvers
 		{
 			switch (propName)
 			{
-				case "Width":
-					return new WidthResolver();
-				case "Height":
-					return new HeightResolver();
-				case "Draggable":
-					return new DraggableResolver();
 				case "ShowAsWindow":
 					return new ShowAsWindowResolver();
-				//case "AutoHeight":
-				//    return new AutoHeightResolver();
-				//case "AutoWidth":
-				//    return new AutoWidthResolver();
-				//case "Resizable":
-				//    return new ResizableResolver();
 				case "MinWidth":
 					return new MinWidthResolver();
 				case "MaxWidth":
@@ -105,8 +99,6 @@ namespace Artech.UC.gxui.Panel.PropertiesResolvers
 					return new MinHeightResolver();
 				case "MaxHeight":
 					return new MaxHeightResolver();
-				case "Pinned":
-					return new PinnedResolver();
 				case "Handles":
 					return new HandlesResolver();
 				case "ToolbarData":
@@ -115,6 +107,8 @@ namespace Artech.UC.gxui.Panel.PropertiesResolvers
 					return new CollapsedResolver();
 				case "AnimateCollapse":
 					return new AnimateCollapseResolver();
+				case "CollapseDirection":
+					return new CollapseDirectionResolver();
 				case "Modal":
 					return new ModalResolver();
 				default:

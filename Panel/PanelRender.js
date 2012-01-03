@@ -1,11 +1,9 @@
-gxui.Panel = Ext.extend(gxui.UserControl, {
-	m_panel: null,
-	m_toolbar: null,
-	m_gxtb: null,
-
-	initialize: function() {
-		gxui.Panel.superclass.initialize.call(this);
-	},
+/**
+* @class gxui.Panel
+* Panel User Control. Wraps Ext.panel.Panel so it can be used from GeneXus.
+*/
+Ext.define('gxui.Panel', {
+	extend: 'gxui.UserControl',
 
 	SetToolbarData: function(data) {
 		this.ToolbarData = data;
@@ -32,28 +30,10 @@ gxui.Panel = Ext.extend(gxui.UserControl, {
 			config.renderTo = 'MAINFORM';
 			config.modal = gxui.CBoolean(this.Modal);
 			config.constrainHeader = true;
-			this.m_panel = new Ext.Window(config);
+			this.m_panel = new Ext.create('Ext.window.Window', config);
 		}
 		else {
-			if (gxui.CBoolean(this.Draggable))
-				this.m_panel = new gxui.ext.Portlet(config);
-			else {
-				this.m_panel = new Ext.Panel(config);
-				if (gxui.CBoolean(this.Resizable)) {
-					this.m_panel.on('render', function() {
-						var rz = new Ext.Resizable(this.m_panel.getEl(), {
-							minWidth: this.MinWidth,
-							maxWidth: this.MaxWidth,
-							minHeight: this.MinHeight,
-							maxHeight: this.MaxHeight,
-							pinned: this.Pinned,
-							handles: this.Handles
-						});
-
-						rz.on('resize', this.m_panel.doLayout, this.m_panel);
-					}, this)
-				}
-			}
+			this.m_panel = Ext.create('Ext.panel.Panel', config);
 		}
 
 		if (!gxui.CBoolean(this.ShowAsWindow)) {
@@ -79,8 +59,12 @@ gxui.Panel = Ext.extend(gxui.UserControl, {
 		var panel = this.m_panel;
 		panel.setTitle(this.Title);
 		if (!panel.ownerCt) {
-			panel.setWidth(gxui.CBoolean(this.AutoWidth) ? undefined : this.Width);
-			panel.setHeight(gxui.CBoolean(this.AutoHeight) ? undefined : this.Height);
+			panel.animate({
+				to: {
+					width: parseInt(this.Width),
+					height: parseInt(this.Height)
+				}
+			});
 		}
 		if (gx.lang.gxBoolean(this.Visible) && !this.m_panel.isVisible()) {
 			panel.show();
@@ -103,36 +87,29 @@ gxui.Panel = Ext.extend(gxui.UserControl, {
 
 	getConfig: function() {
 		var config = {
-			anchor: '100%',
 			contentEl: this.getChildContainer("Body"),
 			id: this.getUniqueId(),
 			title: this.Title,
-			width: gxui.CBoolean(this.AutoWidth) ? undefined : parseInt(this.Width),
-			height: gxui.CBoolean(this.AutoHeight) ? undefined : parseInt(this.Height),
-			autoWidth: gxui.CBoolean(this.AutoWidth),
-			autoHeight: gxui.CBoolean(this.AutoHeight),
+			headerPosition: this.HeaderPosition,
+			width: parseInt(this.Width),
+			height: parseInt(this.Height),
 			autoScroll: this.Layout == 'default' ? true : false,
 			frame: gxui.CBoolean(this.Frame),
 			border: gxui.CBoolean(this.Border),
-			resizable: gxui.CBoolean(this.Resizable),
 			minWidth: this.MinWidth,
 			minHeight: this.MinHeight,
 			maxWidth: this.MaxWidth,
 			maxHeight: this.MaxHeight,
-			pinned: gxui.CBoolean(this.Pinned),
-			resizeHandles: this.Handles,
 			collapsible: gxui.CBoolean(this.Collapsible),
 			collapsed: gxui.CBoolean(this.Collapsed),
 			animateCollapse: gxui.CBoolean(this.AnimateCollapse),
-			header: this.Title ? true : false || gxui.CBoolean(this.Collapsible),
+			collapseDirection: this.CollapseDirection,
+			resizable: gxui.CBoolean(this.Resizable),
+			resizeHandles: this.Handles,
 			tbar: this.m_toolbar,
 			listeners: this.getListeners(),
 			stateful: gxui.CBoolean(this.Stateful),
 			stateId: (this.StateId != "") ? this.StateId : undefined,
-			saveState: function() {
-				if (this.stateful === true)
-					this.constructor.superclass.saveState.call(this);
-			},
 			layout: this.Layout == 'default' ? undefined : this.Layout
 		};
 
