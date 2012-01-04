@@ -93,86 +93,6 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="PropertiesEditor"
-			>
-			<File
-				RelativePath="..\..\PropertiesEditor.control"
-				>
-			</File>
-			<File
-				RelativePath="..\..\PropertiesEditor\PropertiesEditor.css"
-				>
-			</File>
-			<File
-				RelativePath="..\..\PropertiesEditor\PropertiesEditor.js"
-				>
-			</File>
-			<File
-				RelativePath="..\..\PropertiesEditor\PropertiesEditorLoader.js"
-				>
-			</File>
-			<File
-				RelativePath="..\..\PropertiesEditor\PropertiesEditorNodeUI.js"
-				>
-			</File>
-			<File
-				RelativePath="..\..\PropertiesEditor\PropertiesEditorTree.js"
-				>
-			</File>
-			<File
-				RelativePath="..\..\PropertiesEditor\PropertyEditor.js"
-				>
-			</File>
-			<Filter
-				Name="Design"
-				>
-				<File
-					RelativePath="..\..\PropertiesEditor\design\PropertiesEditor.ico"
-					>
-				</File>
-				<File
-					RelativePath="..\..\PropertiesEditor\design\PropertiesEditor.xpz"
-					>
-				</File>
-				<File
-					RelativePath="..\..\PropertiesEditor\design\PropertiesEditorProperties.xml"
-					>
-				</File>
-				<File
-					RelativePath="..\..\PropertiesEditor\design\PropertiesEditorRender.xsl"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="Container"
-			>
-			<File
-				RelativePath="..\..\Container.control"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Container\ContainerRender.js"
-				>
-			</File>
-			<Filter
-				Name="Design"
-				>
-				<File
-					RelativePath="..\..\Container\design\container.ico"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Container\design\ContainerProperties.xml"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Container\design\ContainerRender.xsl"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
 			Name="Core"
 			>
 			<File
@@ -232,30 +152,30 @@
 			Name="Panel"
 			>
 			<File
-				RelativePath="..\..\Panel.control"
+				RelativePath="..\..\Controls\Panel.control"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Panel\PanelRender.js"
+				RelativePath="..\..\Controls\Panel\PanelRender.js"
 				>
 			</File>
 			<Filter
 				Name="Design"
 				>
 				<File
-					RelativePath="..\..\Panel\design\panel-title-light-bg.gif"
+					RelativePath="..\..\Controls\Panel\design\panel-title-light-bg.gif"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Panel\design\panel.ico"
+					RelativePath="..\..\Controls\Panel\design\panel.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Panel\design\PanelProperties.xml"
+					RelativePath="..\..\Controls\Panel\design\PanelProperties.xml"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Panel\design\PanelRender.xsl"
+					RelativePath="..\..\Controls\Panel\design\PanelRender.xsl"
 					>
 				</File>
 			</Filter>
@@ -264,34 +184,34 @@
 			Name="Treeview"
 			>
 			<File
-				RelativePath="..\..\Treeview.control"
+				RelativePath="..\..\Controls\Treeview.control"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Treeview\TreeviewRender.js"
+				RelativePath="..\..\Controls\Treeview\TreeviewRender.js"
 				>
 			</File>
 			<Filter
 				Name="design"
 				>
 				<File
-					RelativePath="..\..\Treeview\design\treeview.gif"
+					RelativePath="..\..\Controls\Treeview\design\treeview.gif"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Treeview\design\treeview.ico"
+					RelativePath="..\..\Controls\Treeview\design\treeview.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Treeview\design\Treeview.xpz"
+					RelativePath="..\..\Controls\Treeview\design\Treeview.xpz"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Treeview\design\TreeviewProperties.xml"
+					RelativePath="..\..\Controls\Treeview\design\TreeviewProperties.xml"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Treeview\design\TreeviewRender.xsl"
+					RelativePath="..\..\Controls\Treeview\design\TreeviewRender.xsl"
 					>
 				</File>
 			</Filter>
@@ -300,34 +220,34 @@
 			Name="Settings"
 			>
 			<File
-				RelativePath="..\..\Settings.control"
+				RelativePath="..\..\Controls\Settings.control"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Settings\SettingsRender.js"
+				RelativePath="..\..\Controls\Settings\SettingsRender.js"
 				>
 			</File>
 			<Filter
 				Name="design"
 				>
 				<File
-					RelativePath="..\..\Settings\design\settings.ico"
+					RelativePath="..\..\Controls\Settings\design\settings.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Settings\design\settings.png"
+					RelativePath="..\..\Controls\Settings\design\settings.png"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Settings\design\Settings.xpz"
+					RelativePath="..\..\Controls\Settings\design\Settings.xpz"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Settings\design\SettingsProperties.xml"
+					RelativePath="..\..\Controls\Settings\design\SettingsProperties.xml"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Settings\design\SettingsRender.xsl"
+					RelativePath="..\..\Controls\Settings\design\SettingsRender.xsl"
 					>
 				</File>
 			</Filter>
@@ -336,38 +256,38 @@
 			Name="Toolbar"
 			>
 			<File
-				RelativePath="..\..\Toolbar.control"
+				RelativePath="..\..\Controls\Toolbar.control"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Toolbar\toolbar.css"
+				RelativePath="..\..\Controls\Toolbar\toolbar.css"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Toolbar\ToolbarRender.js"
+				RelativePath="..\..\Controls\Toolbar\ToolbarRender.js"
 				>
 			</File>
 			<Filter
 				Name="design"
 				>
 				<File
-					RelativePath="..\..\Toolbar\design\toolbar.bmp"
+					RelativePath="..\..\Controls\Toolbar\design\toolbar.bmp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Toolbar\design\toolbar.ico"
+					RelativePath="..\..\Controls\Toolbar\design\toolbar.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Toolbar\design\toolbar.xpz"
+					RelativePath="..\..\Controls\Toolbar\design\toolbar.xpz"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Toolbar\design\ToolbarProperties.xml"
+					RelativePath="..\..\Controls\Toolbar\design\ToolbarProperties.xml"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Toolbar\design\ToolbarRender.xsl"
+					RelativePath="..\..\Controls\Toolbar\design\ToolbarRender.xsl"
 					>
 				</File>
 			</Filter>
@@ -376,50 +296,50 @@
 			Name="TabPanel"
 			>
 			<File
-				RelativePath="..\..\TabPanel.control"
+				RelativePath="..\..\Controls\TabPanel.control"
 				>
 			</File>
 			<File
-				RelativePath="..\..\TabPanel\TabPanelRender.js"
+				RelativePath="..\..\Controls\TabPanel\TabPanelRender.js"
 				>
 			</File>
 			<Filter
 				Name="design"
 				>
 				<File
-					RelativePath="..\..\TabPanel\design\add.gif"
+					RelativePath="..\..\Controls\TabPanel\design\add.gif"
 					>
 				</File>
 				<File
-					RelativePath="..\..\TabPanel\design\panel-title-bg.gif"
+					RelativePath="..\..\Controls\TabPanel\design\panel-title-bg.gif"
 					>
 				</File>
 				<File
-					RelativePath="..\..\TabPanel\design\panel-title-light-bg.gif"
+					RelativePath="..\..\Controls\TabPanel\design\panel-title-light-bg.gif"
 					>
 				</File>
 				<File
-					RelativePath="..\..\TabPanel\design\tab-close-on.gif"
+					RelativePath="..\..\Controls\TabPanel\design\tab-close-on.gif"
 					>
 				</File>
 				<File
-					RelativePath="..\..\TabPanel\design\tab-unselected.gif"
+					RelativePath="..\..\Controls\TabPanel\design\tab-unselected.gif"
 					>
 				</File>
 				<File
-					RelativePath="..\..\TabPanel\design\tabpanel.ico"
+					RelativePath="..\..\Controls\TabPanel\design\tabpanel.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\..\TabPanel\design\TabPanel.xpz"
+					RelativePath="..\..\Controls\TabPanel\design\TabPanel.xpz"
 					>
 				</File>
 				<File
-					RelativePath="..\..\TabPanel\design\TabPanelProperties.xml"
+					RelativePath="..\..\Controls\TabPanel\design\TabPanelProperties.xml"
 					>
 				</File>
 				<File
-					RelativePath="..\..\TabPanel\design\TabPanelRender.xsl"
+					RelativePath="..\..\Controls\TabPanel\design\TabPanelRender.xsl"
 					>
 				</File>
 			</Filter>
@@ -428,26 +348,26 @@
 			Name="Layout"
 			>
 			<File
-				RelativePath="..\..\Layout.control"
+				RelativePath="..\..\Controls\Layout.control"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Layout\LayoutRender.js"
+				RelativePath="..\..\Controls\Layout\LayoutRender.js"
 				>
 			</File>
 			<Filter
 				Name="design"
 				>
 				<File
-					RelativePath="..\..\Layout\design\layout.ico"
+					RelativePath="..\..\Controls\Layout\design\layout.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Layout\design\LayoutProperties.xml"
+					RelativePath="..\..\Controls\Layout\design\LayoutProperties.xml"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Layout\design\LayoutRender.xsl"
+					RelativePath="..\..\Controls\Layout\design\LayoutRender.xsl"
 					>
 				</File>
 			</Filter>
@@ -525,42 +445,6 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Grid"
-			>
-			<File
-				RelativePath="..\..\Grid.control"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Grid\GridRender.js"
-				>
-			</File>
-			<Filter
-				Name="design"
-				>
-				<File
-					RelativePath="..\..\Grid\design\grid.bmp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Grid\design\grid.ico"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Grid\design\grid.xpz"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Grid\design\GridProperties.xml"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Grid\design\GridRender.xsl"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
 			Name="resources"
 			>
 			<Filter
@@ -576,38 +460,38 @@
 			Name="GridExtension"
 			>
 			<File
-				RelativePath="..\..\GridExtension\columnLock.css"
+				RelativePath="..\..\Controls\GridExtension\columnLock.css"
 				>
 			</File>
 			<File
-				RelativePath="..\..\GridExtension\columnLock.js"
+				RelativePath="..\..\Controls\GridExtension\columnLock.js"
 				>
 			</File>
 			<File
-				RelativePath="..\..\GridExtension\ColumnRenderers.js"
+				RelativePath="..\..\Controls\GridExtension\ColumnRenderers.js"
 				>
 			</File>
 			<File
-				RelativePath="..\..\GridExtension\DragDrop.js"
+				RelativePath="..\..\Controls\GridExtension\DragDrop.js"
 				>
 			</File>
 			<File
-				RelativePath="..\..\GridExtension.control"
+				RelativePath="..\..\Controls\GridExtension.control"
 				>
 			</File>
 			<File
-				RelativePath="..\..\GridExtension\GridExtension.js"
+				RelativePath="..\..\Controls\GridExtension\GridExtension.js"
 				>
 			</File>
 			<Filter
 				Name="design"
 				>
 				<File
-					RelativePath="..\..\GridExtension\design\GridExtensionColumnProperties.xml"
+					RelativePath="..\..\Controls\GridExtension\design\GridExtensionColumnProperties.xml"
 					>
 				</File>
 				<File
-					RelativePath="..\..\GridExtension\design\GridExtensionProperties.xml"
+					RelativePath="..\..\Controls\GridExtension\design\GridExtensionProperties.xml"
 					>
 				</File>
 			</Filter>
@@ -616,26 +500,26 @@
 			Name="Viewport"
 			>
 			<File
-				RelativePath="..\..\Viewport.control"
+				RelativePath="..\..\Controls\Viewport.control"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Viewport\ViewportRender.js"
+				RelativePath="..\..\Controls\Viewport\ViewportRender.js"
 				>
 			</File>
 			<Filter
 				Name="design"
 				>
 				<File
-					RelativePath="..\..\Viewport\design\viewport.ico"
+					RelativePath="..\..\Controls\Viewport\design\viewport.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Viewport\design\ViewportProperties.xml"
+					RelativePath="..\..\Controls\Viewport\design\ViewportProperties.xml"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Viewport\design\ViewportRender.xsl"
+					RelativePath="..\..\Controls\Viewport\design\ViewportRender.xsl"
 					>
 				</File>
 			</Filter>
@@ -644,30 +528,30 @@
 			Name="Message"
 			>
 			<File
-				RelativePath="..\..\Message.control"
+				RelativePath="..\..\Controls\Message.control"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Message\MessageRender.js"
+				RelativePath="..\..\Controls\Message\MessageRender.js"
 				>
 			</File>
 			<Filter
 				Name="design"
 				>
 				<File
-					RelativePath="..\..\Message\design\message.ico"
+					RelativePath="..\..\Controls\Message\design\message.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Message\design\message.png"
+					RelativePath="..\..\Controls\Message\design\message.png"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Message\design\MessageProperties.xml"
+					RelativePath="..\..\Controls\Message\design\MessageProperties.xml"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Message\design\MessageRender.xsl"
+					RelativePath="..\..\Controls\Message\design\MessageRender.xsl"
 					>
 				</File>
 			</Filter>
@@ -676,34 +560,34 @@
 			Name="Menu"
 			>
 			<File
-				RelativePath="..\..\Menu.control"
+				RelativePath="..\..\Controls\Menu.control"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Menu\MenuRender.js"
+				RelativePath="..\..\Controls\Menu\MenuRender.js"
 				>
 			</File>
 			<Filter
 				Name="design"
 				>
 				<File
-					RelativePath="..\..\Menu\design\menu.bmp"
+					RelativePath="..\..\Controls\Menu\design\menu.bmp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Menu\design\menu.ico"
+					RelativePath="..\..\Controls\Menu\design\menu.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Menu\design\menu.xpz"
+					RelativePath="..\..\Controls\Menu\design\menu.xpz"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Menu\design\MenuProperties.xml"
+					RelativePath="..\..\Controls\Menu\design\MenuProperties.xml"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Menu\design\MenuRender.xsl"
+					RelativePath="..\..\Controls\Menu\design\MenuRender.xsl"
 					>
 				</File>
 			</Filter>
@@ -712,30 +596,30 @@
 			Name="EventObject"
 			>
 			<File
-				RelativePath="..\..\EventObject.control"
+				RelativePath="..\..\Controls\EventObject.control"
 				>
 			</File>
 			<File
-				RelativePath="..\..\EventObject\EventObjectRender.js"
+				RelativePath="..\..\Controls\EventObject\EventObjectRender.js"
 				>
 			</File>
 			<Filter
 				Name="design"
 				>
 				<File
-					RelativePath="..\..\EventObject\design\EventObject.ico"
+					RelativePath="..\..\Controls\EventObject\design\EventObject.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\..\EventObject\design\EventObject.png"
+					RelativePath="..\..\Controls\EventObject\design\EventObject.png"
 					>
 				</File>
 				<File
-					RelativePath="..\..\EventObject\design\EventObjectProperties.xml"
+					RelativePath="..\..\Controls\EventObject\design\EventObjectProperties.xml"
 					>
 				</File>
 				<File
-					RelativePath="..\..\EventObject\design\EventObjectRender.xsl"
+					RelativePath="..\..\Controls\EventObject\design\EventObjectRender.xsl"
 					>
 				</File>
 			</Filter>
@@ -744,30 +628,30 @@
 			Name="KeyMap"
 			>
 			<File
-				RelativePath="..\..\KeyMap.control"
+				RelativePath="..\..\Controls\KeyMap.control"
 				>
 			</File>
 			<File
-				RelativePath="..\..\KeyMap\KeyMapRender.js"
+				RelativePath="..\..\Controls\KeyMap\KeyMapRender.js"
 				>
 			</File>
 			<Filter
 				Name="design"
 				>
 				<File
-					RelativePath="..\..\KeyMap\design\KeyMap.ico"
+					RelativePath="..\..\Controls\KeyMap\design\KeyMap.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\..\KeyMap\design\KeyMap.png"
+					RelativePath="..\..\Controls\KeyMap\design\KeyMap.png"
 					>
 				</File>
 				<File
-					RelativePath="..\..\KeyMap\design\KeyMapProperties.xml"
+					RelativePath="..\..\Controls\KeyMap\design\KeyMapProperties.xml"
 					>
 				</File>
 				<File
-					RelativePath="..\..\KeyMap\design\KeyMapRender.xsl"
+					RelativePath="..\..\Controls\KeyMap\design\KeyMapRender.xsl"
 					>
 				</File>
 			</Filter>

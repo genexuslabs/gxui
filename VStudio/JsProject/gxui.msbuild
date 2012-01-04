@@ -2,9 +2,14 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
 	<PropertyGroup>
 		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<!--
 		<GXFolder>$(GX_PROGRAM_DIR)</GXFolder>
 	  <KBFolder>C:\KBs\Everest</KBFolder>
 	  <KbModel>CSharpModel</KbModel>
+		-->
+		<GXFolder>E:\Dev\RochaEv2\Deploy\Genexus\Debug</GXFolder>
+		<KBFolder>E:\KBsEvo2\GxUI_Caprese_Tests</KBFolder>
+		<KbModel>CSharpModel</KbModel>
 	</PropertyGroup>
 
   <Target Name="Clean" >
