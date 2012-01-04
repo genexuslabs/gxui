@@ -46,3 +46,7 @@
 .ext-safari .x-small-editor .x-form-text, .ext-chrome .x-small-editor .x-form-text {
     font-size: 11px;
 }
+
+.x-panel-body > .gx_usercontrol_child {
+	height:100%;
+}
