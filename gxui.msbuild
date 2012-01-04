@@ -41,7 +41,7 @@
 		<!--
 		  __Description__: Updates version information within UserControl .control file with revision number.
 		  -->
-		<CreateItem Include ="*.control">
+		<CreateItem Include ="$(DeployGxuiDir)\**\*.control">
 			<Output ItemName ="ControlFiles" TaskParameter="Include"/>
 		</CreateItem>
 		<FileUpdate Files="@(ControlFiles)"

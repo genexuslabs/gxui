@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ItemGroup>
-    <Definition Include="..\..\Grid\design\GridProperties.xml" />
-		<Definition Include="..\..\Layout\design\LayoutProperties.xml" />
-		<Definition Include="..\..\Panel\design\PanelProperties.xml" />
-		<Definition Include="..\..\Splash\design\SplashProperties.xml" />
-		<Definition Include="..\..\TabPanel\design\TabPanelProperties.xml" />
-		<Definition Include="..\..\Toolbar\design\ToolbarProperties.xml" />
-		<Definition Include="..\..\Treeview\design\TreeviewProperties.xml" />
-		<Definition Include="..\..\Container\design\ContainerProperties.xml" />
+    <Definition Include="..\..\Controls\Grid\design\GridProperties.xml" />
+		<Definition Include="..\..\Controls\Layout\design\LayoutProperties.xml" />
+		<Definition Include="..\..\Controls\Panel\design\PanelProperties.xml" />
+		<Definition Include="..\..\Controls\Splash\design\SplashProperties.xml" />
+		<Definition Include="..\..\Controls\TabPanel\design\TabPanelProperties.xml" />
+		<Definition Include="..\..\Controls\Toolbar\design\ToolbarProperties.xml" />
+		<Definition Include="..\..\Controls\Treeview\design\TreeviewProperties.xml" />
+		<Definition Include="..\..\Controls\Container\design\ContainerProperties.xml" />
 	</ItemGroup>
 </Project>
