@@ -69,18 +69,17 @@
 			<Output TaskParameter="ExitCode" ItemName="RobocopyExitCode"/>
 		</Exec>
 		<Error Text="Robocopy Error" Condition="'%(RobocopyExitCode.identity)'>7"/>
-		
-		<!-- ### Build and Deploy Helpers Solution ################################################ -->
-		<!--
-		  __Description__: Build Helpers Solution.
-		  -->
-		<MSBuild ContinueOnError="false"
-			Projects="Helpers\Artech.UC.gxui.sln"
-			Targets="$(Action)"
-			Properties="Configuration=$(Configuration);" />
 
+		<CallTarget Targets="UpdateDeploy">
+		</CallTarget>
+
+		<CallTarget Targets="GenerateDocs" Condition='$(Configuration)==Release'>
+		</CallTarget>
+	</Target>
+
+	<Target Name="UpdateDeploy">
 		<Exec Command='$(UpdaterExe) Helpers\Catalog.xml Helpers\ "$(DeployGxuiDir)"\ $(Configuration)'/>
-		
+
 		<CallTarget Targets="TouchDeployedFiles" />
 	</Target>
 	
@@ -110,5 +109,15 @@
 		<Copy Condition='$(Configuration)==Debug' SourceFiles='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all.js' DestinationFiles='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all.original.js' ContinueOnError='true' />
 		<Delete Condition='$(Configuration)==Debug' Files='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all.js' ContinueOnError='true' />
 		<Copy Condition='$(Configuration)==Debug' SourceFiles='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all-debug.js' DestinationFiles='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all.js' ContinueOnError='true' />
+	</Target>
+
+	<Target Name='GenerateDocs' DependsOnTargets='LoadToolsInfo'>
+		<CreateItem Include ="$(DeployGxuiDir)\**\design\*Properties.xml">
+			<Output ItemName ="PropertiesFiles" TaskParameter="Include"/>
+		</CreateItem>
+		<MakeDir Directories="$(DeployGxuiDir)\docs" />
+		<Xslt Xsl='JSDuckProperties.xslt' RootTag='Root' Inputs='@(PropertiesFiles)' Output='$(DeployGxuiDir)\docs\Properties.js' />
+
+		<Exec Command='Freezer\jsduck-3.3.0.exe $(DeployGxuiDir) --output $(DeployGxuiDir)\docs'/>
 	</Target>
 </Project>
