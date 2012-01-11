@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ExportFile>
+  <KMW>
+    <MajorVersion>3</MajorVersion>
+    <MinorVersion>1</MinorVersion>
+    <Build>49054</Build>
+  </KMW>
+  <Actions />
+  <Objects>
+    <Object parent="gxui" parentType="00000000-0000-0000-0000-000000000008" user="ARTECH\gfernandez" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2008-03-17T18:37:28.0000000Z" checksum="1462121227c9b51789cb5fefbd4a56be" guid="7cfd50eb-c5a9-48df-b9e4-89ef1b36e490" name="gxuiToolbar" type="447527b5-9210-4523-898b-5dccb17be60a" description="gxui Toolbar">
+      <Part type="5c2aa9da-8fc4-4b6b-ae02-8db4fa48976a">
+        <Level Name="gxuiToolbar">
+          <LevelInfo guid="3baef45a-8227-4028-ac72-026c65c0c1b7" name="gxuiToolbar" description="gxui Toolbar">
+            <Properties><Property><Name>Name</Name><Value>gxuiToolbar</Value></Property></Properties>
+          </LevelInfo>
+          <Item guid="93b05345-2403-4fc3-8e84-f73760d86e87" name="Buttons" description="Buttons">
+            <Properties><Property><Name>Name</Name><Value>Buttons</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>sdt:gxuiToolbarItem</Value></Property><Property><Name>AttCollection</Name><Value>True</Value></Property></Properties>
+          </Item>
+          <Item guid="e25b4b53-373d-4ea7-a58b-407c44f2164a" name="SeparateAll" description="Separate All Toolbar Items">
+            <Properties><Property><Name>Name</Name><Value>SeparateAll</Value></Property><Property><Name>Description</Name><Value>Separate All Toolbar Items</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Boolean</Value></Property></Properties>
+          </Item>
+          <Item guid="f803c154-a902-4888-bc30-823b7c061c0d" name="MaxButtons" description="Max Buttons">
+            <Properties><Property><Name>Name</Name><Value>MaxButtons</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Numeric</Value></Property></Properties>
+          </Item>
+        </Level>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties><Property><Name>IsDefault</Name><Value>True</Value></Property></Properties>
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>gxuiToolbar</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+    <Object parent="gxui" parentType="00000000-0000-0000-0000-000000000008" user="ARTECH\GeneXus" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2012-01-11T15:20:53.0000000Z" checksum="3a2e2f98dfd4f314049e3d2a4b382e3f" guid="d5317118-fd1a-4782-9c88-8b5dbf846032" name="gxuiToolbarItem" type="447527b5-9210-4523-898b-5dccb17be60a" description="gxui Toolbar Item">
+      <Part type="5c2aa9da-8fc4-4b6b-ae02-8db4fa48976a">
+        <Level Name="gxuiToolbarItem">
+          <LevelInfo guid="55b3ed6d-9056-4bec-b461-44ee549753a3" name="gxuiToolbarItem" description="gxui Toolbar Item">
+            <Properties><Property><Name>Name</Name><Value>gxuiToolbarItem</Value></Property></Properties>
+          </LevelInfo>
+          <Item guid="9f7a9bbd-418b-444f-ad46-c5b7f5af4213" name="Id" description="Id">
+            <Properties><Property><Name>Name</Name><Value>Id</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property></Properties>
+          </Item>
+          <Item guid="3e221857-c10b-4692-b064-c087d546e521" name="Text" description="Text">
+            <Properties><Property><Name>Name</Name><Value>Text</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property></Properties>
+          </Item>
+          <Item guid="78cd3170-90f1-44e9-9089-9478a393b198" name="Tooltip" description="Tooltip">
+            <Properties><Property><Name>Name</Name><Value>Tooltip</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+          </Item>
+          <Item guid="4ba73316-9a03-4ee1-af1f-02ce7ca0e3e8" name="Icon" description="Icon">
+            <Properties><Property><Name>Name</Name><Value>Icon</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+          </Item>
+          <Item guid="0915ebb7-fd97-4e5b-b36a-76c45e91c984" name="IconCls" description="Icon Cls">
+            <Properties><Property><Name>Name</Name><Value>IconCls</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+          </Item>
+          <Item guid="224bb437-d2b2-4499-9a32-b3917017c1bd" name="IconAlign" description="Icon Align">
+            <Properties><Property><Name>Name</Name><Value>IconAlign</Value></Property><Property><Name>idBasedOn</Name><Value>Domain:gxuiToolbarItemIconAlign</Value></Property></Properties>
+          </Item>
+          <Item guid="babb23ab-02eb-4a7b-8e5f-e38a2340d23c" name="Cls" description="Cls">
+            <Properties><Property><Name>Name</Name><Value>Cls</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+          </Item>
+          <Item guid="04f808ec-5190-4ecd-9027-16cbe3da45dc" name="EnableToggle" description="Enable Toggle">
+            <Properties><Property><Name>Name</Name><Value>EnableToggle</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Boolean</Value></Property></Properties>
+          </Item>
+          <Item guid="849f8a66-ed2f-4942-bddb-b25c63576fb0" name="Pressed" description="Pressed">
+            <Properties><Property><Name>Name</Name><Value>Pressed</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Boolean</Value></Property></Properties>
+          </Item>
+          <Item guid="cc4d7b20-42cf-4c5c-b8da-adb16111e1cb" name="Disabled" description="Disabled">
+            <Properties><Property><Name>Name</Name><Value>Disabled</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Boolean</Value></Property></Properties>
+          </Item>
+          <Item guid="e86ac1c8-1136-4808-90b9-a44d3040886b" name="Type" description="Type">
+            <Properties><Property><Name>Name</Name><Value>Type</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property></Properties>
+          </Item>
+          <Item guid="b5d0a142-11c1-4855-9fc9-4b9f3240446f" name="IsDropTarget" description="Is Drop Target">
+            <Properties><Property><Name>Name</Name><Value>IsDropTarget</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Boolean</Value></Property></Properties>
+          </Item>
+          <Item guid="b68645ab-4a20-4ec0-83d2-e0f174d10c6e" name="RefreshData" description="Refresh Data">
+            <Properties><Property><Name>Name</Name><Value>RefreshData</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Boolean</Value></Property></Properties>
+          </Item>
+          <Item guid="685abc0a-16a9-44d4-ab01-9a2d600931a0" name="Hidden" description="Hidden">
+            <Properties><Property><Name>Name</Name><Value>Hidden</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Boolean</Value></Property></Properties>
+          </Item>
+          <Item guid="dbbb49be-44b9-4e58-a41c-f43f3ab40e62" name="AskConfirmation" description="Ask Confirmation">
+            <Properties><Property><Name>Name</Name><Value>AskConfirmation</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Boolean</Value></Property></Properties>
+          </Item>
+          <Item guid="0b23cbcd-254a-4a58-ac29-d79eef2b55fd" name="GroupColumns" description="Group Columns">
+            <Properties><Property><Name>Name</Name><Value>GroupColumns</Value></Property></Properties>
+          </Item>
+          <Item guid="9f9989d2-58ea-4289-98b9-9ae763d1b514" name="Scale" description="Scale">
+            <Properties><Property><Name>Name</Name><Value>Scale</Value></Property><Property><Name>idBasedOn</Name><Value>Domain:gxuiToolbarItemScale</Value></Property></Properties>
+          </Item>
+          <Item guid="942936ea-c9cf-4940-a7ed-3109e1c0bcdb" name="ArrowAlign" description="Arrow Align">
+            <Properties><Property><Name>Name</Name><Value>ArrowAlign</Value></Property><Property><Name>idBasedOn</Name><Value>Domain:gxuiToolbarItemArrowAlign</Value></Property></Properties>
+          </Item>
+          <Item guid="e27c346c-8404-4d53-9174-f19de91a86c6" name="RowSpan" description="Row Span">
+            <Properties><Property><Name>Name</Name><Value>RowSpan</Value></Property></Properties>
+          </Item>
+          <Item guid="4cbed0d9-d0f0-4115-abac-f64c9b97468c" name="ColSpan" description="Col Span">
+            <Properties><Property><Name>Name</Name><Value>ColSpan</Value></Property></Properties>
+          </Item>
+          <Level Name="Confirmation">
+            <LevelInfo guid="7661cead-c7dc-4740-9dda-14600c3ff533" name="Confirmation" description="Confirmation">
+              <Properties><Property><Name>Name</Name><Value>Confirmation</Value></Property><Property><Name>AttCollection</Name><Value>False</Value></Property></Properties>
+            </LevelInfo>
+            <Item guid="0665585d-fcf5-4715-85f7-c6146c3f7b35" name="OKButtonText" description="OKButton Text">
+              <Properties><Property><Name>Name</Name><Value>OKButtonText</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property></Properties>
+            </Item>
+            <Item guid="c6ab8b64-b557-46c1-aaeb-47755135acbe" name="CancelButtonText" description="Cancel Button Text">
+              <Properties><Property><Name>Name</Name><Value>CancelButtonText</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property></Properties>
+            </Item>
+            <Item guid="a2ee155c-b42d-450f-8f34-0b9db177cc2c" name="Message" description="Message">
+              <Properties><Property><Name>Name</Name><Value>Message</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property></Properties>
+            </Item>
+            <Item guid="4608518a-bf5a-430d-a094-96cf966e8634" name="Title" description="Title">
+              <Properties><Property><Name>Name</Name><Value>Title</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property></Properties>
+            </Item>
+          </Level>
+          <Item guid="dfe2bfbf-be30-40b1-a45d-4963d8dd8304" name="Items" description="Items">
+            <Properties><Property><Name>Name</Name><Value>Items</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>sdt:gxuiToolbarItem</Value></Property><Property><Name>AttCollection</Name><Value>True</Value></Property></Properties>
+          </Item>
+        </Level>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties><Property><Name>IsDefault</Name><Value>True</Value></Property></Properties>
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>gxuiToolbarItem</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+    <Object user="ARTECH\GeneXus" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2012-01-11T15:14:29.0000000Z" checksum="05d013439c76eaca6976de56aab0d648" guid="8646783b-6b1e-4846-8617-f4a2d797d398" name="gxuiToolbarItemArrowAlign" type="00972a17-9975-449e-aab1-d26165d51393" description="gxui Toolbar Item Arrow Align">
+      <Part type="ad3ca970-19d0-44e1-a7b7-db05556e820c">
+        <Help>
+          <HelpItem>
+            <Language>88313f43-5eb2-0000-0028-e8d9f5bf9588-English</Language>
+            <Content />
+          </HelpItem>
+        </Help>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties />
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>gxuiToolbarItemArrowAlign</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>IDEnumDefinedValues</Name><Value>right, Right, Right; bottom, Bottom, Bottom</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+    <Object user="ARTECH\GeneXus" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2012-01-11T15:15:00.0000000Z" checksum="15389b493664e26ead1c135f2ea0c20d" guid="be1f799d-9287-4690-a80f-ba96c34ad605" name="gxuiToolbarItemIconAlign" type="00972a17-9975-449e-aab1-d26165d51393" description="gxui Toolbar Item Icon Align">
+      <Part type="ad3ca970-19d0-44e1-a7b7-db05556e820c">
+        <Help>
+          <HelpItem>
+            <Language>88313f43-5eb2-0000-0028-e8d9f5bf9588-English</Language>
+            <Content />
+          </HelpItem>
+        </Help>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties />
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>gxuiToolbarItemIconAlign</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>IDEnumDefinedValues</Name><Value>top, Top, Top; right, Right, Right; bottom, Bottom, Bottom; left, Left, Left</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+    <Object user="ARTECH\GeneXus" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2012-01-11T15:06:17.0000000Z" checksum="239f322af38bf6eae474a3eddbf5b757" guid="315775aa-e8ee-4f83-a18e-bc1f50744d12" name="gxuiToolbarItemScale" type="00972a17-9975-449e-aab1-d26165d51393" description="gxui Toolbar Item Scale">
+      <Part type="ad3ca970-19d0-44e1-a7b7-db05556e820c">
+        <Help>
+          <HelpItem>
+            <Language>88313f43-5eb2-0000-0028-e8d9f5bf9588-English</Language>
+            <Content />
+          </HelpItem>
+        </Help>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties />
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>gxuiToolbarItemScale</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>IDEnumDefinedValues</Name><Value>small, Small, Small (16px high); medium, Medium, Medium (24px high); large, Large, Large (32px high)</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+    <Object user="ARTECH\GeneXus" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2012-01-11T15:01:17.0000000Z" checksum="a4c58d47f6a9f4391ba6b93561c1af73" guid="899873b1-2c14-4048-8b6a-1852ae89b7a5" name="gxuiToolbarItemTypes" type="00972a17-9975-449e-aab1-d26165d51393" description="gxui Toolbar Item Types">
+      <Part type="ad3ca970-19d0-44e1-a7b7-db05556e820c">
+        <Help>
+          <HelpItem>
+            <Language>88313f43-5eb2-0000-0028-e8d9f5bf9588-English</Language>
+            <Content />
+          </HelpItem>
+        </Help>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties />
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>gxuiToolbarItemTypes</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>IDEnumDefinedValues</Name><Value>Button, Button, Button; Text, Text, Text; Edit, Edit, Edit; Fill, Fill, Fill; Separator, Separator, Separator; Menu, Menu, Menu; SplitButton, SplitButton, Split Button; Group, Group, Group</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+  </Objects>
+  <Attributes />
+  <Dependencies>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Object" Id="447527b5-9210-4523-898b-5dccb17be60a">
+      <Properties Name="Structured Data Type" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="5c2aa9da-8fc4-4b6b-ae02-8db4fa48976a">
+      <Properties Name="Structure" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="babf62c5-0111-49e9-a1c3-cc004d90900a">
+      <Properties Name="Documentation" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Object" Id="00972a17-9975-449e-aab1-d26165d51393">
+      <Properties Name="Domain" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="ad3ca970-19d0-44e1-a7b7-db05556e820c">
+      <Properties Name="Help" PackageName="GenexusBL" />
+    </Reference>
+  </Dependencies>
+  <ObjectsIdentityMapping>
+    <ObjectIdentity Type="00000000-0000-0000-0000-000000000008" Name="gxui">
+      <Guid>457f638f-b08a-4720-bee5-0ca17fd2e51b</Guid>
+    </ObjectIdentity>
+  </ObjectsIdentityMapping>
+</ExportFile>
