@@ -15,7 +15,7 @@ Ext.define('gxui.UserControl', {
 	* @param {Boolean} [options.register] Indicates wether the newly created UserControl should be registered in gxui.UserControlManager.
 	* @method constructor
 	*/
-	constructor: function(options) {
+	constructor: function (options) {
 		this.setOptions(options)
 		this.initialize();
 
@@ -23,7 +23,7 @@ Ext.define('gxui.UserControl', {
 	},
 
 	//private
-	setOptions: function(options) {
+	setOptions: function (options) {
 		this.options = {
 			register: true
 		};
@@ -34,7 +34,7 @@ Ext.define('gxui.UserControl', {
 	},
 
 	//private
-	initialize: function() {
+	initialize: function () {
 		this.rendered = false;
 
 		this.addEvents({
@@ -59,10 +59,10 @@ Ext.define('gxui.UserControl', {
 	/**
 	* Shows the user control and fires the 'show' event after showing it.
 	*/
-	show: function() {
+	show: function () {
 		try {
 			if (!this.rendered) {
-				Ext.onReady(function() {
+				Ext.onReady(function () {
 					this.rendered = true;
 					this.onRender();
 				}, this);
@@ -83,7 +83,7 @@ Ext.define('gxui.UserControl', {
 	/**
 	* Force the user control rendering.
 	*/
-	forceRendering: function() {
+	forceRendering: function () {
 		this.rendered = false;
 	},
 
@@ -91,7 +91,7 @@ Ext.define('gxui.UserControl', {
 	* Destroys the user control and fires the 'destroy' event after destroying it. Each User Control must implement 
 	* in the onDestroy method the destruction of the User Control.
 	*/
-	destroy: function() {
+	destroy: function () {
 		try {
 			this.onDestroy();
 		}
@@ -118,7 +118,7 @@ Ext.define('gxui.UserControl', {
 	* Called by destroy method to destroy the User Control. This method has a default implementation and can be 
 	* overriden. The default implementation relays on a correct implementation of getUnderlyingControl method.
 	*/
-	onDestroy: function() {
+	onDestroy: function () {
 		var c = this.getUnderlyingControl();
 		if (c) {
 			var ct = c.ownerCt;
@@ -145,7 +145,7 @@ Ext.define('gxui.UserControl', {
 	/**
 	* Registers the User Control
 	*/
-	register: function() {
+	register: function () {
 		gxui.UserControlManager.register(this);
 	},
 
@@ -153,7 +153,7 @@ Ext.define('gxui.UserControl', {
 	/**
 	* Registers the User Control
 	*/
-	unregister: function() {
+	unregister: function () {
 		gxui.UserControlManager.unregister(this);
 	},
 
@@ -161,7 +161,7 @@ Ext.define('gxui.UserControl', {
 	/**
 	* Registers the User Control as a container.
 	*/
-	registerCt: function(el, addFn, doLayoutFn, scope) {
+	registerCt: function (el, addFn, doLayoutFn, scope) {
 		gxui.UserControlManager.registerContainer(this, el, addFn, doLayoutFn, scope);
 	},
 
@@ -169,7 +169,7 @@ Ext.define('gxui.UserControl', {
 	/**
 	* Unregister the user Control to its parent container.
 	*/
-	unregisterCt: function(toRem) {
+	unregisterCt: function (toRem) {
 		gxui.UserControlManager.unregisterContainer(toRem);
 	},
 
@@ -177,8 +177,8 @@ Ext.define('gxui.UserControl', {
 	/**
 	* Adds the User Control to its parent container.
 	*/
-	addToParentContainer: function(uc) {
-		gxui.afterShow(function() {
+	addToParentContainer: function (uc) {
+		gxui.afterShow(function () {
 			try {
 				var el = Ext.get(this.getContainerControl());
 				this.checkIfInline(el);
@@ -201,12 +201,12 @@ Ext.define('gxui.UserControl', {
 		}, this);
 	},
 
-	checkIfInline: function(el) {
+	checkIfInline: function (el) {
 		if (el.id.indexOf("gxHTMLWrp") >= 0 || el.hasCls("gx_usercontrol") || el.hasCls("gxui-uc-container"))
 			el.setStyle("display", "inline");
 	},
 
-	getUniqueId: function() {
+	getUniqueId: function () {
 		return "gxui-" + (this.ParentObject ? this.ParentObject.CmpContext || "" + "-" + this.ParentObject.ServerClass || "" : "") + "-" + this.ControlName;
 	}
 });

@@ -6,10 +6,10 @@
 * gxui core utilities and functions.
 * @singleton
 */
-gxui = function() {
+gxui = function () {
 
 	return {
-		initialize: function() {
+		initialize: function () {
 
 			// Initialize QuickTips
 			Ext.tip.QuickTipManager.init();
@@ -23,7 +23,7 @@ gxui = function() {
 			// Define a namespace for GxUI user extensions
 			Ext.namespace('gxui.ux');
 
-			gx.fx.obs.addObserver('gx.onready', this, function() {
+			gx.fx.obs.addObserver('gx.onready', this, function () {
 				if (gx) {
 					if (gx.staticDirectory != "")
 						this.StaticContent = gx.staticDirectory;
@@ -39,51 +39,51 @@ gxui = function() {
 				expires: new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 365)) //365 days
 			}));
 
-/*			//////////////////////////////////////////////////////////////////////////////////////////
+			/*			//////////////////////////////////////////////////////////////////////////////////////////
 			// This is a temporal fix for a problem with Chrome and FitLayout http://extjs.com/forum/showthread.php?p=312137#post312137
 			Ext.override(Ext.layout.FitLayout, {
-				onLayout: function(ct, target) {
-					Ext.layout.FitLayout.superclass.onLayout.call(this, ct, target);
-					if (!this.container.collapsed) {
-						var size = !Ext.isChrome && target.dom != Ext.getBody().dom ? target.getStyleSize() : target.getViewSize();
-						this.setItemSize(this.activeItem || ct.items.itemAt(0), size);
-					}
-				}
+			onLayout: function(ct, target) {
+			Ext.layout.FitLayout.superclass.onLayout.call(this, ct, target);
+			if (!this.container.collapsed) {
+			var size = !Ext.isChrome && target.dom != Ext.getBody().dom ? target.getStyleSize() : target.getViewSize();
+			this.setItemSize(this.activeItem || ct.items.itemAt(0), size);
+			}
+			}
 			});
 			//////////////////////////////////////////////////////////////////////////////////////////
 			// This is a temporal fix for a problem with insertBefore function in IE.
 			Ext.override(Ext.dd.PanelProxy, {
-				moveProxy: function(parentNode, before) {
-					if (this.proxy) {
-						if (Ext.isIE && before == undefined) {
-							parentNode.insertBefore(this.proxy.dom);
-							return;
-						}
-						parentNode.insertBefore(this.proxy.dom, before);
-					}
-				}
+			moveProxy: function(parentNode, before) {
+			if (this.proxy) {
+			if (Ext.isIE && before == undefined) {
+			parentNode.insertBefore(this.proxy.dom);
+			return;
+			}
+			parentNode.insertBefore(this.proxy.dom, before);
+			}
+			}
 			});
 			//////////////////////////////////////////////////////////////////////////////////////////
 			// This is a temporal fix for a problem with blur when a TextField is used inside a TabPanel and the tab is changed.
 			Ext.override(Ext.form.TextField, {
-				onFocus: function() {
-					Ext.form.TextField.superclass.onFocus.call(this);
-					this.mimicing = true;
-					Ext.get(Ext.isIE ? document.body : document).on("mousedown", this.mimicBlur, this, { delay: 10 });
-				},
-				mimicBlur: function(e) {
-					if (this.el.dom != e.target) {
-						this.mimicing = false;
-						Ext.get(Ext.isIE ? document.body : document).un("mousedown", this.mimicBlur, this);
-						this.onBlur();
-					}
-				},
-				onDestroy: function() {
-					if (this.mimicing) {
-						Ext.get(Ext.isIE ? document.body : document).un("mousedown", this.mimicBlur, this);
-					}
-					Ext.form.TextField.superclass.onDestroy.call(this);
-				}
+			onFocus: function() {
+			Ext.form.TextField.superclass.onFocus.call(this);
+			this.mimicing = true;
+			Ext.get(Ext.isIE ? document.body : document).on("mousedown", this.mimicBlur, this, { delay: 10 });
+			},
+			mimicBlur: function(e) {
+			if (this.el.dom != e.target) {
+			this.mimicing = false;
+			Ext.get(Ext.isIE ? document.body : document).un("mousedown", this.mimicBlur, this);
+			this.onBlur();
+			}
+			},
+			onDestroy: function() {
+			if (this.mimicing) {
+			Ext.get(Ext.isIE ? document.body : document).un("mousedown", this.mimicBlur, this);
+			}
+			Ext.form.TextField.superclass.onDestroy.call(this);
+			}
 			});
 
 			// Set an initial z-index value below the one used by GX for popups, so windows will be shown behind the popups.
@@ -92,14 +92,14 @@ gxui = function() {
 			//////////////////////////////////////////////////////////////////////////////////////////
 			// This is a temporal fix: getAttributeNS doesn't work in IE9.
 			if (Ext.isIE && gx.util.browser.ieVersion() > 8) {
-				Ext.override(Ext.Element, {
-					getAttributeNS : function(ns, name){
-						var d = this.dom;
-						return d.getAttributeNS(ns, name) || d.getAttribute(ns+":"+name) || d.getAttribute(name) || d[name];
-					}
-				});
+			Ext.override(Ext.Element, {
+			getAttributeNS : function(ns, name){
+			var d = this.dom;
+			return d.getAttributeNS(ns, name) || d.getAttribute(ns+":"+name) || d.getAttribute(name) || d[name];
 			}
-*/
+			});
+			}
+			*/
 		},
 
 		/**
@@ -107,7 +107,7 @@ gxui = function() {
 		* @param {String} string representation of the boolean value to convert.
 		* @return {Boolean} The boolean value.
 		*/
-		CBoolean: function(str) {
+		CBoolean: function (str) {
 			if (str) {
 				if (typeof (str) == 'string')
 					return (str.toLowerCase() == "true")
@@ -123,7 +123,7 @@ gxui = function() {
 		* @param {Object} object to Clone.
 		* @return {Boolean} Cloned object.
 		*/
-		clone: function(obj) {
+		clone: function (obj) {
 			if (obj instanceof Array)
 				return gxui.copyArray(obj);
 			if (typeof (obj) != 'object')
@@ -143,14 +143,14 @@ gxui = function() {
 		* @param {Object} array to Clone.
 		* @return {Boolean} Cloned array.
 		*/
-		copyArray: function(arr) {
+		copyArray: function (arr) {
 			var res = [];
 			for (var i = 0; i < arr.length; i++)
 				res.push(gxui.clone(arr[i]));
 			return res;
 		},
 
-		getCookie: function(c_name) {
+		getCookie: function (c_name) {
 			if (document.cookie.length > 0) {
 				c_start = document.cookie.indexOf(c_name + "=");
 				if (c_start != -1) {
@@ -163,7 +163,7 @@ gxui = function() {
 			return "";
 		},
 
-		setCookie: function(name, value, days) {
+		setCookie: function (name, value, days) {
 			if (days) {
 				var date = new Date();
 				date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -173,7 +173,7 @@ gxui = function() {
 			document.cookie = name + "=" + value + expires + "; path=/";
 		},
 
-		dateFormat: function() {
+		dateFormat: function () {
 			var gxDF = gx.dateFormat;
 			switch (gxDF) {
 				case "MDY": return "m/d/y";
@@ -185,7 +185,7 @@ gxui = function() {
 			}
 		},
 
-		date: function(string) {
+		date: function (string) {
 			return new Date.parseDate(string, this.dateFormat());
 		},
 
@@ -196,8 +196,17 @@ gxui = function() {
 		* @param {Object} scope (optional) An object that becomes the scope of the handler
 		* @param {boolean} options (optional) An object containing standard Ext.EventManager.addListener options
 		*/
-		afterShow: function(fn, scope, options) {
+		afterShow: function (fn, scope, options) {
 			gxui.UserControlManager.afterShow(fn, scope, options);
+		},
+
+		//private
+		tryPropertyMapping: function (targetObj, sourceObj, propertyMap) {
+			for (var targetProp in propertyMap) {
+				var sourceValue = sourceObj[propertyMap[targetProp]];
+				if (sourceValue)
+					targetObj[targetProp] = sourceValue;
+			}
 		}
 	};
 } ();

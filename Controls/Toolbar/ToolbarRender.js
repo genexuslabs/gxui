@@ -54,14 +54,9 @@ Ext.define('gxui.Toolbar', {
 		// Register default Toolbar item resolvers
 		gxui.Toolbar.ItemResolvers.register({
 			"Button": function (toolbar, button) {
-				return {
+				var config = {
 					id: toolbar.getUniqueButtonId(button.Id),
-					gxid: button.Id,
 					gxConfirmation: gxui.CBoolean(button.AskConfirmation) ? button.Confirmation : false,
-					text: button.Text,
-					tooltip: button.Tooltip,
-					icon: button.Icon,
-					iconCls: button.IconCls,
 					cls: toolbar.getBtnCls(button),
 					enableToggle: gxui.CBoolean(button.EnableToggle),
 					pressed: gxui.CBoolean(button.Pressed),
@@ -71,7 +66,22 @@ Ext.define('gxui.Toolbar', {
 					isDropTarget: gxui.CBoolean(button.IsDropTarget),
 					scope: toolbar,
 					RefreshData: gxui.CBoolean(button.RefreshData)
-				}
+				};
+
+				gxui.tryPropertyMapping(config, button, {
+					"gxid": "Id",
+					"text": "Text",
+					"tooltip": "Tooltip",
+					"icon": "Icon",
+					"iconCls": "IconCls",
+					"rowspan": "RowSpan",
+					"colspan": "ColSpan",
+					"iconAlign": "IconAlign",
+					"arrowAlign": "ArrowAlign",
+					"scale": "Scale"
+				});
+
+				return config;
 			},
 
 			"Text": function (toolbar, button) {
@@ -130,16 +140,26 @@ Ext.define('gxui.Toolbar', {
 					menuItems.push(toolbar.getConfig(item));
 				});
 
-				return {
-					text: button.Text,
-					tooltip: button.Tooltip,
+				var config = {
 					hidden: gxui.CBoolean(button.Hidden),
-					icon: button.Icon,
-					iconCls: button.IconCls,
 					menu: menuItems,
 					cls: toolbar.getBtnCls(button),
 					disabled: gxui.CBoolean(button.Disabled)
 				};
+
+				gxui.tryPropertyMapping(config, button, {
+					"text": "Text",
+					"tooltip": "Tooltip",
+					"icon": "Icon",
+					"iconCls": "IconCls",
+					"rowspan": "RowSpan",
+					"colspan": "ColSpan",
+					"iconAlign": "IconAlign",
+					"arrowAlign": "ArrowAlign",
+					"scale": "Scale"
+				});
+
+				return config;
 			},
 
 			"SplitButton": function (toolbar, button) {
@@ -159,6 +179,33 @@ Ext.define('gxui.Toolbar', {
 				splitButton.scope = toolbar;
 
 				return splitButton;
+			},
+
+			"Group": function (toolbar, button) {
+				var groupItems = [];
+
+				Ext.each(button.Items, function (item, index, allItems) {
+					groupItems.push(toolbar.getConfig(item));
+				});
+
+				var config = {
+					xtype: 'buttongroup',
+					defaults: {},
+					items: groupItems
+				};
+
+				gxui.tryPropertyMapping(config, button, {
+					"title": "Text",
+					"columns": "GroupColumns"
+				});
+
+				gxui.tryPropertyMapping(config.defaults, button, {
+					"scale": "Scale",
+					"iconAlign": "IconAlign",
+					"arrowAlign": "arrowAlign"
+				});
+
+				return config;
 			}
 		});
 	},
@@ -503,7 +550,8 @@ gxui.Toolbar.ItemType = {
 	Fill: "Fill",
 	Separator: "Separator",
 	Menu: "Menu",
-	SplitButton: "SplitButton"
+	SplitButton: "SplitButton",
+	Group: "Group"
 };
 
 /**
