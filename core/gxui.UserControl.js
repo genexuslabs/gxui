@@ -1,3 +1,5 @@
+/// <reference path="..\Freezer\Ext\ext-all-dev.js" />
+
 /**
 * @class gxui.UserControl
 * Abstract base class for gxui UserControls.
@@ -7,6 +9,12 @@ Ext.define('gxui.UserControl', {
 		observable: 'Ext.util.Observable'
 	},
 
+	/**
+	* Creates a new GxUI UserControl
+	* @param {Object} [options] User control configuration options
+	* @param {Boolean} [options.register] Indicates wether the newly created UserControl should be registered in gxui.UserControlManager.
+	* @method constructor
+	*/
 	constructor: function(options) {
 		this.setOptions(options)
 		this.initialize();
@@ -179,9 +187,9 @@ Ext.define('gxui.UserControl', {
 					this.checkIfInline(el);
 					if (ct) {
 						if (ct.addFn) {
-							ct.addFn.createDelegate(ct.scope)(uc);
+							Ext.bind(ct.addFn, ct.scope)(uc);
 							if (ct.doLayoutFn)
-								ct.doLayoutFn.createDelegate(ct.scope);
+								Ext.bind(ct.doLayoutFn, ct.scope);
 						}
 						return;
 					}
@@ -347,8 +355,9 @@ gxui.UserControlManager = function() {
 		/**
 		* Fires after the show method of all the registered User Controls has been executed.
 		* @param {Function} fn The method the event invokes
-		* @param {Object} scope (optional) An object that becomes the scope of the handler
-		* @param {boolean} options (optional) An object containing standard Ext.EventManager.addListener options
+		* @param {Object} [scope] An object that becomes the scope of the handler
+		* @param {Boolean} [options] An object containing standard Ext.EventManager.addListener options
+		* @method
 		*/
 		afterShow: function(fn, scope, options) {
 			if (!afterShowEvent)

@@ -12,7 +12,7 @@ gxui = function() {
 		initialize: function() {
 
 			// Initialize QuickTips
-			Ext.QuickTips.init();
+			Ext.tip.QuickTipManager.init();
 
 			// Define a namespace for extensions of Ext components
 			Ext.namespace('gxui.ext');

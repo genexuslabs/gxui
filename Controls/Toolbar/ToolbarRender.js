@@ -1,8 +1,14 @@
-/// <reference path="..\VStudio\vswd-ext_2.2.js" />
-gxui.Toolbar = Ext.extend(gxui.UserControl, {
-	m_toolbar: null,
-	initialize: function() {
-		gxui.Toolbar.superclass.initialize.call(this);
+/// <reference path="..\..\Freezer\Ext\ext-all-dev.js" />
+
+/**
+* @class gxui.Toolbar
+* Toolbar User Control. Wraps Ext.toolbar.Toolbar so it can be used from GeneXus.
+*/
+Ext.define('gxui.Toolbar', {
+	extend: 'gxui.UserControl',
+
+	initialize: function () {
+		this.callParent();
 
 		this.Width;
 		this.Height;
@@ -43,36 +49,152 @@ gxui.Toolbar = Ext.extend(gxui.UserControl, {
 			*/
 			"editfieldblur": true
 		});
+
+
+		// Register default Toolbar item resolvers
+		gxui.Toolbar.ItemResolvers.register({
+			"Button": function (toolbar, button) {
+				return {
+					id: toolbar.getUniqueButtonId(button.Id),
+					gxid: button.Id,
+					gxConfirmation: gxui.CBoolean(button.AskConfirmation) ? button.Confirmation : false,
+					text: button.Text,
+					tooltip: button.Tooltip,
+					icon: button.Icon,
+					iconCls: button.IconCls,
+					cls: toolbar.getBtnCls(button),
+					enableToggle: gxui.CBoolean(button.EnableToggle),
+					pressed: gxui.CBoolean(button.Pressed),
+					disabled: gxui.CBoolean(button.Disabled),
+					hidden: gxui.CBoolean(button.Hidden),
+					handler: toolbar.buttonClickHandler,
+					isDropTarget: gxui.CBoolean(button.IsDropTarget),
+					scope: toolbar,
+					RefreshData: gxui.CBoolean(button.RefreshData)
+				}
+			},
+
+			"Text": function (toolbar, button) {
+				return button.Text;
+			},
+
+			"Edit": function (toolbar, button) {
+				var edit = Ext.create('Ext.form.field.Text', {
+					id: toolbar.getUniqueButtonId(button.Id),
+					cls: button.Cls,
+					width: 180,
+					disabled: gxui.CBoolean(button.Disabled),
+					hidden: gxui.CBoolean(button.Hidden),
+					enableKeyEvents: true
+				});
+
+				if (edit.Text != '')
+					edit.emptyText = button.Text;
+
+				edit.on({
+					"keypress": {
+						fn: function (field, e) {
+							this.fireEvent("editfieldkeypress", this, field, e);
+							if (e.getKey() == Ext.EventObject.ENTER) {
+								e.stopEvent();
+								this.editActionHandler(field);
+							}
+						},
+						scope: toolbar
+					},
+					"blur": {
+						fn: function (field) {
+							this.fireEvent("editfieldblur", this, field);
+							this.editActionHandler(field);
+						},
+						scope: toolbar
+					}
+				});
+				edit.gxid = button.Id;
+
+				return edit;
+			},
+
+			"Fill": function () {
+				return Ext.create('Ext.toolbar.Fill');
+			},
+
+			"Separator": function () {
+				return "-";
+			},
+
+			"Menu": function (toolbar, button) {
+				var menuItems = [];
+
+				Ext.each(button.Items, function (item, index, allItems) {
+					menuItems.push(toolbar.getConfig(item));
+				});
+
+				return {
+					text: button.Text,
+					tooltip: button.Tooltip,
+					hidden: gxui.CBoolean(button.Hidden),
+					icon: button.Icon,
+					iconCls: button.IconCls,
+					menu: menuItems,
+					cls: toolbar.getBtnCls(button),
+					disabled: gxui.CBoolean(button.Disabled)
+				};
+			},
+
+			"SplitButton": function (toolbar, button) {
+				var splitButton = gxui.Toolbar.ItemResolvers.get(gxui.Toolbar.ItemType.Menu)(toolbar, button);
+
+				splitButton.gxid = button.Id;
+				splitButton.gxConfirmation = gxui.CBoolean(button.AskConfirmation) ? button.Confirmation : false;
+				splitButton.xtype = 'splitbutton';
+				splitButton.enableToggle = gxui.CBoolean(button.EnableToggle);
+				splitButton.pressed = gxui.CBoolean(button.Pressed);
+				if (gxui.CBoolean(button.EnableToggle)) {
+					splitButton.toggleHandler = toolbar.buttonClickHandler;
+				}
+				else {
+					splitButton.handler = toolbar.buttonClickHandler;
+				}
+				splitButton.scope = toolbar;
+
+				return splitButton;
+			}
+		});
 	},
 
-	SetData: function(data) {
+	//private
+	SetData: function (data) {
 		this.Data = data;
 	},
 
-	GetData: function(data) {
+	//private
+	GetData: function (data) {
 		return this.Data;
 	},
 
-	GetToolbar: function(add) {
+	//private
+	GetToolbar: function (add) {
 		return this.m_toolbar;
 	},
 
-	onRender: function() {
-		this.CreateToolbar().render(this.getContainerControl());
+	onRender: function () {
+		this.createToolbar().render(this.getContainerControl());
 	},
 
-	onRefresh: function() {
+	onRefresh: function () {
 		this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
 	},
 
-	getUnderlyingControl: function() {
+	getUnderlyingControl: function () {
 		return this.m_toolbar;
 	},
 
-	CreateToolbar: function(options) {
+	//private
+	createToolbar: function (options) {
 		if (options) {
 			if (options.id) {
-				this.getUniqueId = function() {
+				this.getUniqueId = function () {
 					return options.id;
 				};
 			}
@@ -82,11 +204,11 @@ gxui.Toolbar = Ext.extend(gxui.UserControl, {
 			}
 
 			if (options.container) {
-				options.container.ButtonActionHandler = this.ButtonActionHandler;
-				options.container.EditActionHandler = this.EditActionHandler;
+				options.container.buttonActionHandler = this.buttonActionHandler;
+				options.container.editActionHandler = this.editActionHandler;
 
-				this.ButtonActionHandler = this.ButtonActionHandler.createDelegate(options.container);
-				this.EditActionHandler = this.EditActionHandler.createDelegate(options.container);
+				this.buttonActionHandler = Ext.bind(this.buttonActionHandler, options.container);
+				this.editActionHandler = Ext.bind(this.editActionHandler, options.container);
 			}
 
 			if (options.on) {
@@ -94,23 +216,24 @@ gxui.Toolbar = Ext.extend(gxui.UserControl, {
 			}
 		}
 
-		this.m_toolbar = new Ext.Toolbar({
+		this.m_toolbar = Ext.create('Ext.toolbar.Toolbar', {
 			id: this.getUniqueId(),
 			stateful: false,
-			buttons: this.CreateButtons()
+			items: this.createButtons()
 		});
 
 		return this.m_toolbar;
 	},
 
-	CreateButtons: function() {
+	//private
+	createButtons: function () {
 		var toolbarItems = [];
 		if (this.Data && this.Data.Buttons) {
-			Ext.each(this.Data.Buttons, function(item, index, allItems) {
+			Ext.each(this.Data.Buttons, function (item, index, allItems) {
 				if (!item.Type) {
 					item.Type = gxui.Toolbar.ItemType.Button;
 				}
-				toolbarItems.push(this.GetConfig(item));
+				toolbarItems.push(this.getConfig(item));
 				if (this.SeparateAll && allItems[index + 1])
 					toolbarItems.push('-');
 			}, this);
@@ -118,226 +241,93 @@ gxui.Toolbar = Ext.extend(gxui.UserControl, {
 		return toolbarItems;
 	},
 
-	ButtonClickHandler: function(btn, e) {
+	//private
+	buttonClickHandler: function (btn, e) {
 		if (this.fireEvent("beforebuttonpressed", this, btn, e) !== false) {
 			if (btn.gxConfirmation) {
-				var processResult = function(option, text) {
+				var processResult = function (option, text) {
 					if (option == 'ok')
-						this.ButtonActionHandler(btn, e);
+						this.buttonActionHandler(btn, e);
 				};
 
-				// Put focus on Cancel button by default.
-				Ext.Msg.getDialog().defaultButton = 3;
-
-				var msgBox = Ext.Msg.show({
-					title: btn.gxConfirmation.Title,
-					msg: btn.gxConfirmation.Message,
-					buttons: {
+				var msgBox = new Ext.window.MessageBox({
+					buttonText: {
 						ok: btn.gxConfirmation.OKButtonText,
 						cancel: btn.gxConfirmation.CancelButtonText
 					},
-					fn: processResult,
-					scope: this,
-					animEl: btn.getEl(),
-					icon: Ext.MessageBox.QUESTION
+					listeners: {
+						'afterrender': function (mb) {
+							// Put focus on Cancel button by default.
+							mb.defaultFocus = 3;
+						}
+					}
 				});
 
-				// Restore Ext.MessageBox defaultButton value to avoid affecting other places where it might be used
-				setTimeout(function() {
-					Ext.Msg.getDialog().defaultButton = 0;
-				}, 500);
+				msgBox.show({
+					title: btn.gxConfirmation.Title,
+					msg: btn.gxConfirmation.Message,
+					buttons: Ext.Msg.OKCANCEL,
+					fn: processResult,
+					scope: this,
+					animateTarget: btn.getEl(),
+					icon: Ext.Msg.QUESTION
+				});
 			}
 			else {
-				this.ButtonActionHandler(btn, e);
+				this.buttonActionHandler(btn, e);
 			}
 			this.fireEvent("buttonpressed", this, btn, e);
 		}
 	},
 
-	ButtonActionHandler: function(btn, e) {
+	//private
+	buttonActionHandler: function (btn, e) {
 		if (this.ButtonPressed) {
 			this.ButtonPressedId = btn.gxid;
 			this.ButtonPressed(btn);
 		}
 	},
 
-	EditActionHandler: function(field) {
+	//private
+	editActionHandler: function (field) {
 		this.EditFieldValue = field.getValue();
-		this.ButtonActionHandler(field);
+		this.buttonActionHandler(field);
 	},
 
-	GetConfig: function(button) {
-
-		var getBtnCls = function(btn) {
-			if (!btn.Cls) {
-				if (btn.Icon) {
-					return (btn.Text) ? "x-btn-text-icon" : "x-btn-icon";
-				}
-				else {
-					return "x-btn-text";
-				}
-			}
-			return btn.Cls;
-		};
-
-		var config;
-
+	//private
+	getConfig: function (button) {
 		if (button.id && button.id.indexOf("ext") == 0)
 			return button;
 
-		if (!button.Type || button.Type == gxui.Toolbar.ItemType.Button) {
+		if (!button.Type)
 			button.Type = gxui.Toolbar.ItemType.Button;
-			config = {
-				id: this.getUniqueButtonId(button.Id),
-				gxid: button.Id,
-				gxConfirmation: gxui.CBoolean(button.AskConfirmation) ? button.Confirmation : false,
-				text: button.Text,
-				tooltip: button.Tooltip,
-				icon: button.Icon,
-				iconCls: button.IconCls,
-				cls: getBtnCls(button),
-				enableToggle: gxui.CBoolean(button.EnableToggle),
-				pressed: gxui.CBoolean(button.Pressed),
-				disabled: gxui.CBoolean(button.Disabled),
-				hidden: gxui.CBoolean(button.Hidden),
-				handler: this.ButtonClickHandler,
-				isDropTarget: gxui.CBoolean(button.IsDropTarget),
-				scope: this,
-				RefreshData: gxui.CBoolean(button.RefreshData)
-			};
-		}
-		else {
-			if (button.Type == gxui.Toolbar.ItemType.Text) {
-				config = button.Text;
-			}
-			else {
-				if (button.Type == gxui.Toolbar.ItemType.Edit) {
-					config = new Ext.form.TextField({
-						id: this.getUniqueButtonId(button.Id),
-						cls: button.Cls,
-						width: 180,
-						disabled: gxui.CBoolean(button.Disabled),
-						hidden: gxui.CBoolean(button.Hidden),
-						enableKeyEvents: true
-					});
-					if (button.Text != '')
-						config.emptyText = button.Text;
 
-					config.on({
-						"keypress": {
-							fn: function(field, e) {
-								this.fireEvent("editfieldkeypress", this, field, e);
-								if (e.getKey() == Ext.EventObject.ENTER) {
-									e.stopEvent();
-									this.EditActionHandler(field);
-								}
-							},
-							scope: this
-						},
-						"blur": {
-							fn: function(field) {
-								this.fireEvent("editfieldblur", this, field);
-								this.EditActionHandler(field);
-							},
-							scope: this
-						}
-					});
-					config.gxid = button.Id;
-				}
-				else {
-					if (button.Type == gxui.Toolbar.ItemType.Fill) {
-						config = new Ext.Toolbar.Fill();
-					}
-					else {
-						if (button.Type == gxui.Toolbar.ItemType.Separator) {
-							config = "-";
-						}
-						else {
-							if (button.Type == gxui.Toolbar.ItemType.Menu || button.Type == gxui.Toolbar.ItemType.SplitButton) {
-								var menuItems = [];
-
-								Ext.each(button.Items, function(item, index, allItems) {
-									menuItems.push(this.GetConfig(item));
-								}, this);
-
-								config = {
-									text: button.Text,
-									tooltip: button.Tooltip,
-									hidden: gxui.CBoolean(button.Hidden),
-									icon: button.Icon,
-									iconCls: button.IconCls,
-									menu: menuItems,
-									cls: getBtnCls(button),
-									disabled: gxui.CBoolean(button.Disabled)
-								};
-
-								if (button.Type == gxui.Toolbar.ItemType.SplitButton) {
-									config.gxid = button.Id;
-									config.gxConfirmation = gxui.CBoolean(button.AskConfirmation) ? button.Confirmation : false;
-									config.xtype = 'tbsplit';
-									config.enableToggle = gxui.CBoolean(button.EnableToggle);
-									config.pressed = gxui.CBoolean(button.Pressed);
-									if (gxui.CBoolean(button.EnableToggle)) {
-										config.toggleHandler = this.ButtonClickHandler;
-									}
-									else {
-										config.handler = this.ButtonClickHandler;
-									}
-									config.scope = this;
-								}
-							}
-							else {
-								if (button.Type == "Search") {
-									config = new Ext.app.SearchField({
-										store: button.Store,
-										width: button.Width,
-										enableKeyEvents: gxui.CBoolean(button.AutoRefresh),
-										listeners: {
-											'keydown': {
-												fn: function(field, e) {
-													if (e.getKey() != e.TAB) {
-														this.onTrigger2Click();
-													}
-												},
-												buffer: button.AutoRefreshTimeout || 350
-											}
-										}
-									});
-									config.on('resize', function(field) {
-										field.getEl().setWidth(button.Width - 17);
-										field.getEl().parent().setWidth(button.Width);
-									});
-									button.Store = 'undefined';
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		return config;
+		var resolver = gxui.Toolbar.ItemResolvers.get(button.Type) || gxui.Toolbar.ItemResolvers.get(gxui.Toolbar.ItemType.Button);
+		if (resolver)
+			return resolver(this, button);
 	},
 
-	defineBtnsDropTarget: function() {
-		this.m_toolbar.items.each(function(item, pos) {
+	//private
+	defineBtnsDropTarget: function () {
+		this.m_toolbar.items.each(function (item, pos) {
 			if (item.type == "button" && item.isDropTarget) {
 				var dt = new Ext.dd.DropTarget(item.getEl(), { ddGroup: 'GridDD' });
 				dt._btn = item;
 				dt._scope = this;
-				dt.notifyOver = function(source, e, data) {
+				dt.notifyOver = function (source, e, data) {
 					if (data.grid) {
 						return 'x-dd-drop-ok';
 					}
 					return 'x-dd-drop-nodrop';
 				};
-				dt.notifyDrop = function(source, e, data) {
+				dt.notifyDrop = function (source, e, data) {
 					if (data.grid) {
-						this._scope.ButtonActionHandler(this._btn);
+						this._scope.buttonActionHandler(this._btn);
 						return true;
 					}
 					return false;
 				};
-				dt.notifyEnter = function(source, e, data) {
+				dt.notifyEnter = function (source, e, data) {
 					if (data.grid) {
 						return 'x-dd-drop-ok';
 					}
@@ -348,28 +338,31 @@ gxui.Toolbar = Ext.extend(gxui.UserControl, {
 		this);
 	},
 
-	refreshButtons: function(buttons, renderedButtons) {
+	//private
+	refreshButtons: function (buttons, renderedButtons) {
 		var i = 0;
 		var ItemType = gxui.Toolbar.ItemType;
-		renderedButtons.each(function(renderedBtn) {
+		renderedButtons.each(function (renderedBtn) {
 			var button = buttons[i];
 			if (button) {
-				if (button.Type == ItemType.Button || button.Type == ItemType.Edit || button.Type == ItemType.Menu || button.Type == ItemType.SplitButton) {
-					if (!gxui.CBoolean(button.Disabled) && renderedBtn.disabled) {
+				if (!gxui.CBoolean(button.Disabled) && renderedBtn.disabled) {
+					if (renderedBtn.enable)
 						renderedBtn.enable();
-					}
-					else {
-						if (gxui.CBoolean(button.Disabled) && !renderedBtn.disabled) {
+				}
+				else {
+					if (gxui.CBoolean(button.Disabled) && !renderedBtn.disabled) {
+						if (renderedBtn.disable)
 							renderedBtn.disable();
-						}
 					}
-					if (gxui.CBoolean(button.Hidden) && !renderedBtn.hidden) {
+				}
+				if (gxui.CBoolean(button.Hidden) && !renderedBtn.hidden) {
+					if (renderedBtn.hide)
 						renderedBtn.hide();
-					}
-					else {
-						if (!gxui.CBoolean(button.Hidden) && renderedBtn.hidden) {
+				}
+				else {
+					if (!gxui.CBoolean(button.Hidden) && renderedBtn.hidden) {
+						if (renderedBtn.show)
 							renderedBtn.show();
-						}
 					}
 				}
 				if ((button.Type == ItemType.Menu || button.Type == ItemType.SplitButton) && button.Items && renderedBtn.menu) {
@@ -380,14 +373,16 @@ gxui.Toolbar = Ext.extend(gxui.UserControl, {
 		}, this)
 	},
 
-	getUniqueButtonId: function(btnId) {
+	//private
+	getUniqueButtonId: function (btnId) {
 		return this.getUniqueId() + "_btn_" + btnId;
 	},
 
-	findItem: function(id, items) {
+	//private
+	findItem: function (id, items) {
 		var ItemType = gxui.Toolbar.ItemType;
 		var searchedItem;
-		Ext.each(items, function(item) {
+		Ext.each(items, function (item) {
 			if (item.Id == id) {
 				searchedItem = item;
 			}
@@ -404,7 +399,8 @@ gxui.Toolbar = Ext.extend(gxui.UserControl, {
 		return searchedItem;
 	},
 
-	changeItemPropertyValue: function(itemId, propertyId, propertyValue) {
+	//private
+	changeItemPropertyValue: function (itemId, propertyId, propertyValue) {
 		var item = this.findItem(itemId, this.Data.Buttons);
 		if (item) {
 			item[propertyId] = propertyValue;
@@ -412,12 +408,30 @@ gxui.Toolbar = Ext.extend(gxui.UserControl, {
 		return item;
 	},
 
+	//private
+	getBtnCls: function (btn) {
+		if (!btn.Cls) {
+			if (btn.Icon) {
+				return (btn.Text) ? "x-btn-text-icon" : "x-btn-icon";
+			}
+			else {
+				return "x-btn-text";
+			}
+		}
+		return btn.Cls;
+	},
+
 	// Methods
-	ChangeToolbar: function(toolbarData, id, container) {
+	/**
+	* Changes the current list of toolbar items with a new one and render it.
+	* @param {gxuiToolbar} toolbar gxuiToolbar configuration object containing the list of new toolbar items to render
+	* @method
+	*/
+	ChangeToolbar: function (toolbarData, id, container) {
 		var ownerCt = this.m_toolbar.ownerCt;
 		this.m_toolbar.destroy();
 
-		this.CreateToolbar({
+		this.createToolbar({
 			data: toolbarData,
 			id: id,
 			container: container
@@ -437,28 +451,51 @@ gxui.Toolbar = Ext.extend(gxui.UserControl, {
 		return this.m_toolbar;
 	},
 
-	DisableItem: function(itemId) {
+	/**
+	* Disable a toolbar item by id
+	* @param {String} itemId Toolbar item id
+	* @method
+	*/
+	DisableItem: function (itemId) {
 		this.changeItemPropertyValue(itemId, "Disabled", true);
 		this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
 	},
 
-	EnableItem: function(itemId) {
+	/**
+	* Enable a toolbar item by id
+	* @param {String} itemId Toolbar item id
+	* @method
+	*/
+	EnableItem: function (itemId) {
 		this.changeItemPropertyValue(itemId, "Disabled", false);
 		this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
 	},
 
-	HideItem: function(itemId) {
+	/**
+	* Hide a toolbar item by id
+	* @param {String} itemId Toolbar item id
+	* @method
+	*/
+	HideItem: function (itemId) {
 		this.changeItemPropertyValue(itemId, "Hidden", true);
 		this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
 	},
 
-	ShowItem: function(itemId) {
+	/**
+	* Shows a hidden toolbar item by id
+	* @param {String} itemId Toolbar item id
+	* @method
+	*/
+	ShowItem: function (itemId) {
 		this.changeItemPropertyValue(itemId, "Hidden", false);
 		this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
 	}
 });
 
-// Supported item types
+/**
+* @class gxui.Toolbar.ItemType
+* Standard gxui.Toolbar item types
+*/
 gxui.Toolbar.ItemType = {
 	Button: "Button",
 	Text: "Text",
@@ -467,4 +504,53 @@ gxui.Toolbar.ItemType = {
 	Separator: "Separator",
 	Menu: "Menu",
 	SplitButton: "SplitButton"
+};
+
+/**
+* @class gxui.Toolbar.ItemResolvers
+* gxui.Toolbar.ItemResolvers stores the list of toolbar item resolvers for {@link gxui.Toolbar}. A resolver maps
+* a {@link gxui.Toolbar} item configuration with a Ext.toolbar.Toolbar component configuration or object.
+* New types of items can be added to {@link gxui.Toolbar}. For each new type, a resolver must be registered using 
+* the register method.
+* @singleton
+*/
+gxui.Toolbar.ItemResolvers = {
+	// private
+	items: {},
+
+	/**
+	* Register a new {@link gxui.Toolbar} item resolver.
+	* @param {String} type Toolbar item type
+	* @param {Function} resolver Resolver function that maps a {@link gxui.Toolbar} configuration with a Ext.toolbar.Toolbar component configuration or object.
+	* @method
+	*/
+	register: function (type, resolver) {
+		if (typeof (type) == 'string')
+			this.items[type] = resolver;
+		else if (typeof (type) == 'object') {
+			for (var item in type) {
+				if (typeof (type[item]) == 'function') {
+					this.items[item] = type[item];
+				}
+			}
+		}
+	},
+
+	/**
+	* Unregister a {@link gxui.Toolbar} item resolver.
+	* @param {String} type Toolbar item type
+	* @method
+	*/
+	unregister: function (type) {
+		delete this.items[type];
+	},
+
+	/**
+	* Get an existing {@link gxui.Toolbar} item resolver, by name.
+	* @param {String} type Toolbar item type
+	* @method
+	*/
+	get: function (type) {
+		return this.items[type];
+	}
 };

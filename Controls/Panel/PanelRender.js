@@ -1,3 +1,5 @@
+/// <reference path="..\..\Freezer\Ext\ext-all-dev.js" />
+
 /**
 * @class gxui.Panel
 * Panel User Control. Wraps Ext.panel.Panel so it can be used from GeneXus.
@@ -5,18 +7,20 @@
 Ext.define('gxui.Panel', {
 	extend: 'gxui.UserControl',
 
-	SetToolbarData: function(data) {
+	//private
+	SetToolbarData: function (data) {
 		this.ToolbarData = data;
 	},
 
-	GetToolbarData: function(data) {
+	//private
+	GetToolbarData: function (data) {
 		return this.ToolbarData;
 	},
 
 	onRender: function() {
 		if (gxui.CBoolean(this.UseToolbar)) {
 			this.m_gxTbar = new gxui.Toolbar({ register: false });
-			this.m_toolbar = this.m_gxTbar.CreateToolbar({
+			this.m_toolbar = this.m_gxTbar.createToolbar({
 				id: this.getUniqueId() + "_Toolbar",
 				data: this.ToolbarData,
 				container: this
@@ -85,7 +89,8 @@ Ext.define('gxui.Panel', {
 		return this.m_panel;
 	},
 
-	getConfig: function() {
+	//private
+	getConfig: function () {
 		var config = {
 			contentEl: this.getChildContainer("Body"),
 			id: this.getUniqueId(),
@@ -102,7 +107,7 @@ Ext.define('gxui.Panel', {
 			maxHeight: this.MaxHeight,
 			collapsible: gxui.CBoolean(this.Collapsible),
 			collapsed: gxui.CBoolean(this.Collapsed),
-			animateCollapse: gxui.CBoolean(this.AnimateCollapse),
+			animCollapse: gxui.CBoolean(this.AnimateCollapse),
 			collapseDirection: this.CollapseDirection,
 			resizable: gxui.CBoolean(this.Resizable),
 			resizeHandles: this.Handles,
@@ -123,7 +128,8 @@ Ext.define('gxui.Panel', {
 		return config;
 	},
 
-	getListeners: function() {
+	//private
+	getListeners: function () {
 		return {
 			'collapse': function() {
 				this.Collapsed = "true";
@@ -145,36 +151,70 @@ Ext.define('gxui.Panel', {
 	},
 
 	// Methods
-	ChangeToolbar: function(toolbarData) {
+	/**
+	* @method
+	* @inheritdoc gxui.Toolbar#ChangeToolbar
+	*/
+	ChangeToolbar: function (toolbarData) {
 		if (this.m_gxTbar)
-			this.m_toolbar = this.m_gxTbar.ChangeToolbar(toolbarData, this.getUniqueId() + "_Toolbar", this);
+			this.m_toolbar = this.m_gxTbar.changeToolbar(toolbarData, this.getUniqueId() + "_Toolbar", this);
 	},
 
-	Collapse: function(animate) {
-		this.m_panel.collapse(animate);
+	/**
+	* Collapses the panel body so that the body becomes hidden.
+	* @param {Boolean} [animate] True to animate the transition, else false (defaults to the value of the AnimateCollapse property).
+	* @method
+	*/
+	Collapse: function (animate) {
+		this.m_panel.collapse(this.CollapseDirection, animate);
 	},
 
-	Expand: function(animate) {
+	/**
+	* Expands the panel body so that it becomes visible.
+	* @param {Boolean} [animate] True to animate the transition, else false (defaults to the value of the AnimateCollapse property).
+	* @method
+	*/
+	Expand: function (animate) {
 		this.m_panel.expand(animate);
 	},
 
-	DisableToolbarItem: function(itemId) {
+	/**
+	* @method
+	* @inheritdoc gxui.Toolbar#DisableItem
+	*/
+	DisableToolbarItem: function (itemId) {
 		this.m_gxTbar.DisableItem(itemId);
 	},
 
-	EnableToolbarItem: function(itemId) {
+	/**
+	* @method
+	* @inheritdoc gxui.Toolbar#EnableItem
+	*/
+	EnableToolbarItem: function (itemId) {
 		this.m_gxTbar.EnableItem(itemId);
 	},
 
-	HideToolbarItem: function(itemId) {
+	/**
+	* @method
+	* @inheritdoc gxui.Toolbar#HideItem
+	*/
+	HideToolbarItem: function (itemId) {
 		this.m_gxTbar.HideItem(itemId);
 	},
 
-	ShowToolbarItem: function(itemId) {
+	/**
+	* @method
+	* @inheritdoc gxui.Toolbar#ShowItem
+	*/
+	ShowToolbarItem: function (itemId) {
 		this.m_gxTbar.ShowItem(itemId);
 	},
 
-	CenterWindow: function() {
+	/**
+	* Centers the panel (only applies when ShowAsWindow property is set to true).
+	* @method
+	*/
+	CenterWindow: function () {
 		if (gxui.CBoolean(this.ShowAsWindow)) {
 			this.m_panel.center();
 		}
