@@ -3,6 +3,9 @@
 /**
 * @class gxui.Toolbar
 * Toolbar User Control. Wraps Ext.toolbar.Toolbar so it can be used from GeneXus.
+* The control basically loads a SDT which contains the toolbar items. Consequently you will have to 
+* define a variable based on gxuiToolbar SDT which must be assigned to the Data property of the control.
+* This variable will have a collection of items (gxuiToolbarItem SDT) that will be displayed in the toolbar.
 */
 Ext.define('gxui.Toolbar', {
 	extend: 'gxui.UserControl',
@@ -23,6 +26,7 @@ Ext.define('gxui.Toolbar', {
 			* @param {gxui.UserControl} this
 			* @param {Ext.Toolbar.Button} btn Pressed button
 			* @param {Ext.EventObject} e
+			* @ignore
 			*/
 			"beforebuttonpressed": true,
 			/**
@@ -31,6 +35,7 @@ Ext.define('gxui.Toolbar', {
 			* @param {gxui.UserControl} this
 			* @param {Ext.Toolbar.Button} btn Pressed button
 			* @param {Ext.EventObject} e
+			* @ignore
 			*/
 			"buttonpressed": true,
 			/**
@@ -39,6 +44,7 @@ Ext.define('gxui.Toolbar', {
 			* @param {gxui.UserControl} this
 			* @param {Ext.form.TextField} edit Edit field
 			* @param {Ext.EventObject} e
+			* @ignore
 			*/
 			"editfieldkeypress": true,
 			/**
@@ -46,6 +52,7 @@ Ext.define('gxui.Toolbar', {
 			* Fires after a toolbar Edit field (Type == "Edit") loses focus.
 			* @param {gxui.UserControl} this
 			* @param {Ext.form.TextField} edit Edit field
+			* @ignore
 			*/
 			"editfieldblur": true
 		});
@@ -331,6 +338,10 @@ Ext.define('gxui.Toolbar', {
 	buttonActionHandler: function (btn, e) {
 		if (this.ButtonPressed) {
 			this.ButtonPressedId = btn.gxid;
+			/**
+			* @event ButtonPressed
+			* Fires after a toolbar item has been pressed. The only items that fire this event are Button and SplitButton.
+			*/
 			this.ButtonPressed(btn);
 		}
 	},
@@ -542,6 +553,7 @@ Ext.define('gxui.Toolbar', {
 /**
 * @class gxui.Toolbar.ItemType
 * Standard gxui.Toolbar item types
+* @ignore
 */
 gxui.Toolbar.ItemType = {
 	Button: "Button",
@@ -561,6 +573,7 @@ gxui.Toolbar.ItemType = {
 * New types of items can be added to {@link gxui.Toolbar}. For each new type, a resolver must be registered using 
 * the register method.
 * @singleton
+* @ignore
 */
 gxui.Toolbar.ItemResolvers = {
 	// private

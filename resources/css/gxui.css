@@ -6,7 +6,7 @@
 .ext-ie .x-menu-item-icon {left: -24px; top: 0px;}
 .ext-strict .x-menu-item-icon {left: 3px; top: 3px;}
 .ext-ie6 .x-menu-item-icon {left: -24px; top: 0px;}
-/***********************************************************/
+/*---------------------------------------------------------*/
 
 .x-tab-strip-dirty:after {
 	content: "*";

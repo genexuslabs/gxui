@@ -164,7 +164,7 @@
 										<Value name="FlagHideVariables">False</Value>
 										<Value name="FlagHideAttributes">true</Value>
 									</Metadata>
-									<Description>A gxuiToolbarData variable with a definition of the buttons to show in the toolbar.</Description>
+									<Description>A variable based on gxuiToolbar SDT, with the toolbar definition. See {@link gxui.Toolbar#Data gxuiToolbar Data property} for detailed information.</Description>
 								</Prop>
 							</Children>
 						</Group>
@@ -239,16 +239,17 @@
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Description>
-										String consisting of the resize handles to display.
-										'n'	    north
-										's'	    south
-										'e'	    east
-										'w'     west
-										'nw'    northwest
-										'sw'    southwest
-										'se'    southeast
-										'ne'    northeast
-										'all'   all
+* String consisting of the resize handles to display.
+*
+* - 'n'	    north
+* - 's'	    south
+* - 'e'	    east
+* - 'w'     west
+* - 'nw'    northwest
+* - 'sw'    southwest
+* - 'se'    southeast
+* - 'ne'    northeast
+* - 'all'   all
 									</Description>
 								</Prop>
 							</Children>

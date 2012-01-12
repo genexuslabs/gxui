@@ -22,15 +22,26 @@
 
 	<xsl:template match="Prop">
 		<xsl:param name="group"/>
+		<xsl:variable name="type" select="Type" />
 		/**
+		<xsl:choose>
+			<xsl:when test="Type = 'Custom' and Metadata/Value[@name = 'FlagDataTypeFilter']">
+		* @property {<xsl:value-of select="Metadata/Value[@name = 'FlagDataTypeFilter']"/>} <xsl:value-of select="Name"/>
+			</xsl:when>
+			<xsl:otherwise>
 		* @property {<xsl:value-of select="Type"/>} <xsl:value-of select="Name"/>
+			</xsl:otherwise>
+		</xsl:choose>
 		<xsl:if test="Description">
 		* <xsl:value-of select="Description" />
 		</xsl:if>
 		<xsl:if test="not(Description)">
 			<xsl:text>&#xa0;</xsl:text>
 		</xsl:if>
-		<xsl:if test="Metadata/Value[@name = 'FlagScope'] = 'Runtime'">
+		<xsl:if test="JsDoc">
+			<xsl:value-of select="JsDoc" />
+		</xsl:if>
+			<xsl:if test="Metadata/Value[@name = 'FlagScope'] = 'Runtime'">
 			<xsl:text> (Runtime)</xsl:text>
 		</xsl:if>
 		<xsl:if test="Type = 'Combo'">

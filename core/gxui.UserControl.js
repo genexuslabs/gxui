@@ -3,6 +3,7 @@
 /**
 * @class gxui.UserControl
 * Abstract base class for gxui UserControls.
+* @ignore
 */
 Ext.define('gxui.UserControl', {
 	mixins: {
@@ -14,6 +15,7 @@ Ext.define('gxui.UserControl', {
 	* @param {Object} [options] User control configuration options
 	* @param {Boolean} [options.register] Indicates wether the newly created UserControl should be registered in gxui.UserControlManager.
 	* @method constructor
+	* @ignore
 	*/
 	constructor: function (options) {
 		this.setOptions(options)
@@ -42,12 +44,14 @@ Ext.define('gxui.UserControl', {
 			* @event show
 			* Fires after the User Control has been shown.
 			* @param {gxui.UserControl} this
+			* @ignore
 			*/
 			"show": true,
 			/**
 			* @event destroy
 			* Fires after the User Control is destroyed.
 			* @param {gxui.UserControl} this
+			* @ignore
 			*/
 			"destroy": true
 		});
@@ -58,6 +62,7 @@ Ext.define('gxui.UserControl', {
 
 	/**
 	* Shows the user control and fires the 'show' event after showing it.
+	* @ignore
 	*/
 	show: function () {
 		try {
@@ -82,6 +87,7 @@ Ext.define('gxui.UserControl', {
 
 	/**
 	* Force the user control rendering.
+	* @ignore
 	*/
 	forceRendering: function () {
 		this.rendered = false;
@@ -90,6 +96,7 @@ Ext.define('gxui.UserControl', {
 	/**
 	* Destroys the user control and fires the 'destroy' event after destroying it. Each User Control must implement 
 	* in the onDestroy method the destruction of the User Control.
+	* @ignore
 	*/
 	destroy: function () {
 		try {
@@ -105,18 +112,21 @@ Ext.define('gxui.UserControl', {
 	/**
 	* Called by show method to render the User Control. This method has no default implementation
 	* so it must be provided by inheriting classes.
+	* @ignore
 	*/
 	onRender: Ext.emptyFn,
 
 	/**
 	* Called by show method instead of the onRender method, from the second time onwards, to refresh the User Control.
 	* This method has no default implementation so it must be provided by inheriting classes.
+	* @ignore
 	*/
 	onRefresh: Ext.emptyFn,
 
 	/**
 	* Called by destroy method to destroy the User Control. This method has a default implementation and can be 
 	* overriden. The default implementation relays on a correct implementation of getUnderlyingControl method.
+	* @ignore
 	*/
 	onDestroy: function () {
 		var c = this.getUnderlyingControl();
@@ -138,44 +148,50 @@ Ext.define('gxui.UserControl', {
 	/**
 	* Returns the underlying control associated to the UserControl.  This method has no default implementation
 	* so it MUST be provided by inheriting classes.
+	* @ignore
 	*/
 	getUnderlyingControl: Ext.emptyFn,
 
-	//private
 	/**
 	* Registers the User Control
+	* @ignore
+	* @private
 	*/
 	register: function () {
 		gxui.UserControlManager.register(this);
 	},
 
-	//private
 	/**
 	* Registers the User Control
+	* @ignore
+	* @private
 	*/
 	unregister: function () {
 		gxui.UserControlManager.unregister(this);
 	},
 
-	//private
 	/**
 	* Registers the User Control as a container.
+	* @ignore
+	* @private
 	*/
 	registerCt: function (el, addFn, doLayoutFn, scope) {
 		gxui.UserControlManager.registerContainer(this, el, addFn, doLayoutFn, scope);
 	},
 
-	//private
 	/**
 	* Unregister the user Control to its parent container.
+	* @ignore
+	* @private
 	*/
 	unregisterCt: function (toRem) {
 		gxui.UserControlManager.unregisterContainer(toRem);
 	},
 
-	//private
 	/**
 	* Adds the User Control to its parent container.
+	* @ignore
+	* @private
 	*/
 	addToParentContainer: function (uc) {
 		gxui.afterShow(function () {
@@ -206,6 +222,10 @@ Ext.define('gxui.UserControl', {
 			el.setStyle("display", "inline");
 	},
 
+	/**
+	* @ignore
+	* @private
+	*/
 	getUniqueId: function () {
 		return "gxui-" + (this.ParentObject ? this.ParentObject.CmpContext || "" + "-" + this.ParentObject.ServerClass || "" : "") + "-" + this.ControlName;
 	}
@@ -215,6 +235,7 @@ Ext.define('gxui.UserControl', {
 * @class gxui.UserControlManager
 * Class for managing gxui UserControls.
 * @singleton
+* @ignore
 */
 gxui.UserControlManager = function() {
 	var ucList = [];
@@ -358,6 +379,7 @@ gxui.UserControlManager = function() {
 		* @param {Object} [scope] An object that becomes the scope of the handler
 		* @param {Boolean} [options] An object containing standard Ext.EventManager.addListener options
 		* @method
+		* @ignore
 		*/
 		afterShow: function(fn, scope, options) {
 			if (!afterShowEvent)

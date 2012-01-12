@@ -118,6 +118,6 @@
 		<MakeDir Directories="$(DeployGxuiDir)\docs" />
 		<Xslt Xsl='JSDuckProperties.xslt' RootTag='Root' Inputs='@(PropertiesFiles)' Output='$(DeployGxuiDir)\docs\Properties.js' />
 
-		<Exec Command='Freezer\jsduck-3.3.0.exe $(DeployGxuiDir) --output $(DeployGxuiDir)\docs'/>
+		<Exec Command='Freezer\jsduck-3.3.0.exe $(DeployGxuiDir) --title "GxUI Library Documentation" --output $(DeployGxuiDir)\docs'/>
 	</Target>
 </Project>

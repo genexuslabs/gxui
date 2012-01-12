@@ -5,6 +5,7 @@
 * @class gxui
 * gxui core utilities and functions.
 * @singleton
+* @ignore
 */
 gxui = function () {
 
@@ -106,6 +107,8 @@ gxui = function () {
 		* Converts a string representing a boolean value, to its corresponding Boolean value.
 		* @param {String} string representation of the boolean value to convert.
 		* @return {Boolean} The boolean value.
+		* @method
+		* @ignore
 		*/
 		CBoolean: function (str) {
 			if (str) {
@@ -122,6 +125,8 @@ gxui = function () {
 		* Clones an object.
 		* @param {Object} object to Clone.
 		* @return {Boolean} Cloned object.
+		* @method
+		* @ignore
 		*/
 		clone: function (obj) {
 			if (obj instanceof Array)
@@ -142,6 +147,8 @@ gxui = function () {
 		* Clones an array.
 		* @param {Object} array to Clone.
 		* @return {Boolean} Cloned array.
+		* @method
+		* @ignore
 		*/
 		copyArray: function (arr) {
 			var res = [];
@@ -194,7 +201,8 @@ gxui = function () {
 		* Shorthand method for gxui.UserControlManager.afterShow.
 		* @param {Function} fn The method the event invokes
 		* @param {Object} scope (optional) An object that becomes the scope of the handler
-		* @param {boolean} options (optional) An object containing standard Ext.EventManager.addListener options
+		* @param {Boolean} options (optional) An object containing standard Ext.EventManager.addListener options
+		* @ignore
 		*/
 		afterShow: function (fn, scope, options) {
 			gxui.UserControlManager.afterShow(fn, scope, options);

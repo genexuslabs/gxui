@@ -37,7 +37,122 @@
 						<Value name="FlagHideVariables">False</Value>
 						<Value name="FlagHideAttributes">true</Value>
 					</Metadata>
-					<Description>The variable where the buttons are stored.</Description>
+					<Description>
+						A variable based on gxuiToolbar SDT, with the toolbar definition.
+						* @property {gxuiToolbarItem[]} Data.Buttons A collection containing the list of toolbar items to render.
+						* @property {String} Data.Buttons.Id An identifier for the item. When a button is pressed, the {@link #ButtonPressedId} property is set with the identifier set here, so you will know which button was pressed when the {@link #ButtonPressed} event is fired.
+						* @property {String} Data.Buttons.Text The text of the toolbar item. Applies to Button, Menu, SplitButton, Group, Edit (shown as placeholder) and Text.
+						* @property {String} Data.Buttons.Tooltip A tooltip to show when the mouse hovers the item. Applies to Button, Menu and SplitButton.
+						* @property {String} Data.Buttons.Icon The path to an image to display in the item icon. Applies to Button, Menu and SplitButton.
+						* @property {String} Data.Buttons.IconCls A css class which sets a background image to be used as the icon for this toolbar item. Applies to Button, Menu and SplitButton.
+						* @property {gxuiToolbarItemIconAlign} Data.Buttons.IconAlign The side of the Button box to render the icon. Four values are allowed:
+						*
+						* - Top
+						* - Right
+						* - Bottom
+						* - Left
+						*
+						* Applies to Button, Menu and SplitButton.
+						* @property {String} Data.Buttons.Cls A CSS class to apply to the item's main element
+						* @property {Boolean} Data.Buttons.EnableToggle True to enable pressed/not pressed toggling. Applies to Button and SplitButton.
+						* @property {Boolean} Data.Buttons.Pressed True to start pressed (only if EnableToggle = true). Applies to Button and SplitButton.
+						* @property {Boolean} Data.Buttons.Disabled True to start disabled. Applies to Button, Edit, Menu and SplitButton.
+						* @property {gxuiToolbarItemTypes} Data.Buttons.Type Defines the type of the item (defaults to Button). The available types are:
+						*
+						* - Button: A simple button. Customisations include aligned icons, tooltips and sizing options.
+						* - Text: A text to be rendered inside the toolbar.
+						* - Edit: An edit field. Its value can be retrieved through the {@link #EditFieldValue} property.
+						* - Fill: A non-rendering placeholder item. When used, all items at its right side are right aligned.
+						* - Separator: Adds a vertical separator bar between toolbar items. It can't be a direct child of a Group item.
+						* - Menu: A button that opens a menu. The menu options are set through the Items property. An arrow is automatically added to the button.
+						* You can change the alignment of the arrow using the ArrowAlign property.
+						* - SplitButton: A split button that provides a built-in dropdown arrow used to display a dropdown menu that provides additional options to the primary button action.
+						* - Group: A container for arranging a group of related Buttons in a tabular manner. The items inside the group are set through the Items property.
+						* By setting RowSpan and ColSpan properties in child items, complex layouts can be accomplished within the table.
+						* The basic concept of building a layout inside the group is conceptually very similar to building up a standard HTML table.
+						* You simply add each item that you want to include along with any span attributes specified as the special config properties of RowSpan and ColSpan
+						* which work exactly like their HTML counterparts. Rather than explicitly creating and nesting rows and columns as you would in HTML,
+						* you simply specify the total column count in the GroupColumns property and start adding items in their natural order from left to right, top to bottom.
+						* The layout will automatically figure out, based on the column count, rowspans and colspans, how to position each item within the table.
+						* Just like with HTML tables, your rowspans and colspans must add up correctly in your overall layout or you'll end up with missing and/or extra items.
+						* Example usage:
+						*
+						*         gxuiToolbar
+						*         {
+						*             Buttons
+						*             {
+						*                 Item
+						*                 {
+						*                     Text = 'File'
+						*                     Type = gxuiToolbarItemTypes.Group
+						*                     GroupColumns = 3
+						*                     Items
+						*                     {
+						*                         Item
+						*                         {
+						*                             Id = !'New'
+						*                             Text = 'New'
+						*                             Type = gxuiToolbarItemTypes.Button
+						*                             Scale = gxuiToolbarItemScale.Large
+						*                             RowSpan = 3
+						*                         }
+						*                         Item
+						*                         {
+						*                             Id = !'Open'
+						*                             Text = 'Open'
+						*                             Type = gxuiToolbarItemTypes.Button
+						*                             Scale = gxuiToolbarItemScale.Large
+						*                             RowSpan = 3
+						*                         }
+						*                         Item
+						*                         {
+						*                             Id = !'Close'
+						*                             Text = 'Close'
+						*                             Type = gxuiToolbarItemTypes.Button
+						*                         }
+						*                         Item
+						*                         {
+						*                             Id = !'CloseKB'
+						*                             Text = 'Close KB'
+						*                             Type = gxuiToolbarItemTypes.Button
+						*                         }
+						*                         {
+						*                             Id = !'Exit'
+						*                             Text = 'Exit'
+						*                             Type = gxuiToolbarItemTypes.Button
+						*                         }
+						*                     }
+						*                 }
+						*             }
+						*         }
+						*
+						* @property {Boolean} Data.Buttons.Hidden True to start hidden.
+						* @property {Number} Data.Buttons.GroupColumns Groups show toolbar items in a tabular manner. The total number of columns to create in the table is set through this property. If not specified it will be rendered into a single row using one column per item. Applies only to Group.
+						* @property {gxuiToolbarItemScale} Data.Buttons.Scale The size of the Button. Three values are allowed:
+						*
+						* - Small - Results in the button element being 16px high.
+						* - Medium - Results in the button element being 24px high.
+						* - Large - Results in the button element being 32px high.
+						*
+						* Applies to Button, Menu and SplitButton.
+						* @property {gxuiToolbarItemArrowAlign} Data.Buttons.ArrowAlign The side of the button box to render the arrow if the button has an associated menu. Two values are allowed:
+						*
+						* - Right
+						* - Bottom
+						*
+						* Applies to Menu and SplitButton.
+						* @property {Number} Data.Buttons.RowSpan Number of rows the item will span. Only applies to items that are direct children of a Group item.
+						* See the documentation about the Group item type for detailed information.
+						* @property {Number} Data.Buttons.ColSpan Number of columns the item will span. Only applies to items that are direct children of a Group item.
+						* See the documentation about the Group item type for detailed information.
+						* @property {Boolean} Data.Buttons.AskConfirmation Indicates if the user should be prompted for confirmation when a button is pressed, before executing the {@link #ButtonPressed} event. If the user confirms, the event is executed.
+						* @property {gxuiToolbarItem.Confirmation} Data.Buttons.Confirmation Configuration properties for the confirmation dialog.
+						* @property {String} Data.Buttons.Confirmation.OKButtonText Text for the OK button (defaults to 'OK')
+						* @property {String} Data.Buttons.Confirmation.CancelButtonText Text for the Cancel button (defaults to 'Cancel').
+						* @property {String} Data.Buttons.Confirmation.Message (required) Text for the dialog message.
+						* @property {String} Data.Buttons.Confirmation.Title Text for the dialog title.
+						* @property {String} Data.Buttons.Items Collection of children items of the button. Applies to Menu, SplitButton and Group.
+					</Description>
 				</Prop>		
 		     </Children>
 		</Group>
@@ -49,7 +164,7 @@
 			<Metadata>
 			<Value name="FlagScope">Runtime</Value>
 			</Metadata>
-			<Description>The button's identifier that was pressed.</Description>
+			<Description>The identifier of the button that was pressed. This property is useful when the {@link #ButtonPressed} event is fired.</Description>
 		</Prop>			
 		<Prop>
 			<Id>EditFieldValue</Id>
@@ -59,7 +174,7 @@
 			<Metadata>
 			<Value name="FlagScope">Runtime</Value>
 			</Metadata>
-			<Description>The the value of the edit field where the Enter key was pressed.</Description>
+			<Description>The value of the edit field that was lost focus or where the Enter key was pressed.</Description>
 		</Prop>			
       </Children>
     </Group>
