@@ -13,7 +13,7 @@
 					<Type>Integer</Type>
 					<Default>100</Default>
 					<Metadata />
-					<Description>Control width. Ignored if Nested is false.</Description>
+					<Description>Control width. Ignored if {@link #Nested} is false.</Description>
 				</Prop>
 				<Prop>
 					<Id>Height</Id>
@@ -21,7 +21,7 @@
 					<Type>Integer</Type>
 					<Default>100</Default>
 					<Metadata />
-					<Description>Control height. Ignored if Nested is false.</Description>
+					<Description>Control height. Ignored if {@link #Nested} is false.</Description>
 				</Prop>
 				<Prop>
 					<Id>Cls</Id>
@@ -39,13 +39,14 @@
 					<Type>Combo</Type>
 					<Default>false</Default>
 					<Metadata>
+						<Value name="FlagComboIsBoolean">true</Value>
 						<Value name="FlagScope">DesignTime</Value>
 					</Metadata>
 					<Values>
 						<Value id="true" desc="True"/>
 						<Value id="false" desc="False"/>
 					</Values>
-					<Description>Set to true if you want to nest this control inside another control. Set to false if you want it to render itself to the document body, and automatically size itself to the size of the browser viewport and manage window resizing.</Description>
+					<Description>Set to true if you want to nest this control inside another control. Set to false if you want it to render itself to the document body (full screen), and automatically size itself to the size of the browser viewport and manage window resizing.</Description>
 				</Prop>
 				<Group>
 					<Name>Regions</Name>
@@ -58,7 +59,9 @@
 									<Name>NorthHidden</Name>
 									<Type>Combo</Type>
 									<Default>false</Default>
-									<Metadata />
+									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
+									</Metadata>
 									<Values>
 										<Value id="true" desc="True"/>
 										<Value id="false" desc="False"/>
@@ -71,6 +74,7 @@
 									<Type>Combo</Type>
 									<Default>true</Default>
 									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Values>
@@ -85,6 +89,7 @@
 									<Type>Combo</Type>
 									<Default>true</Default>
 									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Values>
@@ -125,21 +130,6 @@
 									</Values>
 									<Description>The layout type to be used in this container.</Description>
 								</Prop>
-								<Prop>
-									<Id>NorthDragDropMode</Id>
-									<Name>NorthDragDropMode</Name>
-									<Type>Combo</Type>
-									<Default>disabled</Default>
-									<Metadata>
-										<Value name="FlagScope">DesignTime</Value>
-									</Metadata>
-									<Values>
-										<Value id="disabled" desc="Disabled"/>
-										<Value id="portal" desc="Portal"/>
-										<Value id="floating" desc="Floating"/>
-									</Values>
-									<Description>Region panels drag/drop mode. Set to Portal if you want the panels to be layed out in a grid fashion and to allow panel draggin in a portal fashion. Set to Floating if you want to allow the panels to float freely over the region. Set to disabled for default behavior.</Description>
-								</Prop>
 								<Group>
 									<Name>North Title Bar</Name>
 									<Children>
@@ -149,6 +139,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -173,12 +164,12 @@
 										<Prop>
 											<Id>NorthHeight</Id>
 											<Name>NorthHeight</Name>
-											<Type>Integer</Type>
+											<Type>Text</Type>
 											<Default>100</Default>
 											<Metadata>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
-											<Description>Region height in pixels.</Description>
+											<Description>Region initial height. It can be expressed in pixels or with a percentage.</Description>
 										</Prop>
 										<Prop>
 											<Id>NorthMinHeight</Id>
@@ -211,6 +202,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -224,36 +216,14 @@
 											<Name>NorthCollapsed</Name>
 											<Type>Combo</Type>
 											<Default>false</Default>
-											<Metadata/>
+											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
+											</Metadata>
 											<Values>
 												<Value id="true" desc="True"/>
 												<Value id="false" desc="False"/>
 											</Values>
 											<Description>True to render the region collapsed, false to render it expanded.</Description>
-										</Prop>
-										<Prop>
-											<Id>NorthCollapseMode</Id>
-											<Name>NorthCollapseMode</Name>
-											<Type>Combo</Type>
-											<Default>undefined</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Values>
-												<Value id="undefined" desc="Normal"/>
-												<Value id="mini" desc="Mini"/>
-											</Values>
-											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
-										</Prop>
-										<Prop>
-											<Id>NorthCollapsedMargins</Id>
-											<Name>NorthCollapsedMargins</Name>
-											<Type>Text</Type>
-											<Default>0,0,0,0</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Description>Region margins when collapsed, in the format: top, right, bottom, left.</Description>
 										</Prop>
 									</Children>
 								</Group>
@@ -266,6 +236,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -273,20 +244,6 @@
 												<Value id="false" desc="False"/>
 											</Values>
 											<Description>True to allow clicking a collapsed region's bar to display the region's panel floated above the layout, false to force the user to fully expand a collapsed region by clicking the expand button to see it again.</Description>
-										</Prop>
-										<Prop>
-											<Id>NorthAutoHide</Id>
-											<Name>NorthAutoHide</Name>
-											<Type>Combo</Type>
-											<Default>false</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Values>
-												<Value id="true" desc="True"/>
-												<Value id="false" desc="False"/>
-											</Values>
-											<Description>When a collapsed region's bar is clicked, the region's panel will be displayed as a floated panel. If autoHide is true, the panel will automatically hide after the user mouses out of the panel. If autoHide is false, the panel will continue to display until the user clicks outside of the panel.</Description>
 										</Prop>
 									</Children>
 								</Group>
@@ -299,6 +256,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -329,7 +287,9 @@
 									<Name>SouthHidden</Name>
 									<Type>Combo</Type>
 									<Default>false</Default>
-									<Metadata/>
+									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
+									</Metadata>
 									<Values>
 										<Value id="true" desc="True"/>
 										<Value id="false" desc="False"/>
@@ -342,6 +302,7 @@
 									<Type>Combo</Type>
 									<Default>true</Default>
 									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Values>
@@ -356,6 +317,7 @@
 									<Type>Combo</Type>
 									<Default>true</Default>
 									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Values>
@@ -396,21 +358,6 @@
 									</Values>
 									<Description>The layout type to be used in this container.</Description>
 								</Prop>
-								<Prop>
-									<Id>SouthDragDropMode</Id>
-									<Name>SouthDragDropMode</Name>
-									<Type>Combo</Type>
-									<Default>disabled</Default>
-									<Metadata>
-										<Value name="FlagScope">DesignTime</Value>
-									</Metadata>
-									<Values>
-										<Value id="disabled" desc="Disabled"/>
-										<Value id="portal" desc="Portal"/>
-										<Value id="floating" desc="Floating"/>
-									</Values>
-									<Description>Region panels drag/drop mode. Set to Portal if you want the panels to be layed out in a grid. Set to Floating if you want to allow the panels to float freely on the region.</Description>
-								</Prop>
 								<Group>
 									<Name>South Title Bar</Name>
 									<Children>
@@ -420,6 +367,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -444,12 +392,12 @@
 										<Prop>
 											<Id>SouthHeight</Id>
 											<Name>SouthHeight</Name>
-											<Type>Integer</Type>
+											<Type>Text</Type>
 											<Default>100</Default>
 											<Metadata>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
-											<Description>Region height in pixels.</Description>
+											<Description>Region initial height. It can be expressed in pixels or with a percentage.</Description>
 										</Prop>
 										<Prop>
 											<Id>SouthMinHeight</Id>
@@ -482,25 +430,12 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
 												<Value id="true" desc="True"/>
 												<Value id="false" desc="False"/>
-											</Values>
-											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
-										</Prop>
-										<Prop>
-											<Id>SouthCollapseMode</Id>
-											<Name>SouthCollapseMode</Name>
-											<Type>Combo</Type>
-											<Default>undefined</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Values>
-												<Value id="undefined" desc="Normal"/>
-												<Value id="mini" desc="Mini"/>
 											</Values>
 											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
 										</Prop>
@@ -509,22 +444,14 @@
 											<Name>SouthCollapsed</Name>
 											<Type>Combo</Type>
 											<Default>false</Default>
-											<Metadata/>
+											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
+											</Metadata>
 											<Values>
 												<Value id="true" desc="True"/>
 												<Value id="false" desc="False"/>
 											</Values>
 											<Description>True to render the region collapsed, false to render it expanded.</Description>
-										</Prop>
-										<Prop>
-											<Id>SouthCollapsedMargins</Id>
-											<Name>SouthCollapsedMargins</Name>
-											<Type>Text</Type>
-											<Default>0,0,0,0</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Description>Region margins when collapsed, in the format: top, right, bottom, left.</Description>
 										</Prop>
 									</Children>
 								</Group>
@@ -537,6 +464,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -544,20 +472,6 @@
 												<Value id="false" desc="False"/>
 											</Values>
 											<Description>True to allow clicking a collapsed region's bar to display the region's panel floated above the layout, false to force the user to fully expand a collapsed region by clicking the expand button to see it again.</Description>
-										</Prop>
-										<Prop>
-											<Id>SouthAutoHide</Id>
-											<Name>SouthAutoHide</Name>
-											<Type>Combo</Type>
-											<Default>false</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Values>
-												<Value id="true" desc="True"/>
-												<Value id="false" desc="False"/>
-											</Values>
-											<Description>When a collapsed region's bar is clicked, the region's panel will be displayed as a floated panel. If autoHide is true, the panel will automatically hide after the user mouses out of the panel. If autoHide is false, the panel will continue to display until the user clicks outside of the panel.</Description>
 										</Prop>
 									</Children>
 								</Group>
@@ -570,6 +484,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -600,7 +515,9 @@
 									<Name>WestHidden</Name>
 									<Type>Combo</Type>
 									<Default>false</Default>
-									<Metadata/>
+									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
+									</Metadata>
 									<Values>
 										<Value id="true" desc="True"/>
 										<Value id="false" desc="False"/>
@@ -613,6 +530,7 @@
 									<Type>Combo</Type>
 									<Default>true</Default>
 									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Values>
@@ -627,6 +545,7 @@
 									<Type>Combo</Type>
 									<Default>true</Default>
 									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Values>
@@ -667,21 +586,6 @@
 									</Values>
 									<Description>The layout type to be used in this container.</Description>
 								</Prop>
-								<Prop>
-									<Id>WestDragDropMode</Id>
-									<Name>WestDragDropMode</Name>
-									<Type>Combo</Type>
-									<Default>disabled</Default>
-									<Metadata>
-										<Value name="FlagScope">DesignTime</Value>
-									</Metadata>
-									<Values>
-										<Value id="disabled" desc="Disabled"/>
-										<Value id="portal" desc="Portal"/>
-										<Value id="floating" desc="Floating"/>
-									</Values>
-									<Description>Region panels drag/drop mode. Set to Portal if you want the panels to be layed out in a grid. Set to Floating if you want to allow the panels to float freely on the region.</Description>
-								</Prop>
 								<Group>
 									<Name>West Title Bar</Name>
 									<Children>
@@ -691,6 +595,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -715,10 +620,10 @@
 										<Prop>
 											<Id>WestWidth</Id>
 											<Name>WestWidth</Name>
-											<Type>Integer</Type>
+											<Type>Text</Type>
 											<Default>200</Default>
 											<Metadata/>
-											<Description>Region width in pixels.</Description>
+											<Description>Region initial width. It can be expressed in pixels or with a percentage.</Description>
 										</Prop>
 										<Prop>
 											<Id>WestMinWidth</Id>
@@ -747,25 +652,12 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
 												<Value id="true" desc="True"/>
 												<Value id="false" desc="False"/>
-											</Values>
-											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
-										</Prop>
-										<Prop>
-											<Id>WestCollapseMode</Id>
-											<Name>WestCollapseMode</Name>
-											<Type>Combo</Type>
-											<Default>undefined</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Values>
-												<Value id="undefined" desc="Normal"/>
-												<Value id="mini" desc="Mini"/>
 											</Values>
 											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
 										</Prop>
@@ -774,22 +666,14 @@
 											<Name>WestCollapsed</Name>
 											<Type>Combo</Type>
 											<Default>false</Default>
-											<Metadata/>
+											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
+											</Metadata>
 											<Values>
 												<Value id="true" desc="True"/>
 												<Value id="false" desc="False"/>
 											</Values>
 											<Description>True to render the region collapsed, false to render it expanded.</Description>
-										</Prop>
-										<Prop>
-											<Id>WestCollapsedMargins</Id>
-											<Name>WestCollapsedMargins</Name>
-											<Type>Text</Type>
-											<Default>0,0,0,0</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Description>Region margins when collapsed, in the format: top, right, bottom, left.</Description>
 										</Prop>
 									</Children>
 								</Group>
@@ -802,6 +686,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -809,20 +694,6 @@
 												<Value id="false" desc="False"/>
 											</Values>
 											<Description>True to allow clicking a collapsed region's bar to display the region's panel floated above the layout, false to force the user to fully expand a collapsed region by clicking the expand button to see it again.</Description>
-										</Prop>
-										<Prop>
-											<Id>WestAutoHide</Id>
-											<Name>WestAutoHide</Name>
-											<Type>Combo</Type>
-											<Default>false</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Values>
-												<Value id="true" desc="True"/>
-												<Value id="false" desc="False"/>
-											</Values>
-											<Description>When a collapsed region's bar is clicked, the region's panel will be displayed as a floated panel. If autoHide is true, the panel will automatically hide after the user mouses out of the panel. If autoHide is false, the panel will continue to display until the user clicks outside of the panel.</Description>
 										</Prop>
 									</Children>
 								</Group>
@@ -835,6 +706,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -865,7 +737,9 @@
 									<Name>CenterHidden</Name>
 									<Type>Combo</Type>
 									<Default>false</Default>
-									<Metadata/>
+									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
+									</Metadata>
 									<Values>
 										<Value id="true" desc="True"/>
 										<Value id="false" desc="False"/>
@@ -878,6 +752,7 @@
 									<Type>Combo</Type>
 									<Default>true</Default>
 									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Values>
@@ -892,6 +767,7 @@
 									<Type>Combo</Type>
 									<Default>true</Default>
 									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Values>
@@ -932,21 +808,6 @@
 									</Values>
 									<Description>The layout type to be used in this container.</Description>
 								</Prop>
-								<Prop>
-									<Id>CenterDragDropMode</Id>
-									<Name>CenterDragDropMode</Name>
-									<Type>Combo</Type>
-									<Default>disabled</Default>
-									<Metadata>
-										<Value name="FlagScope">DesignTime</Value>
-									</Metadata>
-									<Values>
-										<Value id="disabled" desc="Disabled"/>
-										<Value id="portal" desc="Portal"/>
-										<Value id="floating" desc="Floating"/>
-									</Values>
-									<Description>Region panels drag/drop mode. Set to Portal if you want the panels to be layed out in a grid. Set to Floating if you want to allow the panels to float freely on the region.</Description>
-								</Prop>
 								<Group>
 									<Name>Center Title Bar</Name>
 									<Children>
@@ -956,6 +817,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -975,35 +837,6 @@
 									</Children>
 								</Group>
 								<Group>
-									<Name>Center Size</Name>
-									<Children>
-										<Prop>
-											<Id>CenterWidth</Id>
-											<Name>CenterWidth</Name>
-											<Type>Integer</Type>
-											<Default>400</Default>
-											<Metadata/>
-											<Description>Region width in pixels.</Description>
-										</Prop>
-										<Prop>
-											<Id>CenterMinWidth</Id>
-											<Name>CenterMinWidth</Name>
-											<Type>Integer</Type>
-											<Default>200</Default>
-											<Metadata/>
-											<Description>Region minimum width in pixels.</Description>
-										</Prop>
-										<Prop>
-											<Id>CenterMaxWidth</Id>
-											<Name>CenterMaxWidth</Name>
-											<Type>Integer</Type>
-											<Default>800</Default>
-											<Metadata/>
-											<Description>Region maximum width in pixels.</Description>
-										</Prop>
-									</Children>
-								</Group>
-								<Group>
 									<Name>Center Collapsing</Name>
 									<Children>
 										<Prop>
@@ -1012,25 +845,12 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
 												<Value id="true" desc="True"/>
 												<Value id="false" desc="False"/>
-											</Values>
-											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
-										</Prop>
-										<Prop>
-											<Id>CenterCollapseMode</Id>
-											<Name>CenterCollapseMode</Name>
-											<Type>Combo</Type>
-											<Default>undefined</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Values>
-												<Value id="undefined" desc="Normal"/>
-												<Value id="mini" desc="Mini"/>
 											</Values>
 											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
 										</Prop>
@@ -1039,22 +859,14 @@
 											<Name>CenterCollapsed</Name>
 											<Type>Combo</Type>
 											<Default>false</Default>
-											<Metadata/>
+											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
+											</Metadata>
 											<Values>
 												<Value id="true" desc="True"/>
 												<Value id="false" desc="False"/>
 											</Values>
 											<Description>True to render the region collapsed, false to render it expanded.</Description>
-										</Prop>
-										<Prop>
-											<Id>CenterCollapsedMargins</Id>
-											<Name>CenterCollapsedMargins</Name>
-											<Type>Text</Type>
-											<Default>0,0,0,0</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Description>Region margins when collapsed, in the format: top, right, bottom, left.</Description>
 										</Prop>
 									</Children>
 								</Group>
@@ -1067,6 +879,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -1074,20 +887,6 @@
 												<Value id="false" desc="False"/>
 											</Values>
 											<Description>True to allow clicking a collapsed region's bar to display the region's panel floated above the layout, false to force the user to fully expand a collapsed region by clicking the expand button to see it again.</Description>
-										</Prop>
-										<Prop>
-											<Id>CenterAutoHide</Id>
-											<Name>CenterAutoHide</Name>
-											<Type>Combo</Type>
-											<Default>false</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Values>
-												<Value id="true" desc="True"/>
-												<Value id="false" desc="False"/>
-											</Values>
-											<Description>When a collapsed region's bar is clicked, the region's panel will be displayed as a floated panel. If autoHide is true, the panel will automatically hide after the user mouses out of the panel. If autoHide is false, the panel will continue to display until the user clicks outside of the panel.</Description>
 										</Prop>
 									</Children>
 								</Group>
@@ -1100,6 +899,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -1130,7 +930,9 @@
 									<Name>EastHidden</Name>
 									<Type>Combo</Type>
 									<Default>false</Default>
-									<Metadata/>
+									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
+									</Metadata>
 									<Values>
 										<Value id="true" desc="True"/>
 										<Value id="false" desc="False"/>
@@ -1143,6 +945,7 @@
 									<Type>Combo</Type>
 									<Default>true</Default>
 									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Values>
@@ -1157,6 +960,7 @@
 									<Type>Combo</Type>
 									<Default>true</Default>
 									<Metadata>
+										<Value name="FlagComboIsBoolean">true</Value>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Values>
@@ -1197,21 +1001,6 @@
 									</Values>
 									<Description>The layout type to be used in this container.</Description>
 								</Prop>
-								<Prop>
-									<Id>EastDragDropMode</Id>
-									<Name>EastDragDropMode</Name>
-									<Type>Combo</Type>
-									<Default>disabled</Default>
-									<Metadata>
-										<Value name="FlagScope">DesignTime</Value>
-									</Metadata>
-									<Values>
-										<Value id="disabled" desc="Disabled"/>
-										<Value id="portal" desc="Portal"/>
-										<Value id="floating" desc="Floating"/>
-									</Values>
-									<Description>Region panels drag/drop mode. Set to Portal if you want the panels to be layed out in a grid. Set to Floating if you want to allow the panels to float freely on the region.</Description>
-								</Prop>
 								<Group>
 									<Name>East Title Bar</Name>
 									<Children>
@@ -1221,6 +1010,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -1245,10 +1035,10 @@
 										<Prop>
 											<Id>EastWidth</Id>
 											<Name>EastWidth</Name>
-											<Type>Integer</Type>
+											<Type>Text</Type>
 											<Default>200</Default>
 											<Metadata/>
-											<Description>Region width in pixels.</Description>
+											<Description>Region initial width. It can be expressed in pixels or with a percentage.</Description>
 										</Prop>
 										<Prop>
 											<Id>EastMinWidth</Id>
@@ -1277,25 +1067,12 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
 												<Value id="true" desc="True"/>
 												<Value id="false" desc="False"/>
-											</Values>
-											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
-										</Prop>
-										<Prop>
-											<Id>EastCollapseMode</Id>
-											<Name>EastCollapseMode</Name>
-											<Type>Combo</Type>
-											<Default>undefined</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Values>
-												<Value id="undefined" desc="Normal"/>
-												<Value id="mini" desc="Mini"/>
 											</Values>
 											<Description>True to allow the user to collapse this region. If true, an expand/collapse tool button will automatically be rendered into the title bar of the region, otherwise the button will not be shown. Note that a title bar is required to display the toggle button.</Description>
 										</Prop>
@@ -1304,22 +1081,14 @@
 											<Name>EastCollapsed</Name>
 											<Type>Combo</Type>
 											<Default>false</Default>
-											<Metadata/>
+											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
+											</Metadata>
 											<Values>
 												<Value id="true" desc="True"/>
 												<Value id="false" desc="False"/>
 											</Values>
 											<Description>True to render the region collapsed, false to render it expanded.</Description>
-										</Prop>
-										<Prop>
-											<Id>EastCollapsedMargins</Id>
-											<Name>EastCollapsedMargins</Name>
-											<Type>Text</Type>
-											<Default>0,0,0,0</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Description>Region margins when collapsed, in the format: top, right, bottom, left.</Description>
 										</Prop>
 									</Children>
 								</Group>
@@ -1332,6 +1101,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -1339,20 +1109,6 @@
 												<Value id="false" desc="False"/>
 											</Values>
 											<Description>True to allow clicking a collapsed region's bar to display the region's panel floated above the layout, false to force the user to fully expand a collapsed region by clicking the expand button to see it again.</Description>
-										</Prop>
-										<Prop>
-											<Id>EastAutoHide</Id>
-											<Name>EastAutoHide</Name>
-											<Type>Combo</Type>
-											<Default>false</Default>
-											<Metadata>
-												<Value name="FlagScope">DesignTime</Value>
-											</Metadata>
-											<Values>
-												<Value id="true" desc="True"/>
-												<Value id="false" desc="False"/>
-											</Values>
-											<Description>When a collapsed region's bar is clicked, the region's panel will be displayed as a floated panel. If autoHide is true, the panel will automatically hide after the user mouses out of the panel. If autoHide is false, the panel will continue to display until the user clicks outside of the panel.</Description>
 										</Prop>
 									</Children>
 								</Group>
@@ -1365,6 +1121,7 @@
 											<Type>Combo</Type>
 											<Default>true</Default>
 											<Metadata>
+												<Value name="FlagComboIsBoolean">true</Value>
 												<Value name="FlagScope">DesignTime</Value>
 											</Metadata>
 											<Values>
@@ -1397,7 +1154,9 @@
 							<Name>Stateful</Name>
 							<Type>Combo</Type>
 							<Default>true</Default>
-							<Metadata />
+							<Metadata>
+								<Value name="FlagComboIsBoolean">true</Value>
+							</Metadata>
 							<Values>
 								<Value id="true" desc="True" />
 								<Value id="false" desc="False" />

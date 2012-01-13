@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0"?>
 <ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<Version>1.1.0.378</Version>
+	<Version>2.0.0.0</Version>
 	<IncludeInControlInfo>false</IncludeInControlInfo>
 	<RuntimeRender>gxui-all.js</RuntimeRender>
 	<GxResources />
@@ -14,7 +14,6 @@
 	<ShowMethod>show</ShowMethod>
 	<ReferencedFiles>
 		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
-		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
 		<SharedFile>ext/ext-all.js</SharedFile>
 		<File>gxui-all.css</File>
 	</ReferencedFiles>
@@ -24,44 +23,44 @@
 	</SupportFiles>
 	<Methods>
 		<Method>
-			<Name>hideRegion</Name>
-			<Signature>hideRegion(regionKey:Character)</Signature>
+			<Name>HideRegion</Name>
+			<Signature>HideRegion(regionKey:Character)</Signature>
 			<Parameters>
 				<Parameter>Character</Parameter>
 			</Parameters>
 		</Method>
 		<Method>
-			<Name>showRegion</Name>
-			<Signature>showRegion(regionKey:Character)</Signature>
+			<Name>ShowRegion</Name>
+			<Signature>ShowRegion(regionKey:Character)</Signature>
 			<Parameters>
 				<Parameter>Character</Parameter>
 			</Parameters>
 		</Method>
 		<Method>
-			<Name>collapseRegion</Name>
-			<Signature>collapseRegion(regionKey:Character)</Signature>
+			<Name>CollapseRegion</Name>
+			<Signature>CollapseRegion(regionKey:Character)</Signature>
 			<Parameters>
 				<Parameter>Character</Parameter>
 			</Parameters>
 		</Method>
 		<Method>
-			<Name>collapseRegion</Name>
-			<Signature>collapseRegion(regionKey:Character, animate:Boolean)</Signature>
+			<Name>CollapseRegion</Name>
+			<Signature>CollapseRegion(regionKey:Character, animate:Boolean)</Signature>
 			<Parameters>
 				<Parameter>Character</Parameter>
 				<Parameter>Boolean</Parameter>
 			</Parameters>
 		</Method>
 		<Method>
-			<Name>expandRegion</Name>
-			<Signature>expandRegion(regionKey:Character)</Signature>
+			<Name>ExpandRegion</Name>
+			<Signature>ExpandRegion(regionKey:Character)</Signature>
 			<Parameters>
 				<Parameter>Character</Parameter>
 			</Parameters>
 		</Method>
 		<Method>
-			<Name>expandRegion</Name>
-			<Signature>expandRegion(regionKey:Character, animate:Boolean)</Signature>
+			<Name>ExpandRegion</Name>
+			<Signature>ExpandRegion(regionKey:Character, animate:Boolean)</Signature>
 			<Parameters>
 				<Parameter>Character</Parameter>
 				<Parameter>Boolean</Parameter>

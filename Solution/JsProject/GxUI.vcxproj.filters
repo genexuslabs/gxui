@@ -1,0 +1,463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Build">
+      <UniqueIdentifier>{254bfe2e-4a46-460f-a396-e27de8797411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ext_Reference">
+      <UniqueIdentifier>{b5168c2a-f18a-4650-ab35-98fc5d7a0929}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{b1a61519-4897-4a17-a714-421de52055be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Properties">
+      <UniqueIdentifier>{cad30078-4810-4961-ac4f-3fdd76f3b13e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GX">
+      <UniqueIdentifier>{2099ce52-42f6-4cad-989d-8f84da81bb2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Panel">
+      <UniqueIdentifier>{639cf479-e735-4840-bcf1-9470b236ff1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Panel\Design">
+      <UniqueIdentifier>{a1bc4cdb-d71a-447c-8bea-a37726aaca49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Treeview">
+      <UniqueIdentifier>{b5f9d15f-e5ea-4542-8cff-cc4ee4709c12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Treeview\design">
+      <UniqueIdentifier>{9abaa2b2-cb5a-4d42-8886-839cffa7ffc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Settings">
+      <UniqueIdentifier>{0918820b-17c2-4b1e-a3bb-3f2c116bc00b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Settings\design">
+      <UniqueIdentifier>{1c571b31-9004-4f42-90d2-0ad7fa88d28f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toolbar">
+      <UniqueIdentifier>{bb3f24ec-27f1-412c-bab1-855c0e45a670}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toolbar\design">
+      <UniqueIdentifier>{aa3c8027-7c9e-4fff-9315-4b1c271eb85d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TabPanel">
+      <UniqueIdentifier>{0e8a253e-cafc-47fb-92f4-ae8a7214cc48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TabPanel\design">
+      <UniqueIdentifier>{a8a1f335-148b-4fd4-bd86-419718d4801e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Layout">
+      <UniqueIdentifier>{7bd69583-c44b-4875-8f6e-266adc4cb61c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Layout\design">
+      <UniqueIdentifier>{e6006e89-f208-4245-bf70-7ea87e9e8600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ux">
+      <UniqueIdentifier>{6c71e6d3-60d0-4325-914d-27e712213e5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ux\NestedViewport">
+      <UniqueIdentifier>{4a71714f-bd64-457c-97ae-92ecb5c3aebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ux\Portal">
+      <UniqueIdentifier>{eea8e2ca-eeee-4b47-9f3a-fce80448375f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ux\ColorField">
+      <UniqueIdentifier>{9c75bcbd-ad62-4699-8877-c9a263eb6d17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ux\Grid">
+      <UniqueIdentifier>{ecc91b80-750c-4ca4-a246-6be536fcf04e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ux\Form">
+      <UniqueIdentifier>{5245dd07-dd0c-4c62-8a56-dd291a0a513a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ux\Format">
+      <UniqueIdentifier>{4abe66c0-5cb0-4c39-8ad9-2108b7d956f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{6cde11bd-81a2-42f4-9d55-2719aabd062f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources\css">
+      <UniqueIdentifier>{f7b2310e-7e2e-4720-af9f-a9f3893faa85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GridExtension">
+      <UniqueIdentifier>{6fd89b20-f875-4041-bce4-3ef8054aed3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GridExtension\design">
+      <UniqueIdentifier>{bba149b4-9a99-436e-9cba-4825252145de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Viewport">
+      <UniqueIdentifier>{e34f2ea5-9a4e-409c-809c-0d798c9fa000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Viewport\design">
+      <UniqueIdentifier>{e66d266a-7e90-43ab-8be5-88d10d431df4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Message">
+      <UniqueIdentifier>{6b93b4b4-400e-462f-8273-383e4303647d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Message\design">
+      <UniqueIdentifier>{e44b9840-0478-472e-9289-4d2b21f98369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{a0cb7292-1cb0-4edf-88e5-86dc69be3258}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\design">
+      <UniqueIdentifier>{6644d1d8-058e-4860-b962-f1e8daf5e9ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EventObject">
+      <UniqueIdentifier>{680fc78e-5b54-4489-bebd-1fb7a37ca3d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EventObject\design">
+      <UniqueIdentifier>{6fb97ed7-2331-4e14-9106-82261f6098c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="KeyMap">
+      <UniqueIdentifier>{0072aff5-f82c-4582-b50d-3acebd981346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="KeyMap\design">
+      <UniqueIdentifier>{4f2598ca-2be6-428a-b19b-ef40aa857d9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Docs">
+      <UniqueIdentifier>{15e06cd6-5f7b-4471-9cab-a8ebadb0811c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BuildAndUpdate.bat">
+      <Filter>Build</Filter>
+    </None>
+    <None Include="BuildBatch.bat">
+      <Filter>Build</Filter>
+    </None>
+    <None Include="gxui.msbuild">
+      <Filter>Build</Filter>
+    </None>
+    <None Include="UpdateGX.bat">
+      <Filter>Build</Filter>
+    </None>
+    <None Include="UpdateKB.bat">
+      <Filter>Build</Filter>
+    </None>
+    <None Include="..\vswd-ext_2.2.js">
+      <Filter>Ext_Reference</Filter>
+    </None>
+    <None Include="..\..\core\gxui.ext.FloatingDropTarget.js">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="..\..\core\gxui.ext.LayoutManager.js">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="..\..\core\gxui.ext.Portal.js">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="..\..\core\gxui.ext.Portlet.js">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="..\..\core\gxui.js">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="..\..\core\gxui.SimpleCache.js">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="..\..\core\gxui.UserControl.js">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="..\..\core\Properties\gxui.Properties.Object.js">
+      <Filter>Core\Properties</Filter>
+    </None>
+    <None Include="..\..\core\Properties\gxui.Properties.ObjectDefsRepository.js">
+      <Filter>Core\Properties</Filter>
+    </None>
+    <None Include="..\..\core\Properties\gxui.Properties.ObjectsRepository.js">
+      <Filter>Core\Properties</Filter>
+    </None>
+    <None Include="..\..\core\GX\gxui.GX.WebComponent.js">
+      <Filter>Core\GX</Filter>
+    </None>
+    <None Include="..\..\Controls\Panel.control">
+      <Filter>Panel</Filter>
+    </None>
+    <None Include="..\..\Controls\Panel\PanelRender.js">
+      <Filter>Panel</Filter>
+    </None>
+    <None Include="..\..\Controls\Panel\design\panel-title-light-bg.gif">
+      <Filter>Panel\Design</Filter>
+    </None>
+    <None Include="..\..\Controls\Panel\design\panel.ico">
+      <Filter>Panel\Design</Filter>
+    </None>
+    <None Include="..\..\Controls\Panel\design\PanelProperties.xml">
+      <Filter>Panel\Design</Filter>
+    </None>
+    <None Include="..\..\Controls\Panel\design\PanelRender.xsl">
+      <Filter>Panel\Design</Filter>
+    </None>
+    <None Include="..\..\Controls\Treeview.control">
+      <Filter>Treeview</Filter>
+    </None>
+    <None Include="..\..\Controls\Treeview\TreeviewRender.js">
+      <Filter>Treeview</Filter>
+    </None>
+    <None Include="..\..\Controls\Treeview\design\treeview.gif">
+      <Filter>Treeview\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Treeview\design\treeview.ico">
+      <Filter>Treeview\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Treeview\design\Treeview.xpz">
+      <Filter>Treeview\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Treeview\design\TreeviewProperties.xml">
+      <Filter>Treeview\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Treeview\design\TreeviewRender.xsl">
+      <Filter>Treeview\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Settings.control">
+      <Filter>Settings</Filter>
+    </None>
+    <None Include="..\..\Controls\Settings\SettingsRender.js">
+      <Filter>Settings</Filter>
+    </None>
+    <None Include="..\..\Controls\Settings\design\settings.ico">
+      <Filter>Settings\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Settings\design\settings.png">
+      <Filter>Settings\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Settings\design\Settings.xpz">
+      <Filter>Settings\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Settings\design\SettingsProperties.xml">
+      <Filter>Settings\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Settings\design\SettingsRender.xsl">
+      <Filter>Settings\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Toolbar.control">
+      <Filter>Toolbar</Filter>
+    </None>
+    <None Include="..\..\Controls\Toolbar\toolbar.css">
+      <Filter>Toolbar</Filter>
+    </None>
+    <None Include="..\..\Controls\Toolbar\ToolbarRender.js">
+      <Filter>Toolbar</Filter>
+    </None>
+    <None Include="..\..\Controls\Toolbar\design\toolbar.bmp">
+      <Filter>Toolbar\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Toolbar\design\toolbar.ico">
+      <Filter>Toolbar\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Toolbar\design\toolbar.xpz">
+      <Filter>Toolbar\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Toolbar\design\ToolbarProperties.xml">
+      <Filter>Toolbar\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Toolbar\design\ToolbarRender.xsl">
+      <Filter>Toolbar\design</Filter>
+    </None>
+    <None Include="..\..\Controls\TabPanel.control">
+      <Filter>TabPanel</Filter>
+    </None>
+    <None Include="..\..\Controls\TabPanel\TabPanelRender.js">
+      <Filter>TabPanel</Filter>
+    </None>
+    <None Include="..\..\Controls\TabPanel\design\add.gif">
+      <Filter>TabPanel\design</Filter>
+    </None>
+    <None Include="..\..\Controls\TabPanel\design\panel-title-bg.gif">
+      <Filter>TabPanel\design</Filter>
+    </None>
+    <None Include="..\..\Controls\TabPanel\design\panel-title-light-bg.gif">
+      <Filter>TabPanel\design</Filter>
+    </None>
+    <None Include="..\..\Controls\TabPanel\design\tab-close-on.gif">
+      <Filter>TabPanel\design</Filter>
+    </None>
+    <None Include="..\..\Controls\TabPanel\design\tab-unselected.gif">
+      <Filter>TabPanel\design</Filter>
+    </None>
+    <None Include="..\..\Controls\TabPanel\design\tabpanel.ico">
+      <Filter>TabPanel\design</Filter>
+    </None>
+    <None Include="..\..\Controls\TabPanel\design\TabPanel.xpz">
+      <Filter>TabPanel\design</Filter>
+    </None>
+    <None Include="..\..\Controls\TabPanel\design\TabPanelProperties.xml">
+      <Filter>TabPanel\design</Filter>
+    </None>
+    <None Include="..\..\Controls\TabPanel\design\TabPanelRender.xsl">
+      <Filter>TabPanel\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Layout.control">
+      <Filter>Layout</Filter>
+    </None>
+    <None Include="..\..\Controls\Layout\LayoutRender.js">
+      <Filter>Layout</Filter>
+    </None>
+    <None Include="..\..\Controls\Layout\design\layout.ico">
+      <Filter>Layout\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Layout\design\LayoutProperties.xml">
+      <Filter>Layout\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Layout\design\LayoutRender.xsl">
+      <Filter>Layout\design</Filter>
+    </None>
+    <None Include="..\..\ux\NestedViewport\NestedViewport.css">
+      <Filter>ux\NestedViewport</Filter>
+    </None>
+    <None Include="..\..\ux\NestedViewport\NestedViewport.js">
+      <Filter>ux\NestedViewport</Filter>
+    </None>
+    <None Include="..\..\ux\portal\portal.css">
+      <Filter>ux\Portal</Filter>
+    </None>
+    <None Include="..\..\ux\portal\Portal.js">
+      <Filter>ux\Portal</Filter>
+    </None>
+    <None Include="..\..\ux\portal\PortalColumn.js">
+      <Filter>ux\Portal</Filter>
+    </None>
+    <None Include="..\..\ux\portal\Portlet.js">
+      <Filter>ux\Portal</Filter>
+    </None>
+    <None Include="..\..\ux\ColorPicker\colorfield.js">
+      <Filter>ux\ColorField</Filter>
+    </None>
+    <None Include="..\..\ux\grid\RadioSelectionModel.js">
+      <Filter>ux\Grid</Filter>
+    </None>
+    <None Include="..\..\ux\grid\SmartCheckboxSelectionModel.js">
+      <Filter>ux\Grid</Filter>
+    </None>
+    <None Include="..\..\ux\form\DateTime.js">
+      <Filter>ux\Form</Filter>
+    </None>
+    <None Include="..\..\ux\format\format.js">
+      <Filter>ux\Format</Filter>
+    </None>
+    <None Include="..\..\resources\css\gxui.css">
+      <Filter>resources\css</Filter>
+    </None>
+    <None Include="..\..\Controls\GridExtension\columnLock.css">
+      <Filter>GridExtension</Filter>
+    </None>
+    <None Include="..\..\Controls\GridExtension\columnLock.js">
+      <Filter>GridExtension</Filter>
+    </None>
+    <None Include="..\..\Controls\GridExtension\ColumnRenderers.js">
+      <Filter>GridExtension</Filter>
+    </None>
+    <None Include="..\..\Controls\GridExtension\DragDrop.js">
+      <Filter>GridExtension</Filter>
+    </None>
+    <None Include="..\..\Controls\GridExtension.control">
+      <Filter>GridExtension</Filter>
+    </None>
+    <None Include="..\..\Controls\GridExtension\GridExtension.js">
+      <Filter>GridExtension</Filter>
+    </None>
+    <None Include="..\..\Controls\GridExtension\design\GridExtensionColumnProperties.xml">
+      <Filter>GridExtension\design</Filter>
+    </None>
+    <None Include="..\..\Controls\GridExtension\design\GridExtensionProperties.xml">
+      <Filter>GridExtension\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Viewport.control">
+      <Filter>Viewport</Filter>
+    </None>
+    <None Include="..\..\Controls\Viewport\ViewportRender.js">
+      <Filter>Viewport</Filter>
+    </None>
+    <None Include="..\..\Controls\Viewport\design\viewport.ico">
+      <Filter>Viewport\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Viewport\design\ViewportProperties.xml">
+      <Filter>Viewport\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Viewport\design\ViewportRender.xsl">
+      <Filter>Viewport\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Message.control">
+      <Filter>Message</Filter>
+    </None>
+    <None Include="..\..\Controls\Message\MessageRender.js">
+      <Filter>Message</Filter>
+    </None>
+    <None Include="..\..\Controls\Message\design\message.ico">
+      <Filter>Message\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Message\design\message.png">
+      <Filter>Message\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Message\design\MessageProperties.xml">
+      <Filter>Message\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Message\design\MessageRender.xsl">
+      <Filter>Message\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Menu.control">
+      <Filter>Menu</Filter>
+    </None>
+    <None Include="..\..\Controls\Menu\MenuRender.js">
+      <Filter>Menu</Filter>
+    </None>
+    <None Include="..\..\Controls\Menu\design\menu.bmp">
+      <Filter>Menu\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Menu\design\menu.ico">
+      <Filter>Menu\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Menu\design\menu.xpz">
+      <Filter>Menu\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Menu\design\MenuProperties.xml">
+      <Filter>Menu\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Menu\design\MenuRender.xsl">
+      <Filter>Menu\design</Filter>
+    </None>
+    <None Include="..\..\Controls\EventObject.control">
+      <Filter>EventObject</Filter>
+    </None>
+    <None Include="..\..\Controls\EventObject\EventObjectRender.js">
+      <Filter>EventObject</Filter>
+    </None>
+    <None Include="..\..\Controls\EventObject\design\EventObject.ico">
+      <Filter>EventObject\design</Filter>
+    </None>
+    <None Include="..\..\Controls\EventObject\design\EventObject.png">
+      <Filter>EventObject\design</Filter>
+    </None>
+    <None Include="..\..\Controls\EventObject\design\EventObjectProperties.xml">
+      <Filter>EventObject\design</Filter>
+    </None>
+    <None Include="..\..\Controls\EventObject\design\EventObjectRender.xsl">
+      <Filter>EventObject\design</Filter>
+    </None>
+    <None Include="..\..\Controls\KeyMap.control">
+      <Filter>KeyMap</Filter>
+    </None>
+    <None Include="..\..\Controls\KeyMap\KeyMapRender.js">
+      <Filter>KeyMap</Filter>
+    </None>
+    <None Include="..\..\Controls\KeyMap\design\KeyMap.ico">
+      <Filter>KeyMap\design</Filter>
+    </None>
+    <None Include="..\..\Controls\KeyMap\design\KeyMap.png">
+      <Filter>KeyMap\design</Filter>
+    </None>
+    <None Include="..\..\Controls\KeyMap\design\KeyMapProperties.xml">
+      <Filter>KeyMap\design</Filter>
+    </None>
+    <None Include="..\..\Controls\KeyMap\design\KeyMapRender.xsl">
+      <Filter>KeyMap\design</Filter>
+    </None>
+    <None Include="..\..\JSDuckProperties.xslt">
+      <Filter>Docs</Filter>
+    </None>
+    <None Include="..\..\Properties.xslt">
+      <Filter>Docs</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{60C0CAF7-223D-4C21-BE93-A1CC7EC06A1B}</ProjectGuid>
+    <RootNamespace>PropertyConstants</RootNamespace>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(MSBuildBinPath)\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(MSBuildBinPath)\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Rebuild</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(MSBuildBinPath)\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Clean</NMakeCleanCommandLine>
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\Base\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">c:\WINDOWS\Microsoft.NET\Framework\v3.5\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">c:\WINDOWS\Microsoft.NET\Framework\v3.5\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Rebuild</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">c:\WINDOWS\Microsoft.NET\Framework\v3.5\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Clean</NMakeCleanCommandLine>
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\..\JSDuckProperties.xslt">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\..\Properties.xslt" />
+    <None Include="BuildAndUpdate.bat" />
+    <None Include="BuildBatch.bat" />
+    <None Include="gxui.msbuild" />
+    <None Include="UpdateGX.bat" />
+    <None Include="UpdateKB.bat" />
+    <None Include="..\vswd-ext_2.2.js" />
+    <None Include="..\..\core\gxui.ext.FloatingDropTarget.js" />
+    <None Include="..\..\core\gxui.ext.LayoutManager.js" />
+    <None Include="..\..\core\gxui.ext.Portal.js" />
+    <None Include="..\..\core\gxui.ext.Portlet.js" />
+    <None Include="..\..\core\gxui.js" />
+    <None Include="..\..\core\gxui.SimpleCache.js" />
+    <None Include="..\..\core\gxui.UserControl.js" />
+    <None Include="..\..\core\Properties\gxui.Properties.Object.js" />
+    <None Include="..\..\core\Properties\gxui.Properties.ObjectDefsRepository.js" />
+    <None Include="..\..\core\Properties\gxui.Properties.ObjectsRepository.js" />
+    <None Include="..\..\core\GX\gxui.GX.WebComponent.js" />
+    <None Include="..\..\Controls\Panel.control" />
+    <None Include="..\..\Controls\Panel\PanelRender.js" />
+    <None Include="..\..\Controls\Panel\design\panel-title-light-bg.gif" />
+    <None Include="..\..\Controls\Panel\design\panel.ico" />
+    <None Include="..\..\Controls\Panel\design\PanelProperties.xml" />
+    <None Include="..\..\Controls\Panel\design\PanelRender.xsl" />
+    <None Include="..\..\Controls\Treeview.control" />
+    <None Include="..\..\Controls\Treeview\TreeviewRender.js" />
+    <None Include="..\..\Controls\Treeview\design\treeview.gif" />
+    <None Include="..\..\Controls\Treeview\design\treeview.ico" />
+    <None Include="..\..\Controls\Treeview\design\Treeview.xpz" />
+    <None Include="..\..\Controls\Treeview\design\TreeviewProperties.xml" />
+    <None Include="..\..\Controls\Treeview\design\TreeviewRender.xsl" />
+    <None Include="..\..\Controls\Settings.control" />
+    <None Include="..\..\Controls\Settings\SettingsRender.js" />
+    <None Include="..\..\Controls\Settings\design\settings.ico" />
+    <None Include="..\..\Controls\Settings\design\settings.png" />
+    <None Include="..\..\Controls\Settings\design\Settings.xpz" />
+    <None Include="..\..\Controls\Settings\design\SettingsProperties.xml" />
+    <None Include="..\..\Controls\Settings\design\SettingsRender.xsl" />
+    <None Include="..\..\Controls\Toolbar.control" />
+    <None Include="..\..\Controls\Toolbar\toolbar.css" />
+    <None Include="..\..\Controls\Toolbar\ToolbarRender.js" />
+    <None Include="..\..\Controls\Toolbar\design\toolbar.bmp" />
+    <None Include="..\..\Controls\Toolbar\design\toolbar.ico" />
+    <None Include="..\..\Controls\Toolbar\design\toolbar.xpz" />
+    <None Include="..\..\Controls\Toolbar\design\ToolbarProperties.xml" />
+    <None Include="..\..\Controls\Toolbar\design\ToolbarRender.xsl" />
+    <None Include="..\..\Controls\TabPanel.control" />
+    <None Include="..\..\Controls\TabPanel\TabPanelRender.js" />
+    <None Include="..\..\Controls\TabPanel\design\add.gif" />
+    <None Include="..\..\Controls\TabPanel\design\panel-title-bg.gif" />
+    <None Include="..\..\Controls\TabPanel\design\panel-title-light-bg.gif" />
+    <None Include="..\..\Controls\TabPanel\design\tab-close-on.gif" />
+    <None Include="..\..\Controls\TabPanel\design\tab-unselected.gif" />
+    <None Include="..\..\Controls\TabPanel\design\tabpanel.ico" />
+    <None Include="..\..\Controls\TabPanel\design\TabPanel.xpz" />
+    <None Include="..\..\Controls\TabPanel\design\TabPanelProperties.xml" />
+    <None Include="..\..\Controls\TabPanel\design\TabPanelRender.xsl" />
+    <None Include="..\..\Controls\Layout.control" />
+    <None Include="..\..\Controls\Layout\LayoutRender.js" />
+    <None Include="..\..\Controls\Layout\design\layout.ico" />
+    <None Include="..\..\Controls\Layout\design\LayoutProperties.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\..\Controls\Layout\design\LayoutRender.xsl" />
+    <None Include="..\..\ux\NestedViewport\NestedViewport.css" />
+    <None Include="..\..\ux\NestedViewport\NestedViewport.js" />
+    <None Include="..\..\ux\portal\portal.css" />
+    <None Include="..\..\ux\portal\Portal.js" />
+    <None Include="..\..\ux\portal\PortalColumn.js" />
+    <None Include="..\..\ux\portal\Portlet.js" />
+    <None Include="..\..\ux\ColorPicker\colorfield.js" />
+    <None Include="..\..\ux\grid\RadioSelectionModel.js" />
+    <None Include="..\..\ux\grid\SmartCheckboxSelectionModel.js" />
+    <None Include="..\..\ux\form\DateTime.js" />
+    <None Include="..\..\ux\format\format.js" />
+    <None Include="..\..\resources\css\gxui.css" />
+    <None Include="..\..\Controls\GridExtension\columnLock.css" />
+    <None Include="..\..\Controls\GridExtension\columnLock.js" />
+    <None Include="..\..\Controls\GridExtension\ColumnRenderers.js" />
+    <None Include="..\..\Controls\GridExtension\DragDrop.js" />
+    <None Include="..\..\Controls\GridExtension.control" />
+    <None Include="..\..\Controls\GridExtension\GridExtension.js" />
+    <None Include="..\..\Controls\GridExtension\design\GridExtensionColumnProperties.xml" />
+    <None Include="..\..\Controls\GridExtension\design\GridExtensionProperties.xml" />
+    <None Include="..\..\Controls\Viewport.control" />
+    <None Include="..\..\Controls\Viewport\ViewportRender.js" />
+    <None Include="..\..\Controls\Viewport\design\viewport.ico" />
+    <None Include="..\..\Controls\Viewport\design\ViewportProperties.xml" />
+    <None Include="..\..\Controls\Viewport\design\ViewportRender.xsl" />
+    <None Include="..\..\Controls\Message.control" />
+    <None Include="..\..\Controls\Message\MessageRender.js" />
+    <None Include="..\..\Controls\Message\design\message.ico" />
+    <None Include="..\..\Controls\Message\design\message.png" />
+    <None Include="..\..\Controls\Message\design\MessageProperties.xml" />
+    <None Include="..\..\Controls\Message\design\MessageRender.xsl" />
+    <None Include="..\..\Controls\Menu.control" />
+    <None Include="..\..\Controls\Menu\MenuRender.js" />
+    <None Include="..\..\Controls\Menu\design\menu.bmp" />
+    <None Include="..\..\Controls\Menu\design\menu.ico" />
+    <None Include="..\..\Controls\Menu\design\menu.xpz" />
+    <None Include="..\..\Controls\Menu\design\MenuProperties.xml" />
+    <None Include="..\..\Controls\Menu\design\MenuRender.xsl" />
+    <None Include="..\..\Controls\EventObject.control" />
+    <None Include="..\..\Controls\EventObject\EventObjectRender.js" />
+    <None Include="..\..\Controls\EventObject\design\EventObject.ico" />
+    <None Include="..\..\Controls\EventObject\design\EventObject.png" />
+    <None Include="..\..\Controls\EventObject\design\EventObjectProperties.xml" />
+    <None Include="..\..\Controls\EventObject\design\EventObjectRender.xsl" />
+    <None Include="..\..\Controls\KeyMap.control" />
+    <None Include="..\..\Controls\KeyMap\KeyMapRender.js" />
+    <None Include="..\..\Controls\KeyMap\design\KeyMap.ico" />
+    <None Include="..\..\Controls\KeyMap\design\KeyMap.png" />
+    <None Include="..\..\Controls\KeyMap\design\KeyMapProperties.xml" />
+    <None Include="..\..\Controls\KeyMap\design\KeyMapRender.xsl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
