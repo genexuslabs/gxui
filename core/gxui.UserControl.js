@@ -227,7 +227,8 @@ Ext.define('gxui.UserControl', {
 	* @private
 	*/
 	getUniqueId: function () {
-		return "gxui-" + (this.ParentObject ? this.ParentObject.CmpContext || "" + "-" + this.ParentObject.ServerClass || "" : "") + "-" + this.ControlName;
+		var pO = this.ParentObject;
+		return "gxui" + (pO ? (pO.CmpContext ? "-" + pO.CmpContext : "") + "-" + pO.ServerClass || "" : "") + "-" + this.ControlName;
 	}
 });
 

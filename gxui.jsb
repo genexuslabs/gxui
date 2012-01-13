@@ -75,10 +75,13 @@
     <include name="core\gxui.UserControl.js" />
     <include name="Controls\Panel\PanelRender.js" />
     <include name="Controls\Toolbar\ToolbarRender.js" />
+    <include name="extUX\NestedViewport\NestedViewport.js" />
+    <include name="Controls\Layout\LayoutRender.js" />
   </target>
   <target name="gxui-allcss" file="$output\gxui-all.css" debug="False" shorthand="False" shorthand-list="YAHOO.util.Dom.setStyle&#xD;&#xA;YAHOO.util.Dom.getStyle&#xD;&#xA;YAHOO.util.Dom.getRegion&#xD;&#xA;YAHOO.util.Dom.getViewportHeight&#xD;&#xA;YAHOO.util.Dom.getViewportWidth&#xD;&#xA;YAHOO.util.Dom.get&#xD;&#xA;YAHOO.util.Dom.getXY&#xD;&#xA;YAHOO.util.Dom.setXY&#xD;&#xA;YAHOO.util.CustomEvent&#xD;&#xA;YAHOO.util.Event.addListener&#xD;&#xA;YAHOO.util.Event.getEvent&#xD;&#xA;YAHOO.util.Event.getTarget&#xD;&#xA;YAHOO.util.Event.preventDefault&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Event.stopPropagation&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Anim&#xD;&#xA;YAHOO.util.Motion&#xD;&#xA;YAHOO.util.Connect.asyncRequest&#xD;&#xA;YAHOO.util.Connect.setForm&#xD;&#xA;YAHOO.util.Dom&#xD;&#xA;YAHOO.util.Event">
     <include name="resources\css\gxui.css" />
     <include name="Controls\Toolbar\toolbar.css" />
+    <include name="extUX\NestedViewport\NestedViewport.css" />
   </target>
   <file name="resources\images\iconCollapseAll.gif" path="resources\images" />
   <file name="resources\images\iconExpandAll.gif" path="resources\images" />
@@ -98,4 +101,11 @@
   <file name="Controls\Toolbar\ToolbarRender.js" path="Toolbar" />
   <file name="Controls\Toolbar\toolbar.css" path="Toolbar" />
   <file name="Controls\Toolbar.control" path="" />
+  <file name="Controls\Layout\design\LayoutRender.xsl" path="Layout\design" />
+  <file name="Controls\Layout\design\layout.ico" path="Layout\design" />
+  <file name="Controls\Layout\design\LayoutProperties.xml" path="Layout\design" />
+  <file name="Controls\Layout\LayoutRender.js" path="Layout" />
+  <file name="Controls\Layout.control" path="" />
+  <file name="extUX\NestedViewport\NestedViewport.js" path="extUX\NestedViewport" />
+  <file name="extUX\NestedViewport\NestedViewport.css" path="extUX\NestedViewport" />
 </project>
