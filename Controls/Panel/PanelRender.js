@@ -7,6 +7,11 @@
 Ext.define('gxui.Panel', {
 	extend: 'gxui.UserControl',
 
+	/**
+	* @event ButtonPressed
+	* @inheritdoc gxui.Toolbar#ButtonPressed
+	*/
+
 	//private
 	SetToolbarData: function (data) {
 		this.ToolbarData = data;
@@ -141,6 +146,10 @@ Ext.define('gxui.Panel', {
 
 			'hide': function() {
 				this.Visible = false;
+				/**
+				* @event OnClose
+				* Fires after a panel, configured as a Window ({@link #ShowAsWindow} = True), is closed.
+				*/
 				if (this.OnClose) {
 					this.OnClose();
 				}
