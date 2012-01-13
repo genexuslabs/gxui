@@ -26,10 +26,25 @@
 		/**
 		<xsl:choose>
 			<xsl:when test="Type = 'Custom' and Metadata/Value[@name = 'FlagDataTypeFilter']">
-		* @property {<xsl:value-of select="Metadata/Value[@name = 'FlagDataTypeFilter']"/>} <xsl:value-of select="Name"/>
+				<xsl:call-template name="Property">
+					<xsl:with-param name="name" select="Name"/>
+					<xsl:with-param name="type" select="Metadata/Value[@name = 'FlagDataTypeFilter']"/>
+					<xsl:with-param name="default" select="string(Default)"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:when test="Type = 'Combo' and Metadata/Value[@name = 'FlagComboIsBoolean'] = 'true'">
+				<xsl:call-template name="Property">
+					<xsl:with-param name="name" select="Name"/>
+					<xsl:with-param name="type" select="'Boolean'"/>
+					<xsl:with-param name="default" select="string(Default)"/>
+				</xsl:call-template>
 			</xsl:when>
 			<xsl:otherwise>
-		* @property {<xsl:value-of select="Type"/>} <xsl:value-of select="Name"/>
+				<xsl:call-template name="Property">
+					<xsl:with-param name="name" select="Name"/>
+					<xsl:with-param name="type" select="Type"/>
+					<xsl:with-param name="default" select="string(Default)"/>
+				</xsl:call-template>
 			</xsl:otherwise>
 		</xsl:choose>
 		<xsl:if test="Description">
@@ -57,10 +72,24 @@
 
 	<xsl:template match="Values">
 		<xsl:param name="default"/>
-		<xsl:for-each select="Value">
-		* - <xsl:value-of select="@desc"/><xsl:if test="@id = $default"> (default)</xsl:if>
-
+		*<xsl:for-each select="Value">
+		* - <xsl:value-of select="@desc"/><!--xsl:if test="@id = $default"> (default)</xsl:if-->
 			</xsl:for-each>
+		*
+	</xsl:template>
+
+	<xsl:template name="Property">
+		<xsl:param name="name"/>
+		<xsl:param name="type"/>
+		<xsl:param name="default"/>
+		<xsl:choose>
+			<xsl:when test="Type = 'Combo'">
+		* @property {<xsl:value-of select="$type"/>} [<xsl:value-of select="$name"/><xsl:if test="$default!=''">=<xsl:for-each select="Values/Value[@id = $default]"><xsl:value-of select="@desc"/></xsl:for-each></xsl:if>]
+			</xsl:when>
+			<xsl:otherwise>
+		* @property {<xsl:value-of select="$type"/>} [<xsl:value-of select="$name"/><xsl:if test="$default!=''">=<xsl:value-of select="$default"/></xsl:if>]
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
 </xsl:stylesheet>
