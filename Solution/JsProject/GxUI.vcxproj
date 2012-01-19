@@ -60,6 +60,7 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\..\gxui.jsb" />
     <None Include="..\..\JSDuckProperties.xslt">
       <SubType>Designer</SubType>
     </None>
@@ -69,7 +70,6 @@
     <None Include="gxui.msbuild" />
     <None Include="UpdateGX.bat" />
     <None Include="UpdateKB.bat" />
-    <None Include="..\vswd-ext_2.2.js" />
     <None Include="..\..\core\gxui.ext.FloatingDropTarget.js" />
     <None Include="..\..\core\gxui.ext.LayoutManager.js" />
     <None Include="..\..\core\gxui.ext.Portal.js" />

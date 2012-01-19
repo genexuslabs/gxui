@@ -75,31 +75,6 @@ namespace Artech.UC.gxui.Helpers
 		}
 		#endregion
 
-		#region Container
-		public static string BeginContainer(string name, string themeClass, string width, string height)
-		{
-			Dictionary<string, object> properties = new Dictionary<string, object>();
-			properties[Properties.gxui_Container.Width] = width;
-			properties[Properties.gxui_Container.Height] = height;
-			return BeginContainer(name, themeClass, properties);
-		}
-
-		public static string BeginContainer(string name, string themeClass, Dictionary<string, object> properties)
-		{
-			if (properties == null)
-				properties = new Dictionary<string, object>();
-
-			properties[Properties.gxui_Container.Cls] = themeClass;
-
-			return String.Format("{0}<container containerId=\"Body\">", BeginControl("gxui.Container", name, properties));
-		}
-
-		public static string EndContainer()
-		{
-			return "</container></gxgxui.Container>";
-		}
-		#endregion
-
 		#region Panel
 		public static string BeginPanel(string name, string themeClass, string title, string width, string height)
 		{
