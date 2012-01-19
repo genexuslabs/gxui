@@ -75,8 +75,8 @@
     <include name="core\gxui.UserControl.js" />
     <include name="Controls\Panel\PanelRender.js" />
     <include name="Controls\Toolbar\ToolbarRender.js" />
-    <include name="extUX\NestedViewport\NestedViewport.js" />
     <include name="Controls\Layout\LayoutRender.js" />
+    <include name="Controls\Treeview\TreeviewRender.js" />
   </target>
   <target name="gxui-allcss" file="$output\gxui-all.css" debug="False" shorthand="False" shorthand-list="YAHOO.util.Dom.setStyle&#xD;&#xA;YAHOO.util.Dom.getStyle&#xD;&#xA;YAHOO.util.Dom.getRegion&#xD;&#xA;YAHOO.util.Dom.getViewportHeight&#xD;&#xA;YAHOO.util.Dom.getViewportWidth&#xD;&#xA;YAHOO.util.Dom.get&#xD;&#xA;YAHOO.util.Dom.getXY&#xD;&#xA;YAHOO.util.Dom.setXY&#xD;&#xA;YAHOO.util.CustomEvent&#xD;&#xA;YAHOO.util.Event.addListener&#xD;&#xA;YAHOO.util.Event.getEvent&#xD;&#xA;YAHOO.util.Event.getTarget&#xD;&#xA;YAHOO.util.Event.preventDefault&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Event.stopPropagation&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Anim&#xD;&#xA;YAHOO.util.Motion&#xD;&#xA;YAHOO.util.Connect.asyncRequest&#xD;&#xA;YAHOO.util.Connect.setForm&#xD;&#xA;YAHOO.util.Dom&#xD;&#xA;YAHOO.util.Event">
     <include name="resources\css\gxui.css" />
@@ -108,4 +108,11 @@
   <file name="Controls\Layout.control" path="" />
   <file name="extUX\NestedViewport\NestedViewport.js" path="extUX\NestedViewport" />
   <file name="extUX\NestedViewport\NestedViewport.css" path="extUX\NestedViewport" />
+  <file name="Controls\Treeview\design\TreeviewRender.xsl" path="Treeview\design" />
+  <file name="Controls\Treeview\design\treeview.gif" path="Treeview\design" />
+  <file name="Controls\Treeview\design\treeview.ico" path="Treeview\design" />
+  <file name="Controls\Treeview\design\Treeview.xpz" path="Treeview\design" />
+  <file name="Controls\Treeview\design\TreeviewProperties.xml" path="Treeview\design" />
+  <file name="Controls\Treeview\TreeviewRender.js" path="Treeview" />
+  <file name="Controls\Treeview.control" path="" />
 </project>

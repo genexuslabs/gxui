@@ -124,13 +124,14 @@ gxui = function () {
 		/**
 		* Clones an object.
 		* @param {Object} object to Clone.
+		* @param {Function} [fn] Function to apply to the clone.
 		* @return {Boolean} Cloned object.
 		* @method
 		* @ignore
 		*/
-		clone: function (obj) {
+		clone: function (obj, fn) {
 			if (obj instanceof Array)
-				return gxui.copyArray(obj);
+				return gxui.copyArray(obj, fn);
 			if (typeof (obj) != 'object')
 				return obj;
 			if (obj == null)
@@ -139,21 +140,24 @@ gxui = function () {
 				return obj.clone();
 			var cloneObj = new Object();
 			for (var i in obj)
-				cloneObj[i] = gxui.clone(obj[i]);
+				cloneObj[i] = gxui.clone(obj[i], fn);
+			if (fn && typeof (fn) == 'function')
+				fn(cloneObj);
 			return cloneObj;
 		},
 
 		/**
 		* Clones an array.
 		* @param {Object} array to Clone.
+		* @param {Function} [fn] Function to apply to the clone.
 		* @return {Boolean} Cloned array.
 		* @method
 		* @ignore
 		*/
-		copyArray: function (arr) {
+		copyArray: function (arr, fn) {
 			var res = [];
 			for (var i = 0; i < arr.length; i++)
-				res.push(gxui.clone(arr[i]));
+				res.push(gxui.clone(arr[i], fn));
 			return res;
 		},
 

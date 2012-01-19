@@ -28,7 +28,13 @@
 					<Type>Boolean</Type>
 					<Default>true</Default>
 					<Metadata />
-					<Description>True to add the control to its parent GxUI control (if there's one). Defaults to true.</Description>
+					<Description>
+						True to add the control to its parent GxUI control (if it's contained inside one). This property is useful when the control
+						* is contained inside a {@link gxui.Panel Panel}, {@link gxui.TabPanel TabPanel} or {@link gxui.Layout Layout} control and you want its dimensions to be
+						* controlled from the parent control.
+						* Have in mind that if there are other controls between the control and its parent (for example, a Table or Group), in runtime the parent control will move
+						* the control out of the controls in the middle, to make it its direct descendant. The controls in the middle will be ignored.
+					</Description>
 				</Prop>
 				<Group>
 					<Name>Behavior</Name>
@@ -72,7 +78,7 @@
 										<Value name="FlagHideVariables">false</Value>
 										<Value name="FlagHideAttributes">true</Value>
 									</Metadata>
-									<Description>The variable where the ids of the checked nodes are stored.</Description>
+									<Description>A variable where the ids of the checked nodes are stored. The variable must be a collection of Character.</Description>
 								</Prop>
 								<Prop>
 									<Id>UncheckedNodes</Id>
@@ -86,7 +92,7 @@
 										<Value name="FlagHideVariables">false</Value>
 										<Value name="FlagHideAttributes">true</Value>
 									</Metadata>
-									<Description>The variable where the ids of the unchecked nodes are stored.</Description>
+									<Description>A variable where the ids of the unchecked nodes are stored. The variable must be a collection of Character.</Description>
 								</Prop>
 							</Children>
 						</Group>
@@ -214,7 +220,7 @@
 							<Type>Text</Type>
 							<Default>ROOT</Default>
 							<Metadata />
-							<Description>Root node identifier. If one is not specified, one is generated.</Description>
+							<Description>Root node identifier. If an identifier is not specified, one is generated.</Description>
 						</Prop>
 						<Prop>
 							<Id>RootVisible</Id>
@@ -310,18 +316,6 @@
 							<Description>True if the tree should only allow append drops (use for trees which are sorted).</Description>
 						</Prop>
 						<Prop>
-							<Id>Scroll</Id>
-							<Name>Scroll</Name>
-							<Type>Combo</Type>
-							<Default>true</Default>
-							<Metadata />
-							<Values>
-								<Value id="true" desc="True" />
-								<Value id="false" desc="False" />
-							</Values>
-							<Description>True to enable automatic scrolling during drag operations.</Description>
-						</Prop>
-						<Prop>
 							<Id>DropData</Id>
 							<Name>DropData</Name>
 							<Type>Custom</Type>
@@ -371,7 +365,7 @@
 							<Id>NotifyDataType</Id>
 							<Name>NotifyDataType</Name>
 							<Type>Text</Type>
-							<Default>gxuiTreeNode</Default>
+							<Default>gxuiTreeviewNode</Default>
 						</Prop>
 					</Children>
 				</Group>
@@ -388,7 +382,7 @@
 								<Value id="true" desc="True" />
 								<Value id="false" desc="False" />
 							</Values>
-							<Description>True to load the nodes through the URL specified in LoaderURL, false to load the nodes from the SDT variable specified in TreeNode property.</Description>
+							<Description>True to load the nodes through the URL specified in {@link #LoaderURL}, false to load the nodes from the SDT variable specified in {@link #Children} property.</Description>
 						</Prop>
 						<Prop>
 							<Id>LoaderURL</Id>
@@ -396,7 +390,7 @@
 							<Type>Text</Type>
 							<Default>TreeLoader</Default>
 							<Metadata />
-							<Description>The URL where the nodes will be retrieved. The data must be a JSON array (check gxuiTreeviewSampleLoader procedure for a sample).</Description>
+							<Description>The URL where the nodes will be retrieved. The data must be a collection of gxuiTreeviewNode SDT, in Json format (check gxuiTreeviewSampleLoader procedure for a sample).</Description>
 						</Prop>
 						<Prop>
 							<Id>Children</Id>
@@ -410,7 +404,24 @@
 								<Value name="FlagHideVariables">False</Value>
 								<Value name="FlagHideAttributes">true</Value>
 							</Metadata>
-							<Description>The variable where the tree nodes are stored. The nodes can also be lazy loaded from a URL, through the LoaderURL property.</Description>
+							<Description>
+								The variable where the tree nodes are stored. The nodes can also be lazy loaded from a URL, through the {@link #LoaderURL} property.
+								* This property supports a single node or a collection of nodes.
+								* @property {String} Children.id Identifier of the node. When an event is fired on a node, the value of this property is used to identify
+								* the node (for example, when the {@link #Click} event is fired, the {@link #SelectedNode} property is set with the node identifier.
+								* @property {String} Children.text The text to show on node label.
+								* @property {String} Children.cls CSS class to apply for this node.
+								* @property {String} Children.icon URL for this node's icon.
+								* @property {String} Children.iconCls CSS class to apply for this node's icon.
+								* @property {String} Children.qtip Tooltip text to show on this node.
+								* @property {Boolean} Children.leaf Set to true to indicate that this child can have no children. The expand icon/arrow will then not be rendered for this node.
+								* @property {Boolean} Children.checked Vale of the node checkbox. Only applies when {@link #EnableCheckbox} = true.
+								* @property {String} Children.href An URL for a link that's created when this config is specified.
+								* @property {gxuiTreeviewNode[]} Children.children Collection of child nodes.
+								* @property {gxuiTreeviewNode[]} [Children.data] An SDT with data associated to the node.
+								*
+								* Other properties, for advanced uses, are supported. Take a look at {@link Ext.data.NodeInterface} config options, for a complete list.
+							</Description>
 						</Prop>
 						<Prop>
 							<Id>SelectedNodeData</Id>
@@ -424,7 +435,7 @@
 								<Value name="FlagHideVariables">False</Value>
 								<Value name="FlagHideAttributes">true</Value>
 							</Metadata>
-							<Description>The variable where the data associated to the selected node is stored (gxuiTreeViewNode.data property of the selected node).</Description>
+							<Description>The variable where the data associated to the selected node is stored (gxuiTreeviewNode.data property of the selected node).</Description>
 						</Prop>
 					</Children>
 				</Group>
@@ -453,6 +464,20 @@
 						</Prop>
 					</Children>
 				</Group>
+				<Prop>
+					<Id>SelectedNodes</Id>
+					<Name>SelectedNodes</Name>
+					<Type>Custom</Type>
+					<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+					<Metadata>
+						<Value name="FlagSetValueMethod">SetSelectedNodes</Value>
+						<Value name="FlagGetValueMethod">GetSelectedNodes</Value>
+						<Value name="FlagDataTypeFilter">gxuiTreeviewNode</Value>
+						<Value name="FlagHideVariables">False</Value>
+						<Value name="FlagHideAttributes">true</Value>
+					</Metadata>
+					<Description>The variable where the selected node's identifiers are stored (applies when {@link #Multiselection} = True).</Description>
+				</Prop>
 				<Prop>
 					<Id>SelectedNode</Id>
 					<Name>SelectedNode</Name>
@@ -491,7 +516,7 @@
 					<Metadata>
 						<Value name="FlagScope">Runtime</Value>
 					</Metadata>
-					<Description>Indicates if the selected node is checked (when EnableCheckBox = True)</Description>
+					<Description>Indicates if the selected node is checked (when {@link #EnableCheckBox} = True)</Description>
 				</Prop>
 				<Prop>
 					<Id>DropTarget</Id>
@@ -541,7 +566,7 @@
 					<Metadata>
 						<Value name="FlagScope">Runtime</Value>
 					</Metadata>
-					<Description>Indicates if dropping a node (DropNode) is allowed over the current node (DropTarget). Should be set to true or false in the NodeOver event (defaults to true).</Description>
+					<Description>Indicates if dropping a node ({@link #DropNode}) is allowed over the current node ({@link #DropTarget}). Should be set to true or false in the {@link #NodeOver} event.</Description>
 				</Prop>
 			</Children>
 		</Group>

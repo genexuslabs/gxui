@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0"?>
 <ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<Version>1.1.0.1038</Version>
+	<Version>2.0.0.0</Version>
 	<IncludeInControlInfo>false</IncludeInControlInfo>
 	<RuntimeRender>gxui-all.js</RuntimeRender>
 	<GxResources>Treeview/design/TreeView.xpz</GxResources>
 	<HeightPropertyName>Height</HeightPropertyName>
 	<WidthPropertyName>Width</WidthPropertyName>
-	<ResizeSupported>true</ResizeSupported>
+	<ResizeSupported>false</ResizeSupported>
 	<ObjClass>gxui.Treeview</ObjClass>
 	<Description>gxui.Treeview</Description>
 	<Id>57e87e10-c92a-4ea7-b82b-a24bfbeefa7a</Id>
@@ -14,7 +14,6 @@
 	<ShowMethod>show</ShowMethod>
 	<ReferencedFiles>
 		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
-		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
 		<SharedFile>ext/ext-all.js</SharedFile>
 	</ReferencedFiles>
 	<SupportFiles>
