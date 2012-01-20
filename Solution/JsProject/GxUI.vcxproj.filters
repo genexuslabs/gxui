@@ -198,9 +198,6 @@
     <None Include="..\..\Controls\Treeview\design\treeview.ico">
       <Filter>Controls\Treeview\design</Filter>
     </None>
-    <None Include="..\..\Controls\Treeview\design\Treeview.xpz">
-      <Filter>Controls\Treeview\design</Filter>
-    </None>
     <None Include="..\..\Controls\Treeview\design\TreeviewProperties.xml">
       <Filter>Controls\Treeview\design</Filter>
     </None>

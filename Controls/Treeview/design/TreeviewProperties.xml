@@ -415,10 +415,10 @@
 								* @property {String} Children.iconCls CSS class to apply for this node's icon.
 								* @property {String} Children.qtip Tooltip text to show on this node.
 								* @property {Boolean} Children.leaf Set to true to indicate that this child can have no children. The expand icon/arrow will then not be rendered for this node.
-								* @property {Boolean} Children.checked Vale of the node checkbox. Only applies when {@link #EnableCheckbox} = true.
+								* @property {Boolean} Children.checked Value of the node checkbox. Only applies when {@link #EnableCheckbox} = true.
 								* @property {String} Children.href An URL for a link that's created when this config is specified.
 								* @property {gxuiTreeviewNode[]} Children.children Collection of child nodes.
-								* @property {gxuiTreeviewNode[]} [Children.data] An SDT with data associated to the node.
+								* @property {Object} [Children.data] An SDT with data associated to the node.
 								*
 								* Other properties, for advanced uses, are supported. Take a look at {@link Ext.data.NodeInterface} config options, for a complete list.
 							</Description>

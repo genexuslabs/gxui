@@ -91,7 +91,6 @@
     <None Include="..\..\Controls\Treeview\TreeviewRender.js" />
     <None Include="..\..\Controls\Treeview\design\treeview.gif" />
     <None Include="..\..\Controls\Treeview\design\treeview.ico" />
-    <None Include="..\..\Controls\Treeview\design\Treeview.xpz" />
     <None Include="..\..\Controls\Treeview\design\TreeviewProperties.xml" />
     <None Include="..\..\Controls\Treeview\design\TreeviewRender.xsl" />
     <None Include="..\..\Controls\Settings.control" />

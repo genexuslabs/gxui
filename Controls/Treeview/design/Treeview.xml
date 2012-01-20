@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ExportFile>
+  <KMW>
+    <MajorVersion>3</MajorVersion>
+    <MinorVersion>1</MinorVersion>
+    <Build>49054</Build>
+  </KMW>
+  <Source kb="55a4fdf0-674b-4eba-8ca4-9052835ad092" username="ARTECH\GeneXus" UNCPath="\\NCARDELINO-371\E$\KBsEvo2\GxUI_Caprese_Tests">
+    <Version guid="f86f35dc-5302-4b30-884d-9df10f986dd1" name="GxUI_Caprese_Tests" />
+  </Source>
+  <Actions />
+  <Objects>
+    <Object parent="gxui" parentType="00000000-0000-0000-0000-000000000008" user="ARTECH\GeneXus" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2012-01-20T13:17:26.0000000Z" checksum="5a89e195f19e92071ad4a9ad21499f88" guid="b4127b9f-622a-4ae3-83ef-fcd6181eba5e" name="gxuiTreeviewNode" type="447527b5-9210-4523-898b-5dccb17be60a" description="gxui Treeview Node">
+      <Part type="5c2aa9da-8fc4-4b6b-ae02-8db4fa48976a">
+        <Level Name="gxuiTreeviewNode">
+          <LevelInfo guid="8afe7a01-a13e-4c81-b587-31aac23ad6ff" name="gxuiTreeviewNode" description="gxuiTreeviewNode">
+            <Properties><Property><Name>Name</Name><Value>gxuiTreeviewNode</Value></Property><Property><Name>Description</Name><Value>gxuiTreeviewNode</Value></Property></Properties>
+          </LevelInfo>
+          <Item guid="9fc22e7a-9d07-4169-873d-ae8afd4d9803" name="id" description="Identifier of the node">
+            <Properties><Property><Name>Name</Name><Value>id</Value></Property><Property><Name>Description</Name><Value>Identifier of the node</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+          </Item>
+          <Item guid="6f794dab-4e15-446a-bf29-dbb606371b8d" name="text" description="The text to show on node label">
+            <Properties><Property><Name>Name</Name><Value>text</Value></Property><Property><Name>Description</Name><Value>The text to show on node label</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+          </Item>
+          <Item guid="d79da9c4-3acb-4ff9-a5bb-9be0630f9ec1" name="icon" description="URL for this node's icon">
+            <Properties><Property><Name>Name</Name><Value>icon</Value></Property><Property><Name>Description</Name><Value>URL for this node's icon</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+          </Item>
+          <Item guid="65c62c1c-a8d5-438f-bdce-e673052ab054" name="cls" description="CSS class to apply for this node">
+            <Properties><Property><Name>Name</Name><Value>cls</Value></Property><Property><Name>Description</Name><Value>CSS class to apply for this node</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+          </Item>
+          <Item guid="2f24cde6-d635-440d-8e57-7a3ec223310a" name="iconCls" description="CSS class to apply for this node's icon">
+            <Properties><Property><Name>Name</Name><Value>iconCls</Value></Property><Property><Name>Description</Name><Value>CSS class to apply for this node's icon</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+          </Item>
+          <Item guid="0c29d0dd-fb13-4008-ae31-1eb831448dc9" name="qtip" description="Tooltip text to show on this node">
+            <Properties><Property><Name>Name</Name><Value>qtip</Value></Property><Property><Name>Description</Name><Value>Tooltip text to show on this node</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>500</Value></Property><Property><Name>AttMaxLen</Name><Value>500</Value></Property></Properties>
+          </Item>
+          <Item guid="24d2357a-a6aa-421c-bfcd-27569b250445" name="leaf" description="Set to true to indicate that this child can have no children. The expand icon/arrow will then not be rendered for this node.">
+            <Properties><Property><Name>Name</Name><Value>leaf</Value></Property><Property><Name>Description</Name><Value>Set to true to indicate that this child can have no children. The expand icon/arrow will then not be rendered for this node.</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Boolean</Value></Property></Properties>
+          </Item>
+          <Item guid="fb583abf-a1bd-4cda-b5ff-908bf2ef96c4" name="checked" description="Value of the node checkbox">
+            <Properties><Property><Name>Name</Name><Value>checked</Value></Property><Property><Name>Description</Name><Value>Value of the node checkbox</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Boolean</Value></Property></Properties>
+          </Item>
+          <Item guid="29c96ba1-a47f-42a0-8829-5acdbd038c07" name="href" description="An URL for a link that's created when this config is specified">
+            <Properties><Property><Name>Name</Name><Value>href</Value></Property><Property><Name>Description</Name><Value>An URL for a link that's created when this config is specified</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+          </Item>
+          <Item guid="da4ca9c2-f850-4e12-9029-037a7914920e" name="children" description="children">
+            <Properties><Property><Name>Name</Name><Value>children</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>sdt:gxuiTreeviewNode</Value></Property><Property><Name>AttCollection</Name><Value>True</Value></Property></Properties>
+          </Item>
+        </Level>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties><Property><Name>IsDefault</Name><Value>True</Value></Property></Properties>
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>gxuiTreeviewNode</Value></Property><Property><Name>ExternalNamespace</Name><Value>gxui</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+  </Objects>
+  <Attributes />
+  <Dependencies>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Object" Id="447527b5-9210-4523-898b-5dccb17be60a">
+      <Properties Name="Structured Data Type" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="5c2aa9da-8fc4-4b6b-ae02-8db4fa48976a">
+      <Properties Name="Structure" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="babf62c5-0111-49e9-a1c3-cc004d90900a">
+      <Properties Name="Documentation" PackageName="GenexusBL" />
+    </Reference>
+  </Dependencies>
+  <ObjectsIdentityMapping>
+    <ObjectIdentity Type="00000000-0000-0000-0000-000000000008" Name="gxui">
+      <Guid>332c0682-64a1-4965-9a78-daa5aa84c3b8</Guid>
+    </ObjectIdentity>
+  </ObjectsIdentityMapping>
+</ExportFile>
