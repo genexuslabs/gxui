@@ -128,10 +128,6 @@
     <None Include="..\..\Controls\Layout\design\LayoutRender.xsl" />
     <None Include="..\..\ux\NestedViewport\NestedViewport.css" />
     <None Include="..\..\ux\NestedViewport\NestedViewport.js" />
-    <None Include="..\..\ux\portal\portal.css" />
-    <None Include="..\..\ux\portal\Portal.js" />
-    <None Include="..\..\ux\portal\PortalColumn.js" />
-    <None Include="..\..\ux\portal\Portlet.js" />
     <None Include="..\..\ux\ColorPicker\colorfield.js" />
     <None Include="..\..\ux\grid\RadioSelectionModel.js" />
     <None Include="..\..\ux\grid\SmartCheckboxSelectionModel.js" />

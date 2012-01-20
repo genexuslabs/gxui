@@ -19,9 +19,6 @@
     <Filter Include="ux\NestedViewport">
       <UniqueIdentifier>{4a71714f-bd64-457c-97ae-92ecb5c3aebe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ux\Portal">
-      <UniqueIdentifier>{eea8e2ca-eeee-4b47-9f3a-fce80448375f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ux\ColorField">
       <UniqueIdentifier>{9c75bcbd-ad62-4699-8877-c9a263eb6d17}</UniqueIdentifier>
     </Filter>
@@ -302,18 +299,6 @@
     </None>
     <None Include="..\..\ux\NestedViewport\NestedViewport.js">
       <Filter>ux\NestedViewport</Filter>
-    </None>
-    <None Include="..\..\ux\portal\portal.css">
-      <Filter>ux\Portal</Filter>
-    </None>
-    <None Include="..\..\ux\portal\Portal.js">
-      <Filter>ux\Portal</Filter>
-    </None>
-    <None Include="..\..\ux\portal\PortalColumn.js">
-      <Filter>ux\Portal</Filter>
-    </None>
-    <None Include="..\..\ux\portal\Portlet.js">
-      <Filter>ux\Portal</Filter>
     </None>
     <None Include="..\..\ux\ColorPicker\colorfield.js">
       <Filter>ux\ColorField</Filter>
