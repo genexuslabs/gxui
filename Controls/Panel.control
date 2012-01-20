@@ -30,7 +30,7 @@
 	<PropertiesDefinition>Panel/design/PanelProperties.xml</PropertiesDefinition>
 	<DesignRender>Panel/design/PanelRender.xsl</DesignRender>
 	<DesignerRenderHelper>Artech.UC.gxui.Renders.UserControl</DesignerRenderHelper>
-	<ResolverFactory>Artech.UC.gxui.Panel.PropertiesResolvers.ResolverFactory</ResolverFactory>
+	<ResolverFactory>Artech.UC.gxui.PropertiesResolvers.Panel.ResolverFactory</ResolverFactory>
 	<ToolboxIcon>Panel/design/panel.ico</ToolboxIcon>
 	<Events>
 		<Event>ButtonPressed</Event>

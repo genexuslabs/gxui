@@ -36,7 +36,7 @@
 	<ColumnPropertiesDefinition>GridExtension/design/GridExtensionColumnProperties.xml</ColumnPropertiesDefinition>
 	<DesignRender>GridExtension/design/GridExtensionRender.xsl</DesignRender>
 	<DesignerRenderHelper>Artech.UC.gxui.Renders.UserControl</DesignerRenderHelper>
-	<ResolverFactory>Artech.UC.gxui.GridExtension.PropertiesResolvers.ResolverFactory</ResolverFactory>
+	<ResolverFactory>Artech.UC.gxui.PropertiesResolvers.GridExtension.ResolverFactory</ResolverFactory>
 	<Events>
 		<Event>OnInitDrag</Event>
 		<Event>OnFirstPage</Event>

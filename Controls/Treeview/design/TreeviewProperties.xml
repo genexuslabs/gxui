@@ -437,6 +437,20 @@
 							</Metadata>
 							<Description>The variable where the data associated to the selected node is stored (gxuiTreeviewNode.data property of the selected node).</Description>
 						</Prop>
+						<Prop>
+							<Id>SelectedNodes</Id>
+							<Name>SelectedNodes</Name>
+							<Type>Custom</Type>
+							<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
+							<Metadata>
+								<Value name="FlagSetValueMethod">SetSelectedNodes</Value>
+								<Value name="FlagGetValueMethod">GetSelectedNodes</Value>
+								<Value name="FlagDataTypeFilter">gxuiTreeviewNode</Value>
+								<Value name="FlagHideVariables">False</Value>
+								<Value name="FlagHideAttributes">true</Value>
+							</Metadata>
+							<Description>The variable where the selected node's identifiers are stored (applies when {@link #Multiselection} = True).</Description>
+						</Prop>
 					</Children>
 				</Group>
 				<Group>
@@ -464,20 +478,6 @@
 						</Prop>
 					</Children>
 				</Group>
-				<Prop>
-					<Id>SelectedNodes</Id>
-					<Name>SelectedNodes</Name>
-					<Type>Custom</Type>
-					<CustomType>Artech.Genexus.Common.CustomTypes.ControlAttVarReference, Artech.Genexus.Common</CustomType>
-					<Metadata>
-						<Value name="FlagSetValueMethod">SetSelectedNodes</Value>
-						<Value name="FlagGetValueMethod">GetSelectedNodes</Value>
-						<Value name="FlagDataTypeFilter">gxuiTreeviewNode</Value>
-						<Value name="FlagHideVariables">False</Value>
-						<Value name="FlagHideAttributes">true</Value>
-					</Metadata>
-					<Description>The variable where the selected node's identifiers are stored (applies when {@link #Multiselection} = True).</Description>
-				</Prop>
 				<Prop>
 					<Id>SelectedNode</Id>
 					<Name>SelectedNode</Name>

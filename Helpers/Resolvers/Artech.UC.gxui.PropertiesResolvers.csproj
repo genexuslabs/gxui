@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B9F59FE7-A50C-4432-B1BD-8B3DA73C37BB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Artech.UC.gxui.PropertiesResolvers</RootNamespace>
+    <AssemblyName>Artech.UC.gxui.PropertiesResolvers</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Artech.Common.Properties">
+      <HintPath>$(GX_PROGRAM_DIR)\Artech.Common.Properties.dll</HintPath>
+    </Reference>
+    <Reference Include="Artech.Genexus.Common">
+      <HintPath>$(GX_PROGRAM_DIR)\Artech.Genexus.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GridExtension\DragDropGroupResolver.cs" />
+    <Compile Include="GridExtension\DragDropTextResolver.cs" />
+    <Compile Include="GridExtension\GridHeightResolver.cs" />
+    <Compile Include="GridExtension\GroupFieldResolver.cs" />
+    <Compile Include="GridExtension\GroupingResolver.cs" />
+    <Compile Include="GridExtension\GroupTemplateResolver.cs" />
+    <Compile Include="GridExtension\HideGroupFieldResolver.cs" />
+    <Compile Include="GridExtension\ResolverFactory.cs" />
+    <Compile Include="Panel\AnimateCollapseResolver.cs" />
+    <Compile Include="Panel\CollapseDirectionDefaultResolver.cs" />
+    <Compile Include="Panel\CollapseDirectionResolver.cs" />
+    <Compile Include="Panel\CollapsedResolver.cs" />
+    <Compile Include="Panel\HandlesResolver.cs" />
+    <Compile Include="Panel\MaxHeightResolver.cs" />
+    <Compile Include="Panel\MaxWidthResolver.cs" />
+    <Compile Include="Panel\MinHeightResolver.cs" />
+    <Compile Include="Panel\MinWidthResolver.cs" />
+    <Compile Include="Panel\ModalResolver.cs" />
+    <Compile Include="Panel\ResolverFactory.cs" />
+    <Compile Include="Panel\ShowAsWindowResolver.cs" />
+    <Compile Include="Panel\ToolbarDataResolver.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Treeview\AppendOnlyResolver.cs" />
+    <Compile Include="Treeview\CheckedNodesResolver.cs" />
+    <Compile Include="Treeview\DragDropGroupResolver.cs" />
+    <Compile Include="Treeview\DropDataResolver.cs" />
+    <Compile Include="Treeview\ResolverFactory.cs" />
+    <Compile Include="Treeview\RootClsResolver.cs" />
+    <Compile Include="Treeview\RootIconClsResolver.cs" />
+    <Compile Include="Treeview\RootIconResolver.cs" />
+    <Compile Include="Treeview\RootTextResolver.cs" />
+    <Compile Include="Treeview\UncheckedNodesResolver.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

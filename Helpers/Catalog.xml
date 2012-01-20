@@ -4,10 +4,7 @@
 		<File Name="Jayrock.dll" Target="." />
 		<File Name="Jayrock.Json.dll" Target="." />
 	</Project>
-	<Project Name="Artech.UC.gxui.Panel.PropertiesResolvers" Location="Panel\PropertiesResolvers">
-		<File Name="Artech.UC.gxui.Panel.PropertiesResolvers.dll" Target="." />
-	</Project>
-	<Project Name="Artech.UC.gxui.GridExtension.PropertiesResolvers" Location="GridExtension\PropertiesResolvers">
-		<File Name="Artech.UC.gxui.GridExtension.PropertiesResolvers.dll" Target="." />
+	<Project Name="Artech.UC.gxui.PropertiesResolvers" Location="Resolvers">
+		<File Name="Artech.UC.gxui.PropertiesResolvers.dll" Target="." />
 	</Project>
 </Projects>
