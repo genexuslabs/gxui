@@ -65,6 +65,8 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="..\..\Properties.xslt" />
+    <None Include="..\..\ux\GridAutowidth\AutoWidthColumns.js" />
+    <None Include="..\..\ux\GridAutowidth\AutoWidther.js" />
     <None Include="BuildAndUpdate.bat" />
     <None Include="BuildBatch.bat" />
     <None Include="gxui.msbuild" />
@@ -87,7 +89,9 @@
     <None Include="..\..\Controls\Panel\design\panel.ico" />
     <None Include="..\..\Controls\Panel\design\PanelProperties.xml" />
     <None Include="..\..\Controls\Panel\design\PanelRender.xsl" />
-    <None Include="..\..\Controls\Treeview.control" />
+    <None Include="..\..\Controls\Treeview.control">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="..\..\Controls\Treeview\TreeviewRender.js" />
     <None Include="..\..\Controls\Treeview\design\treeview.gif" />
     <None Include="..\..\Controls\Treeview\design\treeview.ico" />
@@ -131,8 +135,6 @@
     <None Include="..\..\ux\NestedViewport\NestedViewport.css" />
     <None Include="..\..\ux\NestedViewport\NestedViewport.js" />
     <None Include="..\..\ux\ColorPicker\colorfield.js" />
-    <None Include="..\..\ux\grid\RadioSelectionModel.js" />
-    <None Include="..\..\ux\grid\SmartCheckboxSelectionModel.js" />
     <None Include="..\..\ux\form\DateTime.js" />
     <None Include="..\..\ux\format\format.js" />
     <None Include="..\..\resources\css\gxui.css" />

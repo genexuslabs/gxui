@@ -12,7 +12,7 @@
 					<Type>Boolean</Type>
 					<Default>false</Default>
 					<Metadata />
-					<Description>True to initially render this column as locked.</Description>
+					<Description>True to initially render this column as locked. Columns which are locked must specify a fixed width. They do NOT support a width expressed in percentage nor AutoResize.</Description>
 				</Prop>
 				<Prop>
 					<Id>Resizable</Id>
@@ -61,6 +61,32 @@
 					<Default>false</Default>
 					<Metadata />
 					<Description>True if this column should expand to fill unused space in the grid.</Description>
+				</Prop>
+				<Prop>
+					<Id>SummaryType</Id>
+					<Name>SummaryType</Name>
+					<Type>Combo</Type>
+					<Default>none</Default>
+					<Values>
+						<Value id="none" desc="No summary" />
+						<Value id="count" desc="Count" />
+						<Value id="sum" desc="Sum" />
+						<Value id="min" desc="Min" />
+						<Value id="max" desc="Max" />
+						<Value id="average" desc="Average" />
+					</Values>
+					<Metadata />
+					<Description>Function to use when calculating the summary of a column (only applies when {@link gxui.GridExtension#ShowGroupingSummary grouping summary} is enabled in the grid.)</Description>
+				</Prop>
+				<Prop>
+					<Id>HeaderGroup</Id>
+					<Name>HeaderGroup</Name>
+					<Type>Text</Type>
+					<Default></Default>
+					<Metadata>
+						<Value name="FlagScope">DesignTime</Value>
+					</Metadata>
+					<Description>If specified, this column is rendered inside a parent header whose text is the one specified in this property. All the columns with the same HeaderGroup value are shown inside the same group.</Description>
 				</Prop>
 			</Children>
 		</Group>

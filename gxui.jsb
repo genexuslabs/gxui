@@ -77,11 +77,18 @@
     <include name="Controls\Toolbar\ToolbarRender.js" />
     <include name="Controls\Layout\LayoutRender.js" />
     <include name="Controls\Treeview\TreeviewRender.js" />
+    <include name="ux\form\DateTime.js" />
+    <include name="ux\grid\CheckColumn.js" />
+    <include name="ux\GridAutowidth\AutoWidther.js" />
+    <include name="ux\GridAutowidth\AutoWidthColumns.js" />
+    <include name="Controls\GridExtension\DragDrop.js" />
+    <include name="Controls\GridExtension\GridExtension.js" />
+    <include name="Controls\GridExtension\ColumnRenderers.js" />
   </target>
   <target name="gxui-allcss" file="$output\gxui-all.css" debug="False" shorthand="False" shorthand-list="YAHOO.util.Dom.setStyle&#xD;&#xA;YAHOO.util.Dom.getStyle&#xD;&#xA;YAHOO.util.Dom.getRegion&#xD;&#xA;YAHOO.util.Dom.getViewportHeight&#xD;&#xA;YAHOO.util.Dom.getViewportWidth&#xD;&#xA;YAHOO.util.Dom.get&#xD;&#xA;YAHOO.util.Dom.getXY&#xD;&#xA;YAHOO.util.Dom.setXY&#xD;&#xA;YAHOO.util.CustomEvent&#xD;&#xA;YAHOO.util.Event.addListener&#xD;&#xA;YAHOO.util.Event.getEvent&#xD;&#xA;YAHOO.util.Event.getTarget&#xD;&#xA;YAHOO.util.Event.preventDefault&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Event.stopPropagation&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Anim&#xD;&#xA;YAHOO.util.Motion&#xD;&#xA;YAHOO.util.Connect.asyncRequest&#xD;&#xA;YAHOO.util.Connect.setForm&#xD;&#xA;YAHOO.util.Dom&#xD;&#xA;YAHOO.util.Event">
     <include name="resources\css\gxui.css" />
     <include name="Controls\Toolbar\toolbar.css" />
-    <include name="extUX\NestedViewport\NestedViewport.css" />
+    <include name="ux\grid\CheckHeader.css" />
   </target>
   <file name="resources\images\iconCollapseAll.gif" path="resources\images" />
   <file name="resources\images\iconExpandAll.gif" path="resources\images" />
@@ -115,4 +122,29 @@
   <file name="Controls\Treeview\design\TreeviewProperties.xml" path="Treeview\design" />
   <file name="Controls\Treeview\TreeviewRender.js" path="Treeview" />
   <file name="Controls\Treeview.control" path="" />
+  <file name="Controls\GridExtension\design\GridExtensionRender.xsl" path="GridExtension\design" />
+  <file name="Controls\GridExtension\design\GridExtensionColumnProperties.xml" path="GridExtension\design" />
+  <file name="Controls\GridExtension\design\GridExtensionProperties.xml" path="GridExtension\design" />
+  <file name="Controls\GridExtension\ColumnRenderers.js" path="GridExtension" />
+  <file name="Controls\GridExtension\GridExtension.js" path="GridExtension" />
+  <file name="Controls\GridExtension\DragDrop.js" path="GridExtension" />
+  <file name="Controls\GridExtension.control" path="" />
+  <file name="ux\GridAutowidth\AutoWidthColumns.js" path="ux\GridAutowidth" />
+  <file name="ux\GridAutowidth\AutoWidther.js" path="ux\GridAutowidth" />
+  <file name="ux\form\DateTime.js" path="ux\form" />
+  <file name="ux\grid\CheckColumn.js" path="ux\grid" />
+  <file name="ux\grid\CheckHeader.css" path="ux\grid" />
+  <file name="resources\images\border.gif" path="resources\images" />
+  <file name="resources\images\bottom2.gif" path="resources\images" />
+  <file name="resources\images\checked.gif" path="resources\images" />
+  <file name="resources\images\down2.gif" path="resources\images" />
+  <file name="resources\images\left2.gif" path="resources\images" />
+  <file name="resources\images\right2.gif" path="resources\images" />
+  <file name="resources\images\tab-collapsed.gif" path="resources\images" />
+  <file name="resources\images\tab-first.gif" path="resources\images" />
+  <file name="resources\images\tab-last.gif" path="resources\images" />
+  <file name="resources\images\tab-scroller-menu.gif" path="resources\images" />
+  <file name="resources\images\top2.gif" path="resources\images" />
+  <file name="resources\images\unchecked.gif" path="resources\images" />
+  <file name="resources\images\up2.gif" path="resources\images" />
 </project>

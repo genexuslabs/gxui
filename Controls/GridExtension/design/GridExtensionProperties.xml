@@ -7,14 +7,6 @@
 			<Type>Main</Type>
 			<Children>
 				<Prop>
-					<Id>GridHeight</Id>
-					<Name>GridHeight</Name>
-					<Type>Integer</Type>
-					<Default>400</Default>
-					<Metadata />
-					<Description>Control height.</Description>
-				</Prop>
-				<Prop>
 					<Id>Title</Id>
 					<Name>Title</Name>
 					<Type>Text</Type>
@@ -35,16 +27,6 @@
 				<Group>
 					<Name>Appearance</Name>
 					<Children>
-						<Prop>
-							<Id>AutoHeight</Id>
-							<Name>AutoHeight</Name>
-							<Type>Boolean</Type>
-							<Default>true</Default>
-							<Metadata>
-								<Value name="FlagScope">DesignTime</Value>
-							</Metadata>
-							<Description>True to use height:'auto', false to use fixed height.</Description>
-						</Prop>
 						<Prop>
 							<Id>DefaultColumnWidth</Id>
 							<Name>DefaultColumnWidth</Name>
@@ -91,8 +73,6 @@
 							<Values>
 								<Value id="RowSelectionModel" desc="Row" />
 								<Value id="CheckBoxSelectionModel" desc="Checkbox" />
-								<Value id="SmartCheckBoxSelectionModel" desc="SmartCheckbox" />
-								<Value id="RadioSelectionModel" desc="Radio" />
 							</Values>
 							<Description>The selection model to use with the grid: RowSelectionModel (rows are selected by clicking on the row) or CheckBoxSelectionModel (a check box appears in the first column of the grid).</Description>
 						</Prop>
@@ -141,6 +121,16 @@
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Description>True to allow grouping.</Description>
+								</Prop>
+								<Prop>
+									<Id>ShowGroupingSummary</Id>
+									<Name>ShowGroupingSummary</Name>
+									<Type>Boolean</Type>
+									<Default>false</Default>
+									<Metadata />
+									<Description>True to add an aggregate summary row at the bottom of each group. 
+									The summary value needs to be calculated for each column in the grid. This is controlled by the SummaryType option specified on the column.
+									</Description>
 								</Prop>
 								<Prop>
 									<Id>GroupField</Id>

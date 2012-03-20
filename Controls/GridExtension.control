@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<Version>1.1.0.378</Version>
+	<Version>2.0.0.0</Version>
 	<IncludeInControlInfo>true</IncludeInControlInfo>
 	<ControlType>grid</ControlType>
 	<RuntimeRender>gxui-all.js</RuntimeRender>
@@ -17,7 +17,6 @@
 	<ShowMethod>show</ShowMethod>
 	<ReferencedFiles>
 		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
-		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
 		<SharedFile>ext/ext-all.js</SharedFile>
 		<File>gxui-all.css</File>
 	</ReferencedFiles>
@@ -54,43 +53,5 @@
 			</Parameters>
 		</Method>
 	</Methods>
-	<Actions>
-		<Action>
-			<Order>0</Order>
-			<ActionProperties>
-				<Property>
-					<Key>
-						<string>Name</string>
-					</Key>
-					<Value>
-						<string>gxuiToolbar</string>
-					</Value>
-				</Property>
-				<Property>
-					<Key>
-						<string>ATTCUSTOMTYPE</string>
-					</Key>
-					<Value>
-						<string>gxuiToolbar</string>
-					</Value>
-				</Property>
-			</ActionProperties>
-			<ActionType>VarDeclaration</ActionType>
-		</Action>
-		<Action>
-			<Order>1</Order>
-			<ActionProperties>
-				<Property>
-					<Key>
-						<string>ToolbarData</string>
-					</Key>
-					<Value>
-						<string>&amp;gxuiToolbar</string>
-					</Value>
-				</Property>
-			</ActionProperties>
-			<Data></Data>
-			<ActionType>SetPropertyToControl</ActionType>
-		</Action>
-	</Actions>
+	<Actions />
 </ControlDefinition>

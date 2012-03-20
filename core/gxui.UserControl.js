@@ -65,23 +65,31 @@ Ext.define('gxui.UserControl', {
 	* @ignore
 	*/
 	show: function () {
-		try {
-			if (!this.rendered) {
-				Ext.onReady(function () {
-					this.rendered = true;
+		if (!this.rendered) {
+			Ext.onReady(function () {
+				try {
 					this.onRender();
-				}, this);
-			}
-			else {
+					this.rendered = true;
+				}
+				catch (e) {
+					gx.dbg.logEx(e, 'gxui.js', 'show');
+				}
+				finally {
+					this.fireEvent("show", this);
+				}
+			}, this);
+		}
+		else {
+			try {
 				if (this.onRefresh)
 					this.onRefresh();
 			}
-		}
-		catch (e) {
-			gx.dbg.logEx(e, 'gxui.js', 'show');
-		}
-		finally {
-			this.fireEvent("show", this);
+			catch (e) {
+				gx.dbg.logEx(e, 'gxui.js', 'show');
+			}
+			finally {
+				this.fireEvent("show", this);
+			}
 		}
 	},
 

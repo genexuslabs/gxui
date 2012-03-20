@@ -1,92 +1,124 @@
-/// <reference path="..\VStudio\vswd-ext_2.2.js" />
+/// <reference path="..\..\Freezer\Ext\ext-all-dev.js" />
 
-gxui.GridExtension.Column = function(gxGrid, gxColumn, actualColIndex, config) {
-	Ext.apply(this, config);
-	if (!this.id) {
-		this.id = Ext.id();
-	}
-	this.gxGrid = gxGrid;
-	this.gxColumn = gxColumn;
-	this.actualColIndex = actualColIndex;
-	this.renderer = this.renderer.createDelegate(this);
-	this.editor = this.defineEditor(gxColumn, actualColIndex);
-};
+Ext.define('gxui.GridExtension.Column', {
+	extend: 'Ext.grid.column.Column',
+	alias: 'widget.gxui.column',
 
-gxui.GridExtension.Column.prototype = {
-	init: function(grid) {
-		this.grid = grid;
-		var view = this.grid.getView();
+	constructor: function (config) {
+		this.callParent([config]);
+		this.renderer = Ext.bind(this.renderer, this);
+		this.editor = this.defineEditor(this.gxColumn, this.actualColIndex);
 	},
 
-	defineEditor: function(gxColumn, actualColIndex) {
+	destroy: function () {
+		delete this.gxGrid;
+		delete this.gxColumn;
+		this.callParent(arguments);
+	},
+
+	mapDateFormat: function () {
+		switch (gx.dateFormat) {
+			case 'MDY':
+				return "m/d/y";
+			case 'DMY':
+				return "d/m/y";
+			case 'MDY4':
+				return "m/d/Y";
+			case 'DMY4':
+				return "d/m/Y";
+			case 'YMD':
+				return "y/m/d";
+			default:
+				return "Y/m/d";
+		}
+	},
+
+	mapTimeFormat: function (gxColumn) {
+		var nDec = gxColumn.gxControl.vStruct.dec,
+			minutes = nDec > 3,
+			seconds = nDec == 8,
+			hours = nDec > 1;
+
+		if (gx.timeFormat == 12) {
+			if (hours && minutes && seconds)
+				return "h:i:s A";
+
+			if (hours && minutes)
+				return "h:i A";
+
+			if (hours)
+				return "h A";
+		}
+		else {
+			if (hours && minutes && seconds)
+				return "H:i:s";
+
+			if (hours && minutes)
+				return "H:i";
+
+			if (hours)
+				return "H";
+		}
+
+		return "h:i";
+	},
+
+	defineEditor: function (gxColumn, actualColIndex) {
 		var types = gx.types;
 		switch (gxColumn.type) {
 			case types.numeric:
 				var colData = this.gxGrid.ParentObject.GXValidFnc[gxColumn.gxId];
-				return new Ext.form.NumberField({
+				return {
+					xtype: 'numberfield',
 					allowDecimals: colData.dec > 0 ? true : false,
-					allowNegative: colData.sign,
+					minValue: colData.sign ? Number.NEGATIVE_INFINITY : 0,
 					decimalPrecision: colData.dec,
 					decimalSeparator: gx.decimalPoint,
-					maxLength: colData.len
-				});
+					enforceMaxLength: true,
+					maxLength: colData.len,
+					maxValue: Math.pow(10, colData.len - colData.dec - (colData.dec > 0 ? 1 : 0)) - (colData.dec > 0 ? 1 / Math.pow(10, colData.dec) : 0)
+				};
 
 			case types.date:
-				return new Ext.form.DateField({
-					getValue: function() {
-						var date = Ext.form.DateField.prototype.getValue.call(this);
-						if (date) {
-							this.gxdate.assign_date(date);
-							date.gxdate = this.gxdate;
-						}
-						return date;
-					},
-					setValue: function(date) {
-						if (date.gxdate) {
-							this.gxdate = date.gxdate;
-						}
-						Ext.form.DateField.prototype.setValue.call(this, date);
-					}
-				});
+				return {
+					xtype: 'datefield',
+					format: this.mapDateFormat()
+				};
 
 			case types.dateTime:
-			    return new Ext.grid.GridEditor(new Ext.ux.form.DateTime({
-			        getValue: function() {
-			            var date = Ext.ux.form.DateTime.prototype.getValue.call(this);
-
-			            if (date) {
-			                this.gxdate.assign_date(date);
-			                date.gxdate = this.gxdate;
-			            }
-			            return date;
-			        },
-			        setValue: function(date) {
-			            if (date.gxdate) {
-			                this.gxdate = date.gxdate;
-			            }
-			            Ext.ux.form.DateTime.prototype.setValue.call(this, date);
-			        }
-			    }), { autoSize: false, alignment: 'tr-tr?' });
+				return {
+					xtype: 'xdatetime',
+					dateFormat: this.mapDateFormat(),
+					timeFormat: this.mapTimeFormat(gxColumn)
+				};
 
 			default:
-				return new Ext.form.TextField();
+				if (gxColumn.gxControl.type == gx.html.controls.types.multipleLineEdit)
+					return {
+						xtype: 'textareafield',
+						maxLength: gxColumn.gxControl.maxLength
+					};
+
+				return {
+					xtype: 'textfield',
+					maxLength: gxColumn.gxControl.maxLength
+				};
 		}
 	},
 
-	formatNumber: function(value, colData) {
+	formatNumber: function (value, colData) {
 		var picture = colData.pic;
-		var numberFormat = {
-			decimalSeparator: gx.decimalPoint,
-			decimalPrecision: colData.dec,
-			groupingSeparator: '',
-			groupingSize: 0,
-			currencySymbol: ''
-		};
+		var numberFormat = "";
+		var integerPart = "0"
 		if (picture.indexOf(gx.thousandSeparator) >= 0) {
-			numberFormat.groupingSeparator = gx.thousandSeparator;
-			numberFormat.groupingSize = 3;
+			integerPart += gx.thousandSeparator + "000";
 		}
-		v = Ext.util.Format.formatNumber(value, numberFormat);
+		if (colData.dec > 0)
+			numberFormat = integerPart + gx.decimalPoint + (Ext.util.Format.leftPad("", colData.dec, '0') || '0');
+		else
+			numberFormat = integerPart;
+
+		v = Ext.util.Format.number(value, numberFormat);
 
 		// Left fill with zeros if applies
 		var matches = picture.match(new RegExp("^[9" + gx.decimalPoint + gx.thousandSeparator + "]+$"));
@@ -97,26 +129,27 @@ gxui.GridExtension.Column.prototype = {
 		return v + "";
 	},
 
-	renderer: function(value, metadata, record, rowIndex, colIndex, store) {
-
-		var cell = record.json[this.actualColIndex];
-		var col = this.gxColumn;
+	renderer: function (value, metadata, record, rowIndex, colIndex, store) {
+		var cell = record.raw[this.actualColIndex],
+			col = this.gxColumn,
+			gxControl = cell.column.gxControl,
+			controlTypes = gx.html.controls.types;
 
 		var v = value;
 		if (col.type == gx.types.date || col.type == gx.types.dateTime) {
-			/*v = value.gxdate.getString();
-
-			if (value.gxdate.HasTimePart) {
-			v += ' ' + value.gxdate.getTimeString(true, true);
-			}*/
-			v = cell.formattedValue;
-
+			var gxdate = value.gxdate;
+			v = gxdate.getString();
+			if (cell.column.type == gx.types.dateTime) {
+				gxdate.HasTimePart = true;
+				var validStruct = gxControl.vStruct,
+					nDec = validStruct.dec;
+				v += ' ' + gxdate.getTimeString(nDec > 3, nDec == 8, nDec > 1);
+			}
 		}
+
 		if (col.type == gx.types.numeric && typeof (value) == "number") {
 			v = this.formatNumber(value, this.gxGrid.ParentObject.GXValidFnc[this.gxColumn.gxId]);
 		}
-
-
 
 		if (gx.lang.gxBoolean(cell.visible)) {
 			if (gx.lang.gxBoolean(this.gxGrid.UseThemeClasses) && cell.cssClass) {
@@ -124,19 +157,19 @@ gxui.GridExtension.Column.prototype = {
 			}
 
 			if (cell.link) {
-				return String.format('<a href="{0}" alt="{2}" target="{3}">{1}</a>', cell.link || "", v || "", cell.alt || "", cell.linkTarget || "");
+				return Ext.String.format('<a href="{0}" alt="{2}" target="{3}">{1}</a>', cell.link || "", v || "", cell.alt || "", cell.linkTarget || "");
 			}
 
 			var style = "";
 			if (cell.style) {
 				var color = cell.style.match(/color:(.+);?/);
 				if (color) {
-					style += String.format("color:{0};", color[1]);
+					style += Ext.String.format("color:{0};", color[1]);
 				}
 
 				var bgColor = cell.style.match(/background-color:(.+);?/);
 				if (bgColor) {
-					style += String.format("background-color:{0};", bgColor[1]);
+					style += Ext.String.format("background-color:{0};", bgColor[1]);
 				}
 			}
 
@@ -146,192 +179,135 @@ gxui.GridExtension.Column.prototype = {
 			}
 
 			if (style) {
-				metadata.attr += String.format(' style="{0}"', style);
+				metadata.attr += Ext.String.format(' style="{0}"', style);
 			}
 
 			//Show Tooltip text if set
 			if (cell.title) {
-				v = String.format("<span qtip='{0}'>{1}</span>", cell.title, v);
+				v = Ext.String.format("<span qtip='{0}'>{1}</span>", cell.title, v);
 			}
 			return v;
 		}
 		return "";
 	}
-};
-
-gxui.GridExtension.ImageColumn = Ext.extend(gxui.GridExtension.Column, {
-	defineEditor: Ext.emptyFn,
-
-	renderer: function(value, metadata, record, rowIndex, colIndex, store) {
-		var cell = record.json[this.actualColIndex];
-		if (gx.lang.gxBoolean(cell.visible)) {
-			value = String.format('<img src="{0}" class="{1}" title="{2}" />', cell.value, cell.cssClass, cell.title);
-		}
-		return gxui.GridExtension.ImageColumn.superclass.renderer.apply(this, [value, metadata, record, rowIndex, colIndex, store]);
-	}
 });
 
-gxui.GridExtension.CheckColumn = Ext.extend(gxui.GridExtension.Column, {
-	init: function(grid) {
-		gxui.GridExtension.CheckColumn.superclass.init.apply(this, arguments);
-		this.grid.on('render', function() {
-			var view = this.grid.getView();
-			view.mainBody.on('mousedown', this.onMouseDown, this);
-			this.grid.on('keypress', this.onKeyPress);
-		}, this);
-	},
-
-	checkColumn: true,
+Ext.define('gxui.GridExtension.ImageColumn', {
+	extend: 'gxui.GridExtension.Column',
+	alias: 'widget.gxui.imagecolumn',
 
 	defineEditor: Ext.emptyFn,
 
-	createEvent: function(rowIndex) {
-		var record = this.grid.store.getAt(rowIndex);
-		var originalValue = record.data[this.dataIndex];
-
-		var value = (originalValue == this.checkedValue ? this.uncheckedValue : this.checkedValue);
-
-		if (this.gxColumn.type == gx.types.bool) {
-			var boolVal = gx.lang.booleanValue;
-			value = boolVal(boolVal(originalValue) == boolVal(this.checkedValue) ? this.uncheckedValue : this.checkedValue);
-		}
-
-		return {
-			grid: this.grid,
-			record: record,
-			field: this.dataIndex,
-			value: value,
-			originalValue: originalValue,
-			row: rowIndex,
-			column: this.grid.getColumnModel().findColumnIndex(this.dataIndex)
-		}
-	},
-
-	onMouseDown: function(e, t) {
-		if (t.className && t.className.indexOf('x-grid3-cc-' + this.id) != -1) {
-			var cm = this.grid.getColumnModel();
-			var colIndex = cm.findColumnIndex(this.dataIndex);
-			var rowIndex = this.grid.getView().findRowIndex(t);
-			if (cm.isCellEditable(colIndex, rowIndex)) {
-				var record = this.grid.store.getAt(rowIndex);
-
-				var editEvent = this.createEvent(rowIndex);
-				record.set(this.dataIndex, editEvent.value);
-
-				this.grid.fireEvent('afteredit', editEvent);
-			}
-		}
-	},
-
-	onKeyPress: function(e, t) {
-		var sm = this.getSelectionModel();
-		if (!sm.getSelectedCell) {
-			return;
-		}
-
-		var cm = this.getColumnModel();
-
-		var cell = sm.getSelectedCell();
-		var col = cm.config[cell[1]];
-
-		if (col.checkColumn) {
-			e.preventDefault();
-			var colIndex = cm.findColumnIndex(col.dataIndex);
-			if (cm.isCellEditable(colIndex, cell[0])) {
-				var key = e.getKey();
-				if (key == e.SPACE || key == e.ENTER) {
-					var record = this.store.getAt(cell[0]);
-
-					var editEvent = col.createEvent(cell[0]);
-					record.set(col.dataIndex, editEvent.value);
-
-					this.fireEvent('afteredit', editEvent);
-				}
-			}
-		}
-	},
-
-	renderer: function(value, metadata, record, rowIndex, colIndex, store) {
-		var cell = record.json[this.actualColIndex];
+	renderer: function (value, metadata, record, rowIndex, colIndex, store) {
+		var cell = record.raw[this.actualColIndex];
 		if (gx.lang.gxBoolean(cell.visible)) {
-			var value = value.toString() == cell.checkedValue;
-			metadata.css += ' x-grid3-check-col-td';
-			value = '<div class="x-grid3-check-col' + (value ? '-on' : '') + ' x-grid3-cc-' + this.id + '">&#160;</div>';
+			value = Ext.String.format('<img src="{0}" class="{1}" title="{2}" />', cell.value, cell.cssClass, cell.title);
 		}
-		return gxui.GridExtension.CheckColumn.superclass.renderer.apply(this, [value, metadata, record, rowIndex, colIndex, store]);
+		return this.callParent([value, metadata, record, rowIndex, colIndex, store]);
 	}
 });
 
-gxui.GridExtension.RadioColumn = Ext.extend(gxui.GridExtension.Column, {
-	defineEditor: function() {
-		return new Ext.form.Radio();
-	},
+Ext.define('gxui.GridExtension.CheckColumn', {
+	extend: 'Ext.ux.CheckColumn',
+	alias: 'widget.gxui.checkcolumn',
 
-	renderer: function(value, metadata, record, rowIndex, colIndex, store) {
-		var cell = record.json[this.actualColIndex];
+	listeners: {
+		'checkchange': function (column, rowIndex, checked) {
+			var grid = column.ownerCt.ownerCt,
+				editorPlugin = grid.getPlugin(grid.id + '-celledit');
+
+			editorPlugin.fireEvent('edit', this, editorPlugin.getEditingContext(rowIndex, column));
+		}
+	}
+});
+
+Ext.define('gxui.GridExtension.RadioColumn', {
+	extend: 'gxui.GridExtension.Column',
+	alias: 'widget.gxui.radiocolumn',
+
+	defineEditor: Ext.emptyFn,
+
+	renderer: function (value, metadata, record, rowIndex, colIndex, store) {
+		var cell = record.raw[this.actualColIndex];
 		if (gx.lang.gxBoolean(cell.visible)) {
 			if (typeof value == "string") {
 				value = value.trim();
 			}
 			value = gx.fn.selectedDescription({ s: value, v: cell.possibleValues });
 		}
-		return gxui.GridExtension.RadioColumn.superclass.renderer.apply(this, [value, metadata, record, rowIndex, colIndex, store]);
+		return this.callParent([value, metadata, record, rowIndex, colIndex, store]);
 	}
 });
 
-gxui.GridExtension.ComboColumn = Ext.extend(gxui.GridExtension.Column, {
-	defineEditor: function(gxColumn, actualColIndex) {
-		var combo = new Ext.form.ComboBox({
-			lazyRender: true,
+Ext.define('gxui.GridExtension.ComboColumn', {
+	extend: 'gxui.GridExtension.Column',
+	alias: 'widget.gxui.combocolumn',
+
+	defineEditor: function (gxColumn, actualColIndex) {
+		return {
+			xtype: 'combobox',
 			typeAhead: true,
+			editable: false,
 			triggerAction: 'all',
 			selectOnFocus: true,
 			disableKeyFilter: false,
-			editable: true,
 			forceSelection: true,
 			store: [["", ""]],
+			queryMode: 'local',
+			populateCombo: function (column) {
+				var grid = column.ownerCt.ownerCt,
+					record = grid.getPlugin(grid.id + '-celledit').getActiveRecord();
+				var cell = record.raw[column.actualColIndex];
+				this.getStore().loadData(cell.possibleValues);
+				if (typeof cell.value == "string")
+					this.select(cell.value.trim());
+				else
+					this.select(cell.value);
+			},
 			listeners: {
-				'beforeshow': function() {
-					var record = this.grid.store.getAt(this.row);
-					var cell = record.json[this.actualColIndex];
-					combo.getStore().loadData(cell.possibleValues);
+				'beforerender': function (combo) {
+					combo.populateCombo(this);
 				},
-				'select': function() {
-					this.editor.completeEdit();
+				'beforequery': function (queryEvent) {
+					queryEvent.combo.populateCombo(this);
+				},
+				'select': function () {
+					var grid = this.ownerCt.ownerCt,
+						editorPlugin = grid.getPlugin(grid.id + '-celledit');
+					editorPlugin.completeEdit();
 				},
 				scope: this
 			}
-		});
-		return combo;
+		};
 	},
 
-	renderer: function(value, metadata, record, rowIndex, colIndex, store) {
-		var cell = record.json[this.actualColIndex];
+	renderer: function (value, metadata, record, rowIndex, colIndex, store) {
+		var cell = record.raw[this.actualColIndex];
 		if (gx.lang.gxBoolean(cell.visible)) {
 			if (typeof cell.value == "string") {
 				value = value + "";
 			}
 			value = gx.fn.selectedDescription({ s: value, v: cell.possibleValues });
 		}
-		return gxui.GridExtension.ComboColumn.superclass.renderer.apply(this, [value, metadata, record, rowIndex, colIndex, store]);
+		return this.callParent([value, metadata, record, rowIndex, colIndex, store]);
 	}
 });
 
-gxui.GridExtension.ColumnRenderers = function() {
+gxui.GridExtension.ColumnRenderers = function () {
 	var GE = gxui.GridExtension;
 	var types = gx.html.controls.types;
 
 	var renderers = {};
-	renderers[types.image] = GE.ImageColumn;
-	renderers[types.checkBox] = GE.CheckColumn;
-	renderers[types.radio] = GE.RadioColumn;
-	renderers[types.comboBox] = GE.ComboColumn;
+	renderers[types.image] = 'gxui.imagecolumn';
+	renderers[types.checkBox] = 'gxui.checkcolumn';
+	renderers[types.radio] = 'gxui.radiocolumn';
+	renderers[types.comboBox] = 'gxui.combocolumn';
 
-	renderers.get = function(t) {
+	renderers.get = function (t) {
 		if (this[t]) {
 			return this[t];
 		}
-		return GE.Column;
+		return 'gxui.column';
 	};
 
 	return renderers;
