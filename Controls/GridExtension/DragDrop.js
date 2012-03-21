@@ -28,6 +28,11 @@ Ext.define('gxui.GridExtension.DragDrop', {
 	},
 
 	initializeDrag: function () {
+		/**
+		* @event OnInitDrag
+		* Fires when a drag operation on a row is started. This event is useful to update the value of {@link #DragDropText} with row data.
+		* @member gxui.GridExtension
+		*/
 		if (this.gridUC.OnInitDrag) {
 			this.gridUC.OnInitDrag();
 		}

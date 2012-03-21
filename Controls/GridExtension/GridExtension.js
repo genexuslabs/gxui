@@ -402,6 +402,15 @@ Ext.define('gxui.GridExtension', {
 		var items = [],
 			usePaging = this.hasPagingButtons();
 
+		/**
+		* @event OnFirstPage
+		* Fires when the user clicks the 'first page' paging button. This event is useful when the grid paging is manually programmed.
+		*
+		*		Event Grid1.OnFirstPage
+		*			Do 'Something'
+		*			Grid1.FirstPage()
+		*		EndEvent
+		*/
 		if (usePaging || this.OnFirstPage) {
 			items.push({
 				itemId: 'first',
@@ -414,6 +423,15 @@ Ext.define('gxui.GridExtension', {
 			});
 		}
 
+		/**
+		* @event OnPreviousPage
+		* Fires when the user clicks the 'previous page' paging button. This event is useful when the grid paging is manually programmed.
+		*
+		*		Event Grid1.OnPreviousPage
+		*			Do 'Something'
+		*			Grid1.PreviousPage()
+		*		EndEvent
+		*/
 		if (usePaging || this.OnPreviousPage) {
 			items.push({
 				itemId: 'previous',
@@ -430,6 +448,15 @@ Ext.define('gxui.GridExtension', {
 			items.push("-");
 		}
 
+		/**
+		* @event OnNextPage
+		* Fires when the user clicks the 'next page' paging button. This event is useful when the grid paging is manually programmed.
+		*
+		*		Event Grid1.OnNextPage
+		*			Do 'Something'
+		*			Grid1.NextPage()
+		*		EndEvent
+		*/
 		if (usePaging || this.OnNextPage) {
 			items.push({
 				itemId: 'next',
@@ -442,6 +469,15 @@ Ext.define('gxui.GridExtension', {
 			});
 		}
 
+		/**
+		* @event OnLastPage
+		* Fires when the user clicks the 'last page' paging button. This event is useful when the grid paging is manually programmed.
+		*
+		*		Event Grid1.OnLastPage
+		*			Do 'Something'
+		*			Grid1.LastPage()
+		*		EndEvent
+		*/
 		if (usePaging || this.OnLastPage) {
 			items.push({
 				itemId: 'last',
