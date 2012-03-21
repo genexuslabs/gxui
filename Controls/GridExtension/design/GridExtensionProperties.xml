@@ -28,16 +28,6 @@
 					<Name>Appearance</Name>
 					<Children>
 						<Prop>
-							<Id>DefaultColumnWidth</Id>
-							<Name>DefaultColumnWidth</Name>
-							<Type>Integer</Type>
-							<Default>100</Default>
-							<Metadata>
-								<Value name="FlagScope">DesignTime</Value>
-							</Metadata>
-							<Description>The width of columns which have no width specified (defaults to 100).</Description>
-						</Prop>
-						<Prop>
 							<Id>UseThemeClasses</Id>
 							<Name>UseThemeClasses</Name>
 							<Type>Boolean</Type>
@@ -74,7 +64,7 @@
 								<Value id="RowSelectionModel" desc="Row" />
 								<Value id="CheckBoxSelectionModel" desc="Checkbox" />
 							</Values>
-							<Description>The selection model to use with the grid: RowSelectionModel (rows are selected by clicking on the row) or CheckBoxSelectionModel (a check box appears in the first column of the grid).</Description>
+							<Description>The selection model to use with the grid: RowSelectionModel (rows are selected by clicking on the row) or CheckBoxSelectionModel (a check box appears in the first column of the grid). If the grid has at least one editable column, the selection model is ignored as a cell by cell model is used.</Description>
 						</Prop>
 						<Group>
 							<Name>DragDrop</Name>
@@ -87,7 +77,7 @@
 									<Metadata>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
-									<Description>A named drag drop group to which this object belongs. If a group is specified, then this object will only interact with other drag drop objects in the same group (defaults to undefined).</Description>
+									<Description>A named drag drop group to which this object belongs. If a group is specified, then this object will only interact with other drag drop objects in the same group. This is useful when using drag and drop between a {@link gxui.Toolbar gxuiToolbar tree} and a grid.</Description>
 								</Prop>
 								<Prop>
 									<Id>DragDropText</Id>
@@ -95,7 +85,7 @@
 									<Type>Text</Type>
 									<Default></Default>
 									<Metadata />
-									<Description>Configures the text in the drag proxy.</Description>
+									<Description>Configures the text in the drag proxy that is shown during the drag/drop operation.</Description>
 								</Prop>
 								<Prop>
 									<Id>PrimaryButtonOnly</Id>
@@ -120,7 +110,7 @@
 									<Metadata>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
-									<Description>True to allow grouping.</Description>
+									<Description>True to allow to display the grid rows aggregated into groups. The group will show the title for the group name and then the appropriate records for the group underneath. The groups can also be expanded and collapsed.</Description>
 								</Prop>
 								<Prop>
 									<Id>ShowGroupingSummary</Id>
@@ -128,8 +118,8 @@
 									<Type>Boolean</Type>
 									<Default>false</Default>
 									<Metadata />
-									<Description>True to add an aggregate summary row at the bottom of each group. 
-									The summary value needs to be calculated for each column in the grid. This is controlled by the SummaryType option specified on the column.
+									<Description>True to add an aggregate summary row at the bottom of each group.
+The summary value needs to be calculated for each column in the grid. This is controlled by the {@link gxui.GridExtensionColumn#SummaryType} option specified on the column.
 									</Description>
 								</Prop>
 								<Prop>
@@ -138,7 +128,7 @@
 									<Type>Text</Type>
 									<Default></Default>
 									<Metadata/>
-									<Description>The name (as specified in the Record's Field definition) of the field to group on.</Description>
+									<Description>The name of the attribute or variable to group on (case sensitive). Data should be sorted by this field when paging is enabled.</Description>
 								</Prop>
 								<Prop>
 									<Id>HideGroupedField</Id>
@@ -154,38 +144,12 @@
 									<Id>GroupTemplate</Id>
 									<Name>GroupTemplate</Name>
 									<Type>Text</Type>
-									<Default>{text}</Default>
+									<Default>{name}</Default>
 									<Metadata>
 										<Value name="FlagScope">DesignTime</Value>
 									</Metadata>
 									<Description>
-										The template used to render the group header. This is used to format an object which contains the following properties:
-
-										* group : String
-										The rendered value of the group field. By default this is the unchanged value of the group field. If a groupRenderer is specified, it is the result of a call to that.
-
-										* gvalue : Object
-										The raw value of the group field.
-
-										* text : String
-										The configured header (If showGroupName is true) plus the renderedgroup field value.
-
-										* groupId : String
-										A unique, generated ID which is applied to the View Element which contains the group.
-
-										* startRow : Number
-										The row index of the Record which caused group change.
-
-										* rs : Array
-										.Contains a single element: The Record providing the data for the row which caused group change.
-
-										* cls : String
-										The generated class name string to apply to the group header Element.
-
-										* style : String
-										The inline style rules to apply to the group header Element.
-
-										Example: {text} ({[values.rs.length]} {[values.rs.length > 1 ? "Items" : "Item"]})
+										The template used to render the group header.
 									</Description>
 								</Prop>
 							</Children>
@@ -246,7 +210,18 @@
 							<Type>Boolean</Type>
 							<Default>true</Default>
 							<Metadata />
-							<Description>Indicates if sort operations will be performed locally (on the current page) or remotely over the whole data set.</Description>
+							<Description>
+Indicates if sort operations will be performed locally (on the current page) or remotely over the whole data set.
+To accomplish this, orders must be programmed on the webpanel accordingly. For example, in a grid with CustomerName and CustomerAddress fields, 
+the order clauses should be:
+								
+	CustomerName when (Grid1.SortField = 'CustomerName' and Grid1.SortOrder = 'ASC')  or Grid1.SortField = ''
+	(CustomerName) when Grid1.SortField = 'CustomerName' and Grid1.SortOrder = 'DESC'
+	CustomerAddress when Grid1.SortField = 'CustomerAddress' and Grid1.SortOrder = 'ASC'
+	(CustomerAddress) when Grid1.SortField = 'CustomerAddress' and Grid1.SortOrder = 'DESC'
+
+Bear in mind that sorting must be enabled by setting {@link gxui.GridExtensionColumn#Sortable} = True.
+							</Description>
 						</Prop>
 						<Prop>
 							<Id>SortField</Id>

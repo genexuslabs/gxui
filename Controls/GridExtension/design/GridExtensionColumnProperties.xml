@@ -60,7 +60,7 @@
 					<Type>Boolean</Type>
 					<Default>false</Default>
 					<Metadata />
-					<Description>True if this column should expand to fill unused space in the grid.</Description>
+					<Description>True if this column should expand to fill unused space in the grid. Deprecated set Width=100% instead.</Description>
 				</Prop>
 				<Prop>
 					<Id>SummaryType</Id>
@@ -86,7 +86,7 @@
 					<Metadata>
 						<Value name="FlagScope">DesignTime</Value>
 					</Metadata>
-					<Description>If specified, this column is rendered inside a parent header whose text is the one specified in this property. All the columns with the same HeaderGroup value are shown inside the same group.</Description>
+					<Description>If specified, this column is rendered inside a parent header whose text is the one specified in this property. All the columns with the same HeaderGroup value are shown inside the same header group.</Description>
 				</Prop>
 			</Children>
 		</Group>

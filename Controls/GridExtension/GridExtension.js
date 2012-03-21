@@ -162,7 +162,8 @@ Ext.define('gxui.GridExtension', {
 		if (gx.lang.gxBoolean(this.Grouping)) {
 			features.push({
 				id: this.getUniqueId() + '-grouping',
-				ftype: gx.lang.gxBoolean(this.ShowGroupingSummary) ? 'groupingsummary' : 'grouping'
+				ftype: gx.lang.gxBoolean(this.ShowGroupingSummary) ? 'groupingsummary' : 'grouping',
+				groupHeaderTpl: this.GroupTemplate
 			});
 		}
 		return features;
@@ -389,7 +390,7 @@ Ext.define('gxui.GridExtension', {
 		if (gx.lang.gxBoolean(this.Grouping)) {
 			if (!storeConfig.sorters) {
 				storeConfig.sorters = {
-					field: this.GroupField
+					property: this.GroupField
 				};
 			}
 			storeConfig.groupField = this.GroupField;
@@ -746,6 +747,13 @@ Ext.define('gxui.GridExtension', {
 			this.setSelectedRow(rowIndex - 1);
 			this.m_grid.getSelectionModel().selectRow(rowIndex - 1);
 		}
+	},
+
+	UnSelectRows: function () {
+		if (this.SelectedRow != undefined) {
+			delete this.SelectedRow;
+		}
+		this.m_grid.getSelectionModel().deselectAll();
 	}
 });
 

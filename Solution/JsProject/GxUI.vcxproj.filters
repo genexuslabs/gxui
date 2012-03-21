@@ -115,6 +115,9 @@
     <Filter Include="ux\GridAutowidth">
       <UniqueIdentifier>{47a1cc7e-c767-429e-b6d4-2041d8781293}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ux\grid">
+      <UniqueIdentifier>{5e8be515-2107-48cd-80d8-f8e1dbcfc372}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="BuildAndUpdate.bat">
@@ -426,12 +429,6 @@
     <None Include="..\..\Controls\KeyMap\design\KeyMapRender.xsl">
       <Filter>Controls\KeyMap\design</Filter>
     </None>
-    <None Include="..\..\JSDuckProperties.xslt">
-      <Filter>Docs</Filter>
-    </None>
-    <None Include="..\..\Properties.xslt">
-      <Filter>Docs</Filter>
-    </None>
     <None Include="..\..\gxui.jsb">
       <Filter>Build</Filter>
     </None>
@@ -440,6 +437,24 @@
     </None>
     <None Include="..\..\ux\GridAutowidth\AutoWidther.js">
       <Filter>ux\GridAutowidth</Filter>
+    </None>
+    <None Include="..\..\docs\JSDuckProperties.xslt">
+      <Filter>Docs</Filter>
+    </None>
+    <None Include="..\..\docs\Properties.xslt">
+      <Filter>Docs</Filter>
+    </None>
+    <None Include="..\..\ux\grid\CheckColumn.js">
+      <Filter>ux\grid</Filter>
+    </None>
+    <None Include="..\..\ux\grid\CheckHeader.css">
+      <Filter>ux\grid</Filter>
+    </None>
+    <None Include="..\..\ux\grid\RadioSelectionModel.js">
+      <Filter>ux\grid</Filter>
+    </None>
+    <None Include="..\..\ux\grid\SmartCheckboxSelectionModel.js">
+      <Filter>ux\grid</Filter>
     </None>
   </ItemGroup>
 </Project>

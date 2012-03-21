@@ -61,12 +61,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\..\gxui.jsb" />
-    <None Include="..\..\JSDuckProperties.xslt">
+    <None Include="..\..\docs\JSDuckProperties.xslt">
       <SubType>Designer</SubType>
     </None>
-    <None Include="..\..\Properties.xslt" />
+    <None Include="..\..\docs\Properties.xslt" />
     <None Include="..\..\ux\GridAutowidth\AutoWidthColumns.js" />
     <None Include="..\..\ux\GridAutowidth\AutoWidther.js" />
+    <None Include="..\..\ux\grid\CheckColumn.js" />
+    <None Include="..\..\ux\grid\CheckHeader.css" />
+    <None Include="..\..\ux\grid\RadioSelectionModel.js" />
+    <None Include="..\..\ux\grid\SmartCheckboxSelectionModel.js" />
     <None Include="BuildAndUpdate.bat" />
     <None Include="BuildBatch.bat" />
     <None Include="gxui.msbuild" />

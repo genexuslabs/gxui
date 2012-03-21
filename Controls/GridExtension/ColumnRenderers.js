@@ -211,12 +211,24 @@ Ext.define('gxui.GridExtension.CheckColumn', {
 	extend: 'Ext.ux.CheckColumn',
 	alias: 'widget.gxui.checkcolumn',
 
+	processEvent: function (type, view, cell, recordIndex, cellIndex, e) {
+		if (type == 'mousedown' || (type == 'keydown' && (e.getKey() == e.ENTER || e.getKey() == e.SPACE))) {
+			var record = view.panel.store.getAt(recordIndex),
+				cell = record.raw[this.actualColIndex];
+			if (cell.enabled)
+				return this.callParent(arguments);
+		}
+		else {
+			return this.callParent(arguments);
+		}
+	},
 	listeners: {
 		'checkchange': function (column, rowIndex, checked) {
 			var grid = column.ownerCt.ownerCt,
 				editorPlugin = grid.getPlugin(grid.id + '-celledit');
 
-			editorPlugin.fireEvent('edit', this, editorPlugin.getEditingContext(rowIndex, column));
+			if (editorPlugin)
+				editorPlugin.fireEvent('edit', this, editorPlugin.getEditingContext(rowIndex, column));
 		}
 	}
 });
@@ -246,7 +258,6 @@ Ext.define('gxui.GridExtension.ComboColumn', {
 	defineEditor: function (gxColumn, actualColIndex) {
 		return {
 			xtype: 'combobox',
-			typeAhead: true,
 			editable: false,
 			triggerAction: 'all',
 			selectOnFocus: true,
