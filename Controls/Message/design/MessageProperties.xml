@@ -1,111 +1,110 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="../../Properties.xslt"?>
 <Content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Object id="gxui.Message">
-    <Group>
-      <Name>General</Name>
-      <Type>Main</Type>
-      <Children>
-        <Prop>
-          <Id>Width</Id>
-          <Name>Width</Name>
-          <Type>Text</Type>
-          <Default>100</Default>
-        </Prop>
-        <Prop>
-          <Id>Height</Id>
-          <Name>Height</Name>
-          <Type>Text</Type>
-          <Default>100</Default>
-        </Prop>
-        <Prop>
-          <Id>Show</Id>
-          <Name>Show</Name>
-		  <Type>Combo</Type>
-		  <Default>false</Default>
-		  <Metadata/>
-		  <Values>
-			<Value id="false" desc="False"/>
-			<Value id="true" desc="True"/>
-		  </Values>		  
-        </Prop>		
-        <Prop>
-          <Id>Title</Id>
-          <Name>Title</Name>
-          <Type>Text</Type>
-          <Default>Title</Default>
-        </Prop>			
-        <Prop>
-          <Id>Message</Id>
-          <Name>Message</Name>
-          <Type>Text</Type>
-          <Default>This is the message</Default>
-        </Prop>	
-        <Prop>
-          <Id>Type</Id>
-          <Name>Type</Name>
-		  <Type>Combo</Type>
-		  <Default>alert</Default>
-		  <Metadata/>
-		  <Values>
-			<Value id="alert" desc="Alert"/>
-			<Value id="notification" desc="Notification"/>
-		  </Values>		  
-        </Prop>
+	<Object id="gxui.Message">
 		<Group>
-		  <Name>Alert</Name>
-		  <Children>		
-	        <Prop>
-	          <Id>Icon</Id>
-	          <Name>Icon</Name>
-	          <Type>Combo</Type>
-	          <Default>info</Default>
-			  <Metadata/>
-			  <Values>
-				<Value id="info" desc="Info"/>
-				<Value id="error" desc="Error"/>
-				<Value id="question" desc="Question"/>
-				<Value id="warning" desc="Warning"/>			
-			  </Values>			  
-	        </Prop>		
-	      </Children>
-	    </Group>	
-		<Group>
-		  <Name>Notification</Name>
-		  <Children>	
-			<Prop>
-	          <Id>Cls</Id>
-	          <Name>Cls</Name>
-	          <Type>Text</Type>
-	          <Default></Default>
-	        </Prop>
-	        <Prop>
-	          <Id>Position</Id>
-	          <Name>Position</Name>
-			  <Type>Combo</Type>
-			  <Default>t</Default>
-			  <Metadata/>
-			  <Values>
-				<Value id="tl" desc="Top Left"/>		  
-				<Value id="t" desc="Top Center"/>
-				<Value id="tr" desc="Top Right"/>
-				<Value id="l" desc="Center Left"/>		  
-				<Value id="c" desc="Center Center"/>
-				<Value id="r" desc="Center Right"/>
-				<Value id="bl" desc="Bottom Left"/>		  
-				<Value id="b" desc="Bottom Center"/>
-				<Value id="br" desc="Bottom Right"/>			
-			  </Values>		  
-	        </Prop>		  
-	        <Prop>
-	          <Id>Duration</Id>
-	          <Name>Duration</Name>
-	          <Type>Integer</Type>
-	          <Default>1</Default>
-	        </Prop>	  
-	      </Children>
-	    </Group>				
-      </Children>
-    </Group>
-  </Object>
+			<Name>General</Name>
+			<Type>Main</Type>
+			<Children>
+				<Prop>
+					<Id>Show</Id>
+					<Name>Show</Name>
+					<Type>Combo</Type>
+					<Default>false</Default>
+					<Metadata/>
+					<Values>
+						<Value id="false" desc="False"/>
+						<Value id="true" desc="True"/>
+					</Values>
+					<Description>Deprecated. If true, when a user event is executed, the message is shown. Use {@link #ShowMessage} method instead.</Description>
+				</Prop>
+				<Prop>
+					<Id>Title</Id>
+					<Name>Title</Name>
+					<Type>Text</Type>
+					<Default>Title</Default>
+					<Description>Title of the message.</Description>
+				</Prop>
+				<Prop>
+					<Id>Message</Id>
+					<Name>Message</Name>
+					<Type>Text</Type>
+					<Default>This is the message</Default>
+					<Description>Text of the message.</Description>
+				</Prop>
+				<Prop>
+					<Id>Type</Id>
+					<Name>Type</Name>
+					<Type>Combo</Type>
+					<Default>alert</Default>
+					<Metadata/>
+					<Values>
+						<Value id="alert" desc="Alert"/>
+						<Value id="notification" desc="Notification"/>
+					</Values>
+					<Description>Indicates the way messages will be shown by default.
+						* If you want to show an alert, a modal message dialog will appear.
+						* If you want to show a notification, a non-modal notification window will appear, similar to the one used by Microsoft Outlook when a new mail message arrives.
+					</Description>
+				</Prop>
+				<Group>
+					<Name>Alert</Name>
+					<Children>
+						<Prop>
+							<Id>Icon</Id>
+							<Name>Icon</Name>
+							<Type>Combo</Type>
+							<Default>info</Default>
+							<Metadata/>
+							<Values>
+								<Value id="info" desc="Info"/>
+								<Value id="error" desc="Error"/>
+								<Value id="question" desc="Question"/>
+								<Value id="warning" desc="Warning"/>
+							</Values>
+							<Description>Indicates which icon to use in the dialog.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
+					<Name>Notification</Name>
+					<Children>
+						<Prop>
+							<Id>Cls</Id>
+							<Name>Cls</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Description>An optional extra CSS class that will be added to this control's element.</Description>
+						</Prop>
+						<Prop>
+							<Id>Position</Id>
+							<Name>Position</Name>
+							<Type>Combo</Type>
+							<Default>t</Default>
+							<Metadata/>
+							<Values>
+								<Value id="tl" desc="Top Left"/>
+								<Value id="t" desc="Top Center"/>
+								<Value id="tr" desc="Top Right"/>
+								<Value id="l" desc="Center Left"/>
+								<Value id="c" desc="Center Center"/>
+								<Value id="r" desc="Center Right"/>
+								<Value id="bl" desc="Bottom Left"/>
+								<Value id="b" desc="Bottom Center"/>
+								<Value id="br" desc="Bottom Right"/>
+							</Values>
+							<Description>Screen position where the notification will be shown.</Description>
+						</Prop>
+						<Prop>
+							<Id>Duration</Id>
+							<Name>Duration</Name>
+							<Type>Integer</Type>
+							<Default>1</Default>
+							<Description>Duration of the animation used to show the notification, in seconds.</Description>
+						</Prop>
+					</Children>
+				</Group>
+			</Children>
+		</Group>
+	</Object>
 </Content>
