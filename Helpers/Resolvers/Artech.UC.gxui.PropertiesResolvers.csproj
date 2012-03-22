@@ -68,6 +68,8 @@
     <Compile Include="Panel\ShowAsWindowResolver.cs" />
     <Compile Include="Panel\ToolbarDataResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TabPanel\DesignTimeTabsResolver.cs" />
+    <Compile Include="TabPanel\ResolverFactory.cs" />
     <Compile Include="Treeview\AppendOnlyResolver.cs" />
     <Compile Include="Treeview\CheckedNodesResolver.cs" />
     <Compile Include="Treeview\DragDropGroupResolver.cs" />

@@ -39,49 +39,57 @@
   <xsl:template match="Panels" mode="RenderPanels">
     <xsl:param name="Selected"/>
     <tr>
-      <td style="height:1px">
-        <xsl:for-each select="Panel">
-          <div>
-            <xsl:attribute name="id">
-              <xsl:value-of select="Id"/>
-            </xsl:attribute>
-            <xsl:apply-templates mode="AddTDStyleAttribute" select=".">
-              <xsl:with-param name="CustomProps">
-                <xsl:text>display:inline;height:12px;margin-right:2px;padding:10px 7px 10px 7px;</xsl:text>
-              </xsl:with-param>
-              <xsl:with-param name="Selected" select="$Selected"/>
-            </xsl:apply-templates>
-            <div>
-              <xsl:attribute name="containerId">
-                <xsl:text>Title</xsl:text>
-                <xsl:value-of select="Id"/>
-              </xsl:attribute>
-              <xsl:apply-templates mode="AddTDStyleAttribute" select=".">
-                <xsl:with-param name="CustomProps">
-                  <xsl:text>display:inline;height:1em;font-family:Tahoma;font-size:0.7em;padding:3px 3px 3px 3px;</xsl:text>
-                </xsl:with-param>
-                <xsl:with-param name="Selected" select="$Selected"/>
-              </xsl:apply-templates>
-              <![CDATA[&nbsp;]]>
-            </div>
-            <img style="margin-left:2px;" alt="Click here to remove tab panel">
-              <xsl:attribute name="id">
-                <xsl:text>x</xsl:text>
-                <xsl:value-of select="Id"/>
-              </xsl:attribute>
-              <xsl:attribute name="src">
-                <xsl:value-of select='gxca:GetMyPath()'/>
-                <xsl:text>/TabPanel/design/tab-close-on.gif</xsl:text>
-              </xsl:attribute>
-            </img>
-          </div>
-        </xsl:for-each>
-        <img id="+" style="padding:6px 6px 6px 6px;" alt="Click here to add a panel">
-          <xsl:attribute name="src">
-            <xsl:value-of select='gxca:GetMyPath()'/>
-            <xsl:text>/TabPanel/design/add.gif</xsl:text>
-          </xsl:attribute>
-        </img>
+      <td style="height:1px;">
+				<table cellpadding="0" cellspacing="0" border="0" style="display:inline">
+					<tr>
+						<xsl:for-each select="Panel">
+							<td>
+								<div>
+									<xsl:attribute name="id">
+										<xsl:value-of select="Id"/>
+									</xsl:attribute>
+									<xsl:apply-templates mode="AddTDStyleAttribute" select=".">
+										<xsl:with-param name="CustomProps">
+											<xsl:text>width:100px;display:inline;height:22px;margin-right:2px;padding:20px 7px 10px 7px;white-space:nowrap;</xsl:text>
+										</xsl:with-param>
+										<xsl:with-param name="Selected" select="$Selected"/>
+									</xsl:apply-templates>
+									<label>
+										<xsl:attribute name="containerId">
+											<xsl:text>Title</xsl:text>
+											<xsl:value-of select="Id"/>
+										</xsl:attribute>
+										<xsl:apply-templates mode="AddTDStyleAttribute" select=".">
+											<xsl:with-param name="CustomProps">
+												<xsl:text>width:70px;display:inline;height:1em;font-family:Tahoma;font-size:0.7em;padding:3px 3px 3px 3px;white-space:nowrap;background:white;</xsl:text>
+											</xsl:with-param>
+											<xsl:with-param name="Selected" select="$Selected"/>
+										</xsl:apply-templates>
+										<![CDATA[&nbsp;]]>
+									</label>
+									<img style="margin-left:2px;" alt="Click here to remove tab panel">
+										<xsl:attribute name="id">
+											<xsl:text>x</xsl:text>
+											<xsl:value-of select="Id"/>
+										</xsl:attribute>
+										<xsl:attribute name="src">
+											<xsl:value-of select='gxca:GetMyPath()'/>
+											<xsl:text>/TabPanel/design/tab-close-on.gif</xsl:text>
+										</xsl:attribute>
+									</img>
+								</div>
+							</td>
+						</xsl:for-each>
+						<td>
+							<img id="+" style="" alt="Click here to add a panel" hspace="16" vspace="16">
+								<xsl:attribute name="src">
+									<xsl:value-of select='gxca:GetMyPath()'/>
+									<xsl:text>/TabPanel/design/add.gif</xsl:text>
+								</xsl:attribute>
+							</img>
+						</td>
+					</tr>
+				</table>
       </td>
     </tr>
     <tr>
@@ -105,10 +113,6 @@
           </xsl:if>
         </td>
       </xsl:for-each>
-    </tr>
-    <tr>
-      <td containerId="WebCompGrid" style="height:15px;">
-      </td>
     </tr>
   </xsl:template>
 

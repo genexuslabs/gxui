@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0"?>
 <ControlDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<Version>1.1.0.378</Version>
+	<Version>2.0.0.0</Version>
 	<IncludeInControlInfo>false</IncludeInControlInfo>
 	<RuntimeRender>gxui-all.js</RuntimeRender>
-	<GxResources>TabPanel/design/TabPanel.xpz</GxResources>
 	<HeightPropertyName>Height</HeightPropertyName>
 	<WidthPropertyName>Width</WidthPropertyName>
 	<ResizeSupported>true</ResizeSupported>
@@ -14,7 +13,6 @@
 	<ShowMethod>show</ShowMethod>
 	<ReferencedFiles>
 		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
-		<SharedFile>ext/adapter/ext/ext-base.js</SharedFile>
 		<SharedFile>ext/ext-all.js</SharedFile>
 		<File>gxui-all.css</File>
 	</ReferencedFiles>
@@ -32,6 +30,7 @@
 	<PropertiesDefinition>TabPanel/design/TabPanelProperties.xml</PropertiesDefinition>
 	<DesignRender>TabPanel/design/TabPanelRender.xsl</DesignRender>
 	<DesignerRenderHelper>Artech.UC.gxui.Renders.TabPanel</DesignerRenderHelper>
+	<ResolverFactory>Artech.UC.gxui.PropertiesResolvers.TabPanel.ResolverFactory</ResolverFactory>
 	<ToolboxIcon>TabPanel/design/tabpanel.ico</ToolboxIcon>
 	<Events>
 		<Event>TabChanged</Event>
@@ -94,16 +93,30 @@
 		</Method>
 		<Method>
 			<Name>ShowTab</Name>
-			<Signature>ShowTab(tabId:Integer)</Signature>
+			<Signature>ShowTab(tabIndex:Integer)</Signature>
 			<Parameters>
 				<Parameter>Integer</Parameter>
 			</Parameters>
 		</Method>
 		<Method>
 			<Name>HideTab</Name>
-			<Signature>HideTab(tabId:Integer)</Signature>
+			<Signature>HideTab(tabIndex:Integer)</Signature>
 			<Parameters>
 				<Parameter>Integer</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
+			<Name>ShowTabById</Name>
+			<Signature>ShowTabById(tabId:Character)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
+			<Name>HideTabById</Name>
+			<Signature>HideTabById(tabId:Character)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
 			</Parameters>
 		</Method>
 		<Method>
@@ -131,43 +144,5 @@
 			</Parameters>
 		</Method>
 	</Methods>
-	<Actions>
-		<Action>
-			<Order>0</Order>
-			<ActionProperties>
-				<Property>
-					<Key>
-						<string>Name</string>
-					</Key>
-					<Value>
-						<string>gxuiTabPanel</string>
-					</Value>
-				</Property>
-				<Property>
-					<Key>
-						<string>ATTCUSTOMTYPE</string>
-					</Key>
-					<Value>
-						<string>gxuiTabPanel</string>
-					</Value>
-				</Property>
-			</ActionProperties>
-			<ActionType>VarDeclaration</ActionType>
-		</Action>
-		<Action>
-			<Order>1</Order>
-			<ActionProperties>
-				<Property>
-					<Key>
-						<string>RunTimeTabs</string>
-					</Key>
-					<Value>
-						<string>&amp;gxuiTabPanel</string>
-					</Value>
-				</Property>
-			</ActionProperties>
-			<Data></Data>
-			<ActionType>SetPropertyToControl</ActionType>
-		</Action>
-	</Actions>
+	<Actions />
 </ControlDefinition>

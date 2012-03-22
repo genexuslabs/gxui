@@ -83,6 +83,7 @@
     <include name="ux\GridAutowidth\AutoWidthColumns.js" />
     <include name="Controls\GridExtension\DragDrop.js" />
     <include name="Controls\GridExtension\GridExtension.js" />
+    <include name="Controls\TabPanel\TabPanelRender.js" />
     <include name="Controls\GridExtension\ColumnRenderers.js" />
   </target>
   <target name="gxui-allcss" file="$output\gxui-all.css" debug="False" shorthand="False" shorthand-list="YAHOO.util.Dom.setStyle&#xD;&#xA;YAHOO.util.Dom.getStyle&#xD;&#xA;YAHOO.util.Dom.getRegion&#xD;&#xA;YAHOO.util.Dom.getViewportHeight&#xD;&#xA;YAHOO.util.Dom.getViewportWidth&#xD;&#xA;YAHOO.util.Dom.get&#xD;&#xA;YAHOO.util.Dom.getXY&#xD;&#xA;YAHOO.util.Dom.setXY&#xD;&#xA;YAHOO.util.CustomEvent&#xD;&#xA;YAHOO.util.Event.addListener&#xD;&#xA;YAHOO.util.Event.getEvent&#xD;&#xA;YAHOO.util.Event.getTarget&#xD;&#xA;YAHOO.util.Event.preventDefault&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Event.stopPropagation&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Anim&#xD;&#xA;YAHOO.util.Motion&#xD;&#xA;YAHOO.util.Connect.asyncRequest&#xD;&#xA;YAHOO.util.Connect.setForm&#xD;&#xA;YAHOO.util.Dom&#xD;&#xA;YAHOO.util.Event">
@@ -147,4 +148,14 @@
   <file name="resources\images\top2.gif" path="resources\images" />
   <file name="resources\images\unchecked.gif" path="resources\images" />
   <file name="resources\images\up2.gif" path="resources\images" />
+  <file name="Controls\TabPanel\design\TabPanelRender.xsl" path="TabPanel\design" />
+  <file name="Controls\TabPanel\design\add.gif" path="TabPanel\design" />
+  <file name="Controls\TabPanel\design\panel-title-bg.gif" path="TabPanel\design" />
+  <file name="Controls\TabPanel\design\panel-title-light-bg.gif" path="TabPanel\design" />
+  <file name="Controls\TabPanel\design\tab-close-on.gif" path="TabPanel\design" />
+  <file name="Controls\TabPanel\design\tab-unselected.gif" path="TabPanel\design" />
+  <file name="Controls\TabPanel\design\tabpanel.ico" path="TabPanel\design" />
+  <file name="Controls\TabPanel\design\TabPanelProperties.xml" path="TabPanel\design" />
+  <file name="Controls\TabPanel\TabPanelRender.js" path="TabPanel" />
+  <file name="Controls\TabPanel.control" path="" />
 </project>
