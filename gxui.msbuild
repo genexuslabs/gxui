@@ -70,10 +70,10 @@
 		</Exec>
 		<Error Text="Robocopy Error" Condition="'%(RobocopyExitCode.identity)'>7"/>
 
-		<CallTarget Targets="UpdateDeploy">
+		<CallTarget Targets="GenerateDocs" Condition=''>
 		</CallTarget>
 
-		<CallTarget Targets="GenerateDocs" Condition='$(Configuration)==Release'>
+		<CallTarget Targets="UpdateDeploy">
 		</CallTarget>
 	</Target>
 
@@ -115,8 +115,7 @@
 		<CreateItem Include ="$(DeployGxuiDir)\**\design\*Properties.xml">
 			<Output ItemName ="PropertiesFiles" TaskParameter="Include"/>
 		</CreateItem>
-		<MakeDir Directories="$(DeployGxuiDir)\docs" />
-		<Xslt Xsl='JSDuckProperties.xslt' RootTag='Root' Inputs='@(PropertiesFiles)' Output='$(DeployGxuiDir)\docs\Properties.js' />
+		<Xslt Xsl='JSDuckProperties.xslt' RootTag='Root' Inputs='@(PropertiesFiles)' Output='$(DeployGxuiDir)\Properties.js' />
 
 		<Exec Command='Freezer\jsduck-3.3.0.exe $(DeployGxuiDir) --title "GxUI Library Documentation" --output $(DeployGxuiDir)\docs'/>
 	</Target>
