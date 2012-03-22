@@ -128,7 +128,11 @@
 										<Value id="default" desc="Default" />
 										<Value id="fit" desc="Fit" />
 									</Values>
-									<Description>The layout type to be used in this container.</Description>
+									<Description>The layout type to be used in this container.
+										* Use Fit if inside the container a single GxUI child control will be shown.
+										* This child control will expand to fit the layout's container if its AddToParentGxUIControl property is set to true.
+										* Important: Fit layout will disable the container scrollbars, so it should only be used when showing a single, expanded, GxUI control inside. In any other case, Default layout should be used.
+									</Description>
 								</Prop>
 								<Group>
 									<Name>North Title Bar</Name>
@@ -356,7 +360,13 @@
 										<Value id="default" desc="Default" />
 										<Value id="fit" desc="Fit" />
 									</Values>
-									<Description>The layout type to be used in this container.</Description>
+									<Description>
+										The layout type to be used in this container.
+										* Use Fit if inside the container a single GxUI child control will be shown.
+										* This child control will expand to fit the layout's container if its AddToParentGxUIControl property is set to true.
+										* Important: Fit layout will disable the container scrollbars, so it should only be used when showing a single, expanded, GxUI control inside. In any other case, Default layout should be used.
+									</Description>
+
 								</Prop>
 								<Group>
 									<Name>South Title Bar</Name>
@@ -584,7 +594,13 @@
 										<Value id="default" desc="Default" />
 										<Value id="fit" desc="Fit" />
 									</Values>
-									<Description>The layout type to be used in this container.</Description>
+									<Description>
+										The layout type to be used in this container.
+										* Use Fit if inside the container a single GxUI child control will be shown.
+										* This child control will expand to fit the layout's container if its AddToParentGxUIControl property is set to true.
+										* Important: Fit layout will disable the container scrollbars, so it should only be used when showing a single, expanded, GxUI control inside. In any other case, Default layout should be used.
+									</Description>
+
 								</Prop>
 								<Group>
 									<Name>West Title Bar</Name>
@@ -806,7 +822,13 @@
 										<Value id="default" desc="Default" />
 										<Value id="fit" desc="Fit" />
 									</Values>
-									<Description>The layout type to be used in this container.</Description>
+									<Description>
+										The layout type to be used in this container.
+										* Use Fit if inside the container a single GxUI child control will be shown.
+										* This child control will expand to fit the layout's container if its AddToParentGxUIControl property is set to true.
+										* Important: Fit layout will disable the container scrollbars, so it should only be used when showing a single, expanded, GxUI control inside. In any other case, Default layout should be used.
+									</Description>
+
 								</Prop>
 								<Group>
 									<Name>Center Title Bar</Name>
@@ -999,7 +1021,13 @@
 										<Value id="default" desc="Default" />
 										<Value id="fit" desc="Fit" />
 									</Values>
-									<Description>The layout type to be used in this container.</Description>
+									<Description>
+										The layout type to be used in this container.
+										* Use Fit if inside the container a single GxUI child control will be shown.
+										* This child control will expand to fit the layout's container if its AddToParentGxUIControl property is set to true.
+										* Important: Fit layout will disable the container scrollbars, so it should only be used when showing a single, expanded, GxUI control inside. In any other case, Default layout should be used.
+									</Description>
+
 								</Prop>
 								<Group>
 									<Name>East Title Bar</Name>
