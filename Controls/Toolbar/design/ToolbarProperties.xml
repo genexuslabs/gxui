@@ -151,7 +151,7 @@
 						* @property {String} Data.Buttons.Confirmation.CancelButtonText Text for the Cancel button (defaults to 'Cancel').
 						* @property {String} Data.Buttons.Confirmation.Message (required) Text for the dialog message.
 						* @property {String} Data.Buttons.Confirmation.Title Text for the dialog title.
-						* @property {String} Data.Buttons.Items Collection of children items of the button. Applies to Menu, SplitButton and Group.
+						* @property {gxuiToolbarItem[]} Data.Buttons.Items Collection of children items of the button. Applies to Menu, SplitButton and Group.
 					</Description>
 				</Prop>		
 		     </Children>

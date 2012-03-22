@@ -86,6 +86,7 @@
     <include name="Controls\GridExtension\ColumnRenderers.js" />
     <include name="Controls\TabPanel\TabPanelRender.js" />
     <include name="Controls\Message\MessageRender.js" />
+    <include name="Controls\Menu\MenuRender.js" />
   </target>
   <target name="gxui-allcss" file="$output\gxui-all.css" debug="False" shorthand="False" shorthand-list="YAHOO.util.Dom.setStyle&#xD;&#xA;YAHOO.util.Dom.getStyle&#xD;&#xA;YAHOO.util.Dom.getRegion&#xD;&#xA;YAHOO.util.Dom.getViewportHeight&#xD;&#xA;YAHOO.util.Dom.getViewportWidth&#xD;&#xA;YAHOO.util.Dom.get&#xD;&#xA;YAHOO.util.Dom.getXY&#xD;&#xA;YAHOO.util.Dom.setXY&#xD;&#xA;YAHOO.util.CustomEvent&#xD;&#xA;YAHOO.util.Event.addListener&#xD;&#xA;YAHOO.util.Event.getEvent&#xD;&#xA;YAHOO.util.Event.getTarget&#xD;&#xA;YAHOO.util.Event.preventDefault&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Event.stopPropagation&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Anim&#xD;&#xA;YAHOO.util.Motion&#xD;&#xA;YAHOO.util.Connect.asyncRequest&#xD;&#xA;YAHOO.util.Connect.setForm&#xD;&#xA;YAHOO.util.Dom&#xD;&#xA;YAHOO.util.Event">
     <include name="resources\css\gxui.css" />
@@ -167,4 +168,11 @@
   <file name="Controls\Message\MessageRender.js" path="Message" />
   <file name="Controls\Message\message.css" path="Message" />
   <file name="Controls\Message.control" path="" />
+  <file name="Controls\Menu\design\MenuRender.xsl" path="Menu\design" />
+  <file name="Controls\Menu\design\menu.ico" path="Menu\design" />
+  <file name="Controls\Menu\design\menu.xpz" path="Menu\design" />
+  <file name="Controls\Menu\design\MenuProperties.xml" path="Menu\design" />
+  <file name="Controls\Menu\design\menu.bmp" path="Menu\design" />
+  <file name="Controls\Menu\MenuRender.js" path="Menu" />
+  <file name="Controls\Menu.control" path="" />
 </project>

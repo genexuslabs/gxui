@@ -4,7 +4,7 @@
 * @class gxui.Toolbar
 * Toolbar User Control. Wraps Ext.toolbar.Toolbar so it can be used from GeneXus.
 * The control basically loads a SDT which contains the toolbar items. Consequently you will have to 
-* define a variable based on gxuiToolbar SDT which must be assigned to the Data property of the control.
+* define a variable based on gxuiToolbar SDT which must be assigned to the {@link #Data} property of the control.
 * This variable will have a collection of items (gxuiToolbarItem SDT) that will be displayed in the toolbar.
 */
 Ext.define('gxui.Toolbar', {
@@ -336,12 +336,16 @@ Ext.define('gxui.Toolbar', {
 
 	//private
 	buttonActionHandler: function (btn, e) {
+		/**
+		* @event ButtonPressed
+		* Fires after a toolbar item has been pressed. The only items that fire this event are Button and SplitButton.
+		* The following properties are set when the event is fired:
+		*
+		* - {@link #ButtonPressedId}
+		*/
+		*/
 		if (this.ButtonPressed) {
 			this.ButtonPressedId = btn.gxid;
-			/**
-			* @event ButtonPressed
-			* Fires after a toolbar item has been pressed. The only items that fire this event are Button and SplitButton.
-			*/
 			this.ButtonPressed(btn);
 		}
 	},

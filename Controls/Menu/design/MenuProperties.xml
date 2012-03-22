@@ -14,11 +14,28 @@
 					<Metadata>
 						<Value name="FlagSetValueMethod">SetMenu</Value>
 						<Value name="FlagGetValueMethod">GetMenu</Value>
-						<Value name="FlagDataTypeFilter">gxuiButton</Value>
+						<Value name="FlagDataTypeFilter">gxuiToolbarItem</Value>
 						<Value name="FlagHideVariables">False</Value>
 						<Value name="FlagHideAttributes">true</Value>
 					</Metadata>
-					<Description>The variable where the menu items are defined.</Description>
+					<Description>
+						A variable based on a collection of gxuiToolbarItem SDT, with the menu definition.
+						* @property {String} Menu.Id An identifier for the item. When a menu option is pressed, the {@link #ItemClickedId} property is set with the identifier set here, so you will know which menu option was pressed when the {@link #ItemClick} event is fired.
+						* @property {String} Menu.Text The text of the menu option. Applies to Button, Menu and Text.
+						* @property {String} Menu.Tooltip A tooltip to show when the mouse hovers the item. Applies to Button and Menu.
+						* @property {String} Menu.Icon The path to an image to display in the item icon. Applies to Button and Menu.
+						* @property {String} Menu.IconCls A css class which sets a background image to be used as the icon for this menu option. Applies to Button and Menu.
+						* @property {String} Menu.Cls A CSS class to apply to the item's main element
+						* @property {Boolean} Menu.Disabled True to start disabled. Applies to Button, and Menu.
+						* @property {gxuiToolbarItemTypes} Menu.Type Defines the type of the item (defaults to Button). The supported types are:
+						*
+						* - Button: A simple button. Customisations include aligned icons, tooltips and sizing options.
+						* - Text: A text to be rendered inside the toolbar.
+						* - Separator: Adds a vertical separator bar between toolbar items. It can't be a direct child of a Group item.
+						* - Menu: A button that opens a menu. The menu options are set through the Items property. An arrow is automatically added to the button.
+						* @property {Boolean} Menu.Hidden True to start hidden.
+						* @property {gxuiToolbarItem[]} Menu.Items Collection of children items of the menu option. Applies to Menu only.
+					</Description>
 				</Prop>
 				<Prop>
 					<Id>ItemClickedId</Id>
@@ -28,7 +45,7 @@
 					<Metadata>
 						<Value name="FlagScope">Runtime</Value>
 					</Metadata>
-					<Description>The id of the clicked menu item.</Description>
+					<Description>The identifier of the menu option that was pressed. This property is useful when the {@link #ItemClick} event is fired.</Description>
 				</Prop>
 			</Children>
 		</Group>
