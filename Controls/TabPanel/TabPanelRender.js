@@ -95,6 +95,7 @@ Ext.define('gxui.TabPanel', {
 		var config = {
 			id: this.getUniqueId(),
 			autoRender: this.getContainerControl(),
+			autoShow: true,
 			cls: this.Cls,
 			tabPosition: this.TabPosition || "top",
 			deferredRender: false,

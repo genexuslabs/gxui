@@ -35,6 +35,7 @@ Ext.define('gxui.Layout', {
 			this.m_layout = Ext.create('Ext.panel.Panel', {
 				id: this.getUniqueId(),
 				autoRender: this.getContainerControl(),
+				autoShow: true,
 				border: false,
 				items: regions,
 				layout: 'border',

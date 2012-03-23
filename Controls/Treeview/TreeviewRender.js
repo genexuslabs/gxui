@@ -119,6 +119,7 @@ Ext.define('gxui.Treeview', {
 		var config = {
 			id: this.getUniqueId(),
 			autoRender: this.getContainerControl(),
+			autoShow: true,
 			width: this.Width,
 			height: this.Height,
 			title: this.Title,
@@ -202,8 +203,6 @@ Ext.define('gxui.Treeview', {
 		if (gxui.CBoolean(this.AddToParentGxUIControl)) {
 			this.addToParentContainer(this.m_tree);
 		}
-
-		this.m_tree.render();
 
 		if (gxui.CBoolean(this.ExpandRoot))
 			this.m_tree.getRootNode().expand(gxui.CBoolean(this.ExpandAll), gxui.CBoolean(this.Animate));

@@ -22,7 +22,7 @@ Ext.define('gxui.Panel', {
 		return this.ToolbarData;
 	},
 
-	onRender: function() {
+	onRender: function () {
 		if (gxui.CBoolean(this.UseToolbar)) {
 			this.m_gxTbar = new gxui.Toolbar({ register: false });
 			this.m_toolbar = this.m_gxTbar.createToolbar({
@@ -36,12 +36,14 @@ Ext.define('gxui.Panel', {
 
 		if (gxui.CBoolean(this.ShowAsWindow)) {
 			config.closeAction = "hide";
-			config.autoRender = 'MAINFORM';
+			config.renderTo = 'MAINFORM';
 			config.modal = gxui.CBoolean(this.Modal);
 			config.constrainHeader = true;
 			this.m_panel = new Ext.create('Ext.window.Window', config);
 		}
 		else {
+			config.autoShow = true;
+			config.autoRender = this.getContainerControl();
 			this.m_panel = Ext.create('Ext.panel.Panel', config);
 		}
 
@@ -50,7 +52,6 @@ Ext.define('gxui.Panel', {
 			if (this.AddToParentGxUIControl == undefined || gxui.CBoolean(this.AddToParentGxUIControl)) {
 				this.addToParentContainer(this.m_panel);
 			}
-			this.m_panel.render(this.getContainerControl());
 		}
 		else {
 			if (gx.lang.gxBoolean(this.Visible)) {
@@ -64,7 +65,7 @@ Ext.define('gxui.Panel', {
 		this.registerCt(this.m_panel.body.first().dom, this.m_panel.add, this.m_panel.doLayout, this.m_panel);
 	},
 
-	onRefresh: function() {
+	onRefresh: function () {
 		var panel = this.m_panel;
 		panel.setTitle(this.Title);
 		if (!panel.ownerCt) {
@@ -90,7 +91,7 @@ Ext.define('gxui.Panel', {
 		}
 	},
 
-	getUnderlyingControl: function() {
+	getUnderlyingControl: function () {
 		return this.m_panel;
 	},
 
@@ -136,15 +137,15 @@ Ext.define('gxui.Panel', {
 	//private
 	getListeners: function () {
 		return {
-			'collapse': function() {
+			'collapse': function () {
 				this.Collapsed = "true";
 			},
 
-			'expand': function() {
+			'expand': function () {
 				this.Collapsed = "false";
 			},
 
-			'hide': function() {
+			'hide': function () {
 				this.Visible = false;
 				/**
 				* @event OnClose
