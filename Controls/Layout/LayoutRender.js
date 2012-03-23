@@ -34,7 +34,7 @@ Ext.define('gxui.Layout', {
 		if (gxui.CBoolean(this.Nested)) {
 			this.m_layout = Ext.create('Ext.panel.Panel', {
 				id: this.getUniqueId(),
-				renderTo: this.getContainerControl(),
+				autoRender: this.getContainerControl(),
 				border: false,
 				items: regions,
 				layout: 'border',
@@ -46,7 +46,7 @@ Ext.define('gxui.Layout', {
 			});
 		}
 		else {
-			this.m_layout = new Ext.create('gxui.container.NestedViewport', {
+			this.m_layout = Ext.create('gxui.container.NestedViewport', {
 				id: this.getUniqueId(),
 				items: regions,
 				layout: 'border',

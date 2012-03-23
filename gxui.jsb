@@ -73,6 +73,7 @@
   <target name="gxui-all" file="$output\gxui-all.js" debug="True" shorthand="False" shorthand-list="YAHOO.util.Dom.setStyle&#xD;&#xA;YAHOO.util.Dom.getStyle&#xD;&#xA;YAHOO.util.Dom.getRegion&#xD;&#xA;YAHOO.util.Dom.getViewportHeight&#xD;&#xA;YAHOO.util.Dom.getViewportWidth&#xD;&#xA;YAHOO.util.Dom.get&#xD;&#xA;YAHOO.util.Dom.getXY&#xD;&#xA;YAHOO.util.Dom.setXY&#xD;&#xA;YAHOO.util.CustomEvent&#xD;&#xA;YAHOO.util.Event.addListener&#xD;&#xA;YAHOO.util.Event.getEvent&#xD;&#xA;YAHOO.util.Event.getTarget&#xD;&#xA;YAHOO.util.Event.preventDefault&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Event.stopPropagation&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Anim&#xD;&#xA;YAHOO.util.Motion&#xD;&#xA;YAHOO.util.Connect.asyncRequest&#xD;&#xA;YAHOO.util.Connect.setForm&#xD;&#xA;YAHOO.util.Dom&#xD;&#xA;YAHOO.util.Event">
     <include name="core\gxui.js" />
     <include name="core\gxui.UserControl.js" />
+    <include name="ux\NestedViewport\NestedViewport.js" />
     <include name="Controls\Panel\PanelRender.js" />
     <include name="Controls\Toolbar\ToolbarRender.js" />
     <include name="Controls\Layout\LayoutRender.js" />
@@ -87,12 +88,14 @@
     <include name="Controls\TabPanel\TabPanelRender.js" />
     <include name="Controls\Message\MessageRender.js" />
     <include name="Controls\Menu\MenuRender.js" />
+    <include name="Controls\Viewport\ViewportRender.js" />
   </target>
   <target name="gxui-allcss" file="$output\gxui-all.css" debug="False" shorthand="False" shorthand-list="YAHOO.util.Dom.setStyle&#xD;&#xA;YAHOO.util.Dom.getStyle&#xD;&#xA;YAHOO.util.Dom.getRegion&#xD;&#xA;YAHOO.util.Dom.getViewportHeight&#xD;&#xA;YAHOO.util.Dom.getViewportWidth&#xD;&#xA;YAHOO.util.Dom.get&#xD;&#xA;YAHOO.util.Dom.getXY&#xD;&#xA;YAHOO.util.Dom.setXY&#xD;&#xA;YAHOO.util.CustomEvent&#xD;&#xA;YAHOO.util.Event.addListener&#xD;&#xA;YAHOO.util.Event.getEvent&#xD;&#xA;YAHOO.util.Event.getTarget&#xD;&#xA;YAHOO.util.Event.preventDefault&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Event.stopPropagation&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Anim&#xD;&#xA;YAHOO.util.Motion&#xD;&#xA;YAHOO.util.Connect.asyncRequest&#xD;&#xA;YAHOO.util.Connect.setForm&#xD;&#xA;YAHOO.util.Dom&#xD;&#xA;YAHOO.util.Event">
     <include name="resources\css\gxui.css" />
     <include name="Controls\Toolbar\toolbar.css" />
     <include name="ux\grid\CheckHeader.css" />
     <include name="Controls\Message\message.css" />
+    <include name="ux\NestedViewport\NestedViewport.css" />
   </target>
   <file name="resources\images\iconCollapseAll.gif" path="resources\images" />
   <file name="resources\images\iconExpandAll.gif" path="resources\images" />
@@ -175,4 +178,12 @@
   <file name="Controls\Menu\design\menu.bmp" path="Menu\design" />
   <file name="Controls\Menu\MenuRender.js" path="Menu" />
   <file name="Controls\Menu.control" path="" />
+  <file name="Controls\Toolbar\design\toolbar.xml" path="Toolbar\design" />
+  <file name="Controls\Viewport.control" path="" />
+  <file name="Controls\Viewport\design\ViewportRender.xsl" path="Viewport\design" />
+  <file name="Controls\Viewport\design\viewport.ico" path="Viewport\design" />
+  <file name="Controls\Viewport\design\ViewportProperties.xml" path="Viewport\design" />
+  <file name="Controls\Viewport\ViewportRender.js" path="Viewport" />
+  <file name="ux\NestedViewport\NestedViewport.js" path="ux\NestedViewport" />
+  <file name="ux\NestedViewport\NestedViewport.css" path="ux\NestedViewport" />
 </project>

@@ -119,7 +119,7 @@ Ext.define('gxui.GridExtension', {
 			height: this.gxHeight ? this.gxHeight : undefined,
 			width: this.gxWidth ? this.gxWidth : undefined,
 			title: this.Title ? this.Title : undefined,
-			renderTo: this.getContainerControl(),
+			autoRender: this.getContainerControl(),
 			listeners: this.gridListeners(),
 			stateful: gx.lang.gxBoolean(this.Stateful),
 			stateId: this.StateId || undefined
@@ -759,15 +759,17 @@ Ext.define('gxui.GridExtension', {
 	},
 
 	fixGridWidth: function () {
-		var grid = this.m_grid,
-			columns = grid.columns,
+		var grid = this.m_grid;
+		if (!grid.ownerCt) {
+			var columns = grid.columns,
 			width = grid.lockable ? 3 : 2;
-		if (!this.gxWidth && !this.m_grid.ownerCt) {
-			for (var i = 0, len = columns.length; i < len; i++) {
-				var col = Ext.getCmp(columns[i].id);
-				width += col.getWidth();
+			if (!this.gxWidth && !this.m_grid.ownerCt) {
+				for (var i = 0, len = columns.length; i < len; i++) {
+					var col = Ext.getCmp(columns[i].id);
+					width += col.getWidth();
+				}
+				grid.setWidth(width);
 			}
-			grid.setWidth(width);
 		}
 	},
 

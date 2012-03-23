@@ -36,7 +36,7 @@ Ext.define('gxui.Panel', {
 
 		if (gxui.CBoolean(this.ShowAsWindow)) {
 			config.closeAction = "hide";
-			config.renderTo = 'MAINFORM';
+			config.autoRender = 'MAINFORM';
 			config.modal = gxui.CBoolean(this.Modal);
 			config.constrainHeader = true;
 			this.m_panel = new Ext.create('Ext.window.Window', config);

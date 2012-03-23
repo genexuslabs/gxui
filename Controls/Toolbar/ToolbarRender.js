@@ -343,7 +343,6 @@ Ext.define('gxui.Toolbar', {
 		*
 		* - {@link #ButtonPressedId}
 		*/
-		*/
 		if (this.ButtonPressed) {
 			this.ButtonPressedId = btn.gxid;
 			this.ButtonPressed(btn);

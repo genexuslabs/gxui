@@ -1,11 +1,11 @@
 /// <reference path="..\..\Freezer\Ext\ext-all-dev.js" />
 
 Ext.define('gxui.GridExtension.DragDrop', {
-	constructor: function (gridUC, cfg) {
+	constructor: function (gridUC, grid, cfg) {
 		Ext.apply(this, cfg || {});
 
 		this.gridUC = gridUC;
-		this.m_grid = gridUC.getUnderlyingControl()
+		this.m_grid = grid;
 
 		this.configGridDragZone();
 	},

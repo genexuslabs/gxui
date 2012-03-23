@@ -118,7 +118,7 @@ Ext.define('gxui.Treeview', {
 
 		var config = {
 			id: this.getUniqueId(),
-			renderTo: this.getContainerControl(),
+			autoRender: this.getContainerControl(),
 			width: this.Width,
 			height: this.Height,
 			title: this.Title,

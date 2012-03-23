@@ -211,9 +211,9 @@ Ext.define('gxui.UserControl', {
 					this.checkIfInline(el);
 					if (ct) {
 						if (ct.addFn) {
-							Ext.bind(ct.addFn, ct.scope)(uc);
+							ct.addFn.call(ct.scope, uc);
 							if (ct.doLayoutFn)
-								Ext.bind(ct.doLayoutFn, ct.scope);
+								ct.doLayoutFn.call(ct.scope);
 						}
 						return;
 					}

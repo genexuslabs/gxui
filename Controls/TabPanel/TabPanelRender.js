@@ -49,7 +49,7 @@ Ext.define('gxui.TabPanel', {
 
 		if (tabCount > 0) {
 			this.displayTabPanels();
-			this.m_tabPanel = new Ext.TabPanel(this.getConfig());
+			this.m_tabPanel = Ext.create('Ext.tab.Panel', this.getConfig());
 
 			this.m_tabPanel.setActiveTab(this.m_activeTab);
 			this.m_tabPanel.on('tabchange', this.handlers.tabChanged, this);
@@ -94,7 +94,7 @@ Ext.define('gxui.TabPanel', {
 	getConfig: function () {
 		var config = {
 			id: this.getUniqueId(),
-			renderTo: this.getContainerControl(),
+			autoRender: this.getContainerControl(),
 			cls: this.Cls,
 			tabPosition: this.TabPosition || "top",
 			deferredRender: false,
