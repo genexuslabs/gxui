@@ -32,9 +32,6 @@ Ext.define('gxui.GridExtension', {
 		if (gx.lang.gxBoolean(this.AddToParentGxUIControl)) {
 			this.addToParentContainer(this.m_grid);
 		}
-
-		// Correct width when it isn't specified, to behave as standard GX grid.
-		gxui.afterShow(this.fixGridWidth, this);
 	},
 
 	onRefresh: function () {
@@ -120,6 +117,7 @@ Ext.define('gxui.GridExtension', {
 			width: this.gxWidth ? this.gxWidth : undefined,
 			title: this.Title ? this.Title : undefined,
 			autoRender: this.getContainerControl(),
+			autoShow: true,
 			listeners: this.gridListeners(),
 			stateful: gx.lang.gxBoolean(this.Stateful),
 			stateId: this.StateId || undefined
@@ -596,7 +594,7 @@ Ext.define('gxui.GridExtension', {
 			},
 
 			'columnresize': function () {
-				this.fixGridWidth();
+				this.fixGridWidth(this.m_grid);
 			},
 
 			'beforestaterestore': function (grid, state) {
@@ -606,6 +604,10 @@ Ext.define('gxui.GridExtension', {
 				return true;
 			},
 
+			'afterrender': function (grid) {
+				// Correct width when it isn't specified, to behave as standard GX grid.
+				this.fixGridWidth(grid);
+			},
 
 			scope: this
 		};
@@ -758,12 +760,11 @@ Ext.define('gxui.GridExtension', {
 		}
 	},
 
-	fixGridWidth: function () {
-		var grid = this.m_grid;
+	fixGridWidth: function (grid) {
 		if (!grid.ownerCt) {
 			var columns = grid.columns,
-			width = grid.lockable ? 3 : 2;
-			if (!this.gxWidth && !this.m_grid.ownerCt) {
+				width = grid.lockable ? 3 : 2;
+			if (!this.gxWidth) {
 				for (var i = 0, len = columns.length; i < len; i++) {
 					var col = Ext.getCmp(columns[i].id);
 					width += col.getWidth();
