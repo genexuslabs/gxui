@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ExportFile>
+  <KMW>
+    <MajorVersion>3</MajorVersion>
+    <MinorVersion>1</MinorVersion>
+    <Build>16113</Build>
+  </KMW>
+  <Actions />
+  <Objects>
+    <Object parent="gxui" parentType="00000000-0000-0000-0000-000000000008" user="ARTECH\gfernandez" versionDate="0001-01-01T02:00:00.0000000Z" lastUpdate="2008-10-24T16:50:51.0000000Z" guid="60957c1e-27b0-4731-94ca-d7105ad618ea" name="gxuiInitState" type="2a9e9aba-d2de-4801-ae7f-5e3819222daf" description="gxui Init State">
+      <Part type="1d8aeb5a-6e98-45a7-92d2-d8de7384e432">
+        <Source><![CDATA[//gxuiStates
+//{
+//	gxuiState Where [ATT_USER] = [VAR_USER]
+//	{
+//		name = [ATT_KEY]
+//		value = [ATT_VAL]
+//	}
+//
+//}
+]]></Source>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="9b0a32a3-de6d-4be1-a4dd-1b85d3741534">
+        <Source><![CDATA[//parm(in: [VAR_USER]);
+]]></Source>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="e4c4ade7-53f0-4a56-bdfd-843735b66f47">
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="ad3ca970-19d0-44e1-a7b7-db05556e820c">
+        <Help>
+          <HelpItem>
+            <Language>88313f43-5eb2-0000-0028-e8d9f5bf9588-English</Language>
+            <Content />
+          </HelpItem>
+        </Help>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties />
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>gxuiInitState</Value></Property><Property><Name>OutputSDT</Name><Value>447527b5-9210-4523-898b-5dccb17be60a-gxuiState</Value></Property><Property><Name>OutputCollection</Name><Value>True</Value></Property><Property><Name>OutputCollectionName</Name><Value>gxuiStates</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+    <Object parent="gxui" parentType="00000000-0000-0000-0000-000000000008" user="ARTECH\gfernandez" versionDate="0001-01-01T02:00:00.0000000Z" lastUpdate="2008-10-24T16:49:11.0000000Z" guid="56b348a7-1f19-44b2-8ba4-257de54a2de2" name="gxuiSaveState" type="84a12160-f59b-4ad7-a683-ea4481ac23e9" description="gxui.SaveState">
+      <Part type="528d1c06-a9c2-420d-bd35-21dca83f12ff">
+        <Source><![CDATA[
+Do 'Init'
+Do 'Save'
+Do 'Response'
+
+Sub 'Init'
+	
+	&data = &request.GetVariable(!'data')
+	
+	&matches = &data.Matches(!'{"name":"([^"]*)","value":"([^"]*)"}')
+	
+	For &match in &matches
+		
+		If &match.Groups.Count = 2
+			
+			&state = new()
+			&state.name = &match.Groups.Item(1)
+			&state.value = &match.Groups.Item(2)
+			&states.Add(&state)			
+			
+		EndIf
+	
+	Endfor
+	
+EndSub
+
+Sub 'Save'
+	
+	For &state in &states
+		
+//		For each [ATT_USER] [ATT_KEY]
+//			Where [ATT_USER] = [VAR_USER]
+//			Where [ATT_KEY] = &state.name
+//			
+//			If &state.value = !'undefined'
+//				Delete
+//			Else
+//				[ATT_VALUE] = &state.value
+//			Endif
+//			
+//		When none
+//			
+//			If &state.value <> !'undefined'
+//			
+//				New
+//					[ATT_USER] 	= [VAR_USER]
+//					[ATT_KEY]	= &state.name
+//					[ATT_VAL]	= &state.value
+//				EndNew
+//		
+//			Endif
+//			
+//		Endfor				
+		
+	Endfor
+
+EndSub
+
+Sub 'Response'
+	&response.AddHeader(!"Content-Type", !"application/json")
+	&response.AddString(!'{success: true}')
+EndSub
+
+
+]]></Source>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="c414ed00-8cc4-4f44-8820-4baf93547173">
+        <Layout>
+          <Bands />
+          <Properties />
+        </Layout>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="9b0a32a3-de6d-4be1-a4dd-1b85d3741534">
+        <Source><![CDATA[//parm(in: [VAR_USER]);
+]]></Source>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9">
+        <Properties />
+      </Part>
+      <Part type="e4c4ade7-53f0-4a56-bdfd-843735b66f47">
+        <Variable Name="data">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>data</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>10000</Value></Property><Property><Name>AttMaxLen</Name><Value>10000</Value></Property></Properties>
+        </Variable>
+        <Variable Name="i">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>i</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Numeric</Value></Property></Properties>
+        </Variable>
+        <Variable Name="item">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>item</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+        </Variable>
+        <Variable Name="items">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>items</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property><Property><Name>AttCollection</Name><Value>True</Value></Property></Properties>
+        </Variable>
+        <Variable Name="key">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>key</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+        </Variable>
+        <Variable Name="match">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>match</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>ext:RegExMatch</Value></Property></Properties>
+        </Variable>
+        <Variable Name="matches">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>matches</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>ext:RegExMatch</Value></Property><Property><Name>AttCollection</Name><Value>True</Value></Property></Properties>
+        </Variable>
+        <Variable Name="pair">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>pair</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property><Property><Name>AttCollection</Name><Value>True</Value></Property></Properties>
+        </Variable>
+        <Variable Name="props">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>props</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+        </Variable>
+        <Variable Name="request">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>request</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>ext:HttpRequest</Value></Property></Properties>
+        </Variable>
+        <Variable Name="response">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>response</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>ext:HttpResponse</Value></Property></Properties>
+        </Variable>
+        <Variable Name="Session">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>Session</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>ext:WebSession</Value></Property></Properties>
+        </Variable>
+        <Variable Name="state">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>state</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>sdt:gxuiState</Value></Property></Properties>
+        </Variable>
+        <Variable Name="states">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>states</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>sdt:gxuiState</Value></Property><Property><Name>AttCollection</Name><Value>True</Value></Property></Properties>
+        </Variable>
+        <Variable Name="value">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>value</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>1000</Value></Property><Property><Name>AttMaxLen</Name><Value>1000</Value></Property></Properties>
+        </Variable>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="ad3ca970-19d0-44e1-a7b7-db05556e820c">
+        <Help>
+          <HelpItem>
+            <Language>88313f43-5eb2-0000-0028-e8d9f5bf9588-English</Language>
+            <Content />
+          </HelpItem>
+        </Help>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties />
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>gxuiSaveState</Value></Property><Property><Name>Description</Name><Value>gxui.SaveState</Value></Property><Property><Name>IsMain</Name><Value>True</Value></Property><Property><Name>CALL_PROTOCOL</Name><Value>HTTP</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+    <Object parent="gxui" parentType="00000000-0000-0000-0000-000000000008" user="ARTECH\gfernandez" versionDate="0001-01-01T02:00:00.0000000Z" lastUpdate="2008-10-22T13:42:37.0000000Z" guid="e577b867-2d3c-4aef-8518-df13765ca03a" name="gxuiState" type="447527b5-9210-4523-898b-5dccb17be60a" description="gxui State">
+      <Part type="5c2aa9da-8fc4-4b6b-ae02-8db4fa48976a">
+        <Level Name="gxuiState">
+          <LevelInfo guid="cd4a6a72-f695-4657-a66d-23c89281ce7b" name="gxuiState" description="gxui State">
+            <Properties><Property><Name>Name</Name><Value>gxuiState</Value></Property></Properties>
+          </LevelInfo>
+          <Item guid="a33b7077-4b9c-4f93-b908-5a1c38e03529" name="name" description="name">
+            <Properties><Property><Name>Name</Name><Value>name</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>200</Value></Property><Property><Name>AttMaxLen</Name><Value>200</Value></Property></Properties>
+          </Item>
+          <Item guid="76e26e0c-49e3-4919-8e95-9d65a226ecca" name="value" description="value">
+            <Properties><Property><Name>Name</Name><Value>value</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>Length</Name><Value>10000</Value></Property><Property><Name>AttMaxLen</Name><Value>10000</Value></Property></Properties>
+          </Item>
+        </Level>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties />
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>gxuiState</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+  </Objects>
+  <Attributes />
+</ExportFile>

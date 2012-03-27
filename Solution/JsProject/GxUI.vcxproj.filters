@@ -118,6 +118,9 @@
     <Filter Include="ux\grid">
       <UniqueIdentifier>{5e8be515-2107-48cd-80d8-f8e1dbcfc372}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ux\HttpProvider">
+      <UniqueIdentifier>{eee71033-79bd-481a-8856-78e925aadfa6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="BuildAndUpdate.bat">
@@ -455,6 +458,9 @@
     </None>
     <None Include="..\..\ux\grid\SmartCheckboxSelectionModel.js">
       <Filter>ux\grid</Filter>
+    </None>
+    <None Include="..\..\ux\HttpProvider\Ext.ux.HttpProvider.js">
+      <Filter>ux\HttpProvider</Filter>
     </None>
   </ItemGroup>
 </Project>

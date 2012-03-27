@@ -71,6 +71,7 @@
     <None Include="..\..\ux\grid\CheckHeader.css" />
     <None Include="..\..\ux\grid\RadioSelectionModel.js" />
     <None Include="..\..\ux\grid\SmartCheckboxSelectionModel.js" />
+    <None Include="..\..\ux\HttpProvider\Ext.ux.HttpProvider.js" />
     <None Include="BuildAndUpdate.bat" />
     <None Include="BuildBatch.bat" />
     <None Include="gxui.msbuild" />

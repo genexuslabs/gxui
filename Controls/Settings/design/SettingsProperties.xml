@@ -7,6 +7,65 @@
 			<Type>Main</Type>
 			<Children>
 				<Group>
+					<Name>Localization</Name>
+					<Children>
+						<Prop>
+							<Id>Language</Id>
+							<Name>Language</Name>
+							<Type>Combo</Type>
+							<Default>en</Default>
+							<Metadata />
+							<Values>
+								<Value id="af" desc="Afrikaans" />
+								<Value id="bg" desc="Bulgarian" />
+								<Value id="ca" desc="Catalan / Valencian" />
+								<Value id="cs" desc="Czech" />
+								<Value id="da" desc="Danish" />
+								<Value id="de" desc="German" />
+								<Value id="el_GR" desc="Modern Greek" />
+								<Value id="en" desc="English" />
+								<Value id="en_GB" desc="British English" />
+								<Value id="es" desc="Spanish / Castilian" />
+								<Value id="fa" desc="Persian Arab" />
+								<Value id="fi" desc="Finnish" />
+								<Value id="fr" desc="French" />
+								<Value id="fr_CA" desc="French Canada" />
+								<Value id="he" desc="Hebrew" />
+								<Value id="hr" desc="Croatian" />
+								<Value id="hu" desc="Hungarian" />
+								<Value id="id" desc="Indonesian" />
+								<Value id="it" desc="Italian" />
+								<Value id="ja" desc="Japanese" />
+								<Value id="ko" desc="Korean" />
+								<Value id="lt" desc="Lithuanian" />
+								<Value id="lv" desc="Latvian" />
+								<Value id="mk" desc="Macedonia" />
+								<Value id="nl" desc="Dutch" />
+								<Value id="no_NB" desc="Norwegian (NB)" />
+								<Value id="no_NN" desc="Norwegian (NN)" />
+								<Value id="pl" desc="Polish" />
+								<Value id="pt" desc="Portuguese" />
+								<Value id="pt_BR" desc="Portuguese Brazil" />
+								<Value id="pt_PT" desc="Portuguese Portugal" />
+								<Value id="ro" desc="Romanian" />
+								<Value id="ru" desc="Russian" />
+								<Value id="sk" desc="Slovak" />
+								<Value id="sl" desc="Slovenian" />
+								<Value id="sr" desc="Serbian" />
+								<Value id="sr_RS" desc="Serbian Cyrillic" />
+								<Value id="sv_SE" desc="Swedish" />
+								<Value id="th" desc="Thailand" />
+								<Value id="tr" desc="Turkish" />
+								<Value id="ukr" desc="Ukrainian" />
+								<Value id="vn" desc="Vietnamese" />
+								<Value id="zh_CN" desc="Simplified Chinese" />
+								<Value id="zh_TW" desc="Traditional Chinese" />
+							</Values>
+							<Description>Language for ExtJS standard texts (for example, {@link gxui.GridExtension grid's} column menu options). This property should be used for setting the language on page load. For changing the language in a user event use {@link #SetLanguage} method instead.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
 					<Name>State Management</Name>
 					<Children>
 						<Prop>
@@ -19,7 +78,7 @@
 								<Value id="true" desc="True" />
 								<Value id="false" desc="False" />
 							</Values>
-							<Description>True to enable state management.</Description>
+							<Description>True to enable state management so the state of GxUI controles is remembered ({@link gxui.GridExtension} columns position and width, {@link gxui.Layout} regions collapsing and dimensions, {@link gxui.Treeview} nodes collapsing, etc).</Description>
 						</Prop>
 						<Prop>
 							<Id>Provider</Id>
@@ -31,7 +90,7 @@
 								<Value id="Cookie" desc="Cookie" />
 								<Value id="HTTP" desc="HTTP" />
 							</Values>
-							<Description>State management provider. If Cookie is selected, the state is stored in cookies. If HTTP is selected, state is stored in a remote server, through HTTP calls to the URL configured in SaveURL. Cookie is not recommended for production environments, with many controls.</Description>
+							<Description>State management provider. If Cookie is selected, the state is stored in cookies. If HTTP is selected, state is stored in a remote server, through HTTP calls to the URL configured in {@link #SaveURL} property. Cookie is not recommended for production environments, with many controls.</Description>
 						</Prop>
 						<Prop>
 							<Id>InitialState</Id>
@@ -45,7 +104,7 @@
 								<Value name="FlagHideVariables">False</Value>
 								<Value name="FlagHideAttributes">true</Value>
 							</Metadata>
-							<Description>The variable where the initial state are stored.</Description>
+							<Description>The variable where the initial state is stored. State is stored as a key/value pair.</Description>
 						</Prop>
 						<Prop>
 							<Id>SaveURL</Id>
