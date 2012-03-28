@@ -180,9 +180,8 @@ Ext.define('gxui.GridExtension.Column', {
 				style += 'cursor:pointer;';
 			}
 
-			if (style) {
-				metadata.attr += Ext.String.format(' style="{0}"', style);
-			}
+			if (style)
+				metadata.style = style;
 
 			//Show Tooltip text if set
 			if (cell.title) {
