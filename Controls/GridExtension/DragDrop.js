@@ -47,24 +47,27 @@ Ext.define('gxui.GridExtension.DragDrop', {
 
 	onBeforeDrag: function (data, e) {
 		var dnd = gx.fx.dnd;
-		var record = this.m_grid.getView().getRecord(data.item),
-			actualRowIndex = this.gridUC.getActualRowIndex(this.m_grid, record.index),
-			row = this.gridUC.rows[actualRowIndex],
+		var grid = this.m_grid,
+			gridUC = this.gridUC,
+			record = grid.getView().getRecord(data.item),
+			rowIndex = grid.getView().indexOf(data.item),
+			actualRowIndex = gridUC.getActualRowIndex(grid, rowIndex),
+			row = gridUC.rows[actualRowIndex],
 			dragSource = this.getGxRowDragSource(row);
 
 		if (dragSource) {
 			dnd.dragInfo = function () { return ""; }; // Override this function to avoid standard GX dd proxy
 			dnd.dragCtrl = data.ddel.dom;
 			dnd.dragCtrl.gxId = row.gxId;
-			dnd.dragCtrl.gxGrid = this.gridUC.ownerGrid.containerName;
-			dnd.dragCtrl.gxGridName = this.gridUC.ownerGrid.gridName;
+			dnd.dragCtrl.gxGrid = gridUC.ownerGrid.containerName;
+			dnd.dragCtrl.gxGridName = gridUC.ownerGrid.gridName;
 			dnd.dragCtrl.gxDndClassName = dragSource.cssClass;
 			// Set the row as the dragged object
 			dnd.drag(dragSource.obj, dragSource.types, dragSource.hdl);
 
 			// Set the internal GX row in the data so it can be accessed in beforenodedrop in Treeview.
 			data.gxRow = row;
-			data.gxColumns = this.gridUC.columns;
+			data.gxColumns = gridUC.columns;
 		}
 		return true;
 	},
