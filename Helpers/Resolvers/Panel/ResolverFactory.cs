@@ -91,6 +91,10 @@ namespace Artech.UC.gxui.PropertiesResolvers.Panel
 			{
 				case "ShowAsWindow":
 					return new ShowAsWindowResolver();
+				case "Width":
+					return new WidthResolver();
+				case "Height":
+					return new HeightResolver();
 				case "MinWidth":
 					return new MinWidthResolver();
 				case "MaxWidth":

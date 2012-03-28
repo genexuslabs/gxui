@@ -69,6 +69,16 @@ Ext.define('gxui.UserControl', {
 			Ext.onReady(function () {
 				try {
 					this.onRender();
+					this.addToContainer();
+					if (this.onAfterRender) {
+						var control = this.getUnderlyingControl();
+						if (control) {
+							if (control.rendered)
+								this.onAfterRender.call(this, control);
+							else
+								control.on('afterrender', this.onAfterRender, this);
+						}
+					}
 					this.rendered = true;
 				}
 				catch (e) {
@@ -161,6 +171,15 @@ Ext.define('gxui.UserControl', {
 	getUnderlyingControl: Ext.emptyFn,
 
 	/**
+	* Returns true if the control should be added to its parent GxUI control. This method default implementation
+	* always returns false, so an implementation should be provided by inheriting classes that can be added to a container.
+	* @ignore
+	*/
+	addToParent: function () {
+		return false;
+	},
+
+	/**
 	* Registers the User Control
 	* @ignore
 	* @private
@@ -201,28 +220,14 @@ Ext.define('gxui.UserControl', {
 	* @ignore
 	* @private
 	*/
-	addToParentContainer: function (uc) {
-		gxui.afterShow(function () {
-			try {
-				var el = Ext.get(this.getContainerControl());
-				this.checkIfInline(el);
-				for (var el = Ext.get(this.getContainerControl()); el; el = el.parent("div")) {
-					var ct = gxui.UserControlManager.isRegisteredContainer(el.dom)
-					this.checkIfInline(el);
-					if (ct) {
-						if (ct.addFn) {
-							ct.addFn.call(ct.scope, uc);
-							if (ct.doLayoutFn)
-								ct.doLayoutFn.call(ct.scope);
-						}
-						return;
-					}
-				}
-			}
-			catch (e) {
-				gx.dbg.logEx(e, 'gxui.js', 'afterShowHandler->' + this.getUniqueId());
-			}
-		}, this);
+	addToContainer: function () {
+		var control = this.getUnderlyingControl();
+		if (control) {
+			if (this.addToParent())
+				gxui.UserControlManager.addToParentContainer(this, control);
+			else
+				control.render(this.getContainerControl());
+		}
 	},
 
 	checkIfInline: function (el) {
@@ -246,17 +251,17 @@ Ext.define('gxui.UserControl', {
 * @singleton
 * @ignore
 */
-gxui.UserControlManager = function() {
+gxui.UserControlManager = function () {
 	var ucList = [];
 	var ctList = [];
 
 	var afterShowEvent;
 
-	var initAfterShow = function() {
+	var initAfterShow = function () {
 		afterShowEvent = new Ext.util.Event();
 	};
 
-	var ucShowListener = function(uc) {
+	var ucShowListener = function (uc) {
 		try {
 			var ucListItem = this.isRegisteredUC(uc)
 			if (ucListItem) {
@@ -264,17 +269,24 @@ gxui.UserControlManager = function() {
 			}
 
 			var allShown = true;
-			Ext.each(ucList, function(item) {
+			Ext.each(ucList, function (item) {
 				return allShown = item.shown && allShown;
 			}, this);
 
 			if (allShown && afterShowEvent) {
 				afterShowEvent.fire();
-				Ext.each(ucList, function(item) {
-					// Fire doLayout function in those controls that don't have a parent control.
+				this.addControlsToContainer();
+				Ext.each(ucList, function (item) {
 					var extUC = item.uc.getUnderlyingControl();
-					if (extUC && !extUC.ownerCt && extUC.doLayout) {
-						extUC.doLayout();
+					if (extUC) {
+						if (!extUC.rendered)
+							extUC.render(item.uc.getContainerControl());
+						else {
+							// Fire doLayout function in those controls that don't have a parent control.
+							if (extUC && !extUC.ownerCt && extUC.doLayout) {
+								extUC.doLayout();
+							}
+						}
 					}
 					item.shown = false;
 				}, this);
@@ -286,19 +298,19 @@ gxui.UserControlManager = function() {
 	};
 
 	return {
-		getUCList: function() {
+		getUCList: function () {
 			var l = [];
-			Ext.each(ucList, function(item) {
+			Ext.each(ucList, function (item) {
 				l.push(item.uc);
 			});
 			return l;
 		},
 
-		getContainersList: function() {
+		getContainersList: function () {
 			return ctList;
 		},
 
-		register: function(uc) {
+		register: function (uc) {
 			ucList.push({
 				uc: uc,
 				shown: false
@@ -306,7 +318,7 @@ gxui.UserControlManager = function() {
 
 			uc.on("show", ucShowListener, this);
 
-			uc.on("destroy", function(uc) {
+			uc.on("destroy", function (uc) {
 				this.unregister(uc);
 				this.unregisterContainer(uc);
 				if (uc.afterShowHandler)
@@ -314,13 +326,13 @@ gxui.UserControlManager = function() {
 			}, this);
 		},
 
-		unregister: function(uc) {
+		unregister: function (uc) {
 			var toRem = this.isRegisteredUC(uc);
 			if (toRem)
 				ucList.remove(toRem);
 		},
 
-		registerContainer: function(uc, el, addFn, doLayoutFn, scope) {
+		registerContainer: function (uc, el, addFn, doLayoutFn, scope) {
 			ctList.push({
 				uc: uc,
 				el: el,
@@ -330,16 +342,16 @@ gxui.UserControlManager = function() {
 			});
 		},
 
-		unregisterContainer: function(obj) {
+		unregisterContainer: function (obj) {
 			toRem = this.isRegisteredContainer(obj);
 			if (toRem)
 				ctList.remove(toRem);
 		},
 
-		isRegisteredUC: function(uc) {
+		isRegisteredUC: function (uc) {
 			var obj = null;
 
-			Ext.each(ucList, function(item) {
+			Ext.each(ucList, function (item) {
 				if (uc == item.uc) {
 					obj = item;
 					return false;
@@ -349,11 +361,11 @@ gxui.UserControlManager = function() {
 			return obj;
 		},
 
-		isRegisteredContainer: function(el) {
+		isRegisteredContainer: function (el) {
 			var ct = null;
 
 			if (el.layout) {
-				Ext.each(ctList, function(item) {
+				Ext.each(ctList, function (item) {
 					if (el == item.scope) {
 						ct = item;
 						return false;
@@ -362,24 +374,57 @@ gxui.UserControlManager = function() {
 			}
 			else
 				if (el.tagName) { // If el argument is a HTMLElement
-				Ext.each(ctList, function(item) {
-					if (el == item.el) {
-						ct = item;
-						return false;
-					}
-				}, this);
-			}
-			else { // If el argument is a gxui.UserControl
-				uc = el;
-				Ext.each(ctList, function(item) {
-					if (uc == item.uc) {
-						ct = item;
-						return false;
-					}
-				}, this);
-			}
+					Ext.each(ctList, function (item) {
+						if (el == item.el) {
+							ct = item;
+							return false;
+						}
+					}, this);
+				}
+				else { // If el argument is a gxui.UserControl
+					uc = el;
+					Ext.each(ctList, function (item) {
+						if (uc == item.uc) {
+							ct = item;
+							return false;
+						}
+					}, this);
+				}
 
 			return ct;
+		},
+
+		setControlContainer: function (control, container) {
+			if (!this.childControls)
+				this.childControls = {};
+
+			var containerId = container == 'ROOT' ? container : container.scope.id;
+			if (!this.childControls[containerId])
+				this.childControls[containerId] = [];
+			this.childControls[containerId].push(control);
+		},
+
+		addToParentContainer: function (uc, control) {
+			gxui.afterShow(function () {
+				try {
+					var el = Ext.get(uc.getContainerControl());
+					uc.checkIfInline(el);
+					for (var el = Ext.get(uc.getContainerControl()); el; el = el.parent("div")) {
+						var container = gxui.UserControlManager.isRegisteredContainer(el.dom)
+						uc.checkIfInline(el);
+						if (container) {
+							this.setControlContainer(control, container);
+							return;
+						}
+					}
+
+					// Controls that don't have a parent container
+					this.setControlContainer(control, 'ROOT');
+				}
+				catch (e) {
+					gx.dbg.logEx(e, 'gxui.UserControl.js', 'addToParentContainer->' + uc.getUniqueId());
+				}
+			}, this);
 		},
 
 		/**
@@ -390,12 +435,30 @@ gxui.UserControlManager = function() {
 		* @method
 		* @ignore
 		*/
-		afterShow: function(fn, scope, options) {
+		afterShow: function (fn, scope, options) {
 			if (!afterShowEvent)
 				initAfterShow();
 
 			scope.afterShowHandler = fn;
 			afterShowEvent.addListener(fn, scope, options)
+		},
+
+
+		addControlsToContainer: function () {
+			try {
+				var containers = this.getContainersList();
+				for (var i = 0, len = containers.length; i < len; i++) {
+					var container = containers[i],
+						children = this.childControls[container.scope.id];
+					if (children && children.length > 0)
+						container.addFn.call(container.scope, children);
+				}
+
+				delete this.childControls;
+			}
+			catch (e) {
+				gx.dbg.logEx(e, 'gxui.UserControl.js', 'addControlsToContainer');
+			}
 		}
 	};
 } ();

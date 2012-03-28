@@ -51,17 +51,9 @@ Ext.define('gxui.TabPanel', {
 			this.displayTabPanels();
 			this.m_tabPanel = Ext.create('Ext.tab.Panel', this.getConfig());
 
-			this.m_tabPanel.setActiveTab(this.m_activeTab);
-			this.m_tabPanel.on('tabchange', this.handlers.tabChanged, this);
-
 			// Register this User Control as a container. Each tab of the tabpanel control is registered
 			// as an individual container.
 			this.registerAsContainer();
-
-			// Add to parent UC container
-			if (gxui.CBoolean(this.AddToParentGxUIControl)) {
-				this.addToParentContainer(this.m_tabPanel);
-			}
 		}
 	},
 
@@ -78,6 +70,11 @@ Ext.define('gxui.TabPanel', {
 		}
 	},
 
+	onAfterRender: function(){
+		this.m_tabPanel.setActiveTab(this.m_activeTab);
+		this.m_tabPanel.on('tabchange', this.handlers.tabChanged, this);
+	},
+
 	onDestroy: function () {
 		if (this.m_tabPanel) {
 			this.m_tabPanel.items.each(function (tab) {
@@ -91,15 +88,17 @@ Ext.define('gxui.TabPanel', {
 		return this.m_tabPanel;
 	},
 
+	addToParent: function () {
+		return gxui.CBoolean(this.AddToParentGxUIControl);
+	},
+
 	getConfig: function () {
 		var config = {
 			id: this.getUniqueId(),
-			autoRender: this.getContainerControl(),
-			autoShow: true,
 			cls: this.Cls,
 			tabPosition: this.TabPosition || "top",
 			deferredRender: false,
-			border: gx.lang.gxBoolean(this.Border),
+			border: gx.lang.gxBoolean(this.Border) ? 1 : 0,
 			frame: gx.lang.gxBoolean(this.Frame),
 			autoWidth: gxui.CBoolean(this.AutoWidth),
 			autoHeight: gxui.CBoolean(this.AutoHeight),
@@ -208,20 +207,20 @@ Ext.define('gxui.TabPanel', {
 
 	handlers: {
 		tabChanged: function (tab, tabItem) {
-		/**
-		* @event TabChanged
-		* Fires when the active tab is changed.
-		* The following properties are set when the event is fired:
-		*
-		* - {@link #ActiveTabId}
-		*
-		*/
+			/**
+			* @event TabChanged
+			* Fires when the active tab is changed.
+			* The following properties are set when the event is fired:
+			*
+			* - {@link #ActiveTabId}
+			*
+			*/
 			if (this.TabChanged) {
 				this.TabChanged();
 			}
 		},
 
-		tabItemRendered: function(panel){
+		tabItemRendered: function (panel) {
 			panel.tab.on('click', this.handlers.tabStripClick, this);
 		},
 

@@ -34,30 +34,32 @@ Ext.define('gxui.GridExtension.Column', {
 	},
 
 	mapTimeFormat: function (gxColumn) {
-		var nDec = gxColumn.gxControl.vStruct.dec,
+		if (gxColumn.gxControl.vStruct) {
+			var nDec = gxColumn.gxControl.vStruct.dec,
 			minutes = nDec > 3,
 			seconds = nDec == 8,
 			hours = nDec > 1;
 
-		if (gx.timeFormat == 12) {
-			if (hours && minutes && seconds)
-				return "h:i:s A";
+			if (gx.timeFormat == 12) {
+				if (hours && minutes && seconds)
+					return "h:i:s A";
 
-			if (hours && minutes)
-				return "h:i A";
+				if (hours && minutes)
+					return "h:i A";
 
-			if (hours)
-				return "h A";
-		}
-		else {
-			if (hours && minutes && seconds)
-				return "H:i:s";
+				if (hours)
+					return "h A";
+			}
+			else {
+				if (hours && minutes && seconds)
+					return "H:i:s";
 
-			if (hours && minutes)
-				return "H:i";
+				if (hours && minutes)
+					return "H:i";
 
-			if (hours)
-				return "H";
+				if (hours)
+					return "H";
+			}
 		}
 
 		return "h:i";

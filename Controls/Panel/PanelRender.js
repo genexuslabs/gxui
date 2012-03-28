@@ -24,7 +24,7 @@ Ext.define('gxui.Panel', {
 
 	onRender: function () {
 		if (gxui.CBoolean(this.UseToolbar)) {
-			this.m_gxTbar = new gxui.Toolbar({ register: false });
+			this.m_gxTbar = Ext.create('gxui.Toolbar', { register: false });
 			this.m_toolbar = this.m_gxTbar.createToolbar({
 				id: this.getUniqueId() + "_Toolbar",
 				data: this.ToolbarData,
@@ -40,29 +40,17 @@ Ext.define('gxui.Panel', {
 			config.modal = gxui.CBoolean(this.Modal);
 			config.constrainHeader = true;
 			this.m_panel = new Ext.create('Ext.window.Window', config);
-		}
-		else {
-			config.autoShow = true;
-			config.autoRender = this.getContainerControl();
-			this.m_panel = Ext.create('Ext.panel.Panel', config);
-		}
 
-		if (!gxui.CBoolean(this.ShowAsWindow)) {
-			// Add to parent UC container
-			if (this.AddToParentGxUIControl == undefined || gxui.CBoolean(this.AddToParentGxUIControl)) {
-				this.addToParentContainer(this.m_panel);
-			}
-		}
-		else {
 			if (gx.lang.gxBoolean(this.Visible)) {
 				this.m_panel.show();
 			}
 		}
-
-		this.m_panel.body.first().enableDisplayMode().show();
+		else {
+			this.m_panel = Ext.create('Ext.panel.Panel', config);
+		}
 
 		// Register as UC Container
-		this.registerCt(this.m_panel.body.first().dom, this.m_panel.add, this.m_panel.doLayout, this.m_panel);
+		this.registerCt(this.getChildContainer("Body"), this.m_panel.add, this.m_panel.doLayout, this.m_panel);
 	},
 
 	onRefresh: function () {
@@ -91,8 +79,16 @@ Ext.define('gxui.Panel', {
 		}
 	},
 
+	onAfterRender: function (panel) {
+		panel.body.first().enableDisplayMode().show();
+	},
+
 	getUnderlyingControl: function () {
 		return this.m_panel;
+	},
+
+	addToParent: function () {
+		return !gxui.CBoolean(this.ShowAsWindow) && (this.AddToParentGxUIControl == undefined || gxui.CBoolean(this.AddToParentGxUIControl));
 	},
 
 	//private
@@ -102,11 +98,11 @@ Ext.define('gxui.Panel', {
 			id: this.getUniqueId(),
 			title: this.Title,
 			headerPosition: this.HeaderPosition,
-			width: parseInt(this.Width),
-			height: parseInt(this.Height),
+			autoWidth: gxui.CBoolean(this.AutoWidth),
+			autoHeight: gxui.CBoolean(this.AutoHeight),
 			autoScroll: this.Layout == 'default' ? true : false,
 			frame: gxui.CBoolean(this.Frame),
-			border: gxui.CBoolean(this.Border),
+			border: gxui.CBoolean(this.Border) ? 1 : 0,
 			minWidth: this.MinWidth,
 			minHeight: this.MinHeight,
 			maxWidth: this.MaxWidth,
@@ -123,6 +119,12 @@ Ext.define('gxui.Panel', {
 			stateId: (this.StateId != "") ? this.StateId : undefined,
 			layout: this.Layout == 'default' ? undefined : this.Layout
 		};
+
+		if (!gxui.CBoolean(this.AutoWidth))
+			config.width = parseInt(this.Width);
+
+		if (!gxui.CBoolean(this.AutoHeight))
+			config.height = parseInt(this.Height);
 
 		if (this.IconCls)
 			config.iconCls = this.IconCls;
@@ -167,7 +169,7 @@ Ext.define('gxui.Panel', {
 	*/
 	ChangeToolbar: function (toolbarData) {
 		if (this.m_gxTbar)
-			this.m_toolbar = this.m_gxTbar.changeToolbar(toolbarData, this.getUniqueId() + "_Toolbar", this);
+			this.m_toolbar = this.m_gxTbar.ChangeToolbar(toolbarData, this.getUniqueId() + "_Toolbar", this);
 	},
 
 	/**

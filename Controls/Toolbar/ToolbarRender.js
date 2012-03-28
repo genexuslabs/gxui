@@ -273,7 +273,8 @@ Ext.define('gxui.Toolbar', {
 		this.m_toolbar = Ext.create('Ext.toolbar.Toolbar', {
 			id: this.getUniqueId(),
 			stateful: false,
-			items: this.createButtons()
+			items: this.createButtons(),
+			docked: 'top'
 		});
 
 		return this.m_toolbar;
@@ -500,14 +501,13 @@ Ext.define('gxui.Toolbar', {
 
 		var ct;
 		if (ownerCt) {
-			ownerCt.topToolbar = this.m_toolbar;
-			this.m_toolbar.ownerCt = ownerCt;
-			ct = ownerCt.tbar;
+			ownerCt.addDocked(this.m_toolbar)
+			ct = ownerCt.getDockedComponent(this.getUniqueId());
 		}
 		else {
 			ct = this.getContainerControl();
+			this.m_toolbar.render(ct);
 		}
-		this.m_toolbar.render(ct);
 
 		return this.m_toolbar;
 	},

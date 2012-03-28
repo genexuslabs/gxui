@@ -318,12 +318,6 @@
     <None Include="..\..\resources\css\gxui.css">
       <Filter>resources\css</Filter>
     </None>
-    <None Include="..\..\Controls\GridExtension\columnLock.css">
-      <Filter>Controls\GridExtension</Filter>
-    </None>
-    <None Include="..\..\Controls\GridExtension\columnLock.js">
-      <Filter>Controls\GridExtension</Filter>
-    </None>
     <None Include="..\..\Controls\GridExtension\ColumnRenderers.js">
       <Filter>Controls\GridExtension</Filter>
     </None>

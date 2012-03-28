@@ -118,13 +118,9 @@ Ext.define('gxui.Treeview', {
 
 		var config = {
 			id: this.getUniqueId(),
-			autoRender: this.getContainerControl(),
-			autoShow: true,
-			width: this.Width,
-			height: this.Height,
 			title: this.Title,
 			frame: gxui.CBoolean(this.Frame),
-			border: gxui.CBoolean(this.Border),
+			border: gxui.CBoolean(this.Border) ? 1 : 0,
 			cls: this.Cls,
 			animate: gxui.CBoolean(this.Animate),
 			rootVisible: gxui.CBoolean(this.RootVisible),
@@ -140,6 +136,17 @@ Ext.define('gxui.Treeview', {
 			applyState: gxui.CBoolean(this.Stateful) ? this.applyState(this.LazyLoading) : undefined,
 			listeners: this.getListeners()
 		};
+
+		// @TODO: Change this to use AutoWidth and AutoHeight
+		if (this.Width != 100)
+			config.width = this.Width;
+		else
+			config.autoWidth = true;
+
+		if (this.Height != 100)
+			config.height = this.Height;
+		else
+			config.autoHeight= true;
 
 		if (gxui.CBoolean(this.EnableDragDrop)) {
 			config.viewConfig.plugins = {
@@ -199,24 +206,26 @@ Ext.define('gxui.Treeview', {
 		//			});
 		//		}
 
-		// Add to parent UC container
-		if (gxui.CBoolean(this.AddToParentGxUIControl)) {
-			this.addToParentContainer(this.m_tree);
-		}
+	},
 
+	onRefresh: function () {
+		var selNodes = this.m_tree.getSelectionModel().getSelection();
+		if (selNodes && selNodes[0]) {
+			this.setSelectedNode(selNodes[0]);
+		}
+	},
+
+	onAfterRender: function(){
 		if (gxui.CBoolean(this.ExpandRoot))
 			this.m_tree.getRootNode().expand(gxui.CBoolean(this.ExpandAll), gxui.CBoolean(this.Animate));
 	},
 
-	onRefresh: function () {
-		var selNode = this.m_tree.getSelectionModel().getSelectedNode();
-		if (selNode) {
-			this.setSelectedNode(selNode);
-		}
-	},
-
 	getUnderlyingControl: function () {
 		return this.m_tree;
+	},
+
+	addToParent: function () {
+		return gxui.CBoolean(this.AddToParentGxUIControl);
 	},
 
 	createStore: function () {
@@ -743,14 +752,16 @@ Ext.tree.ViewDropZone.override({
 
 Ext.data.TreeStore.override({
 	fillNode: function (node, records) {
-		for (var i = 0, len = records.length; i < len; i++) {
-			var record = records[i];
-			if (!this._enableCheckbox) {
-				delete record.raw.checked;
-				record.data.checked = null;
+		if (records) {
+			for (var i = 0, len = records.length; i < len; i++) {
+				var record = records[i];
+				if (!this._enableCheckbox) {
+					delete record.raw.checked;
+					record.data.checked = null;
+				}
+				if (record.raw.leaf === false && record.raw.children && record.raw.children.length == 0)
+					delete record.raw.children;
 			}
-			if (record.raw.leaf === false && record.raw.children && record.raw.children.length == 0)
-				delete record.raw.children;
 		}
 		return this.callOverridden(arguments);
 	}

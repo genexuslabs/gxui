@@ -34,9 +34,7 @@ Ext.define('gxui.Layout', {
 		if (gxui.CBoolean(this.Nested)) {
 			this.m_layout = Ext.create('Ext.panel.Panel', {
 				id: this.getUniqueId(),
-				autoRender: this.getContainerControl(),
-				autoShow: true,
-				border: false,
+				border: 0,
 				items: regions,
 				layout: 'border',
 				cls: this.Cls || undefined,
@@ -61,13 +59,6 @@ Ext.define('gxui.Layout', {
 		// Register this User Control as a container. Each region of the layout is registered
 		// as an individual container.
 		this.registerAsContainer();
-
-		if (gxui.CBoolean(this.Nested)) {
-			// Add to parent UC container
-			this.addToParentContainer(this.m_layout);
-		}
-
-		this.displayRegions();
 	},
 
 	onRefresh: function () {
@@ -78,8 +69,16 @@ Ext.define('gxui.Layout', {
 		this.refreshRegion("Center");
 	},
 
+	onAfterRender: function () {
+		this.displayRegions();
+	},
+
 	getUnderlyingControl: function () {
 		return this.m_layout;
+	},
+
+	addToParent: function () {
+		return gxui.CBoolean(this.Nested);
 	},
 
 	getMargins: function (regionKey, str) {
@@ -151,9 +150,9 @@ Ext.define('gxui.Layout', {
 	},
 
 	displayRegions: function () {
-		Ext.each(this.m_layout.items.items, function (region, index, allRegions) {
-			Ext.get(region.contentEl).setDisplayed(true);
-		}, this);
+		this.m_layout.items.each(function (region) {
+			Ext.fly(region.contentEl).setDisplayed(true);
+		});
 	},
 
 	registerAsContainer: function () {

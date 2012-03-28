@@ -21,7 +21,7 @@ Ext.define('gxui.GridExtension.DragDrop', {
 			// If I want to show visual feedback when a row being dragged hovers a valid drop target, the group of valid
 			// drop targets must be intialized using a Ext.dd.DropZone. Must be done afterShow, so the target elements
 			// exist in the dom.
-			gxui.afterShow(this.defineDropTargets, this);
+			this.defineDropTargets();
 
 			dragZone.primaryButtonOnly = gx.lang.gxBoolean(this.PrimaryButtonOnly);
 		}

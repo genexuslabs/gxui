@@ -66,6 +66,34 @@
 					<Name>Appareance</Name>
 					<Children>
 						<Prop>
+							<Id>AutoWidth</Id>
+							<Name>AutoWidth</Name>
+							<Type>Combo</Type>
+							<Default>true</Default>
+							<Metadata>
+								<Value name="FlagScope">DesignTime</Value>
+							</Metadata>
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to automatically calculate width from the panel content, false to use fixed width.</Description>
+						</Prop>
+						<Prop>
+							<Id>AutoHeight</Id>
+							<Name>AutoHeight</Name>
+							<Type>Combo</Type>
+							<Default>false</Default>
+							<Metadata>
+								<Value name="FlagScope">DesignTime</Value>
+							</Metadata>
+							<Values>
+								<Value id="true" desc="True" />
+								<Value id="false" desc="False" />
+							</Values>
+							<Description>True to automatically calculate height from the panel content, false to use fixed height.</Description>
+						</Prop>
+						<Prop>
 							<Id>Title</Id>
 							<Name>Title</Name>
 							<Type>Text</Type>

@@ -19,19 +19,6 @@ Ext.define('gxui.GridExtension', {
 
 		// create the Grid
 		this.m_grid = this.createGridPanel(cmConf, storeConf, smConf, viewConf, plugins, features);
-
-		// D&D listeners:
-		if (gx.lang.gxBoolean(this.ownerGrid.defaultDragable)) {
-			this.m_DD = Ext.create('gxui.GridExtension.DragDrop', this, {
-				DragDropText: this.DragDropText,
-				PrimaryButtonOnly: this.PrimaryButtonOnly
-			});
-		}
-
-		// Add to parent UC container
-		if (gx.lang.gxBoolean(this.AddToParentGxUIControl)) {
-			this.addToParentContainer(this.m_grid);
-		}
 	},
 
 	onRefresh: function () {
@@ -82,6 +69,16 @@ Ext.define('gxui.GridExtension', {
 		grid.setTitle(this.Title);
 	},
 
+	onAfterRender: function () {
+		// D&D listeners:
+		if (gx.lang.gxBoolean(this.ownerGrid.defaultDragable)) {
+			this.m_DD = Ext.create('gxui.GridExtension.DragDrop', this, this.m_grid, {
+				DragDropText: this.DragDropText,
+				PrimaryButtonOnly: this.PrimaryButtonOnly
+			});
+		}
+	},
+
 	onDestroy: function () {
 		if (this.m_DD) {
 			this.m_DD.destroy();
@@ -91,6 +88,10 @@ Ext.define('gxui.GridExtension', {
 
 	getUnderlyingControl: function () {
 		return this.m_grid;
+	},
+
+	addToParent: function () {
+		return gx.lang.gxBoolean(this.AddToParentGxUIControl);
 	},
 
 	createGridPanel: function (cmConf, storeConf, smConf, viewConf, plugins, features) {
@@ -116,8 +117,6 @@ Ext.define('gxui.GridExtension', {
 			height: this.gxHeight ? this.gxHeight : undefined,
 			width: this.gxWidth ? this.gxWidth : undefined,
 			title: this.Title ? this.Title : undefined,
-			autoRender: this.getContainerControl(),
-			autoShow: true,
 			listeners: this.gridListeners(),
 			stateful: gx.lang.gxBoolean(this.Stateful),
 			stateId: this.StateId || undefined

@@ -143,8 +143,6 @@
     <None Include="..\..\ux\form\DateTime.js" />
     <None Include="..\..\ux\format\format.js" />
     <None Include="..\..\resources\css\gxui.css" />
-    <None Include="..\..\Controls\GridExtension\columnLock.css" />
-    <None Include="..\..\Controls\GridExtension\columnLock.js" />
     <None Include="..\..\Controls\GridExtension\ColumnRenderers.js" />
     <None Include="..\..\Controls\GridExtension\DragDrop.js" />
     <None Include="..\..\Controls\GridExtension.control" />

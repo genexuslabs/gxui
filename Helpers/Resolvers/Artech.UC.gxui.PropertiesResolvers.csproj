@@ -59,6 +59,7 @@
     <Compile Include="Panel\CollapseDirectionResolver.cs" />
     <Compile Include="Panel\CollapsedResolver.cs" />
     <Compile Include="Panel\HandlesResolver.cs" />
+    <Compile Include="Panel\HeightResolver.cs" />
     <Compile Include="Panel\MaxHeightResolver.cs" />
     <Compile Include="Panel\MaxWidthResolver.cs" />
     <Compile Include="Panel\MinHeightResolver.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Panel\ResolverFactory.cs" />
     <Compile Include="Panel\ShowAsWindowResolver.cs" />
     <Compile Include="Panel\ToolbarDataResolver.cs" />
+    <Compile Include="Panel\WidthResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TabPanel\DesignTimeTabsResolver.cs" />
     <Compile Include="TabPanel\ResolverFactory.cs" />
