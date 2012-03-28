@@ -36,6 +36,8 @@ Ext.define('gxui.GridExtension', {
 
 		this.updatePagingToolbar(grid.getDockedComponent('toolbar'));
 
+		this.keepSelection(grid);
+
 		if (gx.lang.gxBoolean(this.gxAllowCollapsing)) {
 			if (gx.lang.gxBoolean(this.gxCollapsed)) {
 				grid.collapse();
@@ -617,7 +619,7 @@ Ext.define('gxui.GridExtension', {
 			var editable = false;
 			for (var i = 0, rows = this.properties.length; i < rows; i++) {
 				for (var j = 0, cols = this.properties[i].length; j < cols; j++) {
-					editable = editable || gx.lang.gxBoolean(this.properties[i][j].enabled);
+					editable = editable || (!gx.lang.gxBoolean(this.properties[i][j].readOnly) && gx.lang.gxBoolean(this.properties[i][j].enabled));
 					if (editable) {
 						this.editable = editable;
 						return this.editable;
