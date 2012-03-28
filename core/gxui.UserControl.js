@@ -405,6 +405,11 @@ gxui.UserControlManager = function () {
 		},
 
 		addToParentContainer: function (uc, control) {
+			control.on('added', function () {
+				control.width = undefined;
+				control.height = undefined;
+			}, uc);
+
 			gxui.afterShow(function () {
 				try {
 					var el = Ext.get(uc.getContainerControl());
@@ -427,22 +432,6 @@ gxui.UserControlManager = function () {
 			}, this);
 		},
 
-		/**
-		* Fires after the show method of all the registered User Controls has been executed.
-		* @param {Function} fn The method the event invokes
-		* @param {Object} [scope] An object that becomes the scope of the handler
-		* @param {Boolean} [options] An object containing standard Ext.EventManager.addListener options
-		* @method
-		* @ignore
-		*/
-		afterShow: function (fn, scope, options) {
-			if (!afterShowEvent)
-				initAfterShow();
-
-			scope.afterShowHandler = fn;
-			afterShowEvent.addListener(fn, scope, options)
-		},
-
 
 		addControlsToContainer: function () {
 			try {
@@ -459,6 +448,22 @@ gxui.UserControlManager = function () {
 			catch (e) {
 				gx.dbg.logEx(e, 'gxui.UserControl.js', 'addControlsToContainer');
 			}
+		},
+
+		/**
+		* Fires after the show method of all the registered User Controls has been executed.
+		* @param {Function} fn The method the event invokes
+		* @param {Object} [scope] An object that becomes the scope of the handler
+		* @param {Boolean} [options] An object containing standard Ext.EventManager.addListener options
+		* @method
+		* @ignore
+		*/
+		afterShow: function (fn, scope, options) {
+			if (!afterShowEvent)
+				initAfterShow();
+
+			scope.afterShowHandler = fn;
+			afterShowEvent.addListener(fn, scope, options)
 		}
 	};
 } ();
