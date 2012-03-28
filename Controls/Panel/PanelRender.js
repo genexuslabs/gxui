@@ -96,23 +96,15 @@ Ext.define('gxui.Panel', {
 		var config = {
 			contentEl: this.getChildContainer("Body"),
 			id: this.getUniqueId(),
-			title: this.Title,
-			headerPosition: this.HeaderPosition,
 			autoWidth: gxui.CBoolean(this.AutoWidth),
 			autoHeight: gxui.CBoolean(this.AutoHeight),
 			autoScroll: this.Layout == 'default' ? true : false,
 			frame: gxui.CBoolean(this.Frame),
-			border: gxui.CBoolean(this.Border) ? 1 : 0,
-			minWidth: this.MinWidth,
-			minHeight: this.MinHeight,
-			maxWidth: this.MaxWidth,
-			maxHeight: this.MaxHeight,
+			border: gxui.CBoolean(this.Border) ? undefined : 0,
 			collapsible: gxui.CBoolean(this.Collapsible),
 			collapsed: gxui.CBoolean(this.Collapsed),
 			animCollapse: gxui.CBoolean(this.AnimateCollapse),
-			collapseDirection: this.CollapseDirection,
 			resizable: gxui.CBoolean(this.Resizable),
-			resizeHandles: this.Handles,
 			tbar: this.m_toolbar,
 			listeners: this.getListeners(),
 			stateful: gxui.CBoolean(this.Stateful),
@@ -120,16 +112,25 @@ Ext.define('gxui.Panel', {
 			layout: this.Layout == 'default' ? undefined : this.Layout
 		};
 
+		gxui.tryPropertyMapping(config, this, {
+			"title": "Title",
+			"headerPosition": "HeaderPosition",
+			"minWidth": "MinWidth",
+			"minHeight": "MinHeight",
+			"maxWidth": "MaxWidth",
+			"maxHeight": "MaxHeight",
+			"collapseDirection": "CollapseDirection",
+			"resizeHandles": "Handles",
+			"iconCls": "IconCls",
+			"cls": "Cls"
+		});
+
 		if (!gxui.CBoolean(this.AutoWidth))
 			config.width = parseInt(this.Width);
 
 		if (!gxui.CBoolean(this.AutoHeight))
 			config.height = parseInt(this.Height);
 
-		if (this.IconCls)
-			config.iconCls = this.IconCls;
-		if (this.Cls)
-			config.cls = this.Cls;
 		if (!gx.lang.gxBoolean(this.Visible))
 			config.hidden = true;
 

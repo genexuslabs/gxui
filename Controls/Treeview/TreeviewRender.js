@@ -120,7 +120,7 @@ Ext.define('gxui.Treeview', {
 			id: this.getUniqueId(),
 			title: this.Title,
 			frame: gxui.CBoolean(this.Frame),
-			border: gxui.CBoolean(this.Border) ? 1 : 0,
+			border: gxui.CBoolean(this.Border) ? undefined : 0,
 			cls: this.Cls,
 			animate: gxui.CBoolean(this.Animate),
 			rootVisible: gxui.CBoolean(this.RootVisible),

@@ -98,7 +98,7 @@ Ext.define('gxui.TabPanel', {
 			cls: this.Cls,
 			tabPosition: this.TabPosition || "top",
 			deferredRender: false,
-			border: gx.lang.gxBoolean(this.Border) ? 1 : 0,
+			border: gx.lang.gxBoolean(this.Border) ? undefined : 0,
 			frame: gx.lang.gxBoolean(this.Frame),
 			autoWidth: gxui.CBoolean(this.AutoWidth),
 			autoHeight: gxui.CBoolean(this.AutoHeight),

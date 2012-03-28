@@ -82,8 +82,9 @@ Ext.define('gxui.Layout', {
 	},
 
 	getMargins: function (regionKey, str) {
-		var margins = (this[regionKey + "Margins"]) ? this[regionKey + "Margins"].split(",") : ["0", "0", "0", "0"];
-		return { top: parseInt(margins[0]), left: parseInt(margins[3]), right: parseInt(margins[1]), bottom: parseInt(margins[2]) };
+		var margins = this[regionKey + "Margins"];
+		if (margins)
+			return margins.replace(/,/ig, ' ');
 	},
 
 	getProperty: function (regionKey, propName) {
@@ -99,6 +100,8 @@ Ext.define('gxui.Layout', {
 			return gxui.CBoolean(value);
 		else if (propName.indexOf("Margins") >= 0)
 			return this.getMargins(regionKey, value);
+		else if (propName.indexOf("Border") >= 0)
+			return gx.lang.gxBoolean(value) ? undefined : 0;
 		else if (propName == "Layout")
 			return value == "default" ? undefined : value;
 		else

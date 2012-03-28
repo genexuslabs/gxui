@@ -214,7 +214,7 @@ gxui = function () {
 
 		/**
 		* Maps a set of properties from a source object to another set of properties of a target object.
-		* If the value of the source property evaluates as false (null, undefined, 0, '', NaN, etc), it is not mapped to the target object.
+		* If the value of the source property is undefined, it is not mapped to the target object.
 		* The source can be a function instead of an object, in which case it is called passing the source property name.
 		* @param {Object} targetObj Target object
 		* @param {Mixed} source If it's an object, the properties will be mapped from here. If it's a function, it will be called for each property, passing the source property name.
@@ -229,7 +229,7 @@ gxui = function () {
 					sourceValue = source(propertyMap[targetProp]);
 				else
 					sourceValue = source[propertyMap[targetProp]];
-				if (sourceValue)
+				if (sourceValue !== undefined)
 					targetObj[targetProp] = sourceValue;
 			}
 		}
