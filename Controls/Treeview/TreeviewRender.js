@@ -647,7 +647,7 @@ Ext.define('gxui.Treeview', {
 	},
 
 	/**
-	* Returns the if of the parent of the given node. If the given node doesn't exist or is the root node, it returns "".
+	* Returns the id of the parent of the given node. If the given node doesn't exist or is the root node, it returns "".
 	* @param {String} nodeId Node id
 	* @return {String}
 	* @method
