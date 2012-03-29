@@ -1,8 +1,9 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
 	<Import Project="Common.msbuild"/>
 	<PropertyGroup>
-		<DeployGxuiDir>$(MSBuildProjectDirectory)\build\gxui</DeployGxuiDir>
-		<DeploySharedDir>$(MSBuildProjectDirectory)\build\shared</DeploySharedDir>
+		<DeployBaseDir>$(MSBuildProjectDirectory)\build\$(Configuration)</DeployBaseDir>
+		<DeployGxuiDir>$(DeployBaseDir)\gxui</DeployGxuiDir>
+		<DeploySharedDir>$(DeployBaseDir)\shared</DeploySharedDir>
 	</PropertyGroup>
 
 	<Target Name="UpdateRevisionNumber" DependsOnTargets="LoadToolsInfo" Condition='$(Configuration)==Release'>
@@ -58,7 +59,7 @@
 		<!--
 		  __Description__: Execute JSBuilder to build JS files.
 		  -->
-		<Exec Command='"Freezer\JSBuilder\JSBuildConsole.exe" /path=gxui.jsb /verbose'/>
+		<Exec Command='"Freezer\JSBuilder\JSBuildConsole.exe" /path=gxui.jsb  /output="$(DeployGxuiDir)" /verbose'/>
 
 		<!-- ### Copy ExtJS files ################################################ -->
 		<!--
@@ -94,7 +95,7 @@
 	</Target>
 
 	<Target Name="BuildAndDeployToGX" DependsOnTargets="LoadToolsInfo">
-		<Exec Command='$(UpdaterExe) gxuiGXCatalog.xml .\ "$(GXDir)"\ $(Configuration)'/>
+		<Exec Command='$(UpdaterExe) gxuiGXCatalog.xml "$(DeployBaseDir)"\ "$(GXDir)"\ $(Configuration)'/>
 
 		<Delete Condition='$(Configuration)==Debug' Files='$(GXDir)\UserControls\gxui\gxui-all.original.js' ContinueOnError='true' />
 		<Copy Condition='$(Configuration)==Debug' SourceFiles='$(GXDir)\UserControls\gxui\gxui-all.js' DestinationFiles='$(GXDir)\UserControls\gxui\gxui-all.original.js' ContinueOnError='true' />
@@ -103,7 +104,7 @@
 	</Target>
 
 	<Target Name="BuildAndDeployToKB" DependsOnTargets="LoadToolsInfo">
-		<Exec Command='$(UpdaterExe) gxuiKBCatalog.xml .\ "$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)"\ $(Configuration)'/>
+		<Exec Command='$(UpdaterExe) gxuiKBCatalog.xml "$(DeployBaseDir)"\ "$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)"\ $(Configuration)'/>
 
 		<Delete Condition='$(Configuration)==Debug' Files='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all.original.js' ContinueOnError='true' />
 		<Copy Condition='$(Configuration)==Debug' SourceFiles='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all.js' DestinationFiles='$(KBDir)\$(KBModelDir)\web$(KBModelStaticDir)\gxui\gxui-all.original.js' ContinueOnError='true' />
