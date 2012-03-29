@@ -152,11 +152,8 @@ Ext.define('gxui.Settings', {
 	// Methods
 	/**
 	* Sets the language for ExtJS standard texts
-	* @param {String} tabId Tab id
-	* @param {String} title Tab title
-	* @param {String} tabHTMLContent Html code to render inside the new tab
-	* @param {Boolean} [closable] True to display a close icon and to allow the user to close the tab 
-	* @param {String} [layout] Layout to be used for the new tab. If not specified, the layout specified in {@link #Layout} property is used.
+	* @param {String} lang Language to set
+	* @param {String} [charset] Charset for the script tag to use for including the localized standard texts
 	* @method
 	*/
 	SetLanguage: function (lang, charset) {
