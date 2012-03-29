@@ -6,6 +6,7 @@
 * @author ontho (http://www.sencha.com/forum/member.php?285806-ontho)
 * @author jakob.ketterl (http://www.sencha.com/forum/member.php?25102-jakob.ketterl)
 * @link http://www.sencha.com/forum/showthread.php?134345-Ext.ux.form.field.DateTime
+* @ignore
 */
 Ext.define('Ext.ux.form.field.DateTime', {
 	extend: 'Ext.form.FieldContainer',

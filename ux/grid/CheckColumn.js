@@ -39,6 +39,7 @@ var grid = Ext.create('Ext.grid.Panel', {
  * class adds or removes a css class <tt>'x-grid-checked'</tt> on the td
  * based on whether or not it is checked to alter the background image used
  * for a column.
+ * @ignore
  */
 Ext.define('Ext.ux.CheckColumn', {
     extend: 'Ext.grid.column.Column',
