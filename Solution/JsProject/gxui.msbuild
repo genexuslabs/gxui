@@ -7,8 +7,11 @@
 	  <KBFolder>C:\KBs\Everest</KBFolder>
 	  <KbModel>CSharpModel</KbModel>
 		-->
-		<GXFolder>E:\Dev\RochaEv2\Deploy\Genexus\Debug</GXFolder>
+		<!--<GXFolder>E:\Dev\RochaEv2\Deploy\Genexus\Debug</GXFolder>
 		<KBFolder>E:\KBsEvo2\GxUI_Caprese_Tests</KBFolder>
+		<KbModel>CSharpModel</KbModel>-->
+		<GXFolder>E:\Dev\RochaEv2\Deploy\Genexus\Debug</GXFolder>
+		<KBFolder>E:\KBsEvo2\RSSReader</KBFolder>
 		<KbModel>CSharpModel</KbModel>
 	</PropertyGroup>
 

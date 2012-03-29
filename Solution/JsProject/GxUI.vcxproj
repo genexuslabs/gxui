@@ -47,9 +47,9 @@
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\Base\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">c:\WINDOWS\Microsoft.NET\Framework\v3.5\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Build</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">c:\WINDOWS\Microsoft.NET\Framework\v3.5\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Rebuild</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">c:\WINDOWS\Microsoft.NET\Framework\v3.5\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Clean</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(MSBuildBinPath)\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(MSBuildBinPath)\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Rebuild</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(MSBuildBinPath)\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Clean</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
@@ -74,7 +74,9 @@
     <None Include="..\..\ux\HttpProvider\Ext.ux.HttpProvider.js" />
     <None Include="BuildAndUpdate.bat" />
     <None Include="BuildBatch.bat" />
-    <None Include="gxui.msbuild" />
+    <None Include="gxui.msbuild">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="UpdateGX.bat" />
     <None Include="UpdateKB.bat" />
     <None Include="..\..\core\gxui.ext.FloatingDropTarget.js" />

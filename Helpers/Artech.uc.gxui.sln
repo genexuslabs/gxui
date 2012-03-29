@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artech.UC.gxui", "Base\Arte
 		{E66C2F7A-A4DD-4C3B-B84C-4307C01A1480} = {E66C2F7A-A4DD-4C3B-B84C-4307C01A1480}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PropertyConstants", "PropertyConstants\PropertyConstants.vcproj", "{E66C2F7A-A4DD-4C3B-B84C-4307C01A1480}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PropertyConstants", "PropertyConstants\PropertyConstants.vcxproj", "{E66C2F7A-A4DD-4C3B-B84C-4307C01A1480}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artech.UC.gxui.Panel.PropertiesResolvers", "Panel\PropertiesResolvers\Artech.UC.gxui.Panel.PropertiesResolvers.csproj", "{E8BE2F86-32A4-422D-A538-F65247CB8A42}"
 EndProject

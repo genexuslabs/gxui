@@ -54,7 +54,7 @@
 		<RemoveDir Directories="$(DeployGxuiDir);$(DeploySharedDir)" />
 	</Target>
 
-	<Target Name="Build" DependsOnTargets="LoadToolsInfo;UpdateRevisionNumber">
+	<Target Name="Build" DependsOnTargets="LoadToolsInfo">
 		<!-- ### Build JS files ################################################ -->
 		<!--
 		  __Description__: Execute JSBuilder to build JS files.
@@ -71,10 +71,22 @@
 		</Exec>
 		<Error Text="Robocopy Error" Condition="'%(RobocopyExitCode.identity)'>7"/>
 
+		<CallTarget Targets="UpdateRevisionNumber">
+		</CallTarget>
+		
 		<CallTarget Targets="GenerateDocs" Condition=''>
 		</CallTarget>
 
 		<CallTarget Targets="UpdateDeploy">
+		</CallTarget>
+	</Target>
+
+	<Target Name="BuildAll">
+		<MSBuild ContinueOnError="false"
+			Projects="Solution\Helpers.sln"
+			Targets="Build"
+			Properties="Configuration=$(Configuration)" />
+		<CallTarget Targets="Build">
 		</CallTarget>
 	</Target>
 

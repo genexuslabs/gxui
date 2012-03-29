@@ -36,7 +36,7 @@
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\Base\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)PropertyConstants.msbuild" /t:Build</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)PropertyConstants.msbuild" /t:Build /p:Hola=chau</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)PropertyConstants.msbuild" /t:Rebuild</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)PropertyConstants.msbuild" /t:Clean</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PropertyConstants.cs</NMakeOutput>
@@ -47,9 +47,9 @@
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\Base\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(FrameworkDir)\$(FrameworkVersion)\msbuild.exe" "$(ProjectDir)PropertyConstants.msbuild" /t:Build</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(FrameworkDir)\$(FrameworkVersion)\msbuild.exe" "$(ProjectDir)PropertyConstants.msbuild" /t:Rebuild</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(FrameworkDir)\$(FrameworkVersion)\msbuild.exe" "$(ProjectDir)PropertyConstants.msbuild" /t:Clean</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)PropertyConstants.msbuild" /t:Build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)PropertyConstants.msbuild" /t:Rebuild</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)PropertyConstants.msbuild" /t:Clean</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PropertyConstants.cs</NMakeOutput>
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
