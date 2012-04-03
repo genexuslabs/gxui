@@ -8,6 +8,7 @@
 * @ignore
 */
 gxui = function () {
+	var m_GenexusBuild = null;
 
 	return {
 		initialize: function () {
@@ -40,67 +41,26 @@ gxui = function () {
 				expires: new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 365)) //365 days
 			}));
 
-			/*			//////////////////////////////////////////////////////////////////////////////////////////
-			// This is a temporal fix for a problem with Chrome and FitLayout http://extjs.com/forum/showthread.php?p=312137#post312137
-			Ext.override(Ext.layout.FitLayout, {
-			onLayout: function(ct, target) {
-			Ext.layout.FitLayout.superclass.onLayout.call(this, ct, target);
-			if (!this.container.collapsed) {
-			var size = !Ext.isChrome && target.dom != Ext.getBody().dom ? target.getStyleSize() : target.getViewSize();
-			this.setItemSize(this.activeItem || ct.items.itemAt(0), size);
-			}
-			}
-			});
-			//////////////////////////////////////////////////////////////////////////////////////////
-			// This is a temporal fix for a problem with insertBefore function in IE.
-			Ext.override(Ext.dd.PanelProxy, {
-			moveProxy: function(parentNode, before) {
-			if (this.proxy) {
-			if (Ext.isIE && before == undefined) {
-			parentNode.insertBefore(this.proxy.dom);
-			return;
-			}
-			parentNode.insertBefore(this.proxy.dom, before);
-			}
-			}
-			});
-			//////////////////////////////////////////////////////////////////////////////////////////
-			// This is a temporal fix for a problem with blur when a TextField is used inside a TabPanel and the tab is changed.
-			Ext.override(Ext.form.TextField, {
-			onFocus: function() {
-			Ext.form.TextField.superclass.onFocus.call(this);
-			this.mimicing = true;
-			Ext.get(Ext.isIE ? document.body : document).on("mousedown", this.mimicBlur, this, { delay: 10 });
-			},
-			mimicBlur: function(e) {
-			if (this.el.dom != e.target) {
-			this.mimicing = false;
-			Ext.get(Ext.isIE ? document.body : document).un("mousedown", this.mimicBlur, this);
-			this.onBlur();
-			}
-			},
-			onDestroy: function() {
-			if (this.mimicing) {
-			Ext.get(Ext.isIE ? document.body : document).un("mousedown", this.mimicBlur, this);
-			}
-			Ext.form.TextField.superclass.onDestroy.call(this);
-			}
-			});
+			// For versions prior to build 55424, gx.lang.inherits function is overriden to allow
+			// GxUI to work properly with older versions of GeneSus.
+			var gxBuild = gxui.getGeneXusBuild();
+			if (gxBuild && gxBuild < 55424) {
+				gx.lang.inherits = function (subclass, superclass) {
+					var oldProt = subclass.prototype;
+					subclass.prototype = new superclass();
+					for (var pName in oldProt) {
+						if (typeof (subclass.prototype[pName]) == 'undefined')
+							subclass.prototype[pName] = oldProt[pName];
+					}
+					if (typeof (subclass.prototype.base) == 'undefined')
+						subclass.prototype.base = superclass;
 
-			// Set an initial z-index value below the one used by GX for popups, so windows will be shown behind the popups.
-			Ext.WindowMgr.zseed = 800;
-
-			//////////////////////////////////////////////////////////////////////////////////////////
-			// This is a temporal fix: getAttributeNS doesn't work in IE9.
-			if (Ext.isIE && gx.util.browser.ieVersion() > 8) {
-			Ext.override(Ext.Element, {
-			getAttributeNS : function(ns, name){
-			var d = this.dom;
-			return d.getAttributeNS(ns, name) || d.getAttribute(ns+":"+name) || d.getAttribute(name) || d[name];
+					subclass.prototype.constructor = function () {
+						superclass.prototype.constructor.apply(this, arguments);
+						oldProt.constructor.apply(this, arguments);
+					};
+				};
 			}
-			});
-			}
-			*/
 		},
 
 		/**
@@ -232,6 +192,38 @@ gxui = function () {
 				if (sourceValue !== undefined)
 					targetObj[targetProp] = sourceValue;
 			}
+		},
+
+		/**
+		* Returns the number of the build of GeneXus used to generate the application
+		* @return {Number} GeneXus Build number.
+		* @method
+		* @ignore
+		*/
+		getGeneXusBuild: function () {
+			if (m_GenexusBuild === null) {
+				try {
+					var metaElements = document.head.getElementsByTagName('meta'),
+						generatorEl = null,
+						versionEl = null;
+					for (var i = 0, len = metaElements.length; i < len; i++) {
+						if (metaElements[i].name == "Version")
+							versionEl = metaElements[i];
+						if (metaElements[i].name == "Generator")
+							generatorEl = metaElements[i];
+					}
+
+					var value = versionEl ? versionEl.getAttribute('content') : generatorEl.getAttribute('content');
+					var matches = value.match(/-(\d+)$/);
+					if (matches.length > 1)
+						m_GenexusBuild = parseInt(matches[1]);
+				}
+				catch (e) {
+					m_GenexusBuild = 0;
+				}
+			}
+
+			return m_GenexusBuild;
 		}
 	};
 } ();
