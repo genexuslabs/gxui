@@ -13,9 +13,6 @@ Ext.define('gxui.Toolbar', {
 	initialize: function () {
 		this.callParent();
 
-		this.Width;
-		this.Height;
-		this.Data;
 		this.ButtonPressedId = "";
 		this.EditFieldValue = "";
 
@@ -270,12 +267,23 @@ Ext.define('gxui.Toolbar', {
 			}
 		}
 
-		this.m_toolbar = Ext.create('Ext.toolbar.Toolbar', {
+		var config = {
 			id: this.getUniqueId(),
 			stateful: false,
 			items: this.createButtons(),
-			docked: 'top'
-		});
+			listeners: {}
+		};
+
+		if (options && options.container) {
+			config.docked = 'top';
+			config.enableOverflow = true;
+		}
+		else {
+			config.listeners['afterrender'] = this.adjustWidth
+			config.listeners.scope = this;
+		}
+
+		this.m_toolbar = Ext.create('Ext.toolbar.Toolbar', config);
 
 		return this.m_toolbar;
 	},
@@ -433,6 +441,9 @@ Ext.define('gxui.Toolbar', {
 			}
 			i += 1;
 		}, this)
+
+		if (this.m_toolbar.ownerCt)
+			this.adjustWidth(this.m_toolbar);
 	},
 
 	//private
@@ -481,6 +492,19 @@ Ext.define('gxui.Toolbar', {
 			}
 		}
 		return btn.Cls;
+	},
+
+	adjustWidth: function (toolbar) {
+		var lastItem = null;
+		toolbar.items.each(function (item) {
+			if (item.isVisible())
+				lastItem = item;
+		})
+
+		if (lastItem) {
+			width = lastItem.el.getLeft(true) + lastItem.el.getWidth() + toolbar.el.getFrameWidth('l r');
+			toolbar.setWidth(width);
+		}
 	},
 
 	// Methods
