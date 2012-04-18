@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project path="" name="GxUI Library" author="Artech" version="2.0 beta (Build 1)" copyright="GxUI Library $version&#xD;&#xA;Copyright (c) 2009, $author&#xD;&#xA;All rights reserved.&#xD;&#xA;&#xD;&#xA;GxUI Library is freely distributable under the terms of the BSD license.&#xD;&#xA;" output="$project\build\gxui" source="True" source-dir="$output" minify="False" min-dir="$output\min" doc="False" doc-dir="$output\docs" master="true" master-file="$output\yui-ext.js" zip="true" zip-file="$output\yuo-ext.$version.zip">
+<project path="" name="GxUI Library" author="Artech" version="2.0 beta (Build 1320)" copyright="GxUI Library $version&#xD;&#xA;Copyright (c) 2009, $author&#xD;&#xA;All rights reserved.&#xD;&#xA;&#xD;&#xA;GxUI Library is freely distributable under the terms of the BSD license.&#xD;&#xA;" output="$project\build\gxui" source="True" source-dir="$output" minify="False" min-dir="$output\min" doc="False" doc-dir="$output\docs" master="true" master-file="$output\yui-ext.js" zip="true" zip-file="$output\yuo-ext.$version.zip">
   <directory name="" />
   <file name="core\gxui.js" path="core" />
   <file name="Controls\Panel\PanelRender.js" path="Panel" />
@@ -91,6 +91,7 @@
     <include name="Controls\Viewport\ViewportRender.js" />
     <include name="ux\HttpProvider\Ext.ux.HttpProvider.js" />
     <include name="Controls\Settings\SettingsRender.js" />
+    <include name="Controls\Splash\SplashRender.js" />
   </target>
   <target name="gxui-allcss" file="$output\gxui-all.css" debug="False" shorthand="False" shorthand-list="YAHOO.util.Dom.setStyle&#xD;&#xA;YAHOO.util.Dom.getStyle&#xD;&#xA;YAHOO.util.Dom.getRegion&#xD;&#xA;YAHOO.util.Dom.getViewportHeight&#xD;&#xA;YAHOO.util.Dom.getViewportWidth&#xD;&#xA;YAHOO.util.Dom.get&#xD;&#xA;YAHOO.util.Dom.getXY&#xD;&#xA;YAHOO.util.Dom.setXY&#xD;&#xA;YAHOO.util.CustomEvent&#xD;&#xA;YAHOO.util.Event.addListener&#xD;&#xA;YAHOO.util.Event.getEvent&#xD;&#xA;YAHOO.util.Event.getTarget&#xD;&#xA;YAHOO.util.Event.preventDefault&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Event.stopPropagation&#xD;&#xA;YAHOO.util.Event.stopEvent&#xD;&#xA;YAHOO.util.Anim&#xD;&#xA;YAHOO.util.Motion&#xD;&#xA;YAHOO.util.Connect.asyncRequest&#xD;&#xA;YAHOO.util.Connect.setForm&#xD;&#xA;YAHOO.util.Dom&#xD;&#xA;YAHOO.util.Event">
     <include name="resources\css\gxui.css" />
@@ -98,6 +99,7 @@
     <include name="ux\grid\CheckHeader.css" />
     <include name="Controls\Message\message.css" />
     <include name="ux\NestedViewport\NestedViewport.css" />
+    <include name="Controls\Splash\splash.css" />
   </target>
   <file name="resources\images\iconCollapseAll.gif" path="resources\images" />
   <file name="resources\images\iconExpandAll.gif" path="resources\images" />
@@ -196,4 +198,10 @@
   <file name="Controls\Settings\SettingsRender.js" path="Settings" />
   <file name="Controls\Settings.control" path="" />
   <file name="ux\HttpProvider\Ext.ux.HttpProvider.js" path="ux\HttpProvider" />
+  <file name="Controls\Splash\design\SplashRender.xsl" path="Splash\design" />
+  <file name="Controls\Splash\design\splash.ico" path="Splash\design" />
+  <file name="Controls\Splash\design\SplashProperties.xml" path="Splash\design" />
+  <file name="Controls\Splash\SplashRender.js" path="Splash" />
+  <file name="Controls\Splash\splash.css" path="Splash" />
+  <file name="Controls\Splash.control" path="" />
 </project>

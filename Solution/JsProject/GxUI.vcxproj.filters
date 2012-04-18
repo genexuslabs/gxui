@@ -121,6 +121,12 @@
     <Filter Include="ux\HttpProvider">
       <UniqueIdentifier>{eee71033-79bd-481a-8856-78e925aadfa6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Controls\Splash">
+      <UniqueIdentifier>{884e6acb-3612-4958-a058-cffcfe1af2ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controls\Splash\design">
+      <UniqueIdentifier>{30405e2b-f115-43f5-8400-215a59bec2ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="BuildAndUpdate.bat">
@@ -455,6 +461,24 @@
     </None>
     <None Include="..\..\ux\HttpProvider\Ext.ux.HttpProvider.js">
       <Filter>ux\HttpProvider</Filter>
+    </None>
+    <None Include="..\..\Controls\Splash\SplashRender.js">
+      <Filter>Controls\Splash</Filter>
+    </None>
+    <None Include="..\..\Controls\Splash.control">
+      <Filter>Controls\Splash</Filter>
+    </None>
+    <None Include="..\..\Controls\Splash\design\splash.ico">
+      <Filter>Controls\Splash\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Splash\design\SplashProperties.xml">
+      <Filter>Controls\Splash\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Splash\design\SplashRender.xsl">
+      <Filter>Controls\Splash\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Splash\splash.css">
+      <Filter>Controls\Splash</Filter>
     </None>
   </ItemGroup>
 </Project>

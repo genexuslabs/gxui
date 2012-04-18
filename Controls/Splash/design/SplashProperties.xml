@@ -30,12 +30,6 @@
           <Default>Loading...</Default>
         </Prop>				
         <Prop>
-          <Id>Image</Id>
-          <Name>Image</Name>
-          <Type>Text</Type>
-          <Default></Default>
-        </Prop>		
-        <Prop>
           <Id>Cls</Id>
           <Name>Cls</Name>
           <Type>Text</Type>

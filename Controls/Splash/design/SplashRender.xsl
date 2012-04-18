@@ -22,21 +22,20 @@
 
   <!-- GxChart design render -->
   <xsl:template name="RenderSplash">
-    <span atomicselection="true">
-      <table>
-          <TR>
-            <TD>
-            	<img>
-					<xsl:attribute name="src">
-						<xsl:value-of select='gxca:GetMyPath()'/>
-						<xsl:text>\Splash\design\splash.jpg</xsl:text>
-					</xsl:attribute>	  						
-					<xsl:call-template name="AddStyleAttribute"/>
-  				</img>               
-            </TD>
-          </TR>          
-      </table>
-    </span>    
+    <div atomicselection="true">
+		<xsl:attribute name="style">
+			<xsl:text>border:1px solid black;background-color:#C0C0C0;font-family:Arial Narrow;font-size:10pt;color:black;width:110px;padding:2px;letter-spacing:0.9px</xsl:text>
+		</xsl:attribute>
+		<img alt="gxui.Splash">
+			<xsl:attribute name="src">
+				<xsl:value-of select='gxca:GetMyPath()'/>
+				<xsl:text>\Splash\design\splash.png</xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="style">
+				<xsl:text>margin-right:4px;float:left;</xsl:text>
+			</xsl:attribute>
+		</img>gxui.Splash
+	</div>
   </xsl:template>
 
   <!-- Helpers Templates -->

@@ -60,6 +60,12 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\..\Controls\Splash.control" />
+    <None Include="..\..\Controls\Splash\design\splash.ico" />
+    <None Include="..\..\Controls\Splash\design\SplashProperties.xml" />
+    <None Include="..\..\Controls\Splash\design\SplashRender.xsl" />
+    <None Include="..\..\Controls\Splash\splash.css" />
+    <None Include="..\..\Controls\Splash\SplashRender.js" />
     <None Include="..\..\gxui.jsb" />
     <None Include="..\..\docs\JSDuckProperties.xslt">
       <SubType>Designer</SubType>
