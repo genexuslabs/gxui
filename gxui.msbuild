@@ -131,5 +131,7 @@
 		<Xslt Xsl='JSDuckProperties.xslt' RootTag='Root' Inputs='@(PropertiesFiles)' Output='$(DeployGxuiDir)\Properties.js' />
 
 		<Exec Command='Freezer\jsduck-3.3.0.exe $(DeployGxuiDir) --title "GxUI Library Documentation" --images .\docs\images --output $(DeployGxuiDir)\docs'/>
+
+		<Copy SourceFiles='.\docs\favicon.ico' DestinationFiles='$(DeployGxuiDir)\docs\favicon.ico' ContinueOnError='true' />
 	</Target>
 </Project>
