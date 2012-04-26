@@ -26,13 +26,13 @@ gxui = function () {
 			Ext.namespace('gxui.ux');
 
 			gx.fx.obs.addObserver('gx.onready', this, function () {
-				if (gx) {
+				if (gx && Ext.ieVersion > 0 && Ext.ieVersion < 8) {
 					if (gx.staticDirectory != "")
 						this.StaticContent = gx.staticDirectory;
 					else
 						this.StaticContent = this.getCookie('StaticContent');
 
-					Ext.BLANK_IMAGE_URL = gx.util.resourceUrl(gx.basePath + this.StaticContent + "Shared/ext/resources/images/default/s.gif", true);
+					Ext.BLANK_IMAGE_URL = gx.util.resourceUrl(gx.basePath + this.StaticContent + "Shared/ext/resources/themes/images/default/tree/s.gif", true);
 				}
 			});
 
