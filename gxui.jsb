@@ -204,5 +204,5 @@
   <file name="Controls\Splash\SplashRender.js" path="Splash" />
   <file name="Controls\Splash\splash.css" path="Splash" />
   <file name="Controls\Splash.control" path="" />
-  <file name="Controls\Splash\design\splash.png" path="Controls\Splash\design" />
+  <file name="Controls\Splash\design\splash.png" path="Splash\design" />
 </project>
