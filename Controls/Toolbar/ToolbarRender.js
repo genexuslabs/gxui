@@ -6,6 +6,147 @@
 * The control basically loads a SDT which contains the toolbar items. Consequently you will have to 
 * define a variable based on gxuiToolbar SDT which must be assigned to the {@link #Data} property of the control.
 * This variable will have a collection of items (gxuiToolbarItem SDT) that will be displayed in the toolbar.
+*
+* 
+* #Basic Toolbar
+* {@img Toolbar/gxuiToolbar.png Toolbar sample}
+* The code below is an example of a Data Provider that produces a simple toolbar as the one shown in the image.
+*		gxuiToolbar
+*		{
+*			Buttons
+*			{
+*				Item
+*				{
+*					Id = !"DSP"
+*					Text = "Display"
+*					Tooltip = "Tooltip for Display Button"
+*					Type = gxuiToolbarItemTypes.Button
+*					Icon = ActionDisplay.Link()
+*				}
+*				Item
+*				{
+*					Id = !"UPD"
+*					Text = "Update"
+*					Tooltip = "Toltip for Update Button"
+*					Type = gxuiToolbarItemTypes.Button
+*					Icon = ActionUpdate.Link()
+*				}
+*				Item
+*				{
+*					Id = !"DLT"
+*					Text = "Delete"
+*					Tooltip = "Tooltip for Delete Button"
+*					Type = gxuiToolbarItemTypes.Button
+*					Icon = ActionDelete.Link()
+*					AskConfirmation = True
+*					Confirmation
+*					{
+*						Message = !"Please confirm this action."
+*						CancelButtonText = !"Cancel"
+*						OKButtonText = !"Delete"
+*					}
+*				}
+*				Item
+*				{
+*					Id = !"SEARCH"
+*					Text = "Search..."
+*					Tooltip = "Enter search query."
+*					Type = gxuiToolbarItemTypes.Edit
+*				}
+*			}
+*		}
+*
+*
+* # Multi-level menu
+* {@img Toolbar/gxuiToolbar2.png Toolbar sample}
+*
+* Example of a data provider to load the items shown in the above image.
+*		gxuiToolbar
+*		{
+*		    Buttons
+*		    {
+*		        Item
+*		        {
+*		            Id = !"DSP"
+*		            Text = "Display"
+*		            Tooltip = "Tooltip for Display Button"
+*		            Type = gxuiToolbarItemTypes.Menu
+*		            Icon = ActionDisplay.Link()
+*		            Items
+*		            {
+*		                Item
+*		                {
+*		                    Id = !"DSP11"
+*		                    Text = "Display incoming calls"
+*		                    Tooltip = "Tooltip for display incoming calls button"
+*		                    Type = gxuiToolbarItemTypes.Button
+*		                    Icon = ActionDisplay.Link()
+*		                }
+*		                Item
+*		                {
+*		                    Id = !"DSP12"
+*		                    Text = "Display outgoing calls"
+*		                    Tooltip = "Tooltip for display outgoing calls button"
+*		                    Type = gxuiToolbarItemTypes.Menu
+*		                    Icon = ActionDisplay.Link()
+*		                    Items
+*		                    {
+*		                        Item
+*		                        {
+*		                            Id = !"DSP121"
+*		                            Text = "Display outgoing calls - Today"
+*		                            Tooltip = "Tooltip for display outgoing calls Today button"
+*		                            Type = gxuiToolbarItemTypes.Button
+*		                            Icon = ActionDisplay.Link()
+*		                        }
+*		                        Item
+*		                        {
+*		                            Id = !"DSP122"
+*		                            Text = "Display outgoing calls - Yesterday"
+*		                            Tooltip = "Tooltip for display outgoing calls Yesterday button"
+*		                            Type = gxuiToolbarItemTypes.Button
+*		                            Icon = ActionDisplay.Link()
+*		                        }
+*		                    }
+*		                }
+*		            }
+*		        }
+*		        Item
+*		        {
+*		            Id = !"UPD"
+*		            Text = "Update"
+*		            Tooltip = "Toltip for Update Button"
+*		            Type = gxuiToolbarItemTypes.Button
+*		            Icon = ActionUpdate.Link()
+*		        }
+*		        Item
+*		        {
+*		            Id = !"DLT"
+*		            Text = "Delete"
+*		            Tooltip = "Tooltip for Delete Button"
+*		            Type = gxuiToolbarItemTypes.Button
+*		            Icon = ActionDelete.Link()
+*		            AskConfirmation = True
+*		            Confirmation
+*		            {
+*		                Message = !"Please confirm this action."
+*		                CancelButtonText = !"Cancel"
+*		                OKButtonText = !"Delete"
+*		            }
+*		        }
+*		        Item
+*		        {
+*		            Id = !"SEARCH"
+*		            Text = "Search..."
+*		            Tooltip = "Enter search query."
+*		            Type = gxuiToolbarItemTypes.Edit
+*		        }
+*		    }
+*		}
+* #More information:#
+* For more examples please visit [this page][1].
+* [1]: http://public.genexusserver.com/gxserver/action.aspx?1,RSSReader:0:c9584656-94b6-4ccd-890f-332d11fc2c25:15
+*
 */
 Ext.define('gxui.Toolbar', {
 	extend: 'gxui.UserControl',
