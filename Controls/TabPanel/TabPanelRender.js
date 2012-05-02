@@ -388,7 +388,7 @@ Ext.define('gxui.TabPanel', {
 
 	/**
 	* Show an existing tab, by index.
-	* @param {String} i Tab index (0 based)
+	* @param {Integer} i Tab index (0 based)
 	* @method
 	*/
 	ShowTab: function (i) {
@@ -399,7 +399,7 @@ Ext.define('gxui.TabPanel', {
 
 	/**
 	* Hide an existing tab, by index.
-	* @param {String} i Tab index (0 based)
+	* @param {Integer} i Tab index (0 based)
 	* @method
 	*/
 	HideTab: function (i) {
