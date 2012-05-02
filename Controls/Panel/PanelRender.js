@@ -3,6 +3,10 @@
 /**
 * @class gxui.Panel
 * Panel User Control. Wraps Ext.panel.Panel so it can be used from GeneXus.
+*
+* The control basically is a container of other controls. After dragging the control to the form you can include any control in the cell provided by the control.
+* Also, it came with a Toolbar included.
+* {@img Panel/panelSample.png}
 */
 Ext.define('gxui.Panel', {
 	extend: 'gxui.UserControl',
