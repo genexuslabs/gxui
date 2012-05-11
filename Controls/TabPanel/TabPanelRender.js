@@ -7,6 +7,49 @@
 * The main purpose of this control is to enable the programmer to create a tabbed dialog in design time. However, it is possible to add
 * tabs in runtime, using the {@link #OpenTab} method, by providing the HTML code that will be rendered inside the newly created tab.
 *
+* #Basic Samples#
+* By programing the code below in a Web Panel you will get the behavior in shown in the image.
+*		Event 'open tab'
+*			gxui_tabpanel1.OpenTab("tabPanel4", "Tab4", "<html><head><title>Example</title></head><body><p>Tab Content</p></body></html>")
+*			gxui_tabpanel1.SelectTab("tabPanel4")
+*		EndEvent
+*		
+*		Event 'hide tab'
+*			gxui_tabpanel1.HideTab(2) //hide tab by index
+*			gxui_tabpanel1.SelectTab("tabPanel2")
+*		EndEvent
+*
+* {@img tabPanel/tabPanel3.png}
+*
+* Other features you can develop with this control.
+*
+* Load a Web Component with its logic in a tab:
+*		Event Start
+*			gxui_tabpanel1.SelectTab("tabPanel1")
+*			WebComp1.Object = TabPanelWebComp.Create()
+*		EndEvent
+* {@img tabPanel/tabPanel5.png}
+*		
+* Move between tabs:
+*		Event 'show tab'
+*			gxui_tabpanel1.OpenTab("tabPanel3", "Tab3", "") //You must open it first in case it could be closed
+*			gxui_tabpanel1.ShowTabById("tabPanel3")
+*			gxui_tabpanel1.SelectTab("tabPanel3")
+*		EndEvent
+*
+* Or change the title of a tab:
+*		Event 'set tab title'
+*			gxui_TabPanel1.SetTabTitle("tabPanel2", format("Modified title for tab tabPanel2"))
+*		EndEvent
+*	
+*
+* Also you can do something a bit more complex like manage grids and attributes in it.
+* {@img tabPanel/tabPanel2.png}
+*
+* #More information:#
+* For more examples please visit [this page][1].
+* [1]: http://public.genexusserver.com/gxserver/action.aspx?1,RSSReader:0:c9584656-94b6-4ccd-890f-332d11fc2c25:15
+*
 */
 Ext.define('gxui.TabPanel', {
 	extend: 'gxui.UserControl',
