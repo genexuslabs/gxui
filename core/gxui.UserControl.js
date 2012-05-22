@@ -39,6 +39,8 @@ Ext.define('gxui.UserControl', {
 	initialize: function () {
 		this.rendered = false;
 
+		this.mixins.observable.constructor.call(this);
+
 		this.addEvents({
 			/**
 			* @event show

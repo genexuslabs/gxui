@@ -84,7 +84,7 @@ Ext.define('gxui.Panel', {
 	},
 
 	onAfterRender: function (panel) {
-		panel.body.first().enableDisplayMode().show();
+		panel.body.first('.gx_usercontrol_child').enableDisplayMode().show();
 	},
 
 	getUnderlyingControl: function () {
