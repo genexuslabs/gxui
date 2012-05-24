@@ -126,7 +126,18 @@ Ext.define('gxui.Layout', {
 			autoScroll: (this.getProperty(regionKey, "Layout") != "fit") ? this.getProperty(regionKey, "AutoScroll") : false,
 			preventHeader: !this.getProperty(regionKey, "TitleBar"),
 			cls: "x-region-" + regionKey.toLowerCase(),
-			duration: this.getProperty(regionKey, "Duration") / 1000
+			duration: this.getProperty(regionKey, "Duration") / 1000,
+			listeners: {
+				'collapse': function(p) {
+					this.setRegionProperty(p.region, "Collapsed", "true");
+				},
+
+				'expand': function(p) {
+					this.setRegionProperty(p.region, "Collapsed", "false");
+				},
+
+				scope: this
+			}
 		};
 
 		gxui.tryPropertyMapping(config, Ext.bind(this.getProperty, this, [regionKey], 0), {
