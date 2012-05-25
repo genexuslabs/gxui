@@ -6,13 +6,76 @@
 * The control basically loads a SDT which contains the menu items. Consequently you will have to 
 * define a variable based on a collection of gxuiToolbarItem SDT which must be assigned to the {@link #Menu} property of the control.
 * This variable will have a collection of items (gxuiToolbarItem SDT) that will be displayed in the menu.
-* 
+*
+* {@img Menu/menu1.png}
+* Example of a data provider to load the items shown in the above image.
+*
+*		gxuiButton
+*		{
+*			Id = !"EXPORT"
+*			Text = !'Export to Excel'
+*			Tooltip = 'Export to Excel'
+*			Type = gxuiMenuItemTypes.Button
+*		}
+*		gxuiButton
+*		{
+*			Id = !"GENERATEPDF"
+*			Text = 'Generate PDF'
+*			Tooltip = 'Generate PDF'
+*			Type = gxuiMenuItemTypes.Button
+*		}
+*		gxuiButton
+*		{
+*			Type = gxuiMenuItemTypes.Separator
+*		}
+*		gxuiButton
+*		{
+*			Id = !"INSERT"
+*			Text = 'Insert'
+*			Tooltip = 'Insert'
+*			Type = gxuiMenuItemTypes.Menu
+*			Items
+*			{
+*				Item
+*				{
+*					Id = !'4'
+*					Text = 'Insert Customer'
+*					Tooltip = 'Insert Customer'
+*					Type = gxuiMenuItemTypes.Button
+*				}
+*				Item
+*				{
+*					Id = !'5'
+*					Text = 'Insert Company'
+*					Tooltip = 'Insert Company'
+*					Type = gxuiMenuItemTypes.Button
+*				}
+*			}
+*		}
+*
 * To show the menu (for example when a TextBlock is clicked) use {@link #ShowMenu} or {@link ShowMenuXY} methods.
-* 
 *		Event TextBlock1.Click
 *			gxui_Menu1.ShowMenu()
 *		EndEvent
 *
+* gxuiMenu provides an ItemClick event that is fired when an item is selected.
+*		Event gxui_Menu1.ItemClick
+*		  //Display selected menu option
+*		  msg(!'Item Clicked Id : ' + gxui_Menu1.ItemClickedId)
+*		EndEvent
+*
+* gxuiMenu can also be associated to another gxui controls, like gxui.GridExtension.
+* For instance, if you want to display a context menu when the user right clicks on a selected line then you need to use this code.
+*		Event Grid1.ContextMenu()
+*		    //Associate a context menu to the grid
+*		    gxui_Menu1.ShowMenu()
+*		EndEvent
+*
+* {@img Menu/menu2.png}
+*
+* #More information:#
+* For more examples please visit [this page][1].
+* [1]: http://public.genexusserver.com/gxserver/action.aspx?1,RSSReader:0:c9584656-94b6-4ccd-890f-332d11fc2c25:15
 */
 Ext.define('gxui.Menu', {
 	extend: 'gxui.UserControl',
