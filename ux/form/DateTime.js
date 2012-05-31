@@ -112,17 +112,17 @@ Ext.define('Ext.ux.form.field.DateTime', {
 		me.callParent();
 
 		// this dummy is necessary because Ext.Editor will not check whether an inputEl is present or not
-		this.inputEl = {
-			dom: {},
-			swallowEvent: function () { }
-		};
+		//		this.inputEl = {
+		//			dom: {},
+		//			swallowEvent: function () { }
+		//		};
 
 		me.initField();
 	},
 
 	focus: function () {
 		this.callParent();
-		this.dateField.focus();
+		Ext.defer(this.dateField.focus, 100, this.dateField);
 	},
 
 	onItemFocus: function (item) {
@@ -132,14 +132,14 @@ Ext.define('Ext.ux.form.field.DateTime', {
 		this.focussedItem = item;
 	},
 
-	onItemBlur: function (item) {
-		var me = this;
+	onItemBlur: function (item, e) {
+		/*var me = this;
 		if (item != me.focussedItem) { return; }
 		// 100ms to focus a new item that belongs to us, otherwise we will assume the user left the field
 		me.blurTask = new Ext.util.DelayedTask(function () {
-			me.fireEvent('blur', me);
+			me.fireEvent('blur', me, e);
 		});
-		me.blurTask.delay(100);
+		me.blurTask.delay(100);*/
 	},
 
 	getValue: function () {
