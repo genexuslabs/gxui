@@ -278,7 +278,27 @@ Ext.define('gxui.GridExtension', {
 
 			conf.fields.push({
 				name: col.gxAttName || col.gxAttId,
-				mapping: i,  // For the mapping only the column index is sent, because the getJsonAccessor is overriden to access this.properties matrix
+				mapping: function (i, converter) {
+					return function (obj) {
+						var hasReturn = obj[i].grid.instanciateRow(obj[i].gridRow);
+						var value;
+						if (hasReturn && obj[i].column.gxControl.type != gx.html.controls.types.checkBox) {
+							var bkpObj = gx.O;
+							var pO = obj[i].grid.parentObject;
+							gx.setGxO(pO.CmpContext, pO.IsMasterPage);
+							value = pO.GXValidFnc[obj[i].column.gxId].val();
+							gx.setGxO(bkpObj.CmpContext, bkpObj.IsMasterPage);
+						}
+						else
+							value = obj[i].value;
+						if (typeof value == "string")
+							value = gx.text.trim(value);
+
+						if (converter)
+							return converter(value);
+						return value;
+					};
+				} (i),
 				type: colType,
 				convert: converter ? Ext.bind(converter, this, [col], true) : undefined
 			});
@@ -595,7 +615,8 @@ Ext.define('gxui.GridExtension', {
 			},
 
 			'columnresize': function () {
-				this.fixGridWidth(this.m_grid);
+				if (!this.fixingWidth)
+					this.fixGridWidth(this.m_grid);
 			},
 
 			'beforestaterestore': function (grid, state) {
@@ -711,7 +732,7 @@ Ext.define('gxui.GridExtension', {
 		return this.SelectedRow;
 	},
 
-	beforeEditHandler: function (e) {
+	beforeEditHandler: function (grid, e) {
 		var cell = e.record.raw[e.column.actualColIndex];
 		return cell.enabled;
 	},
@@ -770,7 +791,9 @@ Ext.define('gxui.GridExtension', {
 					var col = Ext.getCmp(columns[i].id);
 					width += col.getWidth();
 				}
+				this.fixingWidth = true;
 				grid.setWidth(width);
+				this.fixingWidth = false;
 			}
 		}
 	},
@@ -808,23 +831,10 @@ Ext.define('gxui.data.proxy.Memory', {
 			return function (obj) {
 				if (i == 'id')
 					return undefined;
-				var hasReturn = obj[i].grid.instanciateRow(obj[i].gridRow);
-				var value;
-				if (hasReturn && obj[i].column.gxControl.type != gx.html.controls.types.checkBox) {
-					var bkpObj = gx.O;
-					var pO = obj[i].grid.parentObject;
-					gx.setGxO(pO.CmpContext, pO.IsMasterPage);
-					value = pO.GXValidFnc[obj[i].column.gxId].val();
-					gx.setGxO(bkpObj.CmpContext, bkpObj.IsMasterPage);
-				}
-				else
-					value = obj[i].value;
-				if (typeof value == "string")
-					value = gx.text.trim(value);
-				return value;
 			};
 		},
 		totalProperty: undefined,
-		successProperty: undefined
+		successProperty: undefined,
+		idProperty: undefined
 	}
 });
