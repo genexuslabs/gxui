@@ -82,30 +82,31 @@ Ext.define('gxui.Menu', {
 
 	initialize: function () {
 		this.callParent(arguments);
+		this.unmanagedLayout = true;
 	},
 
 	// Databindings
-	SetMenu: function(data) {
+	SetMenu: function (data) {
 		this.Menu = data;
 	},
 
 	// Databindings
-	GetMenu: function(data) {
+	GetMenu: function (data) {
 		return this.Menu;
 	},
 
-	onRender: function() {
+	onRender: function () {
 		this.m_menu = this.createMenu(this.Menu);
 	},
 
-	onRefresh: function() {
+	onRefresh: function () {
 	},
 
-	getUnderlyingControl: function() {
+	getUnderlyingControl: function () {
 		return this.m_menu;
 	},
 
-	createMenu: function(menu) {
+	createMenu: function (menu) {
 		if (menu) {
 			return new Ext.menu.Menu({
 				items: this.getContextMenuItems(menu)
@@ -113,10 +114,10 @@ Ext.define('gxui.Menu', {
 		}
 	},
 
-	getContextMenuItems: function(contextMenu) {
+	getContextMenuItems: function (contextMenu) {
 		var cmItems = [];
 
-		Ext.each(contextMenu, function(item) {
+		Ext.each(contextMenu, function (item) {
 			var config;
 			switch (item.Type) {
 				case 'Text':
@@ -141,7 +142,7 @@ Ext.define('gxui.Menu', {
 		return cmItems;
 	},
 
-	getBasicItemConfig: function(item) {
+	getBasicItemConfig: function (item) {
 		return {
 			gxid: item.Id,
 			text: item.Text,
@@ -156,7 +157,7 @@ Ext.define('gxui.Menu', {
 		};
 	},
 
-	itemClickHandler: function(btn) {
+	itemClickHandler: function (btn) {
 		/**
 		* @event ItemClick
 		* Fires after a menu option has been pressed. The only options that fire this event are those of type Button.

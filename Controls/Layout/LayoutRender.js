@@ -121,6 +121,7 @@ Ext.define('gxui.Layout', {
 	createConfig: function (regionKey) {
 		var config = {
 			id: this.getUniqueId() + "-" + regionKey,
+			itemId: regionKey.toLowerCase(),
 			region: regionKey.toLowerCase(),
 			contentEl: this.getChildContainer(regionKey),
 			autoScroll: (this.getProperty(regionKey, "Layout") != "fit") ? this.getProperty(regionKey, "AutoScroll") : false,
@@ -128,11 +129,11 @@ Ext.define('gxui.Layout', {
 			cls: "x-region-" + regionKey.toLowerCase(),
 			duration: this.getProperty(regionKey, "Duration") / 1000,
 			listeners: {
-				'collapse': function(p) {
+				'collapse': function (p) {
 					this.setRegionProperty(p.region, "Collapsed", "true");
 				},
 
-				'expand': function(p) {
+				'expand': function (p) {
 					this.setRegionProperty(p.region, "Collapsed", "false");
 				},
 
@@ -164,9 +165,16 @@ Ext.define('gxui.Layout', {
 	},
 
 	displayRegions: function () {
-		this.m_layout.items.each(function (region) {
-			Ext.fly(region.contentEl).setDisplayed(true);
-		});
+		var displayRegion = function (layout, region) {
+			Ext.fly(layout.child('#' + region).contentEl).setDisplayed(true);
+		},
+		layout = this.m_layout;
+
+		displayRegion(layout, 'north');
+		displayRegion(layout, 'west');
+		displayRegion(layout, 'center');
+		displayRegion(layout, 'east');
+		displayRegion(layout, 'south');
 	},
 
 	registerAsContainer: function () {

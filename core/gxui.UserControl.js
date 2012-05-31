@@ -11,6 +11,13 @@ Ext.define('gxui.UserControl', {
 	},
 
 	/**
+	* Indicates if this control should be ignored in the layout process made by GxUI
+	* @private
+	* @ignore
+	*/
+	unmanagedLayout: false,
+
+	/**
 	* Creates a new GxUI UserControl
 	* @param {Object} [options] User control configuration options
 	* @param {Boolean} [options.register] Indicates wether the newly created UserControl should be registered in gxui.UserControlManager.
@@ -228,7 +235,8 @@ Ext.define('gxui.UserControl', {
 			if (this.addToParent())
 				gxui.UserControlManager.addToParentContainer(this, control);
 			else
-				control.render(this.getContainerControl());
+				if (!this.unmanagedLayout && !control.rendered)
+					control.render(this.getContainerControl());
 		}
 	},
 
@@ -281,7 +289,7 @@ gxui.UserControlManager = function () {
 				Ext.each(ucList, function (item) {
 					var extUC = item.uc.getUnderlyingControl();
 					if (extUC) {
-						if (!extUC.rendered)
+						if (!item.uc.unmanagedLayout && !extUC.rendered)
 							extUC.render(item.uc.getContainerControl());
 						else {
 							// Fire doLayout function in those controls that don't have a parent control.
