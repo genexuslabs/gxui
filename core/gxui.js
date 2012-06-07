@@ -45,7 +45,7 @@ gxui = function () {
 			// GxUI to work properly with older versions of GeneXus.
 			var gxBuild = gxui.getGeneXusBuild();
 			if (gxBuild) {
-				if (gxBuild < 54968) {
+				if (gxBuild > 54968) {
 					Ext.fly(document.documentElement).addCls("gxui-xev2");
 				}
 				if (gxBuild < 55424) {
