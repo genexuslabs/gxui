@@ -15,6 +15,7 @@
 	<ReferencedFiles>
 		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
 		<SharedFile>ext/ext-all.js</SharedFile>
+		<File>gxui-all.css</File>
 	</ReferencedFiles>
 	<SupportFiles>
 		<Directory>resources</Directory>

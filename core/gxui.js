@@ -42,24 +42,29 @@ gxui = function () {
 			}));
 
 			// For versions prior to build 55424, gx.lang.inherits function is overriden to allow
-			// GxUI to work properly with older versions of GeneSus.
+			// GxUI to work properly with older versions of GeneXus.
 			var gxBuild = gxui.getGeneXusBuild();
-			if (gxBuild && gxBuild < 55424) {
-				gx.lang.inherits = function (subclass, superclass) {
-					var oldProt = subclass.prototype;
-					subclass.prototype = new superclass();
-					for (var pName in oldProt) {
-						if (typeof (subclass.prototype[pName]) == 'undefined')
-							subclass.prototype[pName] = oldProt[pName];
-					}
-					if (typeof (subclass.prototype.base) == 'undefined')
-						subclass.prototype.base = superclass;
+			if (gxBuild) {
+				if (gxBuild < 54968) {
+					Ext.fly(document.documentElement).addCls("gxui-xev2");
+				}
+				if (gxBuild < 55424) {
+					gx.lang.inherits = function (subclass, superclass) {
+						var oldProt = subclass.prototype;
+						subclass.prototype = new superclass();
+						for (var pName in oldProt) {
+							if (typeof (subclass.prototype[pName]) == 'undefined')
+								subclass.prototype[pName] = oldProt[pName];
+						}
+						if (typeof (subclass.prototype.base) == 'undefined')
+							subclass.prototype.base = superclass;
 
-					subclass.prototype.constructor = function () {
-						superclass.prototype.constructor.apply(this, arguments);
-						oldProt.constructor.apply(this, arguments);
+						subclass.prototype.constructor = function () {
+							superclass.prototype.constructor.apply(this, arguments);
+							oldProt.constructor.apply(this, arguments);
+						};
 					};
-				};
+				}
 			}
 		},
 

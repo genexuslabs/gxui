@@ -1,4 +1,4 @@
-.x-portlet .x-panel-body {
+x-portlet .x-panel-body {
     background-color:transparent;
 }
 
@@ -49,4 +49,8 @@
 
 .x-panel-body > .gx_usercontrol_child {
 	height:100%;
+}
+
+.gxui-xev2 .x-panel-body .ErrorMessages {
+	position: fixed !important;
 }
