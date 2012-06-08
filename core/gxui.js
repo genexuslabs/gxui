@@ -183,7 +183,7 @@ gxui = function () {
 		* The source can be a function instead of an object, in which case it is called passing the source property name.
 		* @param {Object} targetObj Target object
 		* @param {Mixed} source If it's an object, the properties will be mapped from here. If it's a function, it will be called for each property, passing the source property name.
-		* @param {Object} propertyMap An object mapping the target and source properties. The keys of the hash are the names of the target properties.
+		* @param {Object} propertyMap An object mapping the target and source properties. The keys of the hash are the names of the target properties. The values are the names of the source properties.
 		* @method
 		* @private
 		*/
@@ -194,8 +194,20 @@ gxui = function () {
 					sourceValue = source(propertyMap[targetProp]);
 				else
 					sourceValue = source[propertyMap[targetProp]];
-				if (sourceValue !== undefined)
-					targetObj[targetProp] = sourceValue;
+
+				var ignoreEmpty = false;
+				if (typeof (propertyMap[targetProp]) == "object") {
+					ignoreEmpty = propertyMap[targetProp].ignoreEmpty || false;
+				}
+
+				if (ignoreEmpty) {
+					if (sourceValue)
+						targetObj[targetProp] = sourceValue;
+				}
+				else {
+					if (sourceValue !== undefined)
+						targetObj[targetProp] = sourceValue;
+				}
 			}
 		},
 

@@ -221,9 +221,9 @@ Ext.define('gxui.Toolbar', {
 					"iconCls": "IconCls",
 					"rowspan": "RowSpan",
 					"colspan": "ColSpan",
-					"iconAlign": "IconAlign",
-					"arrowAlign": "ArrowAlign",
-					"scale": "Scale"
+					"iconAlign": { property: "IconAlign", ignoreEmpty: true },
+					"arrowAlign": { property: "ArrowAlign", ignoreEmpty: true },
+					"scale": { property: "Scale", ignoreEmpty: true }
 				});
 
 				return config;
@@ -299,9 +299,9 @@ Ext.define('gxui.Toolbar', {
 					"iconCls": "IconCls",
 					"rowspan": "RowSpan",
 					"colspan": "ColSpan",
-					"iconAlign": "IconAlign",
-					"arrowAlign": "ArrowAlign",
-					"scale": "Scale"
+					"iconAlign": { property: "IconAlign", ignoreEmpty: true },
+					"arrowAlign": { property: "ArrowAlign", ignoreEmpty: true },
+					"scale": { property: "Scale", ignoreEmpty: true }
 				});
 
 				return config;
@@ -345,9 +345,9 @@ Ext.define('gxui.Toolbar', {
 				});
 
 				gxui.tryPropertyMapping(config.defaults, button, {
-					"scale": "Scale",
-					"iconAlign": "IconAlign",
-					"arrowAlign": "arrowAlign"
+					"iconAlign": { property: "IconAlign", ignoreEmpty: true },
+					"arrowAlign": { property: "ArrowAlign", ignoreEmpty: true },
+					"scale": { property: "Scale", ignoreEmpty: true }
 				});
 
 				return config;
@@ -417,12 +417,9 @@ Ext.define('gxui.Toolbar', {
 
 		if (options && options.container) {
 			config.docked = 'top';
-			config.enableOverflow = true;
 		}
-		else {
-			config.listeners['afterrender'] = this.adjustWidth
-			config.listeners.scope = this;
-		}
+		config.listeners['afterrender'] = this.adjustWidth
+		config.listeners.scope = this;
 
 		this.m_toolbar = Ext.create('Ext.toolbar.Toolbar', config);
 
