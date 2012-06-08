@@ -3,7 +3,7 @@
 	<Version>2.0.0.0</Version>
 	<IncludeInControlInfo>false</IncludeInControlInfo>
 	<RuntimeRender>gxui-all.js</RuntimeRender>
-	<GxResources>Treeview/design/TreeView.xpz</GxResources>
+	<GxResources>Treeview/design/TreeView.xml</GxResources>
 	<HeightPropertyName>Height</HeightPropertyName>
 	<WidthPropertyName>Width</WidthPropertyName>
 	<ResizeSupported>false</ResizeSupported>
