@@ -157,7 +157,7 @@
 							<Type>Boolean</Type>
 							<Default>true</Default>
 							<Metadata />
-							<Description>True to display the borders of the panel's body element, false to hide them (defaults to true). By default, the border is a 2px wide inset border, but this can be further altered by setting bodyBorder to false.</Description>
+							<Description>True to display the borders of the panel's body element, false to hide them (defaults to true). By default, the border is a 2px wide inset border.</Description>
 						</Prop>
 						<Prop>
 							<Id>Modal</Id>

@@ -113,7 +113,7 @@ Ext.define('gxui.TabPanel', {
 		}
 	},
 
-	onAfterRender: function(){
+	onAfterRender: function () {
 		this.m_tabPanel.setActiveTab(this.m_activeTab);
 		this.m_tabPanel.on('tabchange', this.handlers.tabChanged, this);
 	},
@@ -153,6 +153,7 @@ Ext.define('gxui.TabPanel', {
 				'deactivate': this.handlers.tabItemDeactivated,
 				'remove': this.handlers.tabItemClosed,
 				'beforeremove': this.handlers.tabItemBeforeClosed,
+				'afterrender': this.handlers.tabAfterRender,
 				scope: this
 			}
 		};
@@ -202,6 +203,8 @@ Ext.define('gxui.TabPanel', {
 						title: tab.Name,
 						closable: (tab.isRuntimeTab) ? (tab.closable !== undefined ? gxui.CBoolean(tab.closable) : true) : gxui.CBoolean(tab.closable),
 						autoScroll: tab.autoScroll || (layout == 'fit' ? false : true),
+						autoWidth: gxui.CBoolean(this.AutoWidth),
+						autoHeight: gxui.CBoolean(this.AutoHeight),
 						listeners: {
 							'activate': this.handlers.tabItemActivated,
 							'deactivate': this.handlers.tabItemDeactivated,
@@ -212,6 +215,11 @@ Ext.define('gxui.TabPanel', {
 
 					if (this.TabCls)
 						config.cls = this.TabCls;
+
+					// WA to support AutoHeight
+					if (gxui.CBoolean(this.AutoHeight))
+						if (!tab.HTML)
+							Ext.fly(this.getChildContainer(tab.id)).setHeight('auto');
 
 					panel = Ext.create('Ext.panel.Panel', config);
 					tab.rendered = true;
@@ -345,6 +353,25 @@ Ext.define('gxui.TabPanel', {
 			if (this.TabClick) {
 				this.ActiveTabId = tab.card.id;
 				this.TabClick();
+			}
+		},
+
+		tabAfterRender: function (tabPanel) {
+			// WA to support AutoHeight and AutoWidth
+			if (gxui.CBoolean(this.AutoHeight) || gxui.CBoolean(this.AutoWidth)) {
+				var task = Ext.TaskManager.start({
+					run: function () {
+						var doLayout = false;
+						tabPanel.items.each(function (panel) {
+							if (panel.body.isScrollable()) {	
+								tabPanel.doLayout();
+								return false;
+							}
+						}, this);
+					},
+					interval: 500,
+					scope: this
+				});
 			}
 		}
 	},

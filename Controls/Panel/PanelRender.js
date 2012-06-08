@@ -104,7 +104,7 @@ Ext.define('gxui.Panel', {
 			autoHeight: gxui.CBoolean(this.AutoHeight),
 			autoScroll: this.Layout == 'default' ? true : false,
 			frame: gxui.CBoolean(this.Frame),
-			border: gxui.CBoolean(this.Border) ? undefined : 0,
+			border: gxui.CBoolean(this.Border) ? 2 : false,
 			collapsible: gxui.CBoolean(this.Collapsible),
 			collapsed: gxui.CBoolean(this.Collapsed),
 			animCollapse: gxui.CBoolean(this.AnimateCollapse),
@@ -160,6 +160,18 @@ Ext.define('gxui.Panel', {
 				*/
 				if (this.OnClose) {
 					this.OnClose();
+				}
+			},
+
+			'afterlayout': function (panel) {
+				if (gxui.CBoolean(this.AutoHeight)) {
+					panel.el.setHeight('auto');
+					panel.body.setHeight('auto');
+				}
+
+				if (gxui.CBoolean(this.AutoWidth)) {
+					panel.el.setWidth('auto');
+					panel.body.setWidth('auto');
 				}
 			},
 
