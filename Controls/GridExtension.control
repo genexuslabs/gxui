@@ -4,7 +4,7 @@
 	<IncludeInControlInfo>true</IncludeInControlInfo>
 	<ControlType>grid</ControlType>
 	<RuntimeRender>gxui-all.js</RuntimeRender>
-	<GxResources>Toolbar/design/Toolbar.xpz</GxResources>
+	<GxResources>Toolbar/design/Toolbar.xml</GxResources>
 	<HeightPropertyName>Height</HeightPropertyName>
 	<WidthPropertyName>Width</WidthPropertyName>
 	<ResizeSupported>true</ResizeSupported>
