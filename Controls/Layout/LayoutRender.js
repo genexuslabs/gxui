@@ -184,9 +184,7 @@ Ext.define('gxui.Layout', {
 	},
 
 	getRegion: function (regionKey) {
-		if (regionKey)
-			return this.m_layout.layout.regions[regionKey.toLowerCase()];
-		return null;
+		return this.m_layout.child('#' + regionKey.toLowerCase())
 	},
 
 	refreshRegion: function (regionKey) {
