@@ -146,7 +146,7 @@ Ext.define('gxui.Treeview', {
 		if (this.Height != 100)
 			config.height = this.Height;
 		else
-			config.autoHeight= true;
+			config.autoHeight = true;
 
 		if (gxui.CBoolean(this.EnableDragDrop)) {
 			config.viewConfig.plugins = {
@@ -215,9 +215,12 @@ Ext.define('gxui.Treeview', {
 		}
 	},
 
-	onAfterRender: function(){
-		if (gxui.CBoolean(this.ExpandRoot))
-			this.m_tree.getRootNode().expand(gxui.CBoolean(this.ExpandAll), gxui.CBoolean(this.Animate));
+	onAfterRender: function () {
+		if (gxui.CBoolean(this.ExpandRoot)) {
+			Ext.defer(function () {
+				this.m_tree.getRootNode().expand(gxui.CBoolean(this.ExpandAll));
+			}, 300, this);
+		}
 	},
 
 	getUnderlyingControl: function () {
@@ -237,7 +240,8 @@ Ext.define('gxui.Treeview', {
 				cls: (this.RootCls ? this.RootCls : undefined),
 				iconCls: (this.RootIconCls ? this.RootIconCls : undefined),
 				draggable: false, // disable root node dragging
-				children: !this.LazyLoading ? this.cloneNodes(this.Children) : undefined
+				children: !this.LazyLoading ? this.cloneNodes(this.Children) : undefined,
+				expanded: gxui.CBoolean(this.ExpandRoot)
 			},
 			_enableCheckbox: this.EnableCheckbox
 		};
