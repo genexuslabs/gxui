@@ -213,10 +213,10 @@
 								* To accomplish this, orders must be programmed on the webpanel accordingly. For example, in a grid with CustomerName and CustomerAddress fields,
 								* the order clauses should be:
 								*
-								* CustomerName when (Grid1.SortField = 'CustomerName' and Grid1.SortOrder = 'ASC')  or Grid1.SortField = ''
-								* (CustomerName) when Grid1.SortField = 'CustomerName' and Grid1.SortOrder = 'DESC'
-								* CustomerAddress when Grid1.SortField = 'CustomerAddress' and Grid1.SortOrder = 'ASC'
-								* (CustomerAddress) when Grid1.SortField = 'CustomerAddress' and Grid1.SortOrder = 'DESC'
+								*		CustomerName when (Grid1.SortField = 'CustomerName' and Grid1.SortOrder = 'ASC')  or Grid1.SortField = ''
+								*		(CustomerName) when Grid1.SortField = 'CustomerName' and Grid1.SortOrder = 'DESC'
+								*		CustomerAddress when Grid1.SortField = 'CustomerAddress' and Grid1.SortOrder = 'ASC'
+								*		(CustomerAddress) when Grid1.SortField = 'CustomerAddress' and Grid1.SortOrder = 'DESC'
 								*
 								* Bear in mind that sorting must be enabled by setting {@link gxui.GridExtensionColumn#Sortable} = True.
 							</Description>
