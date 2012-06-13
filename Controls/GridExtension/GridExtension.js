@@ -522,6 +522,16 @@ Ext.define('gxui.GridExtension', {
 			scope: this
 		});
 
+		if (this.StatusText) {
+			items.push('->');
+			items.push({
+				itemId: 'status',
+				xtype: 'tbtext',
+				text: this.StatusText,
+				overflowText: this.StatusText
+			});
+		}
+
 		return {
 			itemId: 'toolbar',
 			xtype: 'toolbar',
@@ -535,7 +545,8 @@ Ext.define('gxui.GridExtension', {
 			var first = tb.child('#first'),
 				previous = tb.child('#previous'),
 				next = tb.child('#next'),
-				last = tb.child('#last');
+				last = tb.child('#last'),
+				status = tb.child('#status');
 
 			if (first) {
 				first.setDisabled(this.isFirstPage());
@@ -548,6 +559,9 @@ Ext.define('gxui.GridExtension', {
 			}
 			if (last) {
 				last.setDisabled(this.isLastPage());
+			}
+			if (status) {
+				status.setText(this.StatusText);
 			}
 		}
 	},

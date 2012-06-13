@@ -255,7 +255,7 @@
 									<Type>Text</Type>
 									<Default>First Page</Default>
 									<Metadata />
-									<Description>Customizable piece of the default paging text (defaults to "First Page").</Description>
+									<Description>Text of the "First page" button.</Description>
 								</Prop>
 								<Prop>
 									<Id>LastText</Id>
@@ -263,7 +263,7 @@
 									<Type>Text</Type>
 									<Default>Last Page</Default>
 									<Metadata />
-									<Description>Customizable piece of the default paging text (defaults to "Last Page").</Description>
+									<Description>Text of the "Last page" button.</Description>
 								</Prop>
 								<Prop>
 									<Id>NextText</Id>
@@ -271,7 +271,7 @@
 									<Type>Text</Type>
 									<Default>Next Page</Default>
 									<Metadata />
-									<Description>Customizable piece of the default paging text (defaults to "Next Page").</Description>
+									<Description>Text of the "Next page" button.</Description>
 								</Prop>
 								<Prop>
 									<Id>PreviousText</Id>
@@ -279,7 +279,7 @@
 									<Type>Text</Type>
 									<Default>Previous Page</Default>
 									<Metadata />
-									<Description>Customizable piece of the default paging text (defaults to "Previous Page").</Description>
+									<Description>Text of the "Previous page" button.</Description>
 								</Prop>
 								<Prop>
 									<Id>RefreshText</Id>
@@ -287,7 +287,15 @@
 									<Type>Text</Type>
 									<Default>Refresh</Default>
 									<Metadata />
-									<Description>Customizable piece of the default paging text (defaults to "Refresh").</Description>
+									<Description>Text of the "Refresh" button.</Description>
+								</Prop>
+								<Prop>
+									<Id>StatusText</Id>
+									<Name>StatusText</Name>
+									<Type>Text</Type>
+									<Default></Default>
+									<Metadata />
+									<Description>Text shown at the right side of the paging bar. Useful to show status messages or a text indicating the current page and the page count.</Description>
 								</Prop>
 							</Children>
 						</Group>
