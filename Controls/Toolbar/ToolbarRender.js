@@ -384,6 +384,8 @@ Ext.define('gxui.Toolbar', {
 
 	//private
 	createToolbar: function (options) {
+		var vertical = false,
+			itemId;
 		if (options) {
 			if (options.id) {
 				this.getUniqueId = function () {
@@ -406,18 +408,26 @@ Ext.define('gxui.Toolbar', {
 			if (options.on) {
 				this.on(options.on);
 			}
+
+			if (options.vertical)
+				vertical = options.vertical;
+
+			itemId = options.itemId;
 		}
 
 		var config = {
 			id: this.getUniqueId(),
 			stateful: false,
 			items: this.createButtons(),
-			listeners: {}
+			listeners: {},
+			vertical: vertical,
+			itemId: itemId
 		};
 
 		if (options && options.container) {
-			config.docked = 'top';
+			config.dock = options.dock || 'top';
 		}
+
 		config.listeners['afterrender'] = this.adjustWidth
 		config.listeners.scope = this;
 
@@ -563,6 +573,7 @@ Ext.define('gxui.Toolbar', {
 							renderedBtn.disable();
 					}
 				}
+
 				if (gxui.CBoolean(button.Hidden) && !renderedBtn.hidden) {
 					if (renderedBtn.hide)
 						renderedBtn.hide();
@@ -573,6 +584,10 @@ Ext.define('gxui.Toolbar', {
 							renderedBtn.show();
 					}
 				}
+
+				if (button.Type == ItemType.Text)
+					renderedBtn.setText(button.Text);
+
 				if ((button.Type == ItemType.Menu || button.Type == ItemType.SplitButton) && button.Items && renderedBtn.menu) {
 					this.refreshButtons(button.Items, renderedBtn.menu.items);
 				}
