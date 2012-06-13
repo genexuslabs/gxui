@@ -27,15 +27,6 @@ Ext.define('gxui.Panel', {
 	},
 
 	onRender: function () {
-		if (gxui.CBoolean(this.UseToolbar)) {
-			this.m_gxTbar = Ext.create('gxui.Toolbar', { register: false });
-			this.m_toolbar = this.m_gxTbar.createToolbar({
-				id: this.getUniqueId() + "_Toolbar",
-				data: this.ToolbarData,
-				container: this
-			});
-		}
-
 		var config = this.getConfig();
 
 		if (gxui.CBoolean(this.ShowAsWindow)) {
@@ -61,13 +52,19 @@ Ext.define('gxui.Panel', {
 		var panel = this.m_panel;
 		panel.setTitle(this.Title);
 		if (!panel.ownerCt) {
-			panel.animate({
-				to: {
-					width: parseInt(this.Width),
-					height: parseInt(this.Height)
-				}
-			});
+			var width = parseInt(this.Width),
+				height = parseInt(this.Height);
+
+			if ((!gxui.CBoolean(this.AutoWidth) && panel.getWidth() != width) || (!gxui.CBoolean(this.AutoHeight) && panel.getHeight() != height)) {
+				panel.animate({
+					to: {
+						width: width,
+						height: height
+					}
+				});
+			}
 		}
+
 		if (gx.lang.gxBoolean(this.Visible) && !this.m_panel.isVisible()) {
 			panel.show();
 		}
@@ -97,6 +94,23 @@ Ext.define('gxui.Panel', {
 
 	//private
 	getConfig: function () {
+		var dockedItems = [];
+
+		if (gxui.CBoolean(this.UseToolbar)) {
+			var position = this.ToolbarPosition;
+
+			this.m_gxTbar = Ext.create('gxui.Toolbar', { register: false });
+			this.m_toolbar = this.m_gxTbar.createToolbar({
+				id: this.getUniqueId() + "_Toolbar",
+				data: this.ToolbarData,
+				vertical: (position == 'bottom' || position == 'top') ? false : true,
+				dock: position,
+				container: this
+			});
+
+			dockedItems.push(this.m_toolbar);
+		}
+
 		var config = {
 			contentEl: this.getChildContainer("Body"),
 			id: this.getUniqueId(),
@@ -109,7 +123,7 @@ Ext.define('gxui.Panel', {
 			collapsed: gxui.CBoolean(this.Collapsed),
 			animCollapse: gxui.CBoolean(this.AnimateCollapse),
 			resizable: gxui.CBoolean(this.Resizable),
-			tbar: this.m_toolbar,
+			dockedItems: dockedItems,
 			listeners: this.getListeners(),
 			stateful: gxui.CBoolean(this.Stateful),
 			stateId: (this.StateId != "") ? this.StateId : undefined,

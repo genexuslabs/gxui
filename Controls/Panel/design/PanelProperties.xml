@@ -63,7 +63,7 @@
 					<Description>True to add the control to its parent GxUI control (if there's one). Defaults to true.</Description>
 				</Prop>
 				<Group>
-					<Name>Appareance</Name>
+					<Name>Appearance</Name>
 					<Children>
 						<Prop>
 							<Id>AutoWidth</Id>
@@ -185,6 +185,22 @@
 										<Value id="false" desc="False" />
 									</Values>
 									<Description>True to enable a buttons toolbar at the top of the panel.</Description>
+								</Prop>
+								<Prop>
+									<Id>ToolbarPosition</Id>
+									<Name>ToolbarPosition</Name>
+									<Type>Combo</Type>
+									<Default>top</Default>
+									<Metadata>
+										<Value name="FlagScope">Runtime</Value>
+									</Metadata>
+									<Values>
+										<Value id="top" desc="Top" />
+										<Value id="right" desc="Right" />
+										<Value id="bottom" desc="Bottom" />
+										<Value id="left" desc="Left" />
+									</Values>
+									<Description>Position where the toolbar will be docked.</Description>
 								</Prop>
 								<Prop>
 									<Id>ToolbarData</Id>
@@ -385,6 +401,7 @@
 					<Metadata>
 						<Value name="FlagScope">Runtime</Value>
 					</Metadata>
+					<Description>@inheritdoc gxui.Toolbar#ButtonPressedId</Description>
 				</Prop>
 				<Prop>
 					<Id>EditFieldValue</Id>
@@ -394,7 +411,7 @@
 					<Metadata>
 						<Value name="FlagScope">Runtime</Value>
 					</Metadata>
-					<Description>The the value of the edit field of the toolbar where the Enter key was pressed.</Description>
+					<Description>@inheritdoc gxui.Toolbar#EditFieldValue</Description>
 				</Prop>
 				<Prop>
 					<Id>Visible</Id>
@@ -404,6 +421,7 @@
 					<Metadata>
 						<Value name="FlagScope">Runtime</Value>
 					</Metadata>
+					<Description>Set to true to hide the panel.</Description>
 				</Prop>
 				<Prop>
 					<Id>Refresh</Id>
@@ -413,6 +431,7 @@
 					<Metadata>
 						<Value name="FlagScope">Runtime</Value>
 					</Metadata>
+					<Description>(Deprecated) Set to true to refresh the panel properties.</Description>
 				</Prop>
 			</Children>
 		</Group>
