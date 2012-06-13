@@ -189,16 +189,19 @@ gxui = function () {
 		*/
 		tryPropertyMapping: function (targetObj, source, propertyMap) {
 			for (var targetProp in propertyMap) {
-				var sourceValue;
-				if (typeof (source) == "function")
-					sourceValue = source(propertyMap[targetProp]);
-				else
-					sourceValue = source[propertyMap[targetProp]];
+				var sourceValue,
+					sourceProp = propertyMap[targetProp],
+					ignoreEmpty = false;
 
-				var ignoreEmpty = false;
 				if (typeof (propertyMap[targetProp]) == "object") {
 					ignoreEmpty = propertyMap[targetProp].ignoreEmpty || false;
+					sourceProp = propertyMap[targetProp].property;
 				}
+
+				if (typeof (source) == "function")
+					sourceValue = source(sourceProp);
+				else
+					sourceValue = source[sourceProp];
 
 				if (ignoreEmpty) {
 					if (sourceValue)
