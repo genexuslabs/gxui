@@ -28,7 +28,7 @@
 					<Type>Boolean</Type>
 					<Default>false</Default>
 					<Metadata />
-					<Description>True if sorting is to be allowed on this column.</Description>
+					<Description>True if sorting is to be allowed on this column. Check the value of {@link gxui.GridExtension#RemoteSort} property, because by default, it is set to sort on the server side, and this needs extra programming. To sort on the client side, set {@link gxui.GridExtension#RemoteSort} = False.</Description>
 				</Prop>
 				<Prop>
 					<Id>Hidden</Id>

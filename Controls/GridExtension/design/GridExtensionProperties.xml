@@ -218,7 +218,7 @@
 								*		CustomerAddress when Grid1.SortField = 'CustomerAddress' and Grid1.SortOrder = 'ASC'
 								*		(CustomerAddress) when Grid1.SortField = 'CustomerAddress' and Grid1.SortOrder = 'DESC'
 								*
-								* Bear in mind that sorting must be enabled by setting {@link gxui.GridExtensionColumn#Sortable} = True.
+								* Bear in mind that sorting must be enabled by setting the {@link gxui.GridExtensionColumn#Sortable Sortable} = True in the column.
 							</Description>
 						</Prop>
 						<Prop>
