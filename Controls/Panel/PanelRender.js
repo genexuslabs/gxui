@@ -97,7 +97,7 @@ Ext.define('gxui.Panel', {
 		var dockedItems = [];
 
 		if (gxui.CBoolean(this.UseToolbar)) {
-			var position = this.ToolbarPosition;
+			var position = this.ToolbarPosition || 'top';
 
 			this.m_gxTbar = Ext.create('gxui.Toolbar', { register: false });
 			this.m_toolbar = this.m_gxTbar.createToolbar({

@@ -667,25 +667,8 @@ Ext.define('gxui.Toolbar', {
 	* @method
 	*/
 	ChangeToolbar: function (toolbarData, id, container) {
-		var ownerCt = this.m_toolbar.ownerCt;
-		this.m_toolbar.destroy();
-
-		this.createToolbar({
-			data: toolbarData,
-			id: id,
-			container: container
-		});
-
-		var ct;
-		if (ownerCt) {
-			ownerCt.addDocked(this.m_toolbar)
-			ct = ownerCt.getDockedComponent(this.getUniqueId());
-		}
-		else {
-			ct = this.getContainerControl();
-			this.m_toolbar.render(ct);
-		}
-
+		this.m_toolbar.removeAll();
+		this.m_toolbar.add(this.createButtons());
 		return this.m_toolbar;
 	},
 
