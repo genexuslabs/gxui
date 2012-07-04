@@ -7,6 +7,10 @@
 * The control basically is a container of other controls. After dragging the control to the form you can include any control in the cell provided by the control.
 * Also, it came with a Toolbar included.
 * {@img Panel/panelSample.png}
+*
+* #More information:#
+* For examples please see the [online KB][1].
+* [1]: http://xev2.genexusserver.com/gxserver/action.aspx?1,RSSReader2.0:0:c9584656-94b6-4ccd-890f-332d11fc2c25:41
 */
 Ext.define('gxui.Panel', {
 	extend: 'gxui.UserControl',

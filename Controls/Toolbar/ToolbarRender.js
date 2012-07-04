@@ -144,8 +144,8 @@
 *		    }
 *		}
 * #More information:#
-* For more examples please visit [this page][1].
-* [1]: http://public.genexusserver.com/gxserver/action.aspx?1,RSSReader:0:c9584656-94b6-4ccd-890f-332d11fc2c25:15
+* For more examples please see the [online KB][1].
+* [1]: http://xev2.genexusserver.com/gxserver/action.aspx?1,RSSReader2.0:0:c9584656-94b6-4ccd-890f-332d11fc2c25:15
 *
 */
 Ext.define('gxui.Toolbar', {
