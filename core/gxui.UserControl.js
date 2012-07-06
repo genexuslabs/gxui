@@ -75,7 +75,7 @@ Ext.define('gxui.UserControl', {
 	*/
 	show: function () {
 		if (!this.rendered) {
-			Ext.onReady(function () {
+			gx.fx.obs.addObserver('gx.onload', this, function () {
 				try {
 					this.onRender();
 					this.addToContainer();
@@ -96,7 +96,7 @@ Ext.define('gxui.UserControl', {
 				finally {
 					this.fireEvent("show", this);
 				}
-			}, this);
+			});
 		}
 		else {
 			try {
