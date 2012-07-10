@@ -205,7 +205,6 @@ Ext.define('gxui.Treeview', {
 		//				}
 		//			});
 		//		}
-
 	},
 
 	onRefresh: function () {
@@ -521,223 +520,225 @@ Ext.define('gxui.Treeview', {
 		};
 	},
 
-	// Methods
-	/**
-	* Selects a node by id.
-	* @param {String} nodeId Node id
-	* @method
-	*/
-	SelectNode: function (nodeId) {
-		var node = this.getNodeById(nodeId);
-		if (node) {
-			this.setSelectedNode(node)
-			this.m_tree.getSelectionModel().select(node);
-			this.m_tree.expandPath(node.getPath("id"), "id");
-		}
-	},
+	methods: {
+		// Methods
+		/**
+		* Selects a node by id.
+		* @param {String} nodeId Node id
+		* @method
+		*/
+		SelectNode: function (nodeId) {
+			var node = this.getNodeById(nodeId);
+			if (node) {
+				this.setSelectedNode(node)
+				this.m_tree.getSelectionModel().select(node);
+				this.m_tree.expandPath(node.getPath("id"), "id");
+			}
+		},
 
-	/**
-	* Expand a node by id.
-	* @param {String} nodeId Node id
-	* @method
-	*/
-	ExpandNode: function (nodeId) {
-		var node = this.getNodeById(nodeId);
-		if (node) {
-			node.expand();
-		}
-	},
+		/**
+		* Expand a node by id.
+		* @param {String} nodeId Node id
+		* @method
+		*/
+		ExpandNode: function (nodeId) {
+			var node = this.getNodeById(nodeId);
+			if (node) {
+				node.expand();
+			}
+		},
 
-	/**
-	* Expand all the tree nodes.
-	* @method
-	*/
-	ExpandAllNodes: function () {
-		this.m_tree.expandAll();
-	},
+		/**
+		* Expand all the tree nodes.
+		* @method
+		*/
+		ExpandAllNodes: function () {
+			this.m_tree.expandAll();
+		},
 
-	/**
-	* Collapse a node by id.
-	* @param {String} nodeId Node id
-	* @method
-	*/
-	CollapseNode: function (nodeId) {
-		var node = this.getNodeById(nodeId);
-		if (node) {
-			node.collapse();
-		}
-	},
+		/**
+		* Collapse a node by id.
+		* @param {String} nodeId Node id
+		* @method
+		*/
+		CollapseNode: function (nodeId) {
+			var node = this.getNodeById(nodeId);
+			if (node) {
+				node.collapse();
+			}
+		},
 
-	/**
-	* Collapse all the tree nodes.
-	* @method
-	*/
-	CollapseAllNodes: function () {
-		this.m_tree.collapseAll();
-	},
+		/**
+		* Collapse all the tree nodes.
+		* @method
+		*/
+		CollapseAllNodes: function () {
+			this.m_tree.collapseAll();
+		},
 
-	/**
-	* Reloads the tree from a given node. If a node is not provided, it reloads the tree from the root node.
-	* If {@link #LazyLoading} = false, the tree is always reloaded from the root node, reading the value from {@link #Children} property.
-	* @param {String} [nodeId] Node id
-	* @method
-	*/
-	Reload: function (node, expand) {
-		// node can be a TreeNode or a String with the Id of a node. If node is undefined, the root node is reloaded.
-		var n = node ? ((typeof node == 'object') ? node : this.getNodeById(node)) : this.m_tree.getRootNode();
+		/**
+		* Reloads the tree from a given node. If a node is not provided, it reloads the tree from the root node.
+		* If {@link #LazyLoading} = false, the tree is always reloaded from the root node, reading the value from {@link #Children} property.
+		* @param {String} [nodeId] Node id
+		* @method
+		*/
+		Reload: function (node, expand) {
+			// node can be a TreeNode or a String with the Id of a node. If node is undefined, the root node is reloaded.
+			var n = node ? ((typeof node == 'object') ? node : this.getNodeById(node)) : this.m_tree.getRootNode();
 
-		if (n) {
-			var loadCallback = Ext.bind(function () {
-				if (expand || expand === undefined) {
-					n.expand();
+			if (n) {
+				var loadCallback = Ext.bind(function () {
+					if (expand || expand === undefined) {
+						n.expand();
+					}
+					this.m_tree.initState();
+				}, this);
+
+				var store = this.m_tree.getStore();
+				if (this.LazyLoading) {
+					store.getProxy().url = this.LoaderURL;
+					if (store.isLoading())
+						Ext.defer(store.load, 500, store, [{
+							callback: loadCallback,
+							node: n
+						}]);
+					else
+						store.load({
+							callback: loadCallback,
+							node: n
+						});
 				}
-				this.m_tree.initState();
-			}, this);
+				else {
+					var children = this.cloneNodes(this.Children);
+					var root = this.m_tree.getRootNode();
+					root.removeAll();
+					root.appendChild(children);
+					loadCallback();
+				}
 
-			var store = this.m_tree.getStore();
-			if (this.LazyLoading) {
-				store.getProxy().url = this.LoaderURL;
-				if (store.isLoading())
-					Ext.defer(store.load, 500, store, [{
-						callback: loadCallback,
-						node: n
-					}]);
-				else
-					store.load({
-						callback: loadCallback,
-						node: n
-					});
+				if (this.SelectedNode != undefined) {
+					this.SelectNode(this.SelectedNode);
+				}
 			}
-			else {
-				var children = this.cloneNodes(this.Children);
-				var root = this.m_tree.getRootNode();
-				root.removeAll();
-				root.appendChild(children);
-				loadCallback();
+		},
+
+		/**
+		* Reloads the tree from the root node and applies {@link #Width}, {@link #Height} and {@link #Title} properties.
+		* @method
+		*/
+		Refresh: function () {
+			var tree = this.m_tree;
+			tree.setHeight((this.Width != 100) ? this.Width : undefined);
+			tree.setWidth((this.Height != 100) ? this.Height : undefined);
+			tree.setTitle(this.Title);
+			this.Reload(tree.getRootNode(), gxui.CBoolean(this.ExpandRoot));
+		},
+
+		/**
+		* Shows the control
+		* @method
+		*/
+		Show: function () {
+			this.m_tree.setVisible(true);
+		},
+
+		/**
+		* Hides the control
+		* @method
+		*/
+		Hide: function () {
+			this.m_tree.setVisible(false);
+		},
+
+		/**
+		* Returns the id of the parent of the given node. If the given node doesn't exist or is the root node, it returns "".
+		* @param {String} nodeId Node id
+		* @return {String}
+		* @method
+		*/
+		GetNodeParentId: function (nodeId) {
+			var node = this.getNodeById(nodeId);
+			if (node && node.parentNode) {
+				return node.parentNode.data.id;
 			}
+			return "";
+		},
 
-			if (this.SelectedNode != undefined) {
-				this.SelectNode(this.SelectedNode);
+		/**
+		* Sets the data property of the given node with nodeData.
+		* @param {String} nodeId Node id
+		* @param {Object} nodeData Node data to set in the data property of the node. It can be any type of SDT.
+		* @method
+		*/
+		SetNodeData: function (nodeId, nodeData) {
+			var node = this.getNodeById(nodeId);
+			if (node) {
+				node.data.data = nodeData;
 			}
+		},
+
+		/**
+		* Returns the data property of the given node.
+		* @param {String} nodeId Node id
+		* @return {Object}
+		* @method
+		*/
+		GetNodeData: function (nodeId) {
+			var node = this.getNodeById(nodeId);
+			if (node) {
+				return node.data.data;
+			}
+		},
+
+		/**
+		* Sets the text of a given node.
+		* @param {String} nodeId Node id
+		* @param {String} text New text for the node
+		* @method
+		*/
+		SetNodeText: function (nodeId, text) {
+			var node = this.getNodeById(nodeId);
+			if (node) {
+				node.set("text", text);
+			}
+		},
+
+		// @TODO: Implementar cuando funcione Edit
+		StartEdit: function (nodeId, value) {
+			var node = this.getNodeById(nodeId);
+			if (node) {
+				this.m_treeEditor.editNode = node;
+				this.m_treeEditor.startEdit(value || node.ui.textNode);
+			}
+		},
+
+		// @TODO: Implementar cuando funcione Edit
+		CancelEdit: function () {
+			this.m_treeEditor.cancelEdit();
+		},
+
+		/**
+		* Sets the text of a given node.
+		* @param {String} nodeId Node id
+		* @param {String} text New text for the node
+		* @method
+		*/
+		ClearAllNodes: function () {
+			var root = this.m_tree.getRootNode();
+			root.removeAll();
+			delete root.data.children;
+		},
+
+		/**
+		* Returns true if the given node exists in the tree.
+		* @param {String} nodeId Node id
+		* @return {Boolean}
+		* @method
+		*/
+		NodeExists: function (nodeId) {
+			var node = this.getNodeById(nodeId);
+			return (node ? true : false);
 		}
-	},
-
-	/**
-	* Reloads the tree from the root node and applies {@link #Width}, {@link #Height} and {@link #Title} properties.
-	* @method
-	*/
-	Refresh: function () {
-		var tree = this.m_tree;
-		tree.setHeight((this.Width != 100) ? this.Width : undefined);
-		tree.setWidth((this.Height != 100) ? this.Height : undefined);
-		tree.setTitle(this.Title);
-		this.Reload(tree.getRootNode(), gxui.CBoolean(this.ExpandRoot));
-	},
-
-	/**
-	* Shows the control
-	* @method
-	*/
-	Show: function () {
-		this.m_tree.setVisible(true);
-	},
-
-	/**
-	* Hides the control
-	* @method
-	*/
-	Hide: function () {
-		this.m_tree.setVisible(false);
-	},
-
-	/**
-	* Returns the id of the parent of the given node. If the given node doesn't exist or is the root node, it returns "".
-	* @param {String} nodeId Node id
-	* @return {String}
-	* @method
-	*/
-	GetNodeParentId: function (nodeId) {
-		var node = this.getNodeById(nodeId);
-		if (node && node.parentNode) {
-			return node.parentNode.data.id;
-		}
-		return "";
-	},
-
-	/**
-	* Sets the data property of the given node with nodeData.
-	* @param {String} nodeId Node id
-	* @param {Object} nodeData Node data to set in the data property of the node. It can be any type of SDT.
-	* @method
-	*/
-	SetNodeData: function (nodeId, nodeData) {
-		var node = this.getNodeById(nodeId);
-		if (node) {
-			node.data.data = nodeData;
-		}
-	},
-
-	/**
-	* Returns the data property of the given node.
-	* @param {String} nodeId Node id
-	* @return {Object}
-	* @method
-	*/
-	GetNodeData: function (nodeId) {
-		var node = this.getNodeById(nodeId);
-		if (node) {
-			return node.data.data;
-		}
-	},
-
-	/**
-	* Sets the text of a given node.
-	* @param {String} nodeId Node id
-	* @param {String} text New text for the node
-	* @method
-	*/
-	SetNodeText: function (nodeId, text) {
-		var node = this.getNodeById(nodeId);
-		if (node) {
-			node.set("text", text);
-		}
-	},
-
-	// @TODO: Implementar cuando funcione Edit
-	StartEdit: function (nodeId, value) {
-		var node = this.getNodeById(nodeId);
-		if (node) {
-			this.m_treeEditor.editNode = node;
-			this.m_treeEditor.startEdit(value || node.ui.textNode);
-		}
-	},
-
-	// @TODO: Implementar cuando funcione Edit
-	CancelEdit: function () {
-		this.m_treeEditor.cancelEdit();
-	},
-
-	/**
-	* Sets the text of a given node.
-	* @param {String} nodeId Node id
-	* @param {String} text New text for the node
-	* @method
-	*/
-	ClearAllNodes: function () {
-		var root = this.m_tree.getRootNode();
-		root.removeAll();
-		delete root.data.children;
-	},
-
-	/**
-	* Returns true if the given node exists in the tree.
-	* @param {String} nodeId Node id
-	* @return {Boolean}
-	* @method
-	*/
-	NodeExists: function (nodeId) {
-		var node = this.getNodeById(nodeId);
-		return (node ? true : false);
 	}
 });
 

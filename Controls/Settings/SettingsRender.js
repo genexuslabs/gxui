@@ -97,21 +97,21 @@
 Ext.define('gxui.Settings', {
 	extend: 'gxui.UserControl',
 
-	initialize: function() {
+	initialize: function () {
 		this.callParent(arguments);
 	},
 
 	// Databinding
-	SetState: function(data) {
+	SetState: function (data) {
 		this.State = data;
 	},
 
 	// Databinding
-	GetState: function(data) {
+	GetState: function (data) {
 		return this.State;
 	},
 
-	onRender: function() {
+	onRender: function () {
 		var provider = null;
 		if (gxui.CBoolean(this.Enable)) {
 			if (this.Provider == gxui.Settings.StateProvider.HTTP) {
@@ -149,35 +149,36 @@ Ext.define('gxui.Settings', {
 
 	LOCALE_SCRIPT_ID: "ext-lang",
 
-	// Methods
-	/**
-	* Sets the language for ExtJS standard texts
-	* @param {String} lang Language to set
-	* @param {String} [charset] Charset for the script tag to use for including the localized standard texts
-	* @method
-	*/
-	SetLanguage: function (lang, charset) {
-		var s = Ext.getDom(this.LOCALE_SCRIPT_ID);
-		var src = gx.util.resourceUrl(gx.basePath + gx.staticDirectory + "Shared/ext/locale/ext-lang-" + lang + ".js", true);
-		if (!s) {
-			s = document.createElement("script");
-			s.id = this.LOCALE_SCRIPT_ID;
-			s.type = 'text/javascript';
-			document.getElementsByTagName("head")[0].appendChild(s);
-		}
-		s.src = src;
-		if (charset) {
-			s.charset = charset;
-		}
-	},
+	methods: {
+		// Methods
+		/**
+		* Sets the language for ExtJS standard texts
+		* @param {String} lang Language to set
+		* @param {String} [charset] Charset for the script tag to use for including the localized standard texts
+		* @method
+		*/
+		SetLanguage: function (lang, charset) {
+			var s = Ext.getDom(this.LOCALE_SCRIPT_ID);
+			var src = gx.util.resourceUrl(gx.basePath + gx.staticDirectory + "Shared/ext/locale/ext-lang-" + lang + ".js", true);
+			if (!s) {
+				s = document.createElement("script");
+				s.id = this.LOCALE_SCRIPT_ID;
+				s.type = 'text/javascript';
+				document.getElementsByTagName("head")[0].appendChild(s);
+			}
+			s.src = src;
+			if (charset) {
+				s.charset = charset;
+			}
+		},
 
-	RemoveLanguage: function() {
-		var s = Ext.getDom(this.LOCALE_SCRIPT_ID);
-		if (s) {
-			document.getElementsByTagName("head")[0].removeChild(s);
+		RemoveLanguage: function () {
+			var s = Ext.getDom(this.LOCALE_SCRIPT_ID);
+			if (s) {
+				document.getElementsByTagName("head")[0].removeChild(s);
+			}
 		}
 	}
-
 });
 
 // Supported state providers

@@ -194,64 +194,66 @@ Ext.define('gxui.Layout', {
 		}
 	},
 
-	// Methods
-	/**
-	* Collapses the region body so that it becomes hidden.
-	* @param {String} regionKey Region name ("North", "South", "West" or "East")
-	* @param {Boolean} [animate=true] True to animate the transition, else false.
-	* @method
-	*/
-	CollapseRegion: function (regionKey, animate) {
-		var region = this.getRegion(regionKey);
+	methods: {
+		// Methods
+		/**
+		* Collapses the region body so that it becomes hidden.
+		* @param {String} regionKey Region name ("North", "South", "West" or "East")
+		* @param {Boolean} [animate=true] True to animate the transition, else false.
+		* @method
+		*/
+		CollapseRegion: function (regionKey, animate) {
+			var region = this.getRegion(regionKey);
 
-		if (region) {
-			region.collapse(animate);
-			this.setRegionProperty(regionKey, "Collapsed", "true");
-		}
-	},
+			if (region) {
+				region.collapse(animate);
+				this.setRegionProperty(regionKey, "Collapsed", "true");
+			}
+		},
 
-	/**
-	* Expands the region body so that it becomes visible.
-	* @param {String} regionKey Region name ("North", "South", "West" or "East")
-	* @param {Boolean} [animate] True to animate the transition, else false (defaults to the value of the AnimateCollapse property).
-	* @method
-	*/
-	ExpandRegion: function (regionKey, animate) {
-		var region = this.getRegion(regionKey);
+		/**
+		* Expands the region body so that it becomes visible.
+		* @param {String} regionKey Region name ("North", "South", "West" or "East")
+		* @param {Boolean} [animate] True to animate the transition, else false (defaults to the value of the AnimateCollapse property).
+		* @method
+		*/
+		ExpandRegion: function (regionKey, animate) {
+			var region = this.getRegion(regionKey);
 
-		if (region) {
-			region.expand(animate);
-			this.setRegionProperty(regionKey, "Collapsed", "false");
-		}
-	},
+			if (region) {
+				region.expand(animate);
+				this.setRegionProperty(regionKey, "Collapsed", "false");
+			}
+		},
 
-	/**
-	* Hides the region.
-	* @param {String} regionKey Region name ("North", "South", "West" or "East")
-	* @method
-	*/
-	HideRegion: function (regionKey) {
-		var region = this.getRegion(regionKey);
+		/**
+		* Hides the region.
+		* @param {String} regionKey Region name ("North", "South", "West" or "East")
+		* @method
+		*/
+		HideRegion: function (regionKey) {
+			var region = this.getRegion(regionKey);
 
-		if (region) {
-			region.hide();
-			this.m_layout.doLayout();
-			this.setRegionProperty(regionKey, "Hidden", "true");
-		}
-	},
+			if (region) {
+				region.hide();
+				this.m_layout.doLayout();
+				this.setRegionProperty(regionKey, "Hidden", "true");
+			}
+		},
 
-	/**
-	* Shows the region.
-	* @param {String} regionKey Region name ("North", "South", "West" or "East")
-	* @method
-	*/
-	ShowRegion: function (regionKey) {
-		var region = this.getRegion(regionKey);
+		/**
+		* Shows the region.
+		* @param {String} regionKey Region name ("North", "South", "West" or "East")
+		* @method
+		*/
+		ShowRegion: function (regionKey) {
+			var region = this.getRegion(regionKey);
 
-		if (region) {
-			region.show();
-			this.m_layout.doLayout();
-			this.setRegionProperty(regionKey, "Hidden", "false");
+			if (region) {
+				region.show();
+				this.m_layout.doLayout();
+				this.setRegionProperty(regionKey, "Hidden", "false");
+			}
 		}
 	}
 });

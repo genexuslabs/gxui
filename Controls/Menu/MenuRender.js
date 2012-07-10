@@ -171,34 +171,36 @@ Ext.define('gxui.Menu', {
 		}
 	},
 
-	// Methods
-	/**
-	* Shows the menu. If the menu is called without parameters, the menu configured in the {@link #Menu} property will be shown in the cursor position.
-	* @param {gxuiToolbarItem[]} [menu] The menu to show. This parameter should be used when showing a menu different from the one specified in {@link #Menu} property
-	* or when the menu specified in the {@link #Menu} property is changed.
-	* @param {Number} [x] x position
-	* @param {Number} [y] y position
-	* @method
-	*/
-	ShowMenu: function (m, x, y) {
-		var menu = this.m_menu;
-		if (m) {
-			menu = this.createMenu(m);
-		}
-		var xy = (x && y) ? [x, y] : Ext.EventObject.getXY();
-		if (menu) {
-			menu.showAt(xy);
-		}
-	},
+	methods: {
+		// Methods
+		/**
+		* Shows the menu. If the menu is called without parameters, the menu configured in the {@link #Menu} property will be shown in the cursor position.
+		* @param {gxuiToolbarItem[]} [menu] The menu to show. This parameter should be used when showing a menu different from the one specified in {@link #Menu} property
+		* or when the menu specified in the {@link #Menu} property is changed.
+		* @param {Number} [x] x position
+		* @param {Number} [y] y position
+		* @method
+		*/
+		ShowMenu: function (m, x, y) {
+			var menu = this.m_menu;
+			if (m) {
+				menu = this.createMenu(m);
+			}
+			var xy = (x && y) ? [x, y] : Ext.EventObject.getXY();
+			if (menu) {
+				menu.showAt(xy);
+			}
+		},
 
-	/**
-	* Shows the menu configured in the {@link #Menu} property in the specified position.
-	* @param {Number} x x position
-	* @param {Number} y y position
-	* @method
-	*/
-	ShowMenuXY: function (x, y) {
-		this.ShowMenu(this.Menu, x, y);
+		/**
+		* Shows the menu configured in the {@link #Menu} property in the specified position.
+		* @param {Number} x x position
+		* @param {Number} y y position
+		* @method
+		*/
+		ShowMenuXY: function (x, y) {
+			this.ShowMenu(this.Menu, x, y);
+		}
 	}
 });
 

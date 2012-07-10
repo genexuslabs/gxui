@@ -812,25 +812,27 @@ Ext.define('gxui.GridExtension', {
 		}
 	},
 
-	// Methods
-	/**
-	* Selects a grid row by index (1 based)
-	* @param {Number} rowIndex Row index
-	* @method
-	*/
-	SelectRow: function (rowIndex) {
-		// Row index is 1 based, for compatibility with GeneXus criteria
-		if (rowIndex) {
-			this.setSelectedRow(rowIndex - 1);
-			this.m_grid.getSelectionModel().selectRow(rowIndex - 1);
-		}
-	},
+	methods: {
+		// Methods
+		/**
+		* Selects a grid row by index (1 based)
+		* @param {Number} rowIndex Row index
+		* @method
+		*/
+		SelectRow: function (rowIndex) {
+			// Row index is 1 based, for compatibility with GeneXus criteria
+			if (rowIndex) {
+				this.setSelectedRow(rowIndex - 1);
+				this.m_grid.getSelectionModel().selectRow(rowIndex - 1);
+			}
+		},
 
-	UnSelectRows: function () {
-		if (this.SelectedRow != undefined) {
-			delete this.SelectedRow;
+		UnSelectRows: function () {
+			if (this.SelectedRow != undefined) {
+				delete this.SelectedRow;
+			}
+			this.m_grid.getSelectionModel().deselectAll();
 		}
-		this.m_grid.getSelectionModel().deselectAll();
 	}
 });
 

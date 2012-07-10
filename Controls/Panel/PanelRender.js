@@ -197,73 +197,75 @@ Ext.define('gxui.Panel', {
 		};
 	},
 
-	// Methods
-	/**
-	* @method
-	* @inheritdoc gxui.Toolbar#ChangeToolbar
-	*/
-	ChangeToolbar: function (toolbarData) {
-		if (this.m_gxTbar)
-			this.m_toolbar = this.m_gxTbar.ChangeToolbar(toolbarData, this.getUniqueId() + "_Toolbar", this);
-	},
+	methods: {
+		// Methods
+		/**
+		* @method
+		* @inheritdoc gxui.Toolbar#ChangeToolbar
+		*/
+		ChangeToolbar: function (toolbarData) {
+			if (this.m_gxTbar)
+				this.m_toolbar = this.m_gxTbar.ChangeToolbar(toolbarData, this.getUniqueId() + "_Toolbar", this);
+		},
 
-	/**
-	* Collapses the panel body so that the body becomes hidden.
-	* @param {Boolean} [animate] True to animate the transition, else false (defaults to the value of the AnimateCollapse property).
-	* @method
-	*/
-	Collapse: function (animate) {
-		this.m_panel.collapse(this.CollapseDirection, animate);
-	},
+		/**
+		* Collapses the panel body so that the body becomes hidden.
+		* @param {Boolean} [animate] True to animate the transition, else false (defaults to the value of the AnimateCollapse property).
+		* @method
+		*/
+		Collapse: function (animate) {
+			this.m_panel.collapse(this.CollapseDirection, animate);
+		},
 
-	/**
-	* Expands the panel body so that it becomes visible.
-	* @param {Boolean} [animate] True to animate the transition, else false (defaults to the value of the AnimateCollapse property).
-	* @method
-	*/
-	Expand: function (animate) {
-		this.m_panel.expand(animate);
-	},
+		/**
+		* Expands the panel body so that it becomes visible.
+		* @param {Boolean} [animate] True to animate the transition, else false (defaults to the value of the AnimateCollapse property).
+		* @method
+		*/
+		Expand: function (animate) {
+			this.m_panel.expand(animate);
+		},
 
-	/**
-	* @method
-	* @inheritdoc gxui.Toolbar#DisableItem
-	*/
-	DisableToolbarItem: function (itemId) {
-		this.m_gxTbar.DisableItem(itemId);
-	},
+		/**
+		* @method
+		* @inheritdoc gxui.Toolbar#DisableItem
+		*/
+		DisableToolbarItem: function (itemId) {
+			this.m_gxTbar.DisableItem(itemId);
+		},
 
-	/**
-	* @method
-	* @inheritdoc gxui.Toolbar#EnableItem
-	*/
-	EnableToolbarItem: function (itemId) {
-		this.m_gxTbar.EnableItem(itemId);
-	},
+		/**
+		* @method
+		* @inheritdoc gxui.Toolbar#EnableItem
+		*/
+		EnableToolbarItem: function (itemId) {
+			this.m_gxTbar.EnableItem(itemId);
+		},
 
-	/**
-	* @method
-	* @inheritdoc gxui.Toolbar#HideItem
-	*/
-	HideToolbarItem: function (itemId) {
-		this.m_gxTbar.HideItem(itemId);
-	},
+		/**
+		* @method
+		* @inheritdoc gxui.Toolbar#HideItem
+		*/
+		HideToolbarItem: function (itemId) {
+			this.m_gxTbar.HideItem(itemId);
+		},
 
-	/**
-	* @method
-	* @inheritdoc gxui.Toolbar#ShowItem
-	*/
-	ShowToolbarItem: function (itemId) {
-		this.m_gxTbar.ShowItem(itemId);
-	},
+		/**
+		* @method
+		* @inheritdoc gxui.Toolbar#ShowItem
+		*/
+		ShowToolbarItem: function (itemId) {
+			this.m_gxTbar.ShowItem(itemId);
+		},
 
-	/**
-	* Centers the panel (only applies when ShowAsWindow property is set to true).
-	* @method
-	*/
-	CenterWindow: function () {
-		if (gxui.CBoolean(this.ShowAsWindow)) {
-			this.m_panel.center();
+		/**
+		* Centers the panel (only applies when ShowAsWindow property is set to true).
+		* @method
+		*/
+		CenterWindow: function () {
+			if (gxui.CBoolean(this.ShowAsWindow)) {
+				this.m_panel.center();
+			}
 		}
 	}
 });

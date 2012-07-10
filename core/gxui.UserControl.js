@@ -67,6 +67,9 @@ Ext.define('gxui.UserControl', {
 
 		if (this.options.register)
 			this.register();
+
+		if (this.methods)
+			this.addDeferredMethods(this.methods);
 	},
 
 	/**
@@ -75,7 +78,7 @@ Ext.define('gxui.UserControl', {
 	*/
 	show: function () {
 		if (!this.rendered) {
-			gx.fx.obs.addObserver('gx.onload', this, function () {
+			Ext.onReady(function () {
 				try {
 					this.onRender();
 					this.addToContainer();
@@ -85,7 +88,7 @@ Ext.define('gxui.UserControl', {
 							if (control.rendered)
 								this.onAfterRender.call(this, control);
 							else
-								control.on('afterrender', this.onAfterRender, this);
+								control.on('afterrender', this.onAfterRender, this, [control]);
 						}
 					}
 					this.rendered = true;
@@ -96,7 +99,7 @@ Ext.define('gxui.UserControl', {
 				finally {
 					this.fireEvent("show", this);
 				}
-			});
+			}, this);
 		}
 		else {
 			try {
@@ -252,6 +255,23 @@ Ext.define('gxui.UserControl', {
 	getUniqueId: function () {
 		var pO = this.ParentObject;
 		return "gxui" + (pO ? (pO.CmpContext ? "-" + pO.CmpContext : "") + "-" + pO.ServerClass || "" : "") + "-" + this.ControlName;
+	},
+
+	addDeferredMethods: function (methods) {
+		for (var m in methods) {
+			if (typeof (methods[m]) == 'function') {
+				this[m] = Ext.bind(function () {
+					var control = this.getUnderlyingControl(),
+						fn = arguments[arguments.length - 1],
+						args = Array.prototype.slice.call(arguments, 0, arguments.length - 1);
+
+					if (control === undefined || (control && control.rendered))
+						return fn.apply(this, args);
+					else
+						gxui.afterShow(Ext.bind(fn, this, args), this, { single: true });
+				}, this, [methods[m]], true);
+			}
+		}
 	}
 });
 

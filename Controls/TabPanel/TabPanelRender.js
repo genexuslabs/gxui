@@ -363,7 +363,7 @@ Ext.define('gxui.TabPanel', {
 					run: function () {
 						var doLayout = false;
 						tabPanel.items.each(function (panel) {
-							if (panel.body.isScrollable()) {	
+							if (panel.body.isScrollable()) {
 								tabPanel.doLayout();
 								return false;
 							}
@@ -383,180 +383,182 @@ Ext.define('gxui.TabPanel', {
 			return tabId;
 	},
 
-	// Methods
-	/**
-	* Opens a new tab. If a tab with the provided id already exists, the new tab is not created and the tab with the provided is is selected.
-	* @param {String} tabId Tab id
-	* @param {String} title Tab title
-	* @param {String} tabHTMLContent Html code to render inside the new tab
-	* @param {Boolean} [closable] True to display a close icon and to allow the user to close the tab 
-	* @param {String} [layout] Layout to be used for the new tab. If not specified, the layout specified in {@link #Layout} property is used.
-	* @method
-	*/
-	OpenTab: function (tabId, title, tabHTMLContent, closable, layout) {
-		if (this.IsTabOpen(tabId)) {
+	methods: {
+		// Methods
+		/**
+		* Opens a new tab. If a tab with the provided id already exists, the new tab is not created and the tab with the provided is is selected.
+		* @param {String} tabId Tab id
+		* @param {String} title Tab title
+		* @param {String} tabHTMLContent Html code to render inside the new tab
+		* @param {Boolean} [closable] True to display a close icon and to allow the user to close the tab 
+		* @param {String} [layout] Layout to be used for the new tab. If not specified, the layout specified in {@link #Layout} property is used.
+		* @method
+		*/
+		OpenTab: function (tabId, title, tabHTMLContent, closable, layout) {
+			if (this.IsTabOpen(tabId)) {
+				this.m_activeTab = this.getTabUniqueId(tabId);
+			}
+			else {
+				var tab = {
+					Name: title,
+					InternalName: tabId,
+					HTML: tabHTMLContent,
+					Selected: true,
+					closable: closable
+				};
+				if (layout)
+					tab.layout = layout;
+				this.RunTimeTabs.push(tab);
+
+				Ext.each(this.getTabPanelsList(), function (tab, index, allTabs) {
+					var tabPanel = this.m_tabPanel;
+					tabPanel.add(tab);
+					tabPanel.doLayout();
+					this.registerAsContainer(tab);
+				}, this);
+			}
+
+			this.m_tabPanel.setActiveTab(this.m_activeTab);
+		},
+
+		/**
+		* Closes an existing tab.
+		* @param {String} tabId Tab id
+		* @method
+		*/
+		CloseTab: function (tabId) {
+			var tabPanel = this.m_tabPanel;
+			if (this.IsTabOpen(tabId)) {
+				var tab = tabPanel.child("#" + this.getTabUniqueId(tabId));
+				if (tab) {
+					tabPanel.remove(tab, true);
+				}
+			}
+		},
+
+		/**
+		* Selects an existing tab.
+		* @param {String} tabId Tab id
+		* @method
+		*/
+		SelectTab: function (tabId) {
 			this.m_activeTab = this.getTabUniqueId(tabId);
-		}
-		else {
-			var tab = {
-				Name: title,
-				InternalName: tabId,
-				HTML: tabHTMLContent,
-				Selected: true,
-				closable: closable
-			};
-			if (layout)
-				tab.layout = layout;
-			this.RunTimeTabs.push(tab);
+			this.m_tabPanel.setActiveTab(this.m_activeTab);
+		},
 
-			Ext.each(this.getTabPanelsList(), function (tab, index, allTabs) {
-				var tabPanel = this.m_tabPanel;
-				tabPanel.add(tab);
-				tabPanel.doLayout();
-				this.registerAsContainer(tab);
-			}, this);
-		}
+		/**
+		* Checks if a tab is opened.
+		* @param {String} tabId Tab id
+		* @return {Boolean}
+		* @method
+		*/
+		IsTabOpen: function (tabId) {
+			var tab = this.m_tabPanel.child("#" + this.getTabUniqueId(tabId));
+			return (tab) ? true : false;
+		},
 
-		this.m_tabPanel.setActiveTab(this.m_activeTab);
-	},
+		/**
+		* Show an existing tab, by index.
+		* @param {Integer} i Tab index (0 based)
+		* @method
+		*/
+		ShowTab: function (i) {
+			var panel = this.m_tabPanel.items.get(i);
+			if (panel)
+				panel.tab.show();
+		},
 
-	/**
-	* Closes an existing tab.
-	* @param {String} tabId Tab id
-	* @method
-	*/
-	CloseTab: function (tabId) {
-		var tabPanel = this.m_tabPanel;
-		if (this.IsTabOpen(tabId)) {
-			var tab = tabPanel.child("#" + this.getTabUniqueId(tabId));
+		/**
+		* Hide an existing tab, by index.
+		* @param {Integer} i Tab index (0 based)
+		* @method
+		*/
+		HideTab: function (i) {
+			var panel = this.m_tabPanel.items.get(i);
+			if (panel)
+				panel.tab.hide();
+		},
+
+		/**
+		* Show an existing tab, by id.
+		* @param {String} tabId Tab id
+		* @method
+		*/
+		ShowTabById: function (tabId) {
+			var panel = this.m_tabPanel.child("#" + this.getTabUniqueId(tabId));
+			if (panel)
+				panel.tab.show();
+		},
+
+		/**
+		* Hide an existing tab, by id.
+		* @param {String} tabId Tab id
+		* @method
+		*/
+		HideTabById: function (tabId) {
+			var panel = this.m_tabPanel.child("#" + this.getTabUniqueId(tabId));
+			if (panel)
+				panel.tab.hide();
+		},
+
+		/**
+		* Toggles the dirty flag of a tab. When a tab is dirty, a mark (*) is shown next to its title.
+		* @param {String} tabId Tab id
+		* @param {Boolean} dirty True to set the tab as dirty
+		* @method
+		*/
+		SetTabDirty: function (tabId, dirty) {
+			var tab = this.m_tabPanel.child("#" + this.getTabUniqueId(tabId));
 			if (tab) {
-				tabPanel.remove(tab, true);
-			}
-		}
-	},
+				tab.dirty = dirty;
+				var tabTextEl = tab.tab.btnInnerEl
+				if (tabTextEl) {
+					if (Ext.isIE) {
+						var tabTextHtmlEl = tabTextEl.dom;
+						if (dirty) {
 
-	/**
-	* Selects an existing tab.
-	* @param {String} tabId Tab id
-	* @method
-	*/
-	SelectTab: function (tabId) {
-		this.m_activeTab = this.getTabUniqueId(tabId);
-		this.m_tabPanel.setActiveTab(this.m_activeTab);
-	},
-
-	/**
-	* Checks if a tab is opened.
-	* @param {String} tabId Tab id
-	* @return {Boolean}
-	* @method
-	*/
-	IsTabOpen: function (tabId) {
-		var tab = this.m_tabPanel.child("#" + this.getTabUniqueId(tabId));
-		return (tab) ? true : false;
-	},
-
-	/**
-	* Show an existing tab, by index.
-	* @param {Integer} i Tab index (0 based)
-	* @method
-	*/
-	ShowTab: function (i) {
-		var panel = this.m_tabPanel.items.get(i);
-		if (panel)
-			panel.tab.show();
-	},
-
-	/**
-	* Hide an existing tab, by index.
-	* @param {Integer} i Tab index (0 based)
-	* @method
-	*/
-	HideTab: function (i) {
-		var panel = this.m_tabPanel.items.get(i);
-		if (panel)
-			panel.tab.hide();
-	},
-
-	/**
-	* Show an existing tab, by id.
-	* @param {String} tabId Tab id
-	* @method
-	*/
-	ShowTabById: function (tabId) {
-		var panel = this.m_tabPanel.child("#" + this.getTabUniqueId(tabId));
-		if (panel)
-			panel.tab.show();
-	},
-
-	/**
-	* Hide an existing tab, by id.
-	* @param {String} tabId Tab id
-	* @method
-	*/
-	HideTabById: function (tabId) {
-		var panel = this.m_tabPanel.child("#" + this.getTabUniqueId(tabId));
-		if (panel)
-			panel.tab.hide();
-	},
-
-	/**
-	* Toggles the dirty flag of a tab. When a tab is dirty, a mark (*) is shown next to its title.
-	* @param {String} tabId Tab id
-	* @param {Boolean} dirty True to set the tab as dirty
-	* @method
-	*/
-	SetTabDirty: function (tabId, dirty) {
-		var tab = this.m_tabPanel.child("#" + this.getTabUniqueId(tabId));
-		if (tab) {
-			tab.dirty = dirty;
-			var tabTextEl = tab.tab.btnInnerEl
-			if (tabTextEl) {
-				if (Ext.isIE) {
-					var tabTextHtmlEl = tabTextEl.dom;
-					if (dirty) {
-
-						tabTextHtmlEl.innerHTML += "*";
+							tabTextHtmlEl.innerHTML += "*";
+						}
+						else {
+							if (tabTextHtmlEl.innerHTML.charAt(tabTextHtmlEl.innerHTML.length - 1) == "*")
+								tabTextHtmlEl.innerHTML = tabTextHtmlEl.innerHTML.substring(0, tabTextHtmlEl.innerHTML.length - 1);
+						}
 					}
 					else {
-						if (tabTextHtmlEl.innerHTML.charAt(tabTextHtmlEl.innerHTML.length - 1) == "*")
-							tabTextHtmlEl.innerHTML = tabTextHtmlEl.innerHTML.substring(0, tabTextHtmlEl.innerHTML.length - 1);
-					}
-				}
-				else {
-					if (dirty) {
-						tabTextEl.addCls("x-tab-strip-dirty");
-					}
-					else {
-						tabTextEl.removeCls("x-tab-strip-dirty");
+						if (dirty) {
+							tabTextEl.addCls("x-tab-strip-dirty");
+						}
+						else {
+							tabTextEl.removeCls("x-tab-strip-dirty");
+						}
 					}
 				}
 			}
-		}
-	},
+		},
 
-	/**
-	* Checks if a tab is dirty
-	* @param {String} tabId Tab id
-	* @return {Boolean}
-	* @method
-	*/
-	IsTabDirty: function (tabId) {
-		var tab = this.m_tabPanel.child("#" + this.getTabUniqueId(tabId));
-		return tab && (tab.dirty == true);
-	},
+		/**
+		* Checks if a tab is dirty
+		* @param {String} tabId Tab id
+		* @return {Boolean}
+		* @method
+		*/
+		IsTabDirty: function (tabId) {
+			var tab = this.m_tabPanel.child("#" + this.getTabUniqueId(tabId));
+			return tab && (tab.dirty == true);
+		},
 
-	/**
-	* Sets the title of an existing tab
-	* @param {String} tabId Tab id
-	* @param {String} title New title of the tab
-	* @method
-	*/
-	SetTabTitle: function (tabId, title) {
-		var tab = this.m_tabPanel.child("#" + this.getTabUniqueId(tabId));
-		if (tab) {
-			tab.setTitle(title);
-			this.SetTabDirty(tabId, tab.dirty || false);
+		/**
+		* Sets the title of an existing tab
+		* @param {String} tabId Tab id
+		* @param {String} title New title of the tab
+		* @method
+		*/
+		SetTabTitle: function (tabId, title) {
+			var tab = this.m_tabPanel.child("#" + this.getTabUniqueId(tabId));
+			if (tab) {
+				tab.setTitle(title);
+				this.SetTabDirty(tabId, tab.dirty || false);
+			}
 		}
 	}
 });

@@ -240,7 +240,8 @@ Ext.define('gxui.Toolbar', {
 					width: 180,
 					disabled: gxui.CBoolean(button.Disabled),
 					hidden: gxui.CBoolean(button.Hidden),
-					enableKeyEvents: true
+					enableKeyEvents: true,
+					value: button.Value || undefined
 				});
 
 				if (edit.Text != '')
@@ -660,56 +661,58 @@ Ext.define('gxui.Toolbar', {
 		}
 	},
 
-	// Methods
-	/**
-	* Changes the current list of toolbar items with a new one and render it.
-	* @param {gxuiToolbar} toolbar gxuiToolbar configuration object containing the list of new toolbar items to render
-	* @method
-	*/
-	ChangeToolbar: function (toolbarData, id, container) {
-		this.m_toolbar.removeAll();
-		this.m_toolbar.add(this.createButtons());
-		return this.m_toolbar;
-	},
+	methods: {
+		// Methods
+		/**
+		* Changes the current list of toolbar items with a new one and render it.
+		* @param {gxuiToolbar} toolbar gxuiToolbar configuration object containing the list of new toolbar items to render
+		* @method
+		*/
+		ChangeToolbar: function (toolbarData, id, container) {
+			this.m_toolbar.removeAll();
+			this.m_toolbar.add(this.createButtons());
+			return this.m_toolbar;
+		},
 
-	/**
-	* Disable a toolbar item by id
-	* @param {String} itemId Toolbar item id
-	* @method
-	*/
-	DisableItem: function (itemId) {
-		this.changeItemPropertyValue(itemId, "Disabled", true);
-		this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
-	},
+		/**
+		* Disable a toolbar item by id
+		* @param {String} itemId Toolbar item id
+		* @method
+		*/
+		DisableItem: function (itemId) {
+			this.changeItemPropertyValue(itemId, "Disabled", true);
+			this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
+		},
 
-	/**
-	* Enable a toolbar item by id
-	* @param {String} itemId Toolbar item id
-	* @method
-	*/
-	EnableItem: function (itemId) {
-		this.changeItemPropertyValue(itemId, "Disabled", false);
-		this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
-	},
+		/**
+		* Enable a toolbar item by id
+		* @param {String} itemId Toolbar item id
+		* @method
+		*/
+		EnableItem: function (itemId) {
+			this.changeItemPropertyValue(itemId, "Disabled", false);
+			this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
+		},
 
-	/**
-	* Hide a toolbar item by id
-	* @param {String} itemId Toolbar item id
-	* @method
-	*/
-	HideItem: function (itemId) {
-		this.changeItemPropertyValue(itemId, "Hidden", true);
-		this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
-	},
+		/**
+		* Hide a toolbar item by id
+		* @param {String} itemId Toolbar item id
+		* @method
+		*/
+		HideItem: function (itemId) {
+			this.changeItemPropertyValue(itemId, "Hidden", true);
+			this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
+		},
 
-	/**
-	* Shows a hidden toolbar item by id
-	* @param {String} itemId Toolbar item id
-	* @method
-	*/
-	ShowItem: function (itemId) {
-		this.changeItemPropertyValue(itemId, "Hidden", false);
-		this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
+		/**
+		* Shows a hidden toolbar item by id
+		* @param {String} itemId Toolbar item id
+		* @method
+		*/
+		ShowItem: function (itemId) {
+			this.changeItemPropertyValue(itemId, "Hidden", false);
+			this.refreshButtons(this.Data.Buttons, this.m_toolbar.items);
+		}
 	}
 });
 

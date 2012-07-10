@@ -145,6 +145,7 @@
 						* See the documentation about the Group item type for detailed information.
 						* @property {Number} Data.Buttons.ColSpan Number of columns the item will span. Only applies to items that are direct children of a Group item.
 						* See the documentation about the Group item type for detailed information.
+						* @property {String} Data.Buttons.Value Initial value for Edit items.
 						* @property {Boolean} Data.Buttons.AskConfirmation Indicates if the user should be prompted for confirmation when a button is pressed, before executing the {@link #ButtonPressed} event. If the user confirms, the event is executed.
 						* @property {gxuiToolbarItem.Confirmation} Data.Buttons.Confirmation Configuration properties for the confirmation dialog.
 						* @property {String} Data.Buttons.Confirmation.OKButtonText Text for the OK button (defaults to 'OK')
