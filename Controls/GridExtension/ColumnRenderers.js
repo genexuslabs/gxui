@@ -131,6 +131,68 @@ Ext.define('gxui.GridExtension.Column', {
 		return v + "";
 	},
 
+	mapDatePictureToFormat: function (vStruct) {
+		var dateFormat = function (FormatPart, Picture) {
+			if (FormatPart == 'Y' && Picture.substr(0, 10) == '99/99/9999')
+				return 'Y';
+			else if (FormatPart == 'Y')
+				return 'y';
+			else if (FormatPart == 'M')
+				return 'm';
+			else if (FormatPart == 'D')
+				return 'd';
+			else return '';
+		};
+
+		var dateTimeFormat = function (Dec) {
+			var timeFmt = gx.timeFormat;
+			var DPTF = '', AMPM = '', TimeFmt;
+			if (timeFmt == 12) {
+				DPTF = 'h';
+				AMPM = ' A';
+			} else if (timeFmt == 24) {
+				DPTF = 'H';
+				AMPM = '';
+			} 
+
+			if (Dec == 2)
+				TimeFmt = '';
+			else if (Dec == 5)
+				TimeFmt = ':i';
+			else if (Dec == 8)
+				TimeFmt = ':i:s';
+			else
+				return '';
+
+			return DPTF + TimeFmt + AMPM;
+		};
+
+
+		var Picture = vStruct.dp.pic,
+			Dec = vStruct.dp.dec,
+			Len = vStruct.len,
+			dateFmt = gx.dateFormat,
+			D1 = dateFmt.substr(0, 1),
+			D2 = dateFmt.substr(1, 1),
+			D3 = dateFmt.substr(2, 1),
+			DD1 = dateFormat(D1, Picture),
+			DD2 = dateFormat(D2, Picture),
+			DD3 = dateFormat(D3, Picture),
+			DT = dateTimeFormat(Dec);
+
+		if (Len > 0 && Dec > 0)
+			return DD1 + '/' + DD2 + '/' + DD3 + ' ' + DT;
+		else if (Len > 0)
+			return DD1 + '/' + DD2 + '/' + DD3;
+		else
+			return DT;
+	},
+
+	formatDate: function (value, vStruct) {
+		var format = this.mapDatePictureToFormat(vStruct);
+		return Ext.util.Format.date(value, format);
+	},
+
 	renderer: function (value, metadata, record, rowIndex, colIndex, store) {
 		var cell = record.raw[this.actualColIndex],
 			col = this.gxColumn,
@@ -139,14 +201,7 @@ Ext.define('gxui.GridExtension.Column', {
 
 		var v = value;
 		if (col.type == gx.types.date || col.type == gx.types.dateTime) {
-			var gxdate = value.gxdate;
-			v = gxdate.getString();
-			if (cell.column.type == gx.types.dateTime) {
-				gxdate.HasTimePart = true;
-				var validStruct = gxControl.vStruct,
-					nDec = validStruct.dec;
-				v += ' ' + gxdate.getTimeString(nDec > 3, nDec == 8, nDec > 1);
-			}
+			v = this.formatDate(value, gxControl.vStruct);
 		}
 
 		if (col.type == gx.types.numeric && typeof (value) == "number") {
