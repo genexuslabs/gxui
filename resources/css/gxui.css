@@ -54,3 +54,8 @@ x-portlet .x-panel-body {
 .gxui-xev2 .x-panel-body .ErrorMessages {
 	position: fixed !important;
 }
+
+.x-tree-panel .x-grid-cell-inner a {
+    text-decoration: none;
+    color: inherit;
+}

@@ -230,18 +230,22 @@ Ext.define('gxui.Treeview', {
 		return gxui.CBoolean(this.AddToParentGxUIControl);
 	},
 
+	createRootNode: function () {
+		return {
+			id: (this.RootId ? this.RootId : 'ROOT'),
+			text: this.RootText,
+			icon: (this.RootIcon ? this.RootIcon : undefined),
+			cls: (this.RootCls ? this.RootCls : undefined),
+			iconCls: (this.RootIconCls ? this.RootIconCls : undefined),
+			draggable: false, // disable root node dragging
+			children: !this.LazyLoading ? this.cloneNodes(this.Children) : undefined,
+			expanded: gxui.CBoolean(this.ExpandRoot)
+		};
+	},
+
 	createStore: function () {
 		var config = {
-			root: {
-				id: (this.RootId ? this.RootId : 'ROOT'),
-				text: this.RootText,
-				icon: (this.RootIcon ? this.RootIcon : undefined),
-				cls: (this.RootCls ? this.RootCls : undefined),
-				iconCls: (this.RootIconCls ? this.RootIconCls : undefined),
-				draggable: false, // disable root node dragging
-				children: !this.LazyLoading ? this.cloneNodes(this.Children) : undefined,
-				expanded: gxui.CBoolean(this.ExpandRoot)
-			},
+			root: this.createRootNode(),
 			_enableCheckbox: this.EnableCheckbox
 		};
 
@@ -583,18 +587,19 @@ Ext.define('gxui.Treeview', {
 		* @method
 		*/
 		Reload: function (node, expand) {
+			var tree = this.m_tree;
 			// node can be a TreeNode or a String with the Id of a node. If node is undefined, the root node is reloaded.
-			var n = node ? ((typeof node == 'object') ? node : this.getNodeById(node)) : this.m_tree.getRootNode();
+			var n = node ? ((typeof node == 'object') ? node : this.getNodeById(node)) : tree.getRootNode();
 
 			if (n) {
 				var loadCallback = Ext.bind(function () {
 					if (expand || expand === undefined) {
 						n.expand();
 					}
-					this.m_tree.initState();
+					tree.initState();
 				}, this);
 
-				var store = this.m_tree.getStore();
+				var store = tree.getStore();
 				if (this.LazyLoading) {
 					store.getProxy().url = this.LoaderURL;
 					if (store.isLoading())
@@ -609,10 +614,8 @@ Ext.define('gxui.Treeview', {
 						});
 				}
 				else {
-					var children = this.cloneNodes(this.Children);
-					var root = this.m_tree.getRootNode();
-					root.removeAll();
-					root.appendChild(children);
+					var root = tree.getRootNode();
+					tree.setRootNode(this.createRootNode());
 					loadCallback();
 				}
 
