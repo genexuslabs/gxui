@@ -176,11 +176,12 @@ Ext.define('gxui.UserControl', {
 	},
 
 	/**
-	* Returns the underlying control associated to the UserControl.  This method has no default implementation
-	* so it MUST be provided by inheriting classes.
+	* Returns the underlying control associated to the UserControl.  If the UserControl has no underlying control, return false (defualt behavior)
 	* @ignore
 	*/
-	getUnderlyingControl: Ext.emptyFn,
+	getUnderlyingControl: function () {
+		return false
+	},
 
 	/**
 	* Returns true if the control should be added to its parent GxUI control. This method default implementation
@@ -265,7 +266,7 @@ Ext.define('gxui.UserControl', {
 						fn = arguments[arguments.length - 1],
 						args = Array.prototype.slice.call(arguments, 0, arguments.length - 1);
 
-					if (control === undefined || (control && control.rendered))
+					if (control === false || (control && control.rendered))
 						return fn.apply(this, args);
 					else
 						gxui.afterShow(Ext.bind(fn, this, args), this, { single: true });
