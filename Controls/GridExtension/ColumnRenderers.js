@@ -281,10 +281,13 @@ Ext.define('gxui.GridExtension.CheckColumn', {
 	listeners: {
 		'checkchange': function (column, rowIndex, checked) {
 			var grid = column.ownerCt.ownerCt,
-				editorPlugin = grid.getPlugin(grid.id + '-celledit');
+				editorPlugin = grid.getPlugin(grid.id + '-celledit'),
+				editingContext = editorPlugin.getEditingContext(rowIndex, column);
 
 			if (editorPlugin)
-				editorPlugin.fireEvent('edit', this, editorPlugin.getEditingContext(rowIndex, column));
+				editorPlugin.fireEvent('edit', this, editingContext);
+
+			grid.fireEvent('cellclick', grid.getView(), null, editingContext.colIdx, editingContext.record, null, editingContext.rowIdx, editingContext);
 		}
 	}
 });

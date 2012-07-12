@@ -602,8 +602,9 @@ Ext.define('gxui.GridExtension', {
 			},
 
 			'cellclick': function (view, cellEl, columnIndex, record, rowEl, rowIndex, e) {
-				var cell = this.getPropertiesCell(view.panel, rowIndex, columnIndex, false);
-				if (cell.type == gx.html.controls.types.image || !cell.enabled)
+				var cell = this.getPropertiesCell(view.panel, rowIndex, columnIndex, false),
+					gxControlTypes = gx.html.controls.types;
+				if (cell.type == gxControlTypes.image || cell.type == gxControlTypes.checkBox || !cell.enabled)
 					this.fireCellClickEvent(rowIndex, columnIndex);
 			},
 
