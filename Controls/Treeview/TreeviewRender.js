@@ -631,8 +631,8 @@ Ext.define('gxui.Treeview', {
 		*/
 		Refresh: function () {
 			var tree = this.m_tree;
-			tree.setHeight((this.Width != 100) ? this.Width : undefined);
-			tree.setWidth((this.Height != 100) ? this.Height : undefined);
+			tree.setHeight((this.Height != 100) ? this.Height : undefined);
+			tree.setWidth((this.Width != 100) ? this.Width : undefined);
 			tree.setTitle(this.Title);
 			this.Reload(tree.getRootNode(), gxui.CBoolean(this.ExpandRoot));
 		},
