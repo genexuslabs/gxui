@@ -626,6 +626,18 @@ Ext.define('gxui.GridExtension', {
 						Ext.defer(this.goToPage, 30, this, ["FIRST"]);
 						return false;
 					}
+
+					/**
+					* @event OnSortChange
+					* Fires when the user changes the sort order of a column. 
+					* The following properties are set when the event is fired:
+					*
+					* - {@link #SortField}
+					* - {@link #SortOrder}
+					*
+					*/
+					if (this.OnSortChange)
+						this.OnSortChange();
 				}
 			},
 

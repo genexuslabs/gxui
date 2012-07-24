@@ -42,6 +42,7 @@
 		<Event>OnNextPage</Event>
 		<Event>OnLastPage</Event>
 		<Event>ContextMenu</Event>
+		<Event>OnSortChange</Event>
 	</Events>
 	<Methods>
 		<Method>
