@@ -153,7 +153,7 @@ Ext.define('gxui.GridExtension.Column', {
 			} else if (timeFmt == 24) {
 				DPTF = 'H';
 				AMPM = '';
-			} 
+			}
 
 			if (Dec == 2)
 				TimeFmt = '';
@@ -218,17 +218,8 @@ Ext.define('gxui.GridExtension.Column', {
 			}
 
 			var style = "";
-			if (cell.style) {
-				var color = cell.style.match(/color:(.+);?/);
-				if (color) {
-					style += Ext.String.format("color:{0};", color[1]);
-				}
-
-				var bgColor = cell.style.match(/background-color:(.+);?/);
-				if (bgColor) {
-					style += Ext.String.format("background-color:{0};", bgColor[1]);
-				}
-			}
+			if (cell.style)
+				style += this.extractCssProperties(["text-decoration", "color", "background-color", "font-weight"], cell.style);
 
 			// If the cell fires a user event and is enabled, wrap with an anchor tag.
 			if (/*gx.lang.gxBoolean(cell.enabled) &&*/(col.gxControl.eventName || col.gxControl.jsDynCode)) {
@@ -245,6 +236,16 @@ Ext.define('gxui.GridExtension.Column', {
 			return v;
 		}
 		return "";
+	},
+
+	extractCssProperties: function (properties, inputStyle) {
+		var buffer = [];
+		for (var i = 0, len = properties.length; i < len; i++) {
+			var propMatch = inputStyle.match(new RegExp(properties[i] + ":([^;]+);?"));
+			if (propMatch)
+				buffer.push(Ext.String.format(properties[i] + ":{0};", propMatch[1]));
+		}
+		return buffer.join("");
 	}
 });
 
