@@ -223,7 +223,7 @@ gxui = function () {
 		getGeneXusBuild: function () {
 			if (m_GenexusBuild === null) {
 				try {
-					var metaElements = document.head.getElementsByTagName('meta'),
+					var metaElements = document.getElementsByTagName('meta'),
 						generatorEl = null,
 						versionEl = null;
 					for (var i = 0, len = metaElements.length; i < len; i++) {
