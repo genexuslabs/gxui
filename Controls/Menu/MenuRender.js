@@ -106,6 +106,11 @@ Ext.define('gxui.Menu', {
 		return this.m_menu;
 	},
 
+	// Overriden
+	runDeferredMethod: function () {
+		return !!this.getUnderlyingControl();
+	},
+
 	createMenu: function (menu) {
 		if (menu) {
 			return new Ext.menu.Menu({

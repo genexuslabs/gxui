@@ -262,17 +262,21 @@ Ext.define('gxui.UserControl', {
 		for (var m in methods) {
 			if (typeof (methods[m]) == 'function') {
 				this[m] = Ext.bind(function () {
-					var control = this.getUnderlyingControl(),
-						fn = arguments[arguments.length - 1],
+					var fn = arguments[arguments.length - 1],
 						args = Array.prototype.slice.call(arguments, 0, arguments.length - 1);
 
-					if (control === false || (control && control.rendered))
+					if (this.runDeferredMethod(m))
 						return fn.apply(this, args);
 					else
 						gxui.afterShow(Ext.bind(fn, this, args), this, { single: true });
 				}, this, [methods[m]], true);
 			}
 		}
+	},
+
+	runDeferredMethod: function (methodName) {
+		var control = this.getUnderlyingControl();
+		return control === false || (control && control.rendered);
 	}
 });
 
