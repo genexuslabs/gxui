@@ -429,7 +429,10 @@ Ext.define('gxui.Toolbar', {
 			config.dock = options.dock || 'top';
 		}
 
-		config.listeners['afterrender'] = this.adjustWidth
+		config.listeners['afterrender'] = {
+			fn: this.adjustWidth,
+			delay: 300
+		};
 		config.listeners.scope = this;
 
 		this.m_toolbar = Ext.create('Ext.toolbar.Toolbar', config);
@@ -656,6 +659,7 @@ Ext.define('gxui.Toolbar', {
 		})
 
 		if (lastItem) {
+			toolbar.setWidth(100); // WA
 			width = lastItem.el.getLeft(true) + lastItem.el.getWidth() + toolbar.el.getFrameWidth('l r');
 			toolbar.setWidth(width);
 		}
