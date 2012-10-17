@@ -18,6 +18,7 @@ Ext.define('gxui.Viewport', {
 		this.m_panel = Ext.create('gxui.container.NestedViewport', {
 			id: this.getUniqueId(),
 			contentEl: body,
+			bodyCls: "gxui-noreset",
 			layout: 'fit',
 			renderTo: 'MAINFORM'
 		});

@@ -15,7 +15,7 @@
 	<Name>gxui.GridExtension</Name>
 	<ShowMethod>show</ShowMethod>
 	<ReferencedFiles>
-		<SharedFile>ext/resources/css/ext-all.css</SharedFile>
+		<SharedFile>ext/resources/css/ext-all-scoped.css</SharedFile>
 		<SharedFile>ext/ext-all.js</SharedFile>
 		<File>gxui-all.css</File>
 	</ReferencedFiles>

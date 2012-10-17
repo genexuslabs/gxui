@@ -199,6 +199,7 @@ Ext.define('gxui.TabPanel', {
 						id: this.getTabUniqueId(tab.InternalName),
 						layout: layout == "default" ? undefined : layout,
 						contentEl: !tab.HTML ? this.getChildContainer(tab.id) : undefined,
+						bodyCls: "gxui-noreset",
 						html: tab.HTML,
 						title: tab.Name,
 						closable: (tab.isRuntimeTab) ? (tab.closable !== undefined ? gxui.CBoolean(tab.closable) : true) : gxui.CBoolean(tab.closable),

@@ -131,7 +131,8 @@ Ext.define('gxui.Panel', {
 			listeners: this.getListeners(),
 			stateful: gxui.CBoolean(this.Stateful),
 			stateId: (this.StateId != "") ? this.StateId : undefined,
-			layout: this.Layout == 'default' ? undefined : this.Layout
+			layout: this.Layout == 'default' ? undefined : this.Layout,
+			bodyCls: "gxui-noreset"
 		};
 
 		gxui.tryPropertyMapping(config, this, {

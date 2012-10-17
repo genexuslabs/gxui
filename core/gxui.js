@@ -10,6 +10,43 @@
 gxui = function () {
 	var m_GenexusBuild = null;
 
+	var fixCssReset = function () {
+		var cssLines = [];
+
+		// Use scoped CSS by object
+		Ext.scopeResetCSS = true;
+
+		for (var i = 1; i <= 20; i++) {
+			var cellSpacing = [
+				".gxui-noreset table[cellspacing='", i, "'] {",
+				"    border-collapse: separate;",
+				"    border-spacing: ", i, "px;",
+				"}"
+			];
+
+			var cellPadding = [
+				".gxui-noreset table[cellpadding='", i, "'] > tbody > tr > td, .gxui-noreset table[cellpadding='", i, "'] > tbody > tr > th {",
+				"    padding: ", i, "px;",
+				"}"
+			];
+			cssLines.push(cellSpacing.join(""));
+			cssLines.push(cellPadding.join(""));
+		}
+
+		var head = document.getElementsByTagName('head')[0],
+			styleEl = document.createElement('style');
+
+		styleEl.type = 'text/css';
+
+		if (styleEl.styleSheet) {
+			styleEl.styleSheet.cssText = cssLines.join("");
+		}
+		else {
+			styleEl.appendChild(document.createTextNode(cssLines.join("")));
+		}
+		head.appendChild(styleEl);
+	};
+
 	return {
 		initialize: function () {
 
@@ -24,6 +61,9 @@ gxui = function () {
 			Ext.namespace('gxui.GX');
 			// Define a namespace for GxUI user extensions
 			Ext.namespace('gxui.ux');
+
+			// Fix CSS reset made by ExtJS that affects tables
+			fixCssReset();
 
 			gx.fx.obs.addObserver('gx.onready', this, function () {
 				if (gx && Ext.ieVersion > 0 && Ext.ieVersion < 8) {
