@@ -128,7 +128,7 @@
 									<Type>Text</Type>
 									<Default></Default>
 									<Metadata/>
-									<Description>The name of the attribute or variable to group on (case sensitive). Data should be sorted by this field when paging is enabled.</Description>
+									<Description>The name of the attribute or variable to group on (case sensitive). When a SDT is bound to the grid, use the name of the SDT member. Data should be sorted by this field when paging is enabled.</Description>
 								</Prop>
 								<Prop>
 									<Id>HideGroupedField</Id>
