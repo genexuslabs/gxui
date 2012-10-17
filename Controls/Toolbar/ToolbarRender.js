@@ -599,8 +599,7 @@ Ext.define('gxui.Toolbar', {
 			i += 1;
 		}, this)
 
-		if (this.m_toolbar.ownerCt)
-			this.adjustWidth(this.m_toolbar);
+		this.adjustWidth(this.m_toolbar);
 	},
 
 	//private
@@ -652,16 +651,18 @@ Ext.define('gxui.Toolbar', {
 	},
 
 	adjustWidth: function (toolbar) {
-		var lastItem = null;
-		toolbar.items.each(function (item) {
-			if (item.isVisible())
-				lastItem = item;
-		})
+		if (!toolbar.ownerCt) {
+			var lastItem = null;
+			toolbar.items.each(function (item) {
+				if (item.isVisible())
+					lastItem = item;
+			})
 
-		if (lastItem) {
-			toolbar.setWidth(100); // WA
-			width = lastItem.el.getLeft(true) + lastItem.el.getWidth() + toolbar.el.getFrameWidth('l r');
-			toolbar.setWidth(width);
+			if (lastItem) {
+				toolbar.setWidth(100); // WA
+				width = lastItem.el.getLeft(true) + lastItem.el.getWidth() + toolbar.el.getFrameWidth('l r');
+				toolbar.setWidth(width);
+			}
 		}
 	},
 
