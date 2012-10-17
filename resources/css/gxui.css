@@ -59,3 +59,7 @@ x-portlet .x-panel-body {
     text-decoration: none;
     color: inherit;
 }
+
+.x-body #gx_ajax_notification {
+    z-index: 1;
+}
