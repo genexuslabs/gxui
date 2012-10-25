@@ -264,12 +264,46 @@ Ext.define('gxui.GridExtension', {
 		}
 	},
 
+	resolveColumnName: function (col) {
+		var ownerGrid = this.ownerGrid,
+			boundColName = ownerGrid.boundedCollName,
+			parentObject = this.parentGxObject,
+			gridBCs = parentObject.GridBCs;
+
+		var findBcColumnName = function (bc, vStruct) {
+			for (var m in bc) {
+				if (bc[m] === vStruct)
+					return m;
+				if (bc[m].gxgrid || bc[m].ctrltype)
+					continue;
+				if (typeof (bc[m]) === 'object')
+					return findBcColumnName(bc[m], vStruct);
+			}
+			return undefined;
+		};
+
+		if (boundColName) {
+			if (gridBCs) {
+				for (var m in gridBCs) {
+					if (typeof (gridBCs[m]) === 'object' && gridBCs[m].gxvar == boundColName)
+						return findBcColumnName(gridBCs[m], col.gxControl.vStruct);
+				}
+			}
+
+			// WA for Evo1, to be able to group complex SDT bound grids. As it's not possible to get the column name, the control name in upper case is used instead.
+			return col.htmlName;
+		}
+
+		return col.gxAttName || col.gxAttId;
+	},
+
 	mapColumn: function (col, i, conf) {
 		var GE = gxui.GridExtension, controlTypes = gx.html.controls.types;
 
 		if (gx.lang.gxBoolean(col.visible)) {
 			var colType = this.getColumnType(col),
-				converter;
+				converter,
+				dataIndex = this.resolveColumnName(col);
 
 			if (colType == 'date')
 				converter = this.converter.date;
@@ -277,7 +311,7 @@ Ext.define('gxui.GridExtension', {
 				converter = this.converter.checkBox;
 
 			conf.fields.push({
-				name: col.gxAttName || col.gxAttId,
+				name: dataIndex,
 				mapping: function (i, converter) {
 					return function (obj) {
 						var hasReturn = obj[i].grid.instanciateRow(obj[i].gridRow);
@@ -325,7 +359,7 @@ Ext.define('gxui.GridExtension', {
 			var colCfg = {
 				xtype: GE.ColumnRenderers.get(col.gxControl.type),
 				id: this.getUniqueId() + '-col-' + col.htmlName,
-				dataIndex: col.gxAttName || col.gxAttId,
+				dataIndex: dataIndex,
 				header: col.title,
 				width: colWidth,
 				flex: colFlex,
