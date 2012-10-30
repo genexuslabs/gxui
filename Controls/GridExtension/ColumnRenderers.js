@@ -258,7 +258,20 @@ Ext.define('gxui.GridExtension.ImageColumn', {
 	renderer: function (value, metadata, record, rowIndex, colIndex, store) {
 		var cell = record.raw[this.actualColIndex];
 		if (gx.lang.gxBoolean(cell.visible)) {
-			value = Ext.String.format('<img src="{0}" class="{1}" title="{2}" />', cell.value, cell.cssClass, cell.title);
+			var styleBuffer = [];
+			if (cell.width) {
+				styleBuffer.push("width:");
+				styleBuffer.push(cell.width);
+				styleBuffer.push(cell.widthUnit);
+				styleBuffer.push(";");
+			}
+			if (cell.height) {
+				styleBuffer.push("height:");
+				styleBuffer.push(cell.height);
+				styleBuffer.push(cell.heightUnit);
+				styleBuffer.push(";");
+			}
+			value = Ext.String.format('<img src="{0}" class="{1}" title="{2}" style="{3}"/>', cell.value, cell.cssClass, cell.title, styleBuffer.join(""));
 		}
 		return this.callParent([value, metadata, record, rowIndex, colIndex, store]);
 	}
