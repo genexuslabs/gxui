@@ -22,53 +22,60 @@ Ext.define('gxui.GridExtension', {
 	},
 
 	onRefresh: function () {
-		var grid = this.m_grid,
+		if (!this.editable && this.isEditable(true)) {
+			this.m_grid.destroy();
+			this.onRender();
+			this.keepSelection(this.m_grid);
+		}
+		else {
+			var grid = this.m_grid,
 			view = grid.getView();
 
-		// Toggle summary row
-		if (gx.lang.gxBoolean(this.Grouping)) {
-			var groupingFeature = view.getFeature(this.getUniqueId() + '-grouping');
-			if (groupingFeature && groupingFeature.ftype == 'groupingsummary')
-				groupingFeature.toggleSummaryRow(gx.lang.gxBoolean(this.ShowGroupingSummary));
-		}
-
-		grid.getStore().loadRawData(this.properties);
-
-		this.updatePagingToolbar(grid.getDockedComponent('toolbar'));
-
-		this.keepSelection(grid);
-
-		if (gx.lang.gxBoolean(this.gxAllowCollapsing)) {
-			if (gx.lang.gxBoolean(this.gxCollapsed)) {
-				grid.collapse();
+			// Toggle summary row
+			if (gx.lang.gxBoolean(this.Grouping)) {
+				var groupingFeature = view.getFeature(this.getUniqueId() + '-grouping');
+				if (groupingFeature && groupingFeature.ftype == 'groupingsummary')
+					groupingFeature.toggleSummaryRow(gx.lang.gxBoolean(this.ShowGroupingSummary));
 			}
-			else {
-				grid.expand();
-			}
-		}
 
-		if (this.Visible != undefined) {
-			if (gx.lang.gxBoolean(this.gxVisible) && !grid.isVisible()) {
-				grid.show();
-			}
-			else {
-				if (!gx.lang.gxBoolean(this.gxVisible) && grid.isVisible()) {
-					grid.hide();
+			grid.getStore().loadRawData(this.properties);
+
+			this.updatePagingToolbar(grid.getDockedComponent('toolbar'));
+
+			this.keepSelection(grid);
+
+			if (gx.lang.gxBoolean(this.gxAllowCollapsing)) {
+				if (gx.lang.gxBoolean(this.gxCollapsed)) {
+					grid.collapse();
+				}
+				else {
+					grid.expand();
 				}
 			}
-		}
 
-		if (!grid.ownerCt) {
-			if (this.gxHeight && grid.getBox().height != this.gxHeight) {
-				grid.setHeight(this.gxHeight);
+			if (this.Visible != undefined) {
+				if (gx.lang.gxBoolean(this.gxVisible) && !grid.isVisible()) {
+					grid.show();
+				}
+				else {
+					if (!gx.lang.gxBoolean(this.gxVisible) && grid.isVisible()) {
+						grid.hide();
+					}
+				}
 			}
 
-			if (this.gxWidth && grid.getBox().width != this.gxWidth) {
-				grid.setWidth(this.gxWidth);
-			}
-		}
+			if (!grid.ownerCt) {
+				if (this.gxHeight && grid.getBox().height != this.gxHeight) {
+					grid.setHeight(this.gxHeight);
+				}
 
-		grid.setTitle(this.Title);
+				if (this.gxWidth && grid.getBox().width != this.gxWidth) {
+					grid.setWidth(this.gxWidth);
+				}
+			}
+
+			grid.setTitle(this.Title);
+		}
 	},
 
 	onAfterRender: function () {
@@ -696,8 +703,8 @@ Ext.define('gxui.GridExtension', {
 		};
 	},
 
-	isEditable: function () {
-		if (this.editable === undefined) {
+	isEditable: function (force) {
+		if (this.editable === undefined || force) {
 			var editable = false;
 			for (var i = 0, rows = this.properties.length; i < rows; i++) {
 				for (var j = 0, cols = this.properties[i].length; j < cols; j++) {
