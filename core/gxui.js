@@ -13,19 +13,17 @@ gxui = function () {
 	var fixCssReset = function () {
 		var cssLines = [];
 
-		// Use scoped CSS by object
-		Ext.scopeResetCSS = true;
-
+		// CSS rules are created on the fly so cellpadding and cellspacing values are not reseted.
 		for (var i = 1; i <= 20; i++) {
 			var cellSpacing = [
-				".gxui-noreset table[cellspacing='", i, "'] {",
+				"table[cellspacing='", i, "'] {",
 				"    border-collapse: separate;",
 				"    border-spacing: ", i, "px;",
 				"}"
 			];
 
 			var cellPadding = [
-				".gxui-noreset table[cellpadding='", i, "'] > tbody > tr > td, .gxui-noreset table[cellpadding='", i, "'] > tbody > tr > th {",
+				"table[cellpadding='", i, "'] > tbody > tr > td, table[cellpadding='", i, "'] > tbody > tr > th {",
 				"    padding: ", i, "px;",
 				"}"
 			];
