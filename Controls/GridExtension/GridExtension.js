@@ -148,16 +148,25 @@ Ext.define('gxui.GridExtension', {
 		var plugins = [{ ptype: 'autowidthcolumns'}];
 
 		if (this.isEditable()) {
-			plugins.push({
-				ptype: 'cellediting',
-				pluginId: this.getUniqueId() + '-celledit',
-				clicksToEdit: 1,
+			var editingPlugin = {
+				clicksToEdit: parseInt(this.ClicksToEdit),
 				listeners: {
 					'edit': this.afterEditHandler,
 					'beforeedit': this.beforeEditHandler,
 					scope: this
 				}
-			});
+			};
+
+			plugins.push(editingPlugin);
+
+			if (this.EditModel == 'CellEditModel') {
+				editingPlugin.ptype = 'cellediting';
+				editingPlugin.pluginId = this.getUniqueId() + '-celledit';
+			}
+			else {
+				editingPlugin.ptype = 'rowediting';
+				editingPlugin.pluginId = this.getUniqueId() + '-rowedit';
+			}
 		}
 
 		return plugins;
@@ -176,10 +185,11 @@ Ext.define('gxui.GridExtension', {
 	},
 
 	getSelModelConfig: function () {
-		if (this.isEditable())
+		if (this.isEditable() && this.EditModel == 'CellEditModel') {
 			return {
 				selType: 'cellmodel'
 			};
+		}
 		else if (this.SelectionModel == 'CheckBoxSelectionModel')
 			return {
 				selType: 'checkboxmodel',
@@ -809,13 +819,29 @@ Ext.define('gxui.GridExtension', {
 		var actualColIndex = this.getActualColumnIndex(e.grid, e.colIdx),
 			cell = this.getPropertiesCell(e.grid, e.rowIdx, actualColIndex, true),
 			gxControl = cell.column.gxControl,
-			controlTypes = gx.html.controls.types;
+			controlTypes = gx.html.controls.types,
+			columns = e.grid.columns;
 
-		this.setCellValue(cell, e.value);
+		if (this.EditModel == 'CellEditModel') {
+			this.setCellValue(cell, e.value);
 
-		// Fire cell click event
-		if (gxControl.type == controlTypes.checkBox || gxControl.type == controlTypes.comboBox) {
-			this.fireCellClickEvent(e.rowIdx, e.colIdx)
+			// Fire cell click event
+			if (gxControl.type == controlTypes.checkBox || gxControl.type == controlTypes.comboBox) {
+				this.fireCellClickEvent(e.rowIdx, e.colIdx)
+			}
+
+		}
+		else {
+			for (var i = 0, len = columns.length; i < len; i++) {
+				actualColIndex = this.getActualColumnIndex(e.grid, i),
+				cell = this.getPropertiesCell(e.grid, e.rowIdx, actualColIndex, true);
+
+				var value = e.record.getChanges()[columns[i].dataIndex];
+
+				if (value !== undefined) {
+					this.setCellValue(cell, value);
+				}
+			}
 		}
 
 		if (gx.lang.gxBoolean(this.ShowGroupingSummary))

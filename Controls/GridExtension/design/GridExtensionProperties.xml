@@ -64,8 +64,41 @@
 								<Value id="RowSelectionModel" desc="Row" />
 								<Value id="CheckBoxSelectionModel" desc="Checkbox" />
 							</Values>
-							<Description>The selection model to use with the grid: RowSelectionModel (rows are selected by clicking on the row) or CheckBoxSelectionModel (a check box appears in the first column of the grid). If the grid has at least one editable column, the selection model is ignored as a cell by cell model is used.</Description>
+							<Description>The selection model to use with the grid: Row (rows are selected by clicking on the row) or Checkbox (a check box appears in the first column of the grid). If the grid has at least one editable column, the selection model is ignored as a cell by cell model is used.</Description>
 						</Prop>
+						<Group>
+							<Name>Editing</Name>
+							<Children>
+								<Prop>
+									<Id>EditModel</Id>
+									<Name>EditModel</Name>
+									<Type>Combo</Type>
+									<Default>CellEditModel</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="CellEditModel" desc="Cell" />
+										<Value id="RowEditModel" desc="Row" />
+									</Values>
+									<Description>The edit model to use with the grid. If Row is selected, when editing begins, a small floating dialog will be shown for the appropriate row. Each editable column will show a field for editing. There is a button to save or cancel all changes for the edit. If Cell is selected, only a single cell will be editable at a time.</Description>
+								</Prop>
+								<Prop>
+									<Id>ClicksToEdit</Id>
+									<Name>ClicksToEdit</Name>
+									<Type>Combo</Type>
+									<Default>1</Default>
+									<Metadata>
+										<Value name="FlagScope">DesignTime</Value>
+									</Metadata>
+									<Values>
+										<Value id="1" desc="1" />
+										<Value id="2" desc="2" />
+									</Values>
+									<Description>The number of clicks on a grid required to display the editor. The only accepted values are 1 and 2.</Description>
+								</Prop>
+							</Children>
+						</Group>
 						<Group>
 							<Name>DragDrop</Name>
 							<Children>

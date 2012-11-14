@@ -246,6 +246,12 @@ Ext.define('gxui.GridExtension.Column', {
 				buffer.push(Ext.String.format(properties[i] + ":{0};", propMatch[1]));
 		}
 		return buffer.join("");
+	},
+
+	getEditorPlugin: function () {
+		var grid = this.ownerCt.ownerCt,
+			pluginId = grid.id + (this.gxGrid.EditModel == 'CellEditModel' ? '-celledit' : '-rowedit');
+		return grid.getPlugin(pluginId);
 	}
 });
 
@@ -295,7 +301,7 @@ Ext.define('gxui.GridExtension.CheckColumn', {
 	listeners: {
 		'checkchange': function (column, rowIndex, checked) {
 			var grid = column.ownerCt.ownerCt,
-				editorPlugin = grid.getPlugin(grid.id + '-celledit'),
+				editorPlugin = this.getEditorPlugin(),
 				editingContext = editorPlugin.getEditingContext(rowIndex, column);
 
 			if (editorPlugin)
@@ -338,10 +344,16 @@ Ext.define('gxui.GridExtension.ComboColumn', {
 			forceSelection: true,
 			store: [["", ""]],
 			queryMode: 'local',
+			getActiveRecord: function (column) {
+				var plugin = column.getEditorPlugin();
+				if (column.gxGrid.EditModel == 'CellEditModel')
+					return plugin.getActiveRecord();
+				return plugin.context.record;
+			},
 			populateCombo: function (column) {
-				var grid = column.ownerCt.ownerCt,
-					record = grid.getPlugin(grid.id + '-celledit').getActiveRecord();
-				var cell = record.raw[column.actualColIndex];
+				var record = this.getActiveRecord(column)
+				cell = record.raw[column.actualColIndex];
+
 				this.getStore().loadData(cell.possibleValues);
 				if (typeof cell.value == "string")
 					this.select(cell.value.trim());
@@ -350,15 +362,20 @@ Ext.define('gxui.GridExtension.ComboColumn', {
 			},
 			listeners: {
 				'beforerender': function (combo) {
-					combo.populateCombo(this);
+					if (this.gxGrid.EditModel == 'CellEditModel') {
+						combo.populateCombo(this);
+					}
+					else {
+						combo.ownerCt.on('show', Ext.bind(combo.populateCombo, combo, [this]));
+					}
 				},
 				'beforequery': function (queryEvent) {
 					queryEvent.combo.populateCombo(this);
 				},
 				'select': function () {
-					var grid = this.ownerCt.ownerCt,
-						editorPlugin = grid.getPlugin(grid.id + '-celledit');
-					editorPlugin.completeEdit();
+					if (this.gxGrid.EditModel == 'CellEditModel') {
+						this.getEditorPlugin().completeEdit();
+					}
 				},
 				scope: this
 			}
