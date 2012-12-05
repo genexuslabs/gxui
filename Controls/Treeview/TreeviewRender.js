@@ -524,6 +524,21 @@ Ext.define('gxui.Treeview', {
 		};
 	},
 
+	findChildNode: function (id, nodes) {
+		for (var i = 0, len = nodes.length; i < len; i++) {
+			if (nodes[i].id == id) {
+				return nodes[i];
+			}
+			if (nodes[i].children.length > 0) {
+				var node = this.findChildNode(id, nodes[i].children);
+				if (node) {
+					return node;
+				}
+			}
+		}
+		return null;
+	},
+
 	methods: {
 		// Methods
 		/**
@@ -592,31 +607,38 @@ Ext.define('gxui.Treeview', {
 			var n = node ? ((typeof node == 'object') ? node : this.getNodeById(node)) : tree.getRootNode();
 
 			if (n) {
-				var loadCallback = Ext.bind(function () {
+				var loadCallback = function (node, initState) {
+					node = node || n;
 					if (expand || expand === undefined) {
-						n.expand();
+						node.expand();
 					}
-					tree.initState();
-				}, this);
+					if (initState !== false) {
+						tree.initState();
+					}
+				};
 
 				var store = tree.getStore();
 				if (this.LazyLoading) {
+					var loadCfg = {
+						callback: Ext.bind(loadCallback, this),
+						node: n
+					};
+
 					store.getProxy().url = this.LoaderURL;
 					if (store.isLoading())
-						Ext.defer(store.load, 500, store, [{
-							callback: loadCallback,
-							node: n
-						}]);
+						Ext.defer(store.load, 500, store, [loadCfg]);
 					else
-						store.load({
-							callback: loadCallback,
-							node: n
-						});
+						store.load(loadCfg);
 				}
 				else {
-					var root = tree.getRootNode();
-					tree.setRootNode(this.createRootNode());
-					loadCallback();
+					if (n == tree.getRootNode()) {
+						tree.setRootNode(this.createRootNode());
+					}
+					else {
+						var rawNode = this.findChildNode(node, this.Children),
+							newNode = n.parentNode.replaceChild(rawNode, n);
+					}
+					loadCallback(newNode, false);
 				}
 
 				if (this.SelectedNode != undefined) {
