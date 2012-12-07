@@ -33,6 +33,8 @@ Ext.define('gxui.Panel', {
 	onRender: function () {
 		var config = this.getConfig();
 
+		Ext.fly(this.getChildContainer("Body")).enableDisplayMode().show();
+
 		if (gxui.CBoolean(this.ShowAsWindow)) {
 			config.closeAction = "hide";
 			config.renderTo = 'MAINFORM';
@@ -82,10 +84,6 @@ Ext.define('gxui.Panel', {
 			this.m_gxTbar.SetData(this.ToolbarData);
 			this.m_gxTbar.onRefresh();
 		}
-	},
-
-	onAfterRender: function (panel) {
-		panel.body.first('.gx_usercontrol_child').enableDisplayMode().show();
 	},
 
 	getUnderlyingControl: function () {

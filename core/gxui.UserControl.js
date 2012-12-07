@@ -236,11 +236,14 @@ Ext.define('gxui.UserControl', {
 	addToContainer: function () {
 		var control = this.getUnderlyingControl();
 		if (control) {
-			if (this.addToParent())
+			if (this.addToParent()) {
 				gxui.UserControlManager.addToParentContainer(this, control);
-			else
-				if (!this.unmanagedLayout && !control.rendered)
+			}
+			else {
+				if (!this.unmanagedLayout && !control.rendered) {
 					control.render(this.getContainerControl());
+				}
+			}
 		}
 	},
 
