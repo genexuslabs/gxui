@@ -125,7 +125,6 @@ Ext.define('gxui.Layout', {
 			region: regionKey.toLowerCase(),
 			contentEl: this.getChildContainer(regionKey),
 			autoScroll: (this.getProperty(regionKey, "Layout") != "fit") ? this.getProperty(regionKey, "AutoScroll") : false,
-			preventHeader: !this.getProperty(regionKey, "TitleBar"),
 			cls: "x-region-" + regionKey.toLowerCase(),
 			bodyCls: "gxui-noreset",
 			duration: this.getProperty(regionKey, "Duration") / 1000,
@@ -141,6 +140,10 @@ Ext.define('gxui.Layout', {
 				scope: this
 			}
 		};
+
+		if (!this.getProperty(regionKey, "TitleBar")) {
+			config.header = false;
+		}
 
 		gxui.tryPropertyMapping(config, Ext.bind(this.getProperty, this, [regionKey], 0), {
 			"hidden": "Hidden",
