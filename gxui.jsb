@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project path="" name="GxUI Library" author="Artech" version="2.0 beta (Build 1350)" copyright="GxUI Library $version&#xD;&#xA;Copyright (c) 2009, $author&#xD;&#xA;All rights reserved.&#xD;&#xA;&#xD;&#xA;GxUI Library is freely distributable under the terms of the BSD license.&#xD;&#xA;" output="$project\build\gxui" source="True" source-dir="$output" minify="False" min-dir="$output\min" doc="False" doc-dir="$output\docs" master="true" master-file="$output\yui-ext.js" zip="true" zip-file="$output\yuo-ext.$version.zip">
+<project path="" name="GxUI Library" author="Artech" version="2.0 beta (Build 1415)" copyright="GxUI Library $version&#xD;&#xA;Copyright (c) 2009, $author&#xD;&#xA;All rights reserved.&#xD;&#xA;&#xD;&#xA;GxUI Library is freely distributable under the terms of the BSD license.&#xD;&#xA;" output="$project\build\gxui" source="True" source-dir="$output" minify="False" min-dir="$output\min" doc="False" doc-dir="$output\docs" master="true" master-file="$output\yui-ext.js" zip="true" zip-file="$output\yuo-ext.$version.zip">
   <directory name="" />
   <file name="core\gxui.js" path="core" />
   <file name="Controls\Panel\PanelRender.js" path="Panel" />
@@ -113,7 +113,7 @@
   <file name="Controls\Panel.control" path="" />
   <file name="Controls\Toolbar\design\ToolbarRender.xsl" path="Toolbar\design" />
   <file name="Controls\Toolbar\design\toolbar.ico" path="Toolbar\design" />
-  <file name="Controls\Toolbar\design\toolbar.xpz" path="Toolbar\design" />
+  <file name="Controls\Toolbar\design\toolbar.xml" path="Toolbar\design" />
   <file name="Controls\Toolbar\design\ToolbarProperties.xml" path="Toolbar\design" />
   <file name="Controls\Toolbar\design\toolbar.bmp" path="Toolbar\design" />
   <file name="Controls\Toolbar\ToolbarRender.js" path="Toolbar" />
@@ -129,7 +129,7 @@
   <file name="Controls\Treeview\design\TreeviewRender.xsl" path="Treeview\design" />
   <file name="Controls\Treeview\design\treeview.gif" path="Treeview\design" />
   <file name="Controls\Treeview\design\treeview.ico" path="Treeview\design" />
-  <file name="Controls\Treeview\design\Treeview.xpz" path="Treeview\design" />
+  <file name="Controls\Treeview\design\Treeview.xml" path="Treeview\design" />
   <file name="Controls\Treeview\design\TreeviewProperties.xml" path="Treeview\design" />
   <file name="Controls\Treeview\TreeviewRender.js" path="Treeview" />
   <file name="Controls\Treeview.control" path="" />
@@ -182,7 +182,6 @@
   <file name="Controls\Menu\design\menu.bmp" path="Menu\design" />
   <file name="Controls\Menu\MenuRender.js" path="Menu" />
   <file name="Controls\Menu.control" path="" />
-  <file name="Controls\Toolbar\design\toolbar.xml" path="Toolbar\design" />
   <file name="Controls\Viewport.control" path="" />
   <file name="Controls\Viewport\design\ViewportRender.xsl" path="Viewport\design" />
   <file name="Controls\Viewport\design\viewport.ico" path="Viewport\design" />

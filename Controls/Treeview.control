@@ -52,6 +52,23 @@
 			</Parameters>
 		</Method>
 		<Method>
+			<Name>SelectNextNode</Name>
+			<Signature>SelectNextNode()</Signature>
+			<Parameters />
+		</Method>
+		<Method>
+			<Name>SelectPreviousNode</Name>
+			<Signature>SelectPreviousNode()</Signature>
+			<Parameters />
+		</Method>
+		<Method>
+			<Name>DeleteNode</Name>
+			<Signature>DeleteNode(nodeId:Character)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
 			<Name>ExpandNode</Name>
 			<Signature>ExpandNode(nodeId:Character)</Signature>
 			<Parameters>
@@ -132,6 +149,33 @@
 			<Parameters>
 				<Parameter>Character</Parameter>
 				<Parameter>Character</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
+			<Name>SetNodePropertyBoolean</Name>
+			<Signature>SetNodePropertyBoolean(nodeId:Character, propName:Character, propValue:Boolean)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+				<Parameter>Character</Parameter>
+				<Parameter>Boolean</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
+			<Name>SetNodePropertyString</Name>
+			<Signature>SetNodePropertyString(nodeId:Character, propName:Character, propValue:Character)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+				<Parameter>Character</Parameter>
+				<Parameter>Character</Parameter>
+			</Parameters>
+		</Method>
+		<Method>
+			<Name>SetNodePropertyNumber</Name>
+			<Signature>SetNodePropertyNumber(nodeId:Character, propName:Character, propValue:Integer)</Signature>
+			<Parameters>
+				<Parameter>Character</Parameter>
+				<Parameter>Character</Parameter>
+				<Parameter>Integer</Parameter>
 			</Parameters>
 		</Method>
 		<Method>

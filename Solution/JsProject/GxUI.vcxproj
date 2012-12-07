@@ -100,7 +100,9 @@
     <None Include="..\..\Controls\Panel\PanelRender.js" />
     <None Include="..\..\Controls\Panel\design\panel-title-light-bg.gif" />
     <None Include="..\..\Controls\Panel\design\panel.ico" />
-    <None Include="..\..\Controls\Panel\design\PanelProperties.xml" />
+    <None Include="..\..\Controls\Panel\design\PanelProperties.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="..\..\Controls\Panel\design\PanelRender.xsl" />
     <None Include="..\..\Controls\Treeview.control">
       <SubType>Designer</SubType>
@@ -116,7 +118,7 @@
     <None Include="..\..\Controls\Settings\SettingsRender.js" />
     <None Include="..\..\Controls\Settings\design\settings.ico" />
     <None Include="..\..\Controls\Settings\design\settings.png" />
-    <None Include="..\..\Controls\Settings\design\Settings.xpz" />
+    <None Include="..\..\Controls\Settings\design\Settings.xml" />
     <None Include="..\..\Controls\Settings\design\SettingsProperties.xml" />
     <None Include="..\..\Controls\Settings\design\SettingsRender.xsl" />
     <None Include="..\..\Controls\Toolbar.control" />
@@ -124,7 +126,7 @@
     <None Include="..\..\Controls\Toolbar\ToolbarRender.js" />
     <None Include="..\..\Controls\Toolbar\design\toolbar.bmp" />
     <None Include="..\..\Controls\Toolbar\design\toolbar.ico" />
-    <None Include="..\..\Controls\Toolbar\design\toolbar.xpz" />
+    <None Include="..\..\Controls\Toolbar\design\toolbar.xml" />
     <None Include="..\..\Controls\Toolbar\design\ToolbarProperties.xml" />
     <None Include="..\..\Controls\Toolbar\design\ToolbarRender.xsl" />
     <None Include="..\..\Controls\TabPanel.control" />
@@ -156,8 +158,12 @@
     <None Include="..\..\Controls\GridExtension.control" />
     <None Include="..\..\Controls\GridExtension\GridExtension.js" />
     <None Include="..\..\Controls\GridExtension\design\GridExtensionColumnProperties.xml" />
-    <None Include="..\..\Controls\GridExtension\design\GridExtensionProperties.xml" />
-    <None Include="..\..\Controls\Viewport.control" />
+    <None Include="..\..\Controls\GridExtension\design\GridExtensionProperties.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\..\Controls\Viewport.control">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="..\..\Controls\Viewport\ViewportRender.js" />
     <None Include="..\..\Controls\Viewport\design\viewport.ico" />
     <None Include="..\..\Controls\Viewport\design\ViewportProperties.xml" />

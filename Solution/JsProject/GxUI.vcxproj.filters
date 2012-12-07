@@ -225,9 +225,6 @@
     <None Include="..\..\Controls\Settings\design\settings.png">
       <Filter>Controls\Settings\design</Filter>
     </None>
-    <None Include="..\..\Controls\Settings\design\Settings.xpz">
-      <Filter>Controls\Settings\design</Filter>
-    </None>
     <None Include="..\..\Controls\Settings\design\SettingsProperties.xml">
       <Filter>Controls\Settings\design</Filter>
     </None>
@@ -247,9 +244,6 @@
       <Filter>Controls\Toolbar\design</Filter>
     </None>
     <None Include="..\..\Controls\Toolbar\design\toolbar.ico">
-      <Filter>Controls\Toolbar\design</Filter>
-    </None>
-    <None Include="..\..\Controls\Toolbar\design\toolbar.xpz">
       <Filter>Controls\Toolbar\design</Filter>
     </None>
     <None Include="..\..\Controls\Toolbar\design\ToolbarProperties.xml">
@@ -479,6 +473,12 @@
     </None>
     <None Include="..\..\Controls\Splash\splash.css">
       <Filter>Controls\Splash</Filter>
+    </None>
+    <None Include="..\..\Controls\Toolbar\design\toolbar.xml">
+      <Filter>Controls\Toolbar\design</Filter>
+    </None>
+    <None Include="..\..\Controls\Settings\design\Settings.xml">
+      <Filter>Controls\Settings\design</Filter>
     </None>
   </ItemGroup>
 </Project>

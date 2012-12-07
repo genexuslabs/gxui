@@ -539,6 +539,13 @@ Ext.define('gxui.Treeview', {
 		return null;
 	},
 
+	setNodeProperty: function (nodeId, name, value) {
+		var node = this.getNodeById(nodeId);
+		if (node) {
+			node.set(name, value);
+		}
+	},
+
 	methods: {
 		// Methods
 		/**
@@ -552,6 +559,34 @@ Ext.define('gxui.Treeview', {
 				this.setSelectedNode(node)
 				this.m_tree.getSelectionModel().select(node);
 				this.m_tree.expandPath(node.getPath("id"), "id");
+			}
+		},
+
+		/**
+		* Selects the node immediately following the currently selected node.
+		* @method
+		*/
+		SelectNextNode: function () {
+			this.m_tree.getSelectionModel().selectNext();
+		},
+
+		/**
+		* Selects the node that precedes the currently selected node.
+		* @method
+		*/
+		SelectPreviousNode: function () {
+			this.m_tree.getSelectionModel().selectPrevious();
+		},
+
+		/**
+		* Remove a node from the tree
+		* @param {String} nodeId Node id
+		* @method
+		*/
+		DeleteNode: function (nodeId) {
+			var node = this.getNodeById(nodeId);
+			if (node) {
+				node.remove();
 			}
 		},
 
@@ -722,10 +757,41 @@ Ext.define('gxui.Treeview', {
 		* @method
 		*/
 		SetNodeText: function (nodeId, text) {
-			var node = this.getNodeById(nodeId);
-			if (node) {
-				node.set("text", text);
-			}
+			this.setNodeProperty(nodeId, 'text', text);
+		},
+
+
+		/**
+		* Sets the boolean value of a property of a given node.
+		* @param {String} nodeId Node id
+		* @param {String} name Property name
+		* @param {Boolean} value Property value
+		* @method
+		*/
+		SetNodePropertyBoolean: function (nodeId, name, value) {
+			this.setNodeProperty(nodeId, name, value);
+		},
+
+		/**
+		* Sets the string value of a property of a given node.
+		* @param {String} nodeId Node id
+		* @param {String} name Property name
+		* @param {String} value Property value
+		* @method
+		*/
+		SetNodePropertyString: function (nodeId, name, value) {
+			this.setNodeProperty(nodeId, name, value);
+		},
+
+		/**
+		* Sets the numeric value of a property of a given node.
+		* @param {String} nodeId Node id
+		* @param {String} name Property name
+		* @param {Number} value Property value
+		* @method
+		*/
+		SetNodePropertyNumber: function (nodeId, name, value) {
+			this.setNodeProperty(nodeId, name, value);
 		},
 
 		// @TODO: Implementar cuando funcione Edit
