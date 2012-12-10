@@ -23,7 +23,7 @@ gxui = function () {
 			];
 
 			var cellPadding = [
-				"table[cellpadding='", i, "'] > tbody > tr > td, table[cellpadding='", i, "'] > tbody > tr > th {",
+				"table[cellpadding='", i, "'] > tbody > tr > td:not([class]), table[cellpadding='", i, "'] > tbody > tr > th:not([class]) {",
 				"    padding: ", i, "px;",
 				"}"
 			];
