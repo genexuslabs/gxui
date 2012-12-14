@@ -653,9 +653,9 @@ Ext.define('gxui.GridExtension', {
 			},
 
 			'cellclick': function (view, cellEl, columnIndex, record, rowEl, rowIndex, e) {
-				var cell = this.getPropertiesCell(view.panel, rowIndex, columnIndex, false),
-					gxControlTypes = gx.html.controls.types;
-				if (cell.type == gxControlTypes.image || cell.type == gxControlTypes.checkBox || !cell.enabled)
+				var cell = this.getPropertiesCell(view.panel, rowIndex, columnIndex, false);
+
+				if (this.isCellEventEnabled(cell))
 					this.fireCellClickEvent(rowIndex, columnIndex);
 			},
 
@@ -794,6 +794,11 @@ Ext.define('gxui.GridExtension', {
 		}, this);
 
 		return setter;
+	},
+
+	isCellEventEnabled: function (cell) {
+		var gxControlTypes = gx.html.controls.types;
+		return cell.type == gxControlTypes.checkBox || (cell.type == gxControlTypes.image && cell.enabled && (cell.readOnly === undefined || cell.readOnly === true)) || (cell.type != gxControlTypes.image && !cell.enabled);
 	},
 
 	fireCellClickEvent: function (rowIndex, columnIndex) {

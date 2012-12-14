@@ -222,7 +222,7 @@ Ext.define('gxui.GridExtension.Column', {
 				style += this.extractCssProperties(["text-decoration", "color", "background-color", "font-weight"], cell.style);
 
 			// If the cell fires a user event and is enabled, wrap with an anchor tag.
-			if (/*gx.lang.gxBoolean(cell.enabled) &&*/(col.gxControl.eventName || col.gxControl.jsDynCode)) {
+			if (cell.grid.grid.isCellEventEnabled(cell)) {
 				style += 'cursor:pointer;';
 			}
 
