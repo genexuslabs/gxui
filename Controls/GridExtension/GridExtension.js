@@ -135,7 +135,7 @@ Ext.define('gxui.GridExtension', {
 			config.cls += ' ' + this.gxCssClass;
 		}
 
-		if (this.hasPagingButtons()) {
+		if (this.usePagingToolbar()) {
 			config.dockedItems.push(this.getPagingToolbarConfig());
 		}
 
@@ -468,6 +468,10 @@ Ext.define('gxui.GridExtension', {
 		return storeConfig;
 	},
 
+	usePagingToolbar: function () {
+		return this.hasPagingButtons() || !!this.OnFirstPage || !!this.OnPreviousPage || !!this.OnNextPage || !!this.OnLastPage;
+	},
+
 	getPagingToolbarConfig: function () {
 		var items = [],
 			usePaging = this.hasPagingButtons();
@@ -487,7 +491,7 @@ Ext.define('gxui.GridExtension', {
 				tooltip: this.FirstText,
 				overflowText: this.FirstText,
 				iconCls: "x-tbar-page-first",
-				disabled: this.isFirstPage(),
+				disabled: usePaging && this.isFirstPage(),
 				handler: this.OnFirstPage || Ext.bind(this.goToPage, this, ["first"]),
 				scope: this
 			});
@@ -508,7 +512,7 @@ Ext.define('gxui.GridExtension', {
 				tooltip: this.PreviousText,
 				overflowText: this.PreviousText,
 				iconCls: "x-tbar-page-prev",
-				disabled: this.isFirstPage(),
+				disabled: usePaging && this.isFirstPage(),
 				handler: this.OnPreviousPage || Ext.bind(this.goToPage, this, ["prev"]),
 				scope: this
 			});
@@ -533,7 +537,7 @@ Ext.define('gxui.GridExtension', {
 				tooltip: this.NextText,
 				overflowText: this.NextText,
 				iconCls: "x-tbar-page-next",
-				disabled: this.isLastPage(),
+				disabled: usePaging && this.isLastPage(),
 				handler: this.OnNextPage || Ext.bind(this.goToPage, this, ["next"]),
 				scope: this
 			});
@@ -554,7 +558,7 @@ Ext.define('gxui.GridExtension', {
 				tooltip: this.LastText,
 				overflowText: this.LastText,
 				iconCls: "x-tbar-page-last",
-				disabled: this.isLastPage(),
+				disabled: usePaging && this.isLastPage(),
 				handler: this.OnLastPage || Ext.bind(this.goToPage, this, ["last"]),
 				scope: this
 			});
@@ -593,23 +597,26 @@ Ext.define('gxui.GridExtension', {
 
 	updatePagingToolbar: function (tb) {
 		if (tb) {
-			var first = tb.child('#first'),
+			var usePaging = this.hasPagingButtons(),
+				first = tb.child('#first'),
 				previous = tb.child('#previous'),
 				next = tb.child('#next'),
 				last = tb.child('#last'),
 				status = tb.child('#status');
 
-			if (first) {
-				first.setDisabled(this.isFirstPage());
-			}
-			if (previous) {
-				previous.setDisabled(this.isFirstPage());
-			}
-			if (next) {
-				next.setDisabled(this.isLastPage());
-			}
-			if (last) {
-				last.setDisabled(this.isLastPage());
+			if (usePaging) {
+				if (first) {
+					first.setDisabled(this.isFirstPage());
+				}
+				if (previous) {
+					previous.setDisabled(this.isFirstPage());
+				}
+				if (next) {
+					next.setDisabled(this.isLastPage());
+				}
+				if (last) {
+					last.setDisabled(this.isLastPage());
+				}
 			}
 			if (status) {
 				status.setText(this.StatusText);
