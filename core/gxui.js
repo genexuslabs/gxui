@@ -85,6 +85,9 @@ gxui = function () {
 			if (gxBuild) {
 				if (gxBuild > 54798) {
 					Ext.fly(document.documentElement).addCls("gxui-xev2");
+					if (gxBuild <= 64355) {
+						Ext.fly(document.documentElement).addCls("gxui-msg-fix");
+					}
 				}
 				if (gxBuild < 55424) {
 					gx.lang.inherits = function (subclass, superclass) {

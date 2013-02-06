@@ -51,7 +51,7 @@ x-portlet .x-panel-body {
 	height:100%;
 }
 
-.gxui-xev2 .x-panel-body .ErrorMessages {
+.gxui-msg-fix .x-panel-body .ErrorMessages {
 	position: fixed !important;
 }
 
