@@ -45,15 +45,17 @@ Ext.define('gxui.Layout', {
 			});
 		}
 		else {
-			this.m_layout = Ext.create('gxui.container.NestedViewport', {
-				id: this.getUniqueId(),
-				items: regions,
-				layout: 'border',
-				cls: this.Cls || undefined,
-				renderTo: 'MAINFORM',
-				stateful: gxui.CBoolean(this.Stateful),
-				stateId: (this.StateId != "") ? this.StateId : undefined
-			});
+			if (this.getContainerControl()) {
+				this.m_layout = Ext.create('gxui.container.NestedViewport', {
+					id: this.getUniqueId(),
+					items: regions,
+					layout: 'border',
+					cls: this.Cls || undefined,
+					renderTo: 'MAINFORM',
+					stateful: gxui.CBoolean(this.Stateful),
+					stateId: (this.StateId != "") ? this.StateId : undefined
+				});
+			}
 		}
 
 		// Register this User Control as a container. Each region of the layout is registered
