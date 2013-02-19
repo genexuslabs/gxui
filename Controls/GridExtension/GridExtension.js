@@ -868,7 +868,7 @@ Ext.define('gxui.GridExtension', {
 		cell.value = value;
 
 		if (gxControl.type == controlTypes.checkBox) {
-			if (typeof value != 'boolean')
+			if (cell.column.type != gx.types.bool)
 				cell.value = value ? cell.column.gxChecked : cell.column.gxUnChecked;
 		}
 

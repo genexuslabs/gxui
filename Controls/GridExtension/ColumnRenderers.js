@@ -301,7 +301,7 @@ Ext.define('gxui.GridExtension.CheckColumn', {
 	listeners: {
 		'checkchange': function (column, rowIndex, checked) {
 			var grid = column.ownerCt.ownerCt,
-				editorPlugin = this.getEditorPlugin(),
+				editorPlugin = grid.getPlugin(grid.id + '-celledit'),
 				editingContext = editorPlugin.getEditingContext(rowIndex, column);
 
 			if (editorPlugin)
