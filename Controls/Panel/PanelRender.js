@@ -184,6 +184,9 @@ Ext.define('gxui.Panel', {
 				if (gxui.CBoolean(this.AutoHeight)) {
 					panel.el.setHeight('auto');
 					panel.body.setHeight('auto');
+					if (panel.header && (panel.headerPosition == "top" || panel.headerPosition == "bottom")) {
+						panel.body.setStyle('margin-bottom', Ext.dom.AbstractElement.addUnits(panel.header.getHeight(), "px"));
+					}
 				}
 
 				if (gxui.CBoolean(this.AutoWidth)) {
