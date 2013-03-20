@@ -282,13 +282,18 @@ Ext.define('gxui.Toolbar', {
 			"Menu": function (toolbar, button) {
 				var menuItems = [];
 
-				Ext.each(button.Items, function (item, index, allItems) {
-					menuItems.push(toolbar.getConfig(item));
-				});
+				if (button.Items) {
+					Ext.each(button.Items, function (item, index, allItems) {
+						menuItems.push(toolbar.getConfig(item));
+					});
+				}
 
 				var config = {
 					hidden: gxui.CBoolean(button.Hidden),
-					menu: menuItems,
+					menu: {
+						items: menuItems,
+						ignoreParentClicks: true
+					},
 					cls: toolbar.getBtnCls(button),
 					disabled: gxui.CBoolean(button.Disabled)
 				};

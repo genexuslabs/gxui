@@ -114,7 +114,8 @@ Ext.define('gxui.Menu', {
 	createMenu: function (menu) {
 		if (menu) {
 			return new Ext.menu.Menu({
-				items: this.getContextMenuItems(menu)
+				items: this.getContextMenuItems(menu),
+				ignoreParentClicks: true
 			});
 		}
 	},
@@ -122,27 +123,29 @@ Ext.define('gxui.Menu', {
 	getContextMenuItems: function (contextMenu) {
 		var cmItems = [];
 
-		Ext.each(contextMenu, function (item) {
-			var config;
-			switch (item.Type) {
-				case 'Text':
-					config = item.Text;
-					break;
-				case 'Separator':
-					config = '-';
-					break;
-				case 'Menu':
-					config = this.getBasicItemConfig(item);
-					config.menu = this.getContextMenuItems(item.Items);
-					delete config.handler;
-					break;
-				default:
-					config = this.getBasicItemConfig(item);
-					break;
-			}
+		if (contextMenu) {
+			Ext.each(contextMenu, function (item) {
+				var config;
+				switch (item.Type) {
+					case 'Text':
+						config = item.Text;
+						break;
+					case 'Separator':
+						config = '-';
+						break;
+					case 'Menu':
+						config = this.getBasicItemConfig(item);
+						config.menu = this.getContextMenuItems(item.Items);
+						delete config.handler;
+						break;
+					default:
+						config = this.getBasicItemConfig(item);
+						break;
+				}
 
-			cmItems.push(config);
-		}, this);
+				cmItems.push(config);
+			}, this);
+		}
 
 		return cmItems;
 	},
