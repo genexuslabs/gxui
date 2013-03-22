@@ -14,7 +14,7 @@ gxui = function () {
 		var cssLines = [];
 
 		// CSS rules are created on the fly so cellpadding and cellspacing values are not reseted.
-		for (var i = 1; i <= 20; i++) {
+		for (var i = 1; i <= 100; i++) {
 			var cellSpacing = [
 				"table[cellspacing='", i, "'] {",
 				"    border-collapse: separate;",
@@ -61,7 +61,7 @@ gxui = function () {
 			Ext.namespace('gxui.ux');
 
 			// Fix CSS reset made by ExtJS that affects tables
-			fixCssReset();
+			Ext.defer(fixCssReset, 100);
 
 			gx.fx.obs.addObserver('gx.onready', this, function () {
 				if (gx && Ext.ieVersion > 0 && Ext.ieVersion < 8) {
