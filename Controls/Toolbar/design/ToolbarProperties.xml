@@ -62,6 +62,7 @@
 								* - Button: A simple button. Customisations include aligned icons, tooltips and sizing options.
 								* - Text: A text to be rendered inside the toolbar.
 								* - Edit: An edit field. Its value can be retrieved through the {@link #EditFieldValue} property.
+								* - ComboBox: A combo box. The items inside the combo box are set through the Items property, by setting the Id and Text properties of each child item. Its value can be retrieved through the {@link #EditFieldValue} property.
 								* - Fill: A non-rendering placeholder item. When used, all items at its right side are right aligned.
 								* - Separator: Adds a vertical separator bar between toolbar items. It can't be a direct child of a Group item.
 								* - Menu: A button that opens a menu. The menu options are set through the Items property. An arrow is automatically added to the button.
@@ -146,6 +147,7 @@
 								* @property {Number} Data.Buttons.ColSpan Number of columns the item will span. Only applies to items that are direct children of a Group item.
 								* See the documentation about the Group item type for detailed information.
 								* @property {String} Data.Buttons.Value Initial value for Edit items.
+								* @property {String} Data.Buttons.Width Item width in pixels.
 								* @property {Boolean} Data.Buttons.AskConfirmation Indicates if the user should be prompted for confirmation when a button is pressed, before executing the {@link #ButtonPressed} event. If the user confirms, the event is executed.
 								* @property {gxuiToolbarItem.Confirmation} Data.Buttons.Confirmation Configuration properties for the confirmation dialog.
 								* @property {String} Data.Buttons.Confirmation.OKButtonText Text for the OK button (defaults to 'OK')

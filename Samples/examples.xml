@@ -242,6 +242,36 @@
 		}
 		Item
 		{
+			Id = !'ComboBox'
+			Text = 'Select a value'
+			Type = gxuiToolbarItemTypes.ComboBox
+			Width = 200
+			Items
+			{
+				Item
+				{
+					Id = !'Combo-Value-1'
+					Text = "Value 1"
+				}
+				Item
+				{
+					Id = !'Combo-Value-2'
+					Text = "Value 2"
+				}
+				Item
+				{
+					Id = !'Combo-Value-3'
+					Text = "Value 3"
+				}
+				Item
+				{
+					Id = !'Combo-Value-4'
+					Text = "Value 4"
+				}
+			}
+		}
+		Item
+		{
 			Type = gxuiToolbarItemTypes.Fill
 		}
 		Item
@@ -3773,7 +3803,7 @@ endfor
       <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
         <Properties />
       </Part>
-      <Properties><Property><Name>Name</Name><Value>gxuiToolbarItemTypes</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>IDEnumDefinedValues</Name><Value>Button, Button, Button; Text, Text, Text; Edit, Edit, Edit; Fill, Fill, Fill; Separator, Separator, Separator; Menu, Menu, Menu; SplitButton, SplitButton, Split Button; Group, Group, Group</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      <Properties><Property><Name>Name</Name><Value>gxuiToolbarItemTypes</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property><Property><Name>IDEnumDefinedValues</Name><Value>Button, Button, Button; Text, Text, Text; Edit, Edit, Edit; Fill, Fill, Fill; Separator, Separator, Separator; Menu, Menu, Menu; SplitButton, SplitButton, Split Button; Group, Group, Group; ComboBox, ComboBox, Combo Box</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
     </Object>
     <Object parentGuid="00000000-0000-0000-0000-000000000000" user="ARTECH\GeneXus" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2012-01-11T15:06:17.0000000Z" checksum="239f322af38bf6eae474a3eddbf5b757" guid="315775aa-e8ee-4f83-a18e-bc1f50744d12" name="gxuiToolbarItemScale" type="00972a17-9975-449e-aab1-d26165d51393" description="gxui Toolbar Item Scale">
       <Part type="ad3ca970-19d0-44e1-a7b7-db05556e820c">

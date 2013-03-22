@@ -223,7 +223,8 @@ Ext.define('gxui.Toolbar', {
 					"colspan": "ColSpan",
 					"iconAlign": { property: "IconAlign", ignoreEmpty: true },
 					"arrowAlign": { property: "ArrowAlign", ignoreEmpty: true },
-					"scale": { property: "Scale", ignoreEmpty: true }
+					"scale": { property: "Scale", ignoreEmpty: true },
+					"width": { property: "Width", ignoreEmpty: true }
 				});
 
 				return config;
@@ -237,7 +238,7 @@ Ext.define('gxui.Toolbar', {
 				var edit = Ext.create('Ext.form.field.Text', {
 					id: toolbar.getUniqueButtonId(button.Id),
 					cls: button.Cls,
-					width: 180,
+					width: button.Width || 180,
 					disabled: gxui.CBoolean(button.Disabled),
 					hidden: gxui.CBoolean(button.Hidden),
 					enableKeyEvents: true,
@@ -307,7 +308,8 @@ Ext.define('gxui.Toolbar', {
 					"colspan": "ColSpan",
 					"iconAlign": { property: "IconAlign", ignoreEmpty: true },
 					"arrowAlign": { property: "ArrowAlign", ignoreEmpty: true },
-					"scale": { property: "Scale", ignoreEmpty: true }
+					"scale": { property: "Scale", ignoreEmpty: true },
+					"width": { property: "Width", ignoreEmpty: true }
 				});
 
 				return config;
@@ -335,9 +337,11 @@ Ext.define('gxui.Toolbar', {
 			"Group": function (toolbar, button) {
 				var groupItems = [];
 
-				Ext.each(button.Items, function (item, index, allItems) {
-					groupItems.push(toolbar.getConfig(item));
-				});
+				if (button.Items) {
+					Ext.each(button.Items, function (item, index, allItems) {
+						groupItems.push(toolbar.getConfig(item));
+					});
+				}
 
 				var config = {
 					xtype: 'buttongroup',
@@ -354,6 +358,62 @@ Ext.define('gxui.Toolbar', {
 					"iconAlign": { property: "IconAlign", ignoreEmpty: true },
 					"arrowAlign": { property: "ArrowAlign", ignoreEmpty: true },
 					"scale": { property: "Scale", ignoreEmpty: true }
+				});
+
+				return config;
+			},
+
+			"ComboBox": function (toolbar, comboBox) {
+				var config = {
+					xtype: 'combobox',
+					gxid: comboBox.Id,
+					cls: toolbar.getBtnCls(comboBox),
+					disabled: gxui.CBoolean(comboBox.Disabled),
+					hidden: gxui.CBoolean(comboBox.Hidden),
+					editable: true,
+					triggerAction: 'all',
+					selectOnFocus: true,
+					disableKeyFilter: false,
+					forceSelection: true,
+					queryMode: 'local',
+					store: {
+						autoDestroy: true,
+						fields: ['id', 'dsc'],
+						data: []
+					},
+					displayField: 'dsc',
+					valueField: 'id',
+					listeners: {
+						'select': function (field) {
+							this.editActionHandler(field);
+						},
+						scope: toolbar
+					}
+				};
+
+				if (comboBox.Items) {
+					for (var i = 0, len = comboBox.Items.length; i < len; i++) {
+						config.store.data.push({
+							id: comboBox.Items[i].Id,
+							dsc: comboBox.Items[i].Text
+						});
+					}
+				}
+
+				gxui.tryPropertyMapping(config, comboBox, {
+					"gxid": "Id",
+					"text": "Text",
+					"tooltip": "Tooltip",
+					"icon": "Icon",
+					"iconCls": "IconCls",
+					"rowspan": "RowSpan",
+					"colspan": "ColSpan",
+					"iconAlign": { property: "IconAlign", ignoreEmpty: true },
+					"arrowAlign": { property: "ArrowAlign", ignoreEmpty: true },
+					"scale": { property: "Scale", ignoreEmpty: true },
+					"width": { property: "Width", ignoreEmpty: true },
+					"value": { property: "Value", ignoreEmpty: true },
+					"emptyText": { property: "Text", ignoreEmpty: true }
 				});
 
 				return config;
