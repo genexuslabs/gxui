@@ -434,6 +434,16 @@ Ext.define('gxui.Toolbar', {
 			config.dock = options.dock || 'top';
 		}
 
+		if (!options || !options.container) {
+			if (this.Width != 'auto') {
+				config.width = parseInt(this.Width, 10);
+			}
+
+			if (this.Height != 'auto') {
+				config.height = parseInt(this.Height, 10);
+			}
+		}
+
 		config.listeners['afterrender'] = {
 			fn: this.adjustWidth,
 			delay: 300
@@ -657,16 +667,18 @@ Ext.define('gxui.Toolbar', {
 
 	adjustWidth: function (toolbar) {
 		if (!toolbar.ownerCt) {
-			var lastItem = null;
-			toolbar.items.each(function (item) {
-				if (item.isVisible())
-					lastItem = item;
-			})
+			if (this.Width == 'auto') {
+				var lastItem = null;
+				toolbar.items.each(function (item) {
+					if (item.isVisible())
+						lastItem = item;
+				})
 
-			if (lastItem) {
-				toolbar.setWidth(100); // WA
-				width = lastItem.el.getLeft(true) + lastItem.el.getWidth() + toolbar.el.getFrameWidth('l r');
-				toolbar.setWidth(width);
+				if (lastItem) {
+					toolbar.setWidth(100); // WA
+					width = lastItem.el.getLeft(true) + lastItem.el.getWidth() + toolbar.el.getFrameWidth('l r');
+					toolbar.setWidth(width);
+				}
 			}
 		}
 	},
