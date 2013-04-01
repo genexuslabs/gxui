@@ -99,6 +99,9 @@
           <Item guid="b80d94cd-3d87-4171-bbe9-2507f4a72a8a" name="Value" description="Initial value for Edit items">
             <Properties><Property><Name>Name</Name><Value>Value</Value></Property><Property><Name>Description</Name><Value>Initial value for Edit items</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Character</Value></Property></Properties>
           </Item>
+          <Item guid="cfe3d1ba-3f99-42b1-a2d6-70414a7d69a8" name="Width" description="Width">
+            <Properties><Property><Name>Name</Name><Value>Width</Value></Property></Properties>
+          </Item>
           <Level Name="Confirmation">
             <LevelInfo guid="7661cead-c7dc-4740-9dda-14600c3ff533" name="Confirmation" description="Confirmation">
               <Properties><Property><Name>Name</Name><Value>Confirmation</Value></Property><Property><Name>AttCollection</Name><Value>False</Value></Property></Properties>
