@@ -209,12 +209,16 @@ Ext.define('gxui.GridExtension.Column', {
 		}
 
 		if (gx.lang.gxBoolean(cell.visible)) {
+			if (!metadata.tdCls) {
+				metadata.tdCls = '';
+			}
+
 			if (gx.lang.gxBoolean(this.gxGrid.UseThemeClasses) && cell.cssClass) {
-				metadata.css += ' ' + cell.cssClass
+				metadata.tdCls += ' ' + cell.cssClass
 			}
 
 			if (cell.link) {
-				return Ext.String.format('<a href="{0}" alt="{2}" target="{3}">{1}</a>', cell.link || "", v || "", cell.alt || "", cell.linkTarget || "");
+				v = Ext.String.format('<a href="{0}" alt="{2}" target="{3}">{1}</a>', cell.link || "", v || "", cell.alt || "", cell.linkTarget || "");
 			}
 
 			var style = "";
