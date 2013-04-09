@@ -22,14 +22,14 @@ Ext.define('gxui.GridExtension', {
 	},
 
 	onRefresh: function () {
-		if (!this.editable && this.isEditable(true)) {
+		if ((!this.editable && this.isEditable(true)) || this.columnModelChanged(this.m_grid)) {
 			this.m_grid.destroy();
 			this.onRender();
 			this.keepSelection(this.m_grid);
 		}
 		else {
 			var grid = this.m_grid,
-			view = grid.getView();
+				view = grid.getView();
 
 			// Toggle summary row
 			if (gx.lang.gxBoolean(this.Grouping)) {
@@ -236,7 +236,9 @@ Ext.define('gxui.GridExtension', {
 			fields: []
 		};
 
-		Ext.each(this.columns, function (col, i) { this.mapColumn(col, i, conf); }, this);
+		for (var i = 0, len = this.columns.length; i < len; i++) {
+			this.mapColumn(this.columns[i], i, conf);
+		}
 
 		delete conf.headers;
 
@@ -900,6 +902,37 @@ Ext.define('gxui.GridExtension', {
 				this.fixingWidth = true;
 				grid.setWidth(width);
 				this.fixingWidth = false;
+			}
+		}
+	},
+
+	columnModelChanged: function (grid) {
+		var newColumnModel = this.getColumnsConfig(),
+			newColumns = newColumnModel.columns,
+			oldColumns = grid.initialConfig.columns,
+			newCol,
+			oldCol,
+			properties = ['hideable', 'hidden', 'locked', 'resizable', 'sortable'];
+
+		if (oldColumns.length != newColumns.length) {
+			return true;
+		}
+
+		for (var i = 0, len = oldColumns.length; i < len; i++) {
+			oldCol = oldColumns[i];
+			newCol = newColumns[i];
+			if (oldCol && newCol) {
+				if (oldCol.dataIndex != newCol.dataIndex) {
+					return true;
+				}
+				for (var j = 0, propLen = properties.length; j < propLen; j++) {
+					if (oldCol[properties[j]] != newCol[properties[j]]) {
+						return true;
+					}
+				}
+			}
+			else {
+				return true;
 			}
 		}
 	},
