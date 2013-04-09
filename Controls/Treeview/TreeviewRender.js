@@ -281,10 +281,12 @@ Ext.define('gxui.Treeview', {
 			var gxCols = dropEvent.data.gxColumns;
 
 			var dropData = {};
-			Ext.each(gxCols, function (col, i) {
-				var colName = col.gxAttName || (col.gxAttId.charAt(0) == "&" ? col.gxAttId.substring(1) : col.gxAttId);
-				dropData[colName] = gxRow.values[i];
-			}, this);
+			for (var i = 0, len = gxCols.length; i < len; i++) {
+				var col = gxCols[i],
+					colName = col.gxAttName || (col.gxAttId.charAt(0) == "&" ? col.gxAttId.substring(1) : col.gxAttId),
+					cell = gxGrid.getPropertiesCell(dropEvent.data.grid, gxRow.id, i, true);
+				dropData[colName] = cell.value;
+			}
 
 			return dropData;
 		}

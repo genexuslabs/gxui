@@ -66,6 +66,7 @@ Ext.define('gxui.GridExtension.DragDrop', {
 			dnd.drag(dragSource.obj, dragSource.types, dragSource.hdl);
 
 			// Set the internal GX row in the data so it can be accessed in beforenodedrop in Treeview.
+			data.gxGrid = gridUC;
 			data.gxRow = row;
 			data.gxColumns = gridUC.columns;
 		}
