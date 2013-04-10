@@ -275,16 +275,17 @@ Ext.define('gxui.Treeview', {
 		return children.length && children.length > 0 ? children : [children]
 	},
 
-	getRowDropData: function (dropEvent) {
-		if (dropEvent.data && dropEvent.data.gxRow) {
-			var gxRow = dropEvent.data.gxRow;
-			var gxCols = dropEvent.data.gxColumns;
+	getRowDropData: function (data) {
+		if (data && data.gxRow) {
+			var gxGrid = data.gxGrid,
+				gxRow = data.gxRow,
+				gxCols = data.gxColumns;
 
 			var dropData = {};
 			for (var i = 0, len = gxCols.length; i < len; i++) {
 				var col = gxCols[i],
 					colName = col.gxAttName || (col.gxAttId.charAt(0) == "&" ? col.gxAttId.substring(1) : col.gxAttId),
-					cell = gxGrid.getPropertiesCell(dropEvent.data.grid, gxRow.id, i, true);
+					cell = gxGrid.getPropertiesCell(data.gxGrid.getUnderlyingControl(), gxRow.id, i, true);
 				dropData[colName] = cell.value;
 			}
 
@@ -305,13 +306,13 @@ Ext.define('gxui.Treeview', {
 					// Set UC properties before fireing the event
 					this.DropTarget = overModel.data.id;
 					this.DropPoint = dropPosition;
-					// @TODO: Implement D&D interoperability with grids when gxui.GridExtension is implemented.
-					//					if (dragOverEvent.source.grid) {
-					//						this.DropData = this.getRowDropData(dragOverEvent);
-					//					}
-					//					else {
-					this.DropNode = data.records[0].data.id;
-					//					}
+
+					if (data.gxGrid) {
+						this.DropData = this.getRowDropData(data);
+					}
+					else {
+						this.DropNode = data.records[0].data.id;
+					}
 
 					this.DropAllowed = true;
 
@@ -334,27 +335,18 @@ Ext.define('gxui.Treeview', {
 				return true;
 			},
 
-			'beforedrop': function (node, data, overModel, dropPosition, dropFunction) {
-				// @TODO: Implement D&D interoperability with grids when gxui.GridExtension is implemented.
-				//				data.event.preventDefault();
-				//				if (dropEvent.source.grid) {
-				//					this.DropTarget = dropEvent.target.id;
-				//					this.DropPoint = dropEvent.point;
+			'beforedrop': function (node, data, overModel, dropPosition, opts) {
+				if (data.gxGrid) {
+					this.DropTarget = overModel.data.id;
+					this.DropPoint = dropPosition;
 
-				//					this.DropData = this.getRowDropData(dropEvent);
-				//					dropEvent.target.ui.endDrop(); // Ended here because if the RowDrop runs in the server, the ghost is not hidden.
+					this.DropData = this.getRowDropData(data);
+					opts.cancelDrop();
 
-				//					if (this.RowDrop) {
-				//						this.RowDrop();
-				//					}
-				//				}
-
-				//				// Disable context menu until (workaround for avoiding showing context menu in right click D&D operations in IE and Chrome)
-				//				Ext.getBody().on('contextmenu', Ext.emptyFn, this, {
-				//					single: true,
-				//					stopEvent: true,
-				//					preventDefault: true
-				//				});
+					if (this.RowDrop) {
+						this.RowDrop();
+					}
+				}
 			},
 
 			'drop': function (node, data, overModel, dropPosition) {

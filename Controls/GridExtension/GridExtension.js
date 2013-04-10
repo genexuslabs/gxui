@@ -713,9 +713,10 @@ Ext.define('gxui.GridExtension', {
 				return true;
 			},
 
-			'afterrender': function (grid) {
+			'afterlayout': function (grid) {
 				// Correct width when it isn't specified, to behave as standard GX grid.
-				this.fixGridWidth(grid);
+				if (!this.fixingWidth)
+					this.fixGridWidth(grid);
 			},
 
 			scope: this
