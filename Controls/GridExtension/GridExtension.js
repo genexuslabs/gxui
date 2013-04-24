@@ -117,6 +117,7 @@ Ext.define('gxui.GridExtension', {
 			selModel: smConf.selModel,
 			dockedItems: [],
 			//cls: this.gx.CssClass,
+			forceFit: gx.lang.gxBoolean(this.ForceFit),
 			enableColumnHide: gx.lang.gxBoolean(this.EnableColumnHide),
 			enableColumnMove: gx.lang.gxBoolean(this.EnableColumnMove),
 			enableLocking: gx.lang.gxBoolean(this.EnableColumnLocking),
@@ -678,13 +679,13 @@ Ext.define('gxui.GridExtension', {
 
 			'sortchange': function (ct, column, direction) {
 				if (this.m_grid) {
+					var remoteSort = gx.lang.gxBoolean(this.RemoteSort);
+
 					this.SortField = column.dataIndex;
 					this.SortOrder = direction;
-					if (gx.lang.gxBoolean(this.RemoteSort)) {
+					if (remoteSort) {
 						// Remember the SortField and SortOrder selected by the user.
 						this.m_grid.saveState();
-						Ext.defer(this.goToPage, 30, this, ["FIRST"]);
-						return false;
 					}
 
 					/**
@@ -696,8 +697,16 @@ Ext.define('gxui.GridExtension', {
 					* - {@link #SortOrder}
 					*
 					*/
-					if (this.OnSortChange)
+					if (this.OnSortChange) {
 						this.OnSortChange();
+					}
+					else {
+						if (remoteSort) {
+							Ext.defer(this.goToPage, 30, this, ["FIRST"]);
+						}
+					}
+
+					return !remoteSort;
 				}
 			},
 
