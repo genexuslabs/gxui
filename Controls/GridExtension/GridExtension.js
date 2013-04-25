@@ -24,7 +24,8 @@ Ext.define('gxui.GridExtension', {
 	onRefresh: function () {
 		if ((!this.editable && this.isEditable(true)) || this.columnModelChanged(this.m_grid)) {
 			this.m_grid.destroy();
-			this.onRender();
+			this.forceRendering();
+			this.show();
 			this.keepSelection(this.m_grid);
 		}
 		else {
