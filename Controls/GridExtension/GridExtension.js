@@ -134,7 +134,7 @@ Ext.define('gxui.GridExtension', {
 		};
 
 		if (gx.lang.gxBoolean(this.UseThemeClasses)) {
-			config.cls += ' ' + this.gxCssClass;
+			config.cls = (config.cls || '') + ' ' + this.gxCssClass;
 		}
 
 		if (this.usePagingToolbar()) {
@@ -937,7 +937,7 @@ Ext.define('gxui.GridExtension', {
 					return true;
 				}
 				for (var j = 0, propLen = properties.length; j < propLen; j++) {
-					if (oldCol[properties[j]] != newCol[properties[j]]) {
+					if (oldCol[properties[j]] != newCol[properties[j]] && newCol[properties[j]] !== undefined) {
 						return true;
 					}
 				}
