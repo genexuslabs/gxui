@@ -258,7 +258,7 @@ Ext.define('gxui.UserControl', {
 	*/
 	getUniqueId: function () {
 		var pO = this.ParentObject;
-		return "gxui" + (pO ? (pO.CmpContext ? "-" + pO.CmpContext : "") + "-" + pO.ServerClass || "" : "") + "-" + this.ControlName;
+		return "gxui20" + (pO ? (pO.CmpContext ? "-" + pO.CmpContext : "") + "-" + pO.ServerClass || "" : "") + "-" + this.ControlName;
 	},
 
 	addDeferredMethods: function (methods) {
@@ -307,15 +307,19 @@ gxui.UserControlManager = function () {
 			}
 
 			var allShown = true;
-			Ext.each(ucList, function (item) {
-				return allShown = item.shown && allShown;
-			}, this);
+			for (var i = 0, len = ucList.length; i < len; i++) {
+				allShown = ucList[i].shown && allShown;
+				if (!allShown)
+					break;
+			}
 
 			if (allShown && afterShowEvent) {
 				afterShowEvent.fire();
 				this.addControlsToContainer();
-				Ext.each(ucList, function (item) {
-					var extUC = item.uc.getUnderlyingControl();
+				for (var i = 0, len = ucList.length; i < len; i++) {
+					var item = ucList[i],
+						extUC = item.uc.getUnderlyingControl();
+
 					if (extUC) {
 						if (!item.uc.unmanagedLayout && !extUC.rendered)
 							extUC.render(item.uc.getContainerControl());
@@ -327,7 +331,7 @@ gxui.UserControlManager = function () {
 						}
 					}
 					item.shown = false;
-				}, this);
+				}
 			}
 		}
 		catch (e) {
@@ -338,9 +342,9 @@ gxui.UserControlManager = function () {
 	return {
 		getUCList: function () {
 			var l = [];
-			Ext.each(ucList, function (item) {
-				l.push(item.uc);
-			});
+			for (var i = 0, len = ucList.length; i < len; i++) {
+				l.push(ucList[i].uc);
+			}
 			return l;
 		},
 
@@ -389,13 +393,13 @@ gxui.UserControlManager = function () {
 		isRegisteredUC: function (uc) {
 			var obj = null;
 
-			Ext.each(ucList, function (item) {
+			for (var i = 0, len = ucList.length; i < len; i++) {
+				var item = ucList[i];
 				if (uc == item.uc) {
 					obj = item;
-					return false;
+					break;
 				}
-			}, this);
-
+			}
 			return obj;
 		},
 
@@ -403,30 +407,33 @@ gxui.UserControlManager = function () {
 			var ct = null;
 
 			if (el.layout) {
-				Ext.each(ctList, function (item) {
+				for (var i = 0, len = ctList.length; i < len; i++) {
+					var item = ctList[i];
 					if (el == item.scope) {
 						ct = item;
-						return false;
+						break;
 					}
-				}, this);
+				}
 			}
 			else
 				if (el.tagName) { // If el argument is a HTMLElement
-					Ext.each(ctList, function (item) {
+					for (var i = 0, len = ctList.length; i < len; i++) {
+						var item = ctList[i];
 						if (el == item.el) {
 							ct = item;
-							return false;
+							break;
 						}
-					}, this);
+					}
 				}
 				else { // If el argument is a gxui.UserControl
 					uc = el;
-					Ext.each(ctList, function (item) {
+					for (var i = 0, len = ctList.length; i < len; i++) {
+						var item = ctList[i];
 						if (uc == item.uc) {
 							ct = item;
-							return false;
+							break;
 						}
-					}, this);
+					}
 				}
 
 			return ct;
