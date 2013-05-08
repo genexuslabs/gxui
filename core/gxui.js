@@ -268,9 +268,9 @@ gxui = function () {
 						generatorEl = null,
 						versionEl = null;
 					for (var i = 0, len = metaElements.length; i < len; i++) {
-						if (metaElements[i].name == "Version")
+						if (metaElements[i].name.toLowerCase() == "version")
 							versionEl = metaElements[i];
-						if (metaElements[i].name == "Generator")
+						if (metaElements[i].name.toLowerCase() == "generator")
 							generatorEl = metaElements[i];
 					}
 
