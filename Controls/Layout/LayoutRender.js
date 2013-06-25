@@ -140,7 +140,10 @@ Ext.define('gxui.Layout', {
 				},
 
 				scope: this
-			}
+			},
+			stateful: gxui.CBoolean(this.Stateful),
+			stateId: (this.StateId != "") ? this.StateId + "-" + regionKey : undefined,
+			stateEvents: gxui.CBoolean(this.Stateful) ? ['collapse', 'expand'] : undefined
 		};
 
 		if (!this.getProperty(regionKey, "TitleBar")) {
