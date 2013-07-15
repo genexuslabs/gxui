@@ -1,3 +1,4 @@
+
 /// <reference path="..\..\Freezer\Ext\ext-all-dev.js" />
 
 /**
@@ -56,7 +57,9 @@ Ext.define('gxui.Panel', {
 
 	onRefresh: function () {
 		var panel = this.m_panel;
-		panel.setTitle(this.Title);
+		if (this.Title != panel.title) {
+			panel.setTitle(this.Title);
+		}
 		if (!panel.ownerCt) {
 			var width = parseInt(this.Width),
 				height = parseInt(this.Height);
@@ -158,6 +161,29 @@ Ext.define('gxui.Panel', {
 		return config;
 	},
 
+	fixAutoDimensions: function () {
+		var panel = this.m_panel;
+		if (!this.fixingAutoDims) {
+			this.fixingAutoDims = true;
+			if (gxui.CBoolean(this.AutoHeight)) {
+				panel.el.setHeight('auto');
+				panel.body.setHeight('auto');
+				if (panel.header && (panel.headerPosition == "top" || panel.headerPosition == "bottom")) {
+					panel.body.setStyle('margin-bottom', Ext.dom.AbstractElement.addUnits(panel.header.getHeight(), "px"));
+				}
+			}
+
+			panel.el.setWidth('auto');
+			panel.body.setWidth('auto');
+			if (gxui.CBoolean(this.AutoWidth)) {
+				if (panel.header && (panel.headerPosition == "top" || panel.headerPosition == "bottom")) {
+					Ext.defer(panel.header.setWidth, 50, panel.header, ['auto']);
+				}
+			}
+			this.fixingAutoDims = false;
+		}
+	},
+
 	//private
 	getListeners: function () {
 		return {
@@ -180,20 +206,9 @@ Ext.define('gxui.Panel', {
 				}
 			},
 
-			'afterlayout': function (panel) {
-				if (gxui.CBoolean(this.AutoHeight)) {
-					panel.el.setHeight('auto');
-					panel.body.setHeight('auto');
-					if (panel.header && (panel.headerPosition == "top" || panel.headerPosition == "bottom")) {
-						panel.body.setStyle('margin-bottom', Ext.dom.AbstractElement.addUnits(panel.header.getHeight(), "px"));
-					}
-				}
+			'add': this.fixAutoDimensions,
 
-				if (gxui.CBoolean(this.AutoWidth)) {
-					panel.el.setWidth('auto');
-					panel.body.setWidth('auto');
-				}
-			},
+			'afterrender': this.fixAutoDimensions,
 
 			scope: this
 		};
