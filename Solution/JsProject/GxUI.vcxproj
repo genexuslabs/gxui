@@ -66,6 +66,7 @@
     <None Include="..\..\Controls\Splash\design\SplashRender.xsl" />
     <None Include="..\..\Controls\Splash\splash.css" />
     <None Include="..\..\Controls\Splash\SplashRender.js" />
+    <None Include="..\..\core\no-ext.js" />
     <None Include="..\..\gxui.jsb" />
     <None Include="..\..\docs\JSDuckProperties.xslt">
       <SubType>Designer</SubType>
@@ -127,7 +128,9 @@
     <None Include="..\..\Controls\Toolbar\design\toolbar.bmp" />
     <None Include="..\..\Controls\Toolbar\design\toolbar.ico" />
     <None Include="..\..\Controls\Toolbar\design\toolbar.xml" />
-    <None Include="..\..\Controls\Toolbar\design\ToolbarProperties.xml" />
+    <None Include="..\..\Controls\Toolbar\design\ToolbarProperties.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="..\..\Controls\Toolbar\design\ToolbarRender.xsl" />
     <None Include="..\..\Controls\TabPanel.control" />
     <None Include="..\..\Controls\TabPanel\TabPanelRender.js" />

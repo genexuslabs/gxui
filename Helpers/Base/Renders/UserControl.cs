@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Artech.Genexus.Common.Parts.WebForm;
+using Artech.UC.gxui.Installation;
+using Artech.Architecture.Common.Services;
 
 namespace Artech.UC.gxui.Renders
 {
@@ -14,7 +16,18 @@ namespace Artech.UC.gxui.Renders
 		public UserControl(IUserControlInfo info)
 		{
 			m_controlInfo = info;
+
+			if (!m_validated)
+			{
+				string message;
+				if (!Validator.ValidateAll(out message))
+				{
+					CommonServices.Output.AddErrorLine(message);
+				}
+			}
 		}
+
+		public static bool m_validated = false;
 
 		private IUserControlInfo m_controlInfo;
 		public IUserControlInfo ControlInfo

@@ -480,5 +480,8 @@
     <None Include="..\..\Controls\Settings\design\Settings.xml">
       <Filter>Controls\Settings\design</Filter>
     </None>
+    <None Include="..\..\core\no-ext.js">
+      <Filter>Core</Filter>
+    </None>
   </ItemGroup>
 </Project>
