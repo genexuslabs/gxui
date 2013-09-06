@@ -189,8 +189,19 @@ Ext.define('gxui.GridExtension.Column', {
 	},
 
 	formatDate: function (value, vStruct) {
-		var format = this.mapDatePictureToFormat(vStruct);
-		return Ext.util.Format.date(value, format);
+		var gxdate = value.gxdate;
+		if (value - new Date(0, 0, 0, 0, 0, 0, 0) === 0 && gxdate) {
+			var gxFormat = gxdate.SFmt,
+				dp = vStruct.dp;
+			if (dp && dp.pic &&  dp.pic.indexOf("9999") >= 0) {
+				gxFormat = "Y4";
+			}
+			return gxdate.emptyDateString(gxFormat);
+		}
+		else {
+			var format = this.mapDatePictureToFormat(vStruct);
+			return Ext.util.Format.date(value, format);
+		}
 	},
 
 	renderer: function (value, metadata, record, rowIndex, colIndex, store) {
