@@ -73,6 +73,10 @@ Ext.define('gxui.Layout', {
 
 	onAfterRender: function () {
 		this.displayRegions();
+		// WA to avoid problems with focus on first field if it's inside de Layout
+		if (document.activeElement == document.body) {
+			gx.fn.setFocusOnload();
+		}
 	},
 
 	getUnderlyingControl: function () {
