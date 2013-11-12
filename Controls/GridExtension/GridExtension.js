@@ -405,6 +405,14 @@ Ext.define('gxui.GridExtension', {
 			if (colWidth === undefined && colFlex === undefined)
 				colCfg.autoWidth = true;
 
+			if (colCfg.width === undefined) {
+				delete colCfg.width;
+			}
+
+			if (colCfg.flex === undefined) {
+				delete colCfg.flex;
+			}
+
 			if (col.SummaryType != 'none')
 				colCfg.summaryType = col.SummaryType;
 
