@@ -193,7 +193,7 @@ Ext.define('gxui.GridExtension.Column', {
 		if (value - new Date(0, 0, 0, 0, 0, 0, 0) === 0 && gxdate) {
 			var gxFormat = gxdate.SFmt,
 				dp = vStruct.dp;
-			if (dp && dp.pic &&  dp.pic.indexOf("9999") >= 0) {
+			if (dp && dp.pic && dp.pic.indexOf("9999") >= 0) {
 				gxFormat = "Y4";
 			}
 			return gxdate.emptyDateString(gxFormat);
@@ -205,6 +205,10 @@ Ext.define('gxui.GridExtension.Column', {
 	},
 
 	renderer: function (value, metadata, record, rowIndex, colIndex, store) {
+		if (record.isSummary) {
+			return value;
+		}
+
 		var cell = record.raw[this.actualColIndex],
 			col = this.gxColumn,
 			gxControl = cell.column.gxControl,
