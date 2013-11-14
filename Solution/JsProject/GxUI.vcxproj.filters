@@ -483,5 +483,8 @@
     <None Include="..\..\core\no-ext.js">
       <Filter>Core</Filter>
     </None>
+    <None Include="..\..\docs\categories.js">
+      <Filter>Docs</Filter>
+    </None>
   </ItemGroup>
 </Project>

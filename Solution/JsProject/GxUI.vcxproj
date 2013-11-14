@@ -67,6 +67,7 @@
     <None Include="..\..\Controls\Splash\splash.css" />
     <None Include="..\..\Controls\Splash\SplashRender.js" />
     <None Include="..\..\core\no-ext.js" />
+    <None Include="..\..\docs\categories.js" />
     <None Include="..\..\gxui.jsb" />
     <None Include="..\..\docs\JSDuckProperties.xslt">
       <SubType>Designer</SubType>

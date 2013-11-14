@@ -9,6 +9,7 @@
 *
 * #Basic Samples#
 * By programing the code below in a Web Panel you will get the behavior in shown in the image.
+*
 *		Event 'open tab'
 *			gxui_tabpanel1.OpenTab("tabPanel4", "Tab4", "<html><head><title>Example</title></head><body><p>Tab Content</p></body></html>")
 *			gxui_tabpanel1.SelectTab("tabPanel4")
@@ -24,6 +25,7 @@
 * Other features you can develop with this control.
 *
 * Load a Web Component with its logic in a tab:
+*
 *		Event Start
 *			gxui_tabpanel1.SelectTab("tabPanel1")
 *			WebComp1.Object = TabPanelWebComp.Create()
@@ -31,6 +33,7 @@
 * {@img tabPanel/tabPanel5.png}
 *		
 * Move between tabs:
+*
 *		Event 'show tab'
 *			gxui_tabpanel1.OpenTab("tabPanel3", "Tab3", "") //You must open it first in case it could be closed
 *			gxui_tabpanel1.ShowTabById("tabPanel3")
@@ -38,6 +41,7 @@
 *		EndEvent
 *
 * Or change the title of a tab:
+*
 *		Event 'set tab title'
 *			gxui_TabPanel1.SetTabTitle("tabPanel2", format("Modified title for tab tabPanel2"))
 *		EndEvent
