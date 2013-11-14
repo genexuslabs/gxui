@@ -26,7 +26,7 @@
                   ]
               },
               {
-                  "name": "Miscelaneous",
+                  "name": "Miscellaneous",
                   "classes": [
                       "gxui.Message",
                       "gxui.Settigns",
