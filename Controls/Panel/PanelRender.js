@@ -161,23 +161,24 @@ Ext.define('gxui.Panel', {
 		return config;
 	},
 
-	fixAutoDimensions: function () {
-		var panel = this.m_panel;
+	fixAutoDimensions: function (panel) {
 		if (!this.fixingAutoDims) {
 			this.fixingAutoDims = true;
-			if (gxui.CBoolean(this.AutoHeight)) {
-				panel.el.setHeight('auto');
-				panel.body.setHeight('auto');
-				if (panel.header && (panel.headerPosition == "top" || panel.headerPosition == "bottom")) {
-					panel.body.setStyle('margin-bottom', Ext.dom.AbstractElement.addUnits(panel.header.getHeight(), "px"));
+			if (panel.rendered) {
+				if (gxui.CBoolean(this.AutoHeight)) {
+					panel.el.setHeight('auto');
+					panel.body.setHeight('auto');
+					if (panel.header && (panel.headerPosition == "top" || panel.headerPosition == "bottom")) {
+						panel.body.setStyle('margin-bottom', Ext.dom.AbstractElement.addUnits(panel.header.getHeight(), "px"));
+					}
 				}
-			}
 
-			panel.el.setWidth('auto');
-			panel.body.setWidth('auto');
-			if (gxui.CBoolean(this.AutoWidth)) {
-				if (panel.header && (panel.headerPosition == "top" || panel.headerPosition == "bottom")) {
-					Ext.defer(panel.header.setWidth, 50, panel.header, ['auto']);
+				if (gxui.CBoolean(this.AutoWidth)) {
+					panel.el.setWidth('auto');
+					panel.body.setWidth('auto');
+					if (panel.header && (panel.headerPosition == "top" || panel.headerPosition == "bottom")) {
+						Ext.defer(panel.header.setWidth, 50, panel.header, ['auto']);
+					}
 				}
 			}
 			this.fixingAutoDims = false;
