@@ -797,12 +797,15 @@ Ext.define('gxui.GridExtension', {
 
 	refreshGrid: function () {
 		var og = this.ownerGrid, po = this.ParentObject;
+		var bkpObj = gx.O;
+		gx.setGxO(po.CmpContext, po.IsMasterPage);
 		if (og.parentObject.autoRefresh && og.refreshVars.length > 0) {
 			og.callAsyncRefresh(og.getRefreshParmsUrl())
 		}
 		else {
 			po.executeServerEvent('RFR', true);
 		}
+		gx.setGxO(bkpObj.CmpContext, bkpObj.IsMasterPage);
 	},
 
 	getRowGxInternalId: function (row) {
