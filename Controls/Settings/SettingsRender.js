@@ -112,6 +112,9 @@ Ext.define('gxui.Settings', {
 	},
 
 	onRender: function () {
+		gxui.fixPaddingReset = gxui.CBoolean(this.RevertTablePaddingReset);
+		gxui.fixSpacingReset = gxui.CBoolean(this.RevertTableSpacingReset);
+
 		var provider = null;
 		if (gxui.CBoolean(this.Enable)) {
 			if (this.Provider == gxui.Settings.StateProvider.HTTP) {
@@ -135,6 +138,7 @@ Ext.define('gxui.Settings', {
 			// This is equivalent to removing the default provider set in gxui.js.
 			provider = Ext.create('Ext.state.Provider');
 		}
+
 		if (provider) {
 			// Initialize state provider (required to be able to keep state in controls)
 			Ext.state.Manager.setProvider(provider);

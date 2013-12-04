@@ -7,6 +7,27 @@
 			<Type>Main</Type>
 			<Children>
 				<Group>
+					<Name>ExtJS CSS Reset</Name>
+					<Children>
+						<Prop>
+							<Id>RevertTablePaddingReset</Id>
+							<Name>RevertTablePaddingReset</Name>
+							<Type>Boolean</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Description>True to revert ExtJS CSS reset of TH and TD elements padding.</Description>
+						</Prop>
+						<Prop>
+							<Id>RevertTableSpacingReset</Id>
+							<Name>RevertTableSpacingReset</Name>
+							<Type>Boolean</Type>
+							<Default>true</Default>
+							<Metadata />
+							<Description>True to revert ExtJS CSS reset of TABLE elements border-spacing and border-collapse properties.</Description>
+						</Prop>
+					</Children>
+				</Group>
+				<Group>
 					<Name>Localization</Name>
 					<Children>
 						<Prop>

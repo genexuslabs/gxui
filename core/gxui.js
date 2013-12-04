@@ -11,24 +11,35 @@ gxui = function () {
 	var m_GenexusBuild = null;
 
 	var fixCssReset = function () {
-		var cssLines = [];
+		var cssLines = [],
+			cellSpacing,
+			cellPadding;
+
+		cssLines.push("table, table[cellspacing='0'] {",
+					"    border-collapse: separate;",
+					"}");
 
 		// CSS rules are created on the fly so cellpadding and cellspacing values are not reseted.
 		for (var i = 1; i <= 100; i++) {
-			var cellSpacing = [
-				"table[cellspacing='", i, "'] {",
-				"    border-collapse: separate;",
-				"    border-spacing: ", i, "px;",
-				"}"
-			];
+			if (gxui.fixSpacingReset) {
+				cellSpacing = [
+					"table[cellspacing='", i, "'] {",
+					"    border-collapse: separate;",
+					"    border-spacing: ", i, "px;",
+					"}"
+				];
 
-			var cellPadding = [
-				"table[cellpadding='", i, "'] > tbody > tr > td:not([class]), table[cellpadding='", i, "'] > tbody > tr > th:not([class]) {",
-				"    padding: ", i, "px;",
-				"}"
-			];
-			cssLines.push(cellSpacing.join(""));
-			cssLines.push(cellPadding.join(""));
+				cssLines.push(cellSpacing.join(""));
+			}
+			if (gxui.fixPaddingReset) {
+				cellPadding = [
+					"table[cellpadding='", i, "'] > tbody > tr > td:not([class]), table[cellpadding='", i, "'] > tbody > tr > th:not([class]) {",
+					"    padding: ", i, "px;",
+					"}"
+				];
+
+				cssLines.push(cellPadding.join(""));
+			}
 		}
 
 		var head = document.getElementsByTagName('head')[0],
@@ -46,6 +57,20 @@ gxui = function () {
 	};
 
 	return {
+		/**
+		* If true, the reset on TD and TH elements padding made by ExtJS is reverted.
+		* @private
+		* @ignore
+		*/
+		fixPaddingReset: true,
+
+		/**
+		* If true, the reset on TABLE elements border-spacing and border-collapse properties made by ExtJS is reverted.
+		* @private
+		* @ignore
+		*/
+		fixSpacingReset: true,
+
 		initialize: function () {
 
 			// Initialize QuickTips
@@ -60,9 +85,6 @@ gxui = function () {
 			// Define a namespace for GxUI user extensions
 			Ext.namespace('gxui.ux');
 
-			// Fix CSS reset made by ExtJS that affects tables
-			Ext.defer(fixCssReset, 100);
-
 			gx.fx.obs.addObserver('gx.onready', this, function () {
 				if (gx && Ext.ieVersion > 0 && Ext.ieVersion < 8) {
 					if (gx.staticDirectory != "")
@@ -72,6 +94,9 @@ gxui = function () {
 
 					Ext.BLANK_IMAGE_URL = gx.util.resourceUrl(gx.basePath + this.StaticContent + "Shared/ext/resources/themes/images/default/tree/s.gif", true);
 				}
+
+				// Fix CSS reset made by ExtJS that affects tables
+				gxui.afterShow(fixCssReset, gxui);
 			});
 
 			// Default State provider

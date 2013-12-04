@@ -10,6 +10,44 @@
   </Source>
   <Actions />
   <Objects>
+    <Object parent="Settings" parentType="00000000-0000-0000-0000-000000000008" parentGuid="0fac5b6e-a7d7-468b-bde3-43834995c395" user="ARTECH\ncardelino" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2013-12-04T18:35:48.0000000Z" checksum="848e252e099a0cd130c11489d926f933" guid="bb133624-4de6-4d0c-af47-24e4018202b8" name="Settings_CssReset" type="c9584656-94b6-4ccd-890f-332d11fc2c25" description="Settings Css Reset">
+      <Part type="d24a58ad-57ba-41b7-9e6e-eaca3543c778">
+        <Source><![CDATA[<BODY bottomMargin="0" rightMargin="0" leftMargin="0" class="Form" topMargin="0"><gxgxui.Settings RevertTablePaddingReset="True" Language="Spanish / Castilian" InitialState="&amp;gxuiState" RevertTableSpacingReset="True" ControlName="gxui_Settings1" /><gxGrid SflRender="gxui.GridExtension" MaxRows="8" ControlName="Grid1" GxObjClass="13"><gxColumn ColAttId="CustomerId" /><gxColumn ColAttId="CustomerName" /><gxColumn ColAttId="CustomerAddress" /></gxGrid></BODY>]]></Source>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="9b0a32a3-de6d-4be1-a4dd-1b85d3741534">
+        <Properties />
+      </Part>
+      <Part type="c44bd5ff-f918-415b-98e6-aca44fed84fa">
+        <Source><![CDATA[
+]]></Source>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="763f0d8b-d8ac-4db4-8dd4-de8979f2b5b9">
+        <Properties />
+      </Part>
+      <Part type="e4c4ade7-53f0-4a56-bdfd-843735b66f47">
+        <Variable Name="gxuiState">
+          <Documentation />
+          <Help />
+          <Properties><Property><Name>Name</Name><Value>gxuiState</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>sdt:gxuiState</Value></Property></Properties>
+        </Variable>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="ad3ca970-19d0-44e1-a7b7-db05556e820c">
+        <Help>
+          <HelpItem>
+            <Language>88313f43-5eb2-0000-0028-e8d9f5bf9588-English</Language>
+            <Content />
+          </HelpItem>
+        </Help>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties />
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>Settings_CssReset</Value></Property><Property><Name>Description</Name><Value>Settings Css Reset</Value></Property><Property><Name>IsMain</Name><Value>True</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
     <Object parent="gxui" parentType="00000000-0000-0000-0000-000000000008" parentGuid="332c0682-64a1-4965-9a78-daa5aa84c3b8" user="ARTECH\GeneXus" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2012-03-26T18:35:46.0000000Z" checksum="ca2fde193b4ea137f7ea620a0260d276" guid="60957c1e-27b0-4731-94ca-d7105ad618ea" name="gxuiInitState" type="2a9e9aba-d2de-4801-ae7f-5e3819222daf" description="gxui Init State">
       <Part type="1d8aeb5a-6e98-45a7-92d2-d8de7384e432">
         <Source><![CDATA[gxuiStates
