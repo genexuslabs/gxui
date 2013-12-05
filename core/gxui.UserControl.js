@@ -251,7 +251,7 @@ Ext.define('gxui.UserControl', {
 		if (el.id.indexOf("gxHTMLWrp") >= 0 || el.hasCls("gx_usercontrol") || el.hasCls("gxui-uc-container"))
 			el.setStyle("display", "inline");
 
-		if (this.getContainerControl() == el.dom && gxui.CBoolean(this.AutoWidth) && !this.getUnderlyingControl().ownerCt)
+		if (this.getContainerControl() == el.dom && gxui.CBoolean(this.AutoWidth) && this.getUnderlyingControl() && !this.getUnderlyingControl().ownerCt)
 			el.setStyle("display", "inline-block");
 	},
 
