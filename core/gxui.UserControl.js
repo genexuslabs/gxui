@@ -250,6 +250,9 @@ Ext.define('gxui.UserControl', {
 	checkIfInline: function (el) {
 		if (el.id.indexOf("gxHTMLWrp") >= 0 || el.hasCls("gx_usercontrol") || el.hasCls("gxui-uc-container"))
 			el.setStyle("display", "inline");
+
+		if (this.getContainerControl() == el.dom && gxui.CBoolean(this.AutoWidth) && !this.getUnderlyingControl().ownerCt)
+			el.setStyle("display", "inline-block");
 	},
 
 	/**
