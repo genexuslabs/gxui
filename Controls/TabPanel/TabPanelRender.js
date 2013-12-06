@@ -197,6 +197,10 @@ Ext.define('gxui.TabPanel', {
 					tab.InternalName = tab.id;
 				}
 
+				if (!tab.HTML) {
+					Ext.fly(this.getChildContainer(tab.id)).setStyle('display', 'inline-block');
+				}
+
 				if (tab.InternalName) {
 					var layout = tab.layout || this.Layout;
 					var config = {
