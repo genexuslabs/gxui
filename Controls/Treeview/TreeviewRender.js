@@ -128,6 +128,7 @@ Ext.define('gxui.Treeview', {
 			store: store,
 			folderSort: gxui.CBoolean(this.Sort),
 			viewConfig: {},
+			plugins: [],
 			autoScroll: gxui.CBoolean(this.AutoScroll),
 			stateful: gxui.CBoolean(this.Stateful),
 			stateId: (this.StateId && this.StateId != "") ? this.StateId : this.getUniqueId(),
@@ -172,39 +173,41 @@ Ext.define('gxui.Treeview', {
 			};
 		}
 
-		this.m_tree = Ext.create('Ext.tree.Panel', config);
-		// @TODO: Implement Editable feature when it is available in ExtJS 4.1
-		//		if (gxui.CBoolean(this.Editable)) {
-		//			this.m_treeEditor = new Ext.tree.TreeEditor(this.m_tree, {}, {
-		//				allowBlank: false,
-		//				selectOnFocus: true,
-		//				cancelOnEsc: true,
-		//				completeOnEnter: true,
-		//				ignoreNoChange: true,
-		//				listeners: {
-		//					'complete': function (editor, value) {
-		//						this.NodeEditText = value;
-		//						if (this.NodeEdit) {
-		//							this.NodeEdit();
-		//						}
-		//					},
-		//					scope: this
-		//				},
-		//				// Overriden function to avoid bug in IE. See: http://www.extjs.com/forum/showthread.php?43408-2.2-OPEN-TreeEditor-Behaviour&p=285736
-		//				triggerEdit: function (node, defer) {
-		//					this.completeEdit();
-		//					if (node.attributes.editable !== false) {
+		if (gxui.CBoolean(this.Editable)) {
+			// The column has to be explicitly defined, to set editor properties
+			config.columns = [{
+				xtype: 'treecolumn',
+				dataIndex: 'text',
+				flex: 1,
+				editor: {
+					xtype: 'textfield',
+					allowBlank: false,
+					selectOnFocus: true,
+					cancelOnEsc: true,
+					ignoreNoChange: true
+				}
+			}];
 
-		//						this.editNode = node;
-		//						if (this.tree.autoScroll && !Ext.isIE) {
-		//							node.ui.getEl().scrollIntoView(this.tree.body);
-		//						}
-		//						this.autoEditTimer = this.startEdit.defer(this.editDelay, this, [node.ui.textNode, node.text]);
-		//						return false;
-		//					}
-		//				}
-		//			});
-		//		}
+			config.hideHeaders = true;
+
+			config.plugins.push({
+				ptype: 'cellediting',
+				pluginId: this.getUniqueId() + '-celledit',
+				clicksToEdit: 2,
+				listeners: {
+					'edit': function (editor, e) {
+						this.NodeEditText = e.value;
+						if (this.NodeEdit) {
+							this.NodeEdit();
+						}
+					},
+					scope: this
+				}
+			});
+			config.viewConfig.toggleOnDblClick = false;
+		}
+
+		this.m_tree = Ext.create('Ext.tree.Panel', config);
 	},
 
 	onRefresh: function () {
@@ -378,11 +381,13 @@ Ext.define('gxui.Treeview', {
 	getListeners: function () {
 		var listeners = {
 			'itemclick': function (view, node, item, index, e) {
-				//this.endEdit();
+				var editorPlugin = this.getEditorPlugin();
+				var startEdit = (node.data.id == this.SelectedNode) && editorPlugin;
+				this.endEdit();
 				this.setSelectedNode(node);
 				if (!node.data.href) {
 					if (this.NotifyContext == "true") {
-						this.notifyContext([this.NotifyDataType], { id: node.id, text: node.text, leaf: node.leaf, icon: node.attributes.icon });
+						this.notifyContext([this.NotifyDataType], { id: node.data.id, text: node.data.text, leaf: node.data.leaf, icon: node.data.icon });
 					}
 					if (this.Click && (!node.hasChildNodes() || !gxui.CBoolean(this.DisableBranchEvents))) {
 						/**
@@ -399,10 +404,13 @@ Ext.define('gxui.Treeview', {
 						this.Click();
 					}
 				}
+				if (startEdit) {
+					editorPlugin.startEdit(node, 0);
+				}
 			},
 
 			'itemdblclick': function (view, node) {
-				//this.endEdit();
+				this.endEdit();
 				this.setSelectedNode(node);
 				if (this.DoubleClick && (!node.hasChildNodes() || !gxui.CBoolean(this.DisableBranchEvents))) {
 					/**
@@ -443,7 +451,7 @@ Ext.define('gxui.Treeview', {
 
 		if (this.ContextMenu) {
 			listeners['itemcontextmenu'] = function (view, node) {
-				//this.endEdit();
+				this.endEdit();
 				if (this.ContextMenu) {
 					this.setSelectedNode(node);
 					this.m_tree.getSelectionModel().select(node);
@@ -474,9 +482,14 @@ Ext.define('gxui.Treeview', {
 		this.SelectedNodeChecked = node.data.checked || false;
 	},
 
+	getEditorPlugin: function () {
+		return this.m_tree.getPlugin(this.getUniqueId() + '-celledit');
+	},
+
 	endEdit: function () {
-		if (this.m_treeEditor) {
-			this.m_treeEditor.completeEdit();
+		var editorPlugin = this.getEditorPlugin();
+		if (editorPlugin) {
+			editorPlugin.completeEdit();
 		}
 	},
 
@@ -788,18 +801,40 @@ Ext.define('gxui.Treeview', {
 			this.setNodeProperty(nodeId, name, value);
 		},
 
-		// @TODO: Implementar cuando funcione Edit
+		/**
+		* Starts editing a given node
+		* @param {String} nodeId Node id
+		* @param {Number} [value] A value to initialize the node editor with.
+		* @method
+		*/
 		StartEdit: function (nodeId, value) {
-			var node = this.getNodeById(nodeId);
+			var node = this.getNodeById(nodeId),
+				editorPlugin;
 			if (node) {
-				this.m_treeEditor.editNode = node;
-				this.m_treeEditor.startEdit(value || node.ui.textNode);
+				editorPlugin = this.getEditorPlugin();
+				if (editorPlugin) {
+					if (value !== undefined) {
+						editorPlugin.on({
+							'beforeedit': function (editor, e) {
+								e.value = value;
+							},
+							single: true
+						});
+					}
+					editorPlugin.startEdit(node, 0);
+				}
 			}
 		},
 
-		// @TODO: Implementar cuando funcione Edit
+		/**
+		* Cancels any active editing.
+		* @method
+		*/
 		CancelEdit: function () {
-			this.m_treeEditor.cancelEdit();
+			var editorPlugin = this.getEditorPlugin();
+			if (editorPlugin) {
+				editorPlugin.cancelEdit();
+			}
 		},
 
 		/**
