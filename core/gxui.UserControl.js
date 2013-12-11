@@ -343,6 +343,8 @@ gxui.UserControlManager = function () {
 	};
 
 	return {
+		childControls: {},
+
 		getUCList: function () {
 			var l = [];
 			for (var i = 0, len = ucList.length; i < len; i++) {

@@ -34,8 +34,6 @@ Ext.define('gxui.Panel', {
 	onRender: function () {
 		var config = this.getConfig();
 
-		Ext.fly(this.getChildContainer("Body")).enableDisplayMode().show();
-
 		if (gxui.CBoolean(this.ShowAsWindow)) {
 			config.closeAction = "hide";
 			config.renderTo = 'MAINFORM';
@@ -99,7 +97,8 @@ Ext.define('gxui.Panel', {
 
 	//private
 	getConfig: function () {
-		var dockedItems = [];
+		var dockedItems = [],
+			bodyEl = Ext.get(this.getChildContainer("Body"));
 
 		if (gxui.CBoolean(this.UseToolbar)) {
 			var position = this.ToolbarPosition || 'top';
@@ -108,7 +107,7 @@ Ext.define('gxui.Panel', {
 			this.m_toolbar = this.m_gxTbar.createToolbar({
 				id: this.getUniqueId() + "_Toolbar",
 				data: this.ToolbarData,
-				vertical: (position == 'bottom' || position == 'top') ? false : true,
+				vertical: !(position == 'bottom' || position == 'top'),
 				dock: position,
 				container: this
 			});
@@ -116,12 +115,20 @@ Ext.define('gxui.Panel', {
 			dockedItems.push(this.m_toolbar);
 		}
 
+		bodyEl.enableDisplayMode().show();
+		if (gxui.CBoolean(this.AutoHeight)) {
+			bodyEl.setStyle({
+				height: 'auto',
+				display: 'inline-block'
+			});
+		}
+
 		var config = {
-			contentEl: this.getChildContainer("Body"),
+			contentEl: bodyEl,
 			id: this.getUniqueId(),
 			autoWidth: gxui.CBoolean(this.AutoWidth),
 			autoHeight: gxui.CBoolean(this.AutoHeight),
-			autoScroll: this.Layout == 'default' ? true : false,
+			autoScroll: (this.Layout == 'default'),
 			frame: gxui.CBoolean(this.Frame),
 			border: gxui.CBoolean(this.Border) ? 2 : false,
 			collapsible: gxui.CBoolean(this.Collapsible),
