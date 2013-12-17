@@ -285,6 +285,15 @@ Ext.define('gxui.TabPanel', {
 		},
 
 		tabItemActivated: function (tabItem) {
+			if (gxui.CBoolean(this.AutoHeight) || gxui.CBoolean(this.AutoWidth)) {
+				tabItem.el.select('.x-panel').each(function (panelEl) {
+					var innerPanel = Ext.getCmp(panelEl.dom.id);
+					var initialConfig = innerPanel.initialConfig;
+					if (!innerPanel.ownerCt && (initialConfig.autoWidth || initialConfig.autoHeight)) {
+						innerPanel.doLayout();
+					}
+				});
+			}
 			this.ActiveTabId = tabItem.id;
 			if (this.RunTimeTabs)
 				Ext.each(this.RunTimeTabs, function (item, index, allItems) {
