@@ -157,7 +157,8 @@ Ext.define('gxui.TabPanel', {
 				'deactivate': this.handlers.tabItemDeactivated,
 				'remove': this.handlers.tabItemClosed,
 				'beforeremove': this.handlers.tabItemBeforeClosed,
-				'afterrender': this.handlers.tabAfterRender,
+				'afterrender': this.fixAutoDimensions,
+				'add': this.fixAutoDimensions,
 				scope: this
 			}
 		};
@@ -218,6 +219,8 @@ Ext.define('gxui.TabPanel', {
 							'activate': this.handlers.tabItemActivated,
 							'deactivate': this.handlers.tabItemDeactivated,
 							'render': this.handlers.tabItemRendered,
+							'afterrender': this.fixAutoDimensions,
+							'add': this.fixAutoDimensions,
 							scope: this
 						}
 					};
@@ -262,6 +265,29 @@ Ext.define('gxui.TabPanel', {
 					this.registerCt(Ext.get(tab.contentEl || tab.body).dom, tab.add, tab.doLayout, tab);
 				},
 			this);
+		}
+	},
+
+	fixAutoDimensions: function (panel) {
+		if (!panel.fixingAutoDims) {
+			panel.fixingAutoDims = true;
+			if (panel.rendered) {
+				if (gxui.CBoolean(this.AutoWidth)) {
+					panel.el.setWidth('auto');
+					panel.body.setWidth('auto');
+					if (panel.header && (panel.headerPosition == "top" || panel.headerPosition == "bottom")) {
+						Ext.defer(panel.header.setWidth, 50, panel.header, ['auto']);
+					}
+				}
+				if (gxui.CBoolean(this.AutoHeight)) {
+					panel.el.setHeight('auto');
+					panel.body.setHeight('auto');
+					if (panel.header && (panel.headerPosition == "top" || panel.headerPosition == "bottom")) {
+						panel.body.setStyle('margin-bottom', Ext.dom.AbstractElement.addUnits(panel.header.getHeight(), "px"));
+					}
+				}
+			}
+			panel.fixingAutoDims = false;
 		}
 	},
 
@@ -371,25 +397,6 @@ Ext.define('gxui.TabPanel', {
 			if (this.TabClick) {
 				this.ActiveTabId = tab.card.id;
 				this.TabClick();
-			}
-		},
-
-		tabAfterRender: function (tabPanel) {
-			// WA to support AutoHeight and AutoWidth
-			if (gxui.CBoolean(this.AutoHeight) || gxui.CBoolean(this.AutoWidth)) {
-				var task = Ext.TaskManager.start({
-					run: function () {
-						var doLayout = false;
-						tabPanel.items.each(function (panel) {
-							if (panel.body.isScrollable()) {
-								tabPanel.doLayout();
-								return false;
-							}
-						}, this);
-					},
-					interval: 500,
-					scope: this
-				});
 			}
 		}
 	},

@@ -97,6 +97,14 @@ gxui = function () {
 
 				// Fix CSS reset made by ExtJS that affects tables
 				gxui.afterShow(fixCssReset, gxui);
+
+				// Force popup size recalculation after showing controls
+				if (gx.popup.ispopup()) {
+					gxui.afterShow(function () {
+						var popup = gx.popup.getPopup().window.gx.popup;
+						Ext.defer(popup.autofit, 100, popup)
+					}, gx.popup);
+				}
 			});
 
 			// Default State provider
