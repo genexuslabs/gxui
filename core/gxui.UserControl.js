@@ -331,6 +331,9 @@ gxui.UserControlManager = function () {
 							if (extUC && !extUC.ownerCt && extUC.doLayout) {
 								extUC.doLayout();
 							}
+							if (item.uc.fixAutoDimensions) {
+								item.uc.fixAutoDimensions(extUC);
+							}
 						}
 					}
 					item.shown = false;

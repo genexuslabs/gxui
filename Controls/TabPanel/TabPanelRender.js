@@ -272,6 +272,10 @@ Ext.define('gxui.TabPanel', {
 		if (!panel.fixingAutoDims) {
 			panel.fixingAutoDims = true;
 			if (panel.rendered) {
+				Ext.each(this.m_tabPanel.items.items, function (tab, index, allTabs) {
+						this.fixAutoDimensions(tab);
+				}, this);
+
 				if (gxui.CBoolean(this.AutoWidth)) {
 					panel.el.setWidth('auto');
 					panel.body.setWidth('auto');
@@ -279,6 +283,7 @@ Ext.define('gxui.TabPanel', {
 						Ext.defer(panel.header.setWidth, 50, panel.header, ['auto']);
 					}
 				}
+
 				if (gxui.CBoolean(this.AutoHeight)) {
 					panel.el.setHeight('auto');
 					panel.body.setHeight('auto');
@@ -286,6 +291,10 @@ Ext.define('gxui.TabPanel', {
 						panel.body.setStyle('margin-bottom', Ext.dom.AbstractElement.addUnits(panel.header.getHeight(), "px"));
 					}
 				}
+			}
+
+			if (panel == this.m_tabPanel) {
+				panel.getTabBar().doLayout();
 			}
 			panel.fixingAutoDims = false;
 		}
