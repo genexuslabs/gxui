@@ -273,7 +273,7 @@ Ext.define('gxui.TabPanel', {
 			panel.fixingAutoDims = true;
 			if (panel.rendered) {
 				Ext.each(this.m_tabPanel.items.items, function (tab, index, allTabs) {
-						this.fixAutoDimensions(tab);
+					this.fixAutoDimensions(tab);
 				}, this);
 
 				if (gxui.CBoolean(this.AutoWidth)) {
@@ -328,6 +328,7 @@ Ext.define('gxui.TabPanel', {
 						innerPanel.doLayout();
 					}
 				});
+				Ext.defer(tabItem.ownerCt.doLayout, 50, tabItem.ownerCt);
 			}
 			this.ActiveTabId = tabItem.id;
 			if (this.RunTimeTabs)
