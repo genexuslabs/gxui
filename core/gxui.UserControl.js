@@ -261,7 +261,7 @@ Ext.define('gxui.UserControl', {
 	*/
 	getUniqueId: function () {
 		var pO = this.ParentObject;
-		return "gxui20" + (pO ? (pO.CmpContext ? "-" + pO.CmpContext : "") + "-" + pO.ServerClass || "" : "") + "-" + this.ControlName;
+		return "gxui20" + (pO ? (pO.CmpContext ? "-" + pO.CmpContext : "") + "-" + pO.ServerClass || "" : "") + "-" + this.ControlName + (this.GridRow || "");
 	},
 
 	addDeferredMethods: function (methods) {
