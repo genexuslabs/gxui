@@ -378,8 +378,14 @@ gxui.UserControlManager = function () {
 
 		unregister: function (uc) {
 			var toRem = this.isRegisteredUC(uc);
-			if (toRem)
-				ucList.remove(toRem);
+			if (toRem) {
+				for (var i = ucList.length - 1; i >= 0; i--) {
+					if (toRem == ucList[i]) {
+						ucList.splice(i, 1);
+						break;
+					}
+				}
+			}
 		},
 
 		registerContainer: function (uc, el, addFn, doLayoutFn, scope) {
@@ -394,8 +400,14 @@ gxui.UserControlManager = function () {
 
 		unregisterContainer: function (obj) {
 			toRem = this.isRegisteredContainer(obj);
-			if (toRem)
-				ctList.remove(toRem);
+			if (toRem) {
+				for (var i = ctList.length - 1; i >= 0; i--) {
+					if (toRem == ctList[i]) {
+						ctList.splice(i, 1);
+						break;
+					}
+				}
+			}
 		},
 
 		isRegisteredUC: function (uc) {
