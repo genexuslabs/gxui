@@ -12,7 +12,7 @@
 * To hide a region, set the Hidden property of the region to false ({@link #NorthHidden}, {@link #SouthHidden}, {@link #WestHidden} , {@link #EastHidden} and {@link #CenterHidden} properties).
 */
 Ext.define('gxui.Layout', function () {
-	var regions = ["North", "South", "West", "East", "Center"];
+	var regions = ["North", "West", "Center", "East", "South"];
 
 	return {
 		extend: 'gxui.UserControl',
