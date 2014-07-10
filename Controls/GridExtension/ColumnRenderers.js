@@ -62,7 +62,11 @@ Ext.define('gxui.GridExtension.Column', {
 			}
 		}
 
-		return "h:i";
+		if (gx.timeFormat == 12) {
+			return "h:i A";
+		}
+
+		return "H:i";
 	},
 
 	defineEditor: function (gxColumn, actualColIndex) {
