@@ -788,10 +788,12 @@ Ext.define('gxui.GridExtension', {
 				return;
 			}
 			this.UnSelectRows();
+			if (this.changeGridPage) {
+				this.changeGridPage(page.toUpperCase());
+				return;
+			}
 			gx.fn.setHidden(this.gxCmpContext + this.gxGridName.toUpperCase() + "PAGING", page.toUpperCase());
 			gx.evt.execEvt(this.gxCmpContext + "E" + this.gxGridName.toUpperCase() + "PAGING.", gx.evt.dummyCtrl);
-
-			return;
 		}
 	},
 
