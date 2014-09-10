@@ -792,8 +792,29 @@ Ext.define('gxui.GridExtension', {
 				this.changeGridPage(page.toUpperCase());
 				return;
 			}
-			gx.fn.setHidden(this.gxCmpContext + this.gxGridName.toUpperCase() + "PAGING", page.toUpperCase());
-			gx.evt.execEvt(this.gxCmpContext + "E" + this.gxGridName.toUpperCase() + "PAGING.", gx.evt.dummyCtrl);
+
+			this.goToPage_Internal(page.toUpperCase());
+		}
+	},
+
+	goToPage_Internal: function (pagingDirection) {
+		var hiddenName = this.gxGridName.toUpperCase() + "PAGING",
+			ownerGrid = this.ownerGrid,
+			eventName = '',
+			gridId;
+		if (pagingDirection) {
+			if (gx.pO.fullAjax) {
+				gx.setGxO(this.parentGxObject);
+				eventName = "E" + ownerGrid.realGridName.toUpperCase() + "_" + pagingDirection + "PAGE" + (ownerGrid.isMasterPageGrid ? "_MPAGE" : "");
+				if (ownerGrid.parentGrid) {
+					gridId = ownerGrid.parentGrid.gridId;
+				}
+			}
+			else {
+				gx.fn.setHidden(this.gxCmpContext + hiddenName, pagingDirection);
+				eventName = this.gxCmpContext + "E" + hiddenName + '.';
+			}
+			gx.evt.execEvt(undefined, undefined, eventName, gx.evt.dummyCtrl, gridId);
 		}
 	},
 
