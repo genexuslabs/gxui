@@ -289,7 +289,8 @@ Ext.define('gxui.GridExtension', {
 		var ownerGrid = this.ownerGrid,
 			boundColName = ownerGrid.boundedCollName,
 			parentObject = this.parentGxObject,
-			gridBCs = parentObject.GridBCs;
+			gridBCs = parentObject.GridBCs,
+			gxControl = col.gxControl;
 
 		var findBcColumnName = function (bc, vStruct) {
 			for (var m in bc) {
@@ -307,7 +308,7 @@ Ext.define('gxui.GridExtension', {
 			if (gridBCs) {
 				for (var m in gridBCs) {
 					if (typeof (gridBCs[m]) === 'object' && gridBCs[m].gxvar == boundColName)
-						return findBcColumnName(gridBCs[m], col.gxControl.vStruct);
+						return findBcColumnName(gridBCs[m], gxControl.vStruct || parentObject.getValidStructFld(gxControl.column.htmlName));
 				}
 			}
 
