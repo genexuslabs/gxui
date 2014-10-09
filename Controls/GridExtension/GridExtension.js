@@ -17,6 +17,10 @@ Ext.define('gxui.GridExtension', {
 			plugins = this.getPlugins(),
 			features = this.getFeatures();
 
+		// mask and unmask methods are overriden to avoid the default GX mask
+		this.mask = Ext.emptyFn;
+		this.unmask = Ext.emptyFn;
+
 		// create the Grid
 		this.m_grid = this.createGridPanel(cmConf, storeConf, smConf, viewConf, plugins, features);
 	},
