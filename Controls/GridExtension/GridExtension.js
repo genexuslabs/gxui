@@ -289,6 +289,18 @@ Ext.define('gxui.GridExtension', {
 		}
 	},
 
+	findBcColumnName: function (bc, vStruct) {
+		for (var m in bc) {
+			if (bc[m] === vStruct)
+				return m;
+			if (bc[m].gxgrid || bc[m].ctrltype)
+				continue;
+			if (typeof (bc[m]) === 'object')
+				return this.findBcColumnName(bc[m], vStruct);
+		}
+		return undefined;
+	},
+
 	resolveColumnName: function (col) {
 		var ownerGrid = this.ownerGrid,
 			boundColName = ownerGrid.boundedCollName,
@@ -296,23 +308,12 @@ Ext.define('gxui.GridExtension', {
 			gridBCs = parentObject.GridBCs,
 			gxControl = col.gxControl;
 
-		var findBcColumnName = function (bc, vStruct) {
-			for (var m in bc) {
-				if (bc[m] === vStruct)
-					return m;
-				if (bc[m].gxgrid || bc[m].ctrltype)
-					continue;
-				if (typeof (bc[m]) === 'object')
-					return findBcColumnName(bc[m], vStruct);
-			}
-			return undefined;
-		};
-
 		if (boundColName) {
 			if (gridBCs) {
 				for (var m in gridBCs) {
-					if (typeof (gridBCs[m]) === 'object' && gridBCs[m].gxvar == boundColName)
-						return findBcColumnName(gridBCs[m], gxControl.vStruct || parentObject.getValidStructFld(gxControl.column.htmlName));
+					if (typeof (gridBCs[m]) === 'object' && gridBCs[m].gxvar == boundColName) {
+						return this.findBcColumnName(gridBCs[m], gxControl.vStruct || parentObject.getValidStructFld(gxControl.column.htmlName)) || col.gxAttName || col.gxAttId;
+					}
 				}
 			}
 
