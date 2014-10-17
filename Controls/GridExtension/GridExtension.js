@@ -419,6 +419,11 @@ Ext.define('gxui.GridExtension', {
 				delete colCfg.flex;
 			}
 
+			if (col.gxColumnClass) {
+				colCfg.cls = col.gxColumnClass;
+				colCfg.tdCls = col.gxColumnClass;
+			}
+
 			if (col.SummaryType != 'none')
 				colCfg.summaryType = col.SummaryType;
 
