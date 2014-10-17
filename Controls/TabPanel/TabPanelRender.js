@@ -268,13 +268,15 @@ Ext.define('gxui.TabPanel', {
 		}
 	},
 
-	fixAutoDimensions: function (panel) {
+	fixAutoDimensions: function (panel, onlyThisTab) {
 		if (!panel.fixingAutoDims) {
 			panel.fixingAutoDims = true;
 			if (panel.rendered) {
-				Ext.each(this.m_tabPanel.items.items, function (tab, index, allTabs) {
-					this.fixAutoDimensions(tab);
-				}, this);
+				if (!onlyThisTab) {
+					Ext.each(this.m_tabPanel.items.items, function (tab, index, allTabs) {
+						this.fixAutoDimensions(tab, true);
+					}, this);
+				}
 
 				if (gxui.CBoolean(this.AutoWidth)) {
 					panel.el.setWidth('auto');
