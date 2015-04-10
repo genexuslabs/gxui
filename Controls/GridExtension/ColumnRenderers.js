@@ -281,12 +281,10 @@ Ext.define('gxui.GridExtension.Column', function () {
 		},
 
 		getEditorPlugin: function () {
-			var grid = this.ownerCt.ownerCt,
-				pluginId = grid.id + (this.gxGrid.EditModel == 'CellEditModel' ? '-celledit' : '-rowedit');
-			return grid.getPlugin(pluginId);
+			return this.gxGrid.getEditorPlugin();
 		}
 	};
-}());
+} ());
 
 Ext.define('gxui.GridExtension.ImageColumn', {
 	extend: 'gxui.GridExtension.Column',

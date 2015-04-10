@@ -876,6 +876,27 @@ Ext.define('gxui.GridExtension', {
 		}
 	},
 
+	fireCellIsValidEvent: function (rowIndex, columnIndex) {
+		var grid = this.m_grid,
+			actualColIndex = this.getActualColumnIndex(grid, columnIndex),
+			actualRowIndex = this.getActualRowIndex(grid, rowIndex),
+			cell = this.getPropertiesCell(grid, actualRowIndex, actualColIndex, true),
+			gxO = this.parentGxObject,
+			vStruct = cell.vStruct || gxO.GXValidFnc[cell.column.gxId]
+
+		if (this.executeIsValid) {
+			this.executeIsValid(actualColIndex, actualRowIndex);
+		}
+		else {
+			// For older GX versions (executeIsValid method became available in Evo3U3)
+			if (vStruct && vStruct.isvalid) {
+				ctrlRow = cell.row.gxId;
+				this.ownerGrid.instanciateRow(ctrlRow);
+				gxO[vStruct.isvalid].call(gxO);
+			}
+		}
+	},
+
 	getSelectedRow: function () {
 		return this.SelectedRow;
 	},
@@ -900,6 +921,9 @@ Ext.define('gxui.GridExtension', {
 				this.fireCellClickEvent(e.rowIdx, e.colIdx)
 			}
 
+			if (e.originalValue != e.value) {
+				this.fireCellIsValidEvent(e.rowIdx, e.colIdx);
+			}
 		}
 		else {
 			for (var i = 0, len = columns.length; i < len; i++) {
@@ -991,6 +1015,12 @@ Ext.define('gxui.GridExtension', {
 				return true;
 			}
 		}
+	},
+
+	getEditorPlugin: function () {
+		var grid = this.m_grid,
+				pluginId = grid.id + (this.EditModel == 'CellEditModel' ? '-celledit' : '-rowedit');
+		return grid.getPlugin(pluginId);
 	},
 
 	methods: {
