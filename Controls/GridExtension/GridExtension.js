@@ -384,7 +384,7 @@ Ext.define('gxui.GridExtension', {
 			}
 
 			var colCfg = {
-				xtype: GE.ColumnRenderers.get(col.gxControl.type),
+				xtype: GE.ColumnRenderers.get(col),
 				id: this.getUniqueId() + '-col-' + col.htmlName,
 				dataIndex: dataIndex,
 				header: col.title,
@@ -897,6 +897,12 @@ Ext.define('gxui.GridExtension', {
 		}
 	},
 
+	fireCellValidation: function (rowIndex, columnIndex, cell) {
+		if (this.executeValidate) {
+			this.executeValidate(rowIndex, columnIndex, cell.value);
+		}
+	},
+
 	getSelectedRow: function () {
 		return this.SelectedRow;
 	},
@@ -916,6 +922,10 @@ Ext.define('gxui.GridExtension', {
 		if (this.EditModel == 'CellEditModel') {
 			this.setCellValue(cell, e.value);
 
+			if (gxControl.vStruct && gxControl.vStruct.gxsgprm) {
+				this.fireCellValidation(e.rowIdx, e.colIdx, cell);
+			}
+
 			// Fire cell click event
 			if (gxControl.type == controlTypes.checkBox || gxControl.type == controlTypes.comboBox) {
 				this.fireCellClickEvent(e.rowIdx, e.colIdx)
@@ -934,6 +944,10 @@ Ext.define('gxui.GridExtension', {
 
 				if (value !== undefined) {
 					this.setCellValue(cell, value);
+				}
+
+				if (gxControl.vStruct && gxControl.vStruct.gxsgprm) {
+					this.fireCellValidation(e.rowIdx, e.colIdx, cell);
 				}
 			}
 		}

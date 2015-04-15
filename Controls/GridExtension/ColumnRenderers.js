@@ -366,30 +366,45 @@ Ext.define('gxui.GridExtension.ComboColumn', {
 	alias: 'widget.gxui.combocolumn',
 
 	defineEditor: function (gxColumn, actualColIndex) {
+		var vStruct = gxColumn.gxControl.vStruct,
+			isSuggest = vStruct && vStruct.gxsgprm && this.gxGrid.requestSuggest;
+
 		return {
 			xtype: 'combobox',
-			editable: false,
+			editable: isSuggest,
 			triggerAction: 'all',
 			selectOnFocus: true,
 			disableKeyFilter: false,
 			forceSelection: true,
 			store: [["", ""]],
 			queryMode: 'local',
+			typeAhead: isSuggest ? vStruct.gxsgprm[3] : false,
 			getActiveRecord: function (column) {
 				var plugin = column.getEditorPlugin();
 				if (column.gxGrid.EditModel == 'CellEditModel')
 					return plugin.getActiveRecord();
 				return plugin.context.record;
 			},
-			populateCombo: function (column) {
-				var record = this.getActiveRecord(column)
-				cell = record.raw[column.actualColIndex];
+			populateCombo: function (column, query) {
+				var record = this.getActiveRecord(column),
+					cell = record.raw[column.actualColIndex],
+					gxGrid = column.gxGrid;
 
-				this.getStore().loadData(cell.possibleValues);
-				if (typeof cell.value == "string")
-					this.select(cell.value.trim());
-				else
-					this.select(cell.value);
+				if (isSuggest) {
+					query = query || "";
+					gxGrid.requestSuggest(column.actualColIndex, cell.row.id, query).done(Ext.bind(function (data) {
+						this.getStore().loadData(Ext.Array.map(data, function (item) {
+							return [item.c, item.d];
+						}));
+					}, this));
+				}
+				else {
+					this.getStore().loadData(cell.possibleValues);
+					if (typeof cell.value == "string")
+						this.select(cell.value.trim());
+					else
+						this.select(cell.value);
+				}
 			},
 			listeners: {
 				'beforerender': function (combo) {
@@ -401,7 +416,7 @@ Ext.define('gxui.GridExtension.ComboColumn', {
 					}
 				},
 				'beforequery': function (queryEvent) {
-					queryEvent.combo.populateCombo(this);
+					queryEvent.combo.populateCombo(this, queryEvent.query || queryEvent.combo.rawValue);
 				},
 				'select': function () {
 					if (this.gxGrid.EditModel == 'CellEditModel') {
@@ -416,10 +431,12 @@ Ext.define('gxui.GridExtension.ComboColumn', {
 	renderer: function (value, metadata, record, rowIndex, colIndex, store) {
 		var cell = record.raw[this.actualColIndex];
 		if (gx.lang.gxBoolean(cell.visible)) {
-			if (typeof cell.value == "string") {
-				value = value + "";
+			if (!cell.vStruct || !cell.vStruct.gxsgprm || !this.gxGrid.requestSuggest) {
+				if (typeof cell.value == "string") {
+					value = value + "";
+				}
+				value = gx.fn.selectedDescription({ s: value, v: cell.possibleValues });
 			}
-			value = gx.fn.selectedDescription({ s: value, v: cell.possibleValues });
 		}
 		return this.callParent([value, metadata, record, rowIndex, colIndex, store]);
 	}
@@ -435,10 +452,18 @@ gxui.GridExtension.ColumnRenderers = function () {
 	renderers[types.radio] = 'gxui.radiocolumn';
 	renderers[types.comboBox] = 'gxui.combocolumn';
 
-	renderers.get = function (t) {
+	renderers.get = function (col) {
+		var t = col.gxControl.type,
+			vStruct = col.gxControl.vStruct;
+
+		if (vStruct && t == types.singleLineEdit && vStruct.gxsgprm && col.gxControl.grid.grid.requestSuggest) {
+			return renderers[types.comboBox];
+		}
+
 		if (this[t]) {
 			return this[t];
 		}
+
 		return 'gxui.column';
 	};
 
