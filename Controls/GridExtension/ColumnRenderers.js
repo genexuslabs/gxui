@@ -218,16 +218,11 @@ Ext.define('gxui.GridExtension.Column', function () {
 		},
 
 		renderer: function (value, metadata, record, rowIndex, colIndex, store) {
-			if (record.isSummary) {
-				return value;
-			}
+			var col = this.gxColumn,
+				gxControl = col.gxControl,
+				controlTypes = gx.html.controls.types,
+				v = value;
 
-			var cell = record.raw[this.actualColIndex],
-				col = this.gxColumn,
-				gxControl = cell.column.gxControl,
-				controlTypes = gx.html.controls.types;
-
-			var v = value;
 			if (col.type == gx.types.date || col.type == gx.types.dateTime) {
 				v = this.formatDate(value, gxControl.vStruct);
 			}
@@ -235,6 +230,12 @@ Ext.define('gxui.GridExtension.Column', function () {
 			if (col.type == gx.types.numeric && typeof (value) == "number") {
 				v = this.formatNumber(value, this.gxGrid.ParentObject.GXValidFnc[this.gxColumn.gxId]);
 			}
+
+			if (record.isSummary) {
+				return v;
+			}
+
+			var cell = record.raw[this.actualColIndex];
 
 			if (gx.lang.gxBoolean(cell.visible)) {
 				if (!metadata.tdCls) {
