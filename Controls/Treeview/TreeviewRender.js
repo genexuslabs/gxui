@@ -520,7 +520,7 @@ Ext.define('gxui.Treeview', {
 			var nodes = state.expandedNodes || [],
 				len = nodes.length;
 
-			this.collapseAll(function () {
+			var expandNodes = Ext.bind(function () {
 				for (var i = 0; i < len; i++) {
 					if (typeof nodes[i] != 'undefined') {
 						this.expandPath(nodes[i], 'id');
@@ -528,6 +528,14 @@ Ext.define('gxui.Treeview', {
 				}
 				Ext.tree.Panel.prototype.applyState.call(this, state)
 			}, this);
+			
+			this.collapseAll();
+			if (lazyLoading) {
+				setTimeout(expandNodes, 100);
+			}
+			else {
+				expandNodes();
+			}
 		};
 	},
 
