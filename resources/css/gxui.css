@@ -63,3 +63,9 @@ x-portlet .x-panel-body {
 .x-body #gx_ajax_notification {
     z-index: 1;
 }
+
+img.gxui-gridcell-blob {
+	border: 0;
+	max-width: 100%;
+	max-height: 100%;
+}
