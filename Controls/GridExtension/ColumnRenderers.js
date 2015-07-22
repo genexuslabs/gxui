@@ -315,6 +315,35 @@ Ext.define('gxui.GridExtension.ImageColumn', {
 	}
 });
 
+Ext.define('gxui.GridExtension.BlobColumn', {
+	extend: 'gxui.GridExtension.Column',
+	alias: 'widget.gxui.blobcolumn',
+
+	defineEditor: Ext.emptyFn,
+
+	renderer: function (value, metadata, record, rowIndex, colIndex, store) {
+		var cell = record.raw[this.actualColIndex],
+			gxControl = cell.column.gxControl,
+			imgType = (gxControl.contentType.toLowerCase().indexOf('image/') != -1),
+			url = cell.url;
+
+		if (gx.lang.gxBoolean(cell.visible)) {
+			if (gxControl.display === 0 && imgType) {
+				if (!url || url == gx.util.resourceUrl(gx.basePath + gx.staticDirectory)) {
+					url = gx.ajax.getImageUrl(gx, 'blankImage');
+				}
+				value = Ext.String.format('<img src="{0}" border="0" class="gxui-gridcell-blob {1}"/>', url, cell.cssClass);
+			}
+			else {
+				value = Ext.String.format('<img src="{0}" border="0" class="{1}"/>', gx.ajax.getImageUrl(gx, 'downloadImage'), cell.cssClass);
+			}
+			cell.link = url;
+			cell.linkTarget = "_blank";
+		}
+		return this.callParent([value, metadata, record, rowIndex, colIndex, store]);
+	}
+});
+
 Ext.define('gxui.GridExtension.CheckColumn', {
 	extend: 'Ext.ux.CheckColumn',
 	alias: 'widget.gxui.checkcolumn',
@@ -452,6 +481,7 @@ gxui.GridExtension.ColumnRenderers = function () {
 	renderers[types.checkBox] = 'gxui.checkcolumn';
 	renderers[types.radio] = 'gxui.radiocolumn';
 	renderers[types.comboBox] = 'gxui.combocolumn';
+	renderers[types.blob] = 'gxui.blobcolumn'
 
 	renderers.get = function (col) {
 		var t = col.gxControl.type,
