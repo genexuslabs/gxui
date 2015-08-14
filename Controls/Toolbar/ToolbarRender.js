@@ -583,7 +583,7 @@ Ext.define('gxui.Toolbar', {
 		*/
 		if (this.ButtonPressed) {
 			this.ButtonPressedId = btn.gxid;
-			this.ButtonPressed(btn);
+			this.ButtonPressed();
 		}
 	},
 
