@@ -770,7 +770,14 @@ Ext.define('gxui.GridExtension', {
 	},
 
 	getActualColumnIndex: function (grid, colIndex) {
-		var column = grid.columnManager.getHeaderAtIndex(colIndex);
+		var column;
+		if (grid.columnManager) {
+			column = grid.columnManager.getHeaderAtIndex(colIndex);
+		}
+		else {
+			column = grid.columns[colIndex];
+		}
+		
 		if (column)
 			return column.actualColIndex;
 		return -1;
