@@ -475,28 +475,37 @@ gxui.UserControlManager = function () {
 				control.height = undefined;
 			}, uc);
 
-			gxui.afterShow(function () {
-				try {
-					var el = Ext.get(uc.getContainerControl());
-					uc.checkIfInline(el);
-					for (var el = Ext.get(uc.getContainerControl()); el; el = el.parent("div")) {
-						var container = gxui.UserControlManager.isRegisteredContainer(el.dom)
-						uc.checkIfInline(el);
-						if (container) {
-							this.setControlContainer(control, container);
-							return;
-						}
-					}
-
-					// Controls that don't have a parent container
-					this.setControlContainer(control, 'ROOT');
-				}
-				catch (e) {
-					gx.dbg.logEx(e, 'gxui.UserControl.js', 'addToParentContainer->' + uc.getUniqueId());
+			var findParentContainerFn = this.findParentContainer.closure(this, arguments);
+			var afterShowEvent = gxui.afterShow(findParentContainerFn, this);
+			
+			uc.on('destroy', function () {
+				if (afterShowEvent) {
+					afterShowEvent.removeListener(findParentContainerFn, this);
 				}
 			}, this);
 		},
 
+
+		findParentContainer: function (uc, control) {
+			try {
+				var el = Ext.get(uc.getContainerControl());
+				uc.checkIfInline(el);
+				for (var el = Ext.get(uc.getContainerControl()); el; el = el.parent("div")) {
+					var container = gxui.UserControlManager.isRegisteredContainer(el.dom)
+					uc.checkIfInline(el);
+					if (container) {
+						this.setControlContainer(control, container);
+						return;
+					}
+				}
+
+				// Controls that don't have a parent container
+				this.setControlContainer(control, 'ROOT');
+			}
+			catch (e) {
+				gx.dbg.logEx(e, 'gxui.UserControl.js', 'addToParentContainer->' + uc.getUniqueId());
+			}
+		},
 
 		addControlsToContainer: function () {
 			try {
@@ -528,7 +537,8 @@ gxui.UserControlManager = function () {
 				initAfterShow();
 
 			scope.afterShowHandler = fn;
-			afterShowEvent.addListener(fn, scope, options)
+			afterShowEvent.addListener(fn, scope, options);
+			return afterShowEvent;
 		}
 	};
 } ();
