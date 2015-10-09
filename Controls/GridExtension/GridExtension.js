@@ -748,6 +748,15 @@ Ext.define('gxui.GridExtension', {
 					this.fixGridWidth(grid);
 			},
 
+			'beforestatesave': function () {
+				// Avoid state save when the control is loaded for the first time, as an onResize event
+				// is firing an unnecesary state save after rendering the control.
+				if (!this.canSaveState) {
+					this.canSaveState = true;
+					return false;
+				}
+			},
+
 			scope: this
 		};
 	},
