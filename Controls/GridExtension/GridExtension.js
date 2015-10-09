@@ -29,7 +29,7 @@ Ext.define('gxui.GridExtension', {
 		if ((!this.editable && this.isEditable(true)) || this.columnModelChanged(this.m_grid)) {
 			this.m_grid.destroy();
 			this.forceRendering();
-			this.show();
+			this.renderControl();
 			this.keepSelection(this.m_grid);
 		}
 		else {

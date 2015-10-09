@@ -80,17 +80,7 @@ Ext.define('gxui.UserControl', {
 		if (!this.rendered) {
 			Ext.onReady(function () {
 				try {
-					this.onRender();
-					this.addToContainer();
-					if (this.onAfterRender) {
-						var control = this.getUnderlyingControl();
-						if (control) {
-							if (control.rendered)
-								this.onAfterRender.call(this, control);
-							else
-								control.on('afterrender', this.onAfterRender, this, [control]);
-						}
-					}
+					this.renderControl();
 					this.rendered = true;
 				}
 				catch (e) {
@@ -115,6 +105,20 @@ Ext.define('gxui.UserControl', {
 		}
 	},
 
+	renderControl: function () {
+		this.onRender();
+		this.addToContainer();
+		if (this.onAfterRender) {
+			var control = this.getUnderlyingControl();
+			if (control) {
+				if (control.rendered)
+					this.onAfterRender.call(this, control);
+				else
+					control.on('afterrender', this.onAfterRender, this, [control]);
+			}
+		}
+	},
+	
 	/**
 	* Force the user control rendering.
 	* @ignore
@@ -321,18 +325,18 @@ gxui.UserControlManager = function () {
 				this.addControlsToContainer();
 				for (var i = 0, len = ucList.length; i < len; i++) {
 					var item = ucList[i],
-						extUC = item.uc.getUnderlyingControl();
+						extUC = item.getUnderlyingControl();
 
 					if (extUC) {
-						if (!item.uc.unmanagedLayout && !extUC.rendered)
-							extUC.render(item.uc.getContainerControl());
+						if (!item.unmanagedLayout && !extUC.rendered)
+							extUC.render(item.getContainerControl());
 						else {
 							// Fire doLayout function in those controls that don't have a parent control.
 							if (extUC && !extUC.ownerCt && extUC.doLayout) {
 								extUC.doLayout();
 							}
-							if (item.uc.fixAutoDimensions) {
-								item.uc.fixAutoDimensions(extUC);
+							if (item.fixAutoDimensions) {
+								item.fixAutoDimensions(extUC);
 							}
 						}
 					}
@@ -351,7 +355,7 @@ gxui.UserControlManager = function () {
 		getUCList: function () {
 			var l = [];
 			for (var i = 0, len = ucList.length; i < len; i++) {
-				l.push(ucList[i].uc);
+				l.push(ucList[i]);
 			}
 			return l;
 		},
@@ -361,10 +365,8 @@ gxui.UserControlManager = function () {
 		},
 
 		register: function (uc) {
-			ucList.push({
-				uc: uc,
-				shown: false
-			});
+			ucList.push(uc);
+			uc.shown = false;
 
 			uc.on("show", ucShowListener, this);
 
@@ -415,7 +417,7 @@ gxui.UserControlManager = function () {
 
 			for (var i = 0, len = ucList.length; i < len; i++) {
 				var item = ucList[i];
-				if (uc == item.uc) {
+				if (uc == item) {
 					obj = item;
 					break;
 				}
@@ -513,8 +515,15 @@ gxui.UserControlManager = function () {
 				for (var i = 0, len = containers.length; i < len; i++) {
 					var container = containers[i],
 						children = this.childControls[container.scope.id];
-					if (children && children.length > 0)
-						container.addFn.call(container.scope, children);
+					var safeChildren = [];
+					if (children) {
+						for (var j = 0, len2 = children.length; j < len2; j++) {
+							if (!children[j].isDestroyed)
+								safeChildren.push(children[j]);
+						}
+						if (safeChildren && safeChildren.length > 0)
+							container.addFn.call(container.scope, safeChildren);
+					}
 				}
 
 				delete this.childControls;

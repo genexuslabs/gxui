@@ -117,9 +117,12 @@ gxui = function () {
 			var gxBuild = gxui.getGeneXusBuild();
 			if (gxBuild) {
 				if (gxBuild > 54798) {
-					Ext.fly(document.documentElement).addCls("gxui-xev2");
-					if (gxBuild <= 64355) {
-						Ext.fly(document.documentElement).addCls("gxui-msg-fix");
+					var docEl = Ext.fly(document.documentElement);
+					if (docEl) {
+						docEl.addCls("gxui-xev2");
+						if (gxBuild <= 64355) {
+							docEl.addCls("gxui-msg-fix");
+						}
 					}
 				}
 				if (gxBuild < 55424) {
