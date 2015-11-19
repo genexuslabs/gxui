@@ -143,6 +143,19 @@ gxui = function () {
 					};
 				}
 			}
+			
+			// Override Ext.getBody() to allow ExtJS to work with SPA
+			Ext.getBody = (function() {
+				var body, domBody;
+				return function() {
+					if (!domBody || domBody != document.body) {
+						domBody = document.body;
+						body = Ext.get(domBody);
+						return body;
+					}
+					return body;
+				};
+			}())
 		},
 
 		/**
