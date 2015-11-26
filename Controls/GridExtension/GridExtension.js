@@ -1022,7 +1022,7 @@ Ext.define('gxui.GridExtension', {
 			oldColumns = grid.initialConfig.columns,
 			newCol,
 			oldCol,
-			properties = ['hideable', 'hidden', 'locked', 'resizable', 'sortable'];
+			properties = ['hideable', 'hidden', 'locked', 'resizable', 'sortable', 'header'];
 
 		if (oldColumns.length != newColumns.length) {
 			return true;
