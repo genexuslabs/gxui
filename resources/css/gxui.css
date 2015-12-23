@@ -70,6 +70,6 @@ img.gxui-gridcell-blob {
 	max-height: 100%;
 }
 
-.ie .ext-quicktips-tip-innerCt {
+.ie .x-tip-body {
 	white-space: nowrap;
 }
