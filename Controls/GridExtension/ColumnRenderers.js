@@ -264,7 +264,7 @@ Ext.define('gxui.GridExtension.Column', function () {
 
 				//Show Tooltip text if set
 				if (cell.title) {
-					v = Ext.String.format("<span qtip='{0}'>{1}</span>", cell.title, v);
+					v = Ext.String.format("<span data-qtip='{0}'>{1}</span>", cell.title, v);
 				}
 				return v;
 			}
