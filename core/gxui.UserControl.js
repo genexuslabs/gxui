@@ -297,6 +297,7 @@ Ext.define('gxui.UserControl', {
 * @ignore
 */
 gxui.UserControlManager = function () {
+	var mgr;
 	var ucList = [];
 	var ctList = [];
 
@@ -306,6 +307,30 @@ gxui.UserControlManager = function () {
 		afterShowEvent = new Ext.util.Event();
 	};
 
+	var allShownHandler = function () {
+		afterShowEvent.fire();
+		this.addControlsToContainer();
+		for (var i = 0, len = ucList.length; i < len; i++) {
+			var item = ucList[i],
+				extUC = item.getUnderlyingControl();
+
+			if (extUC) {
+				if (!item.unmanagedLayout && !extUC.rendered)
+					extUC.render(item.getContainerControl());
+				else {
+					// Fire doLayout function in those controls that don't have a parent control.
+					if (extUC && !extUC.ownerCt && extUC.doLayout) {
+						extUC.doLayout();
+					}
+					if (item.fixAutoDimensions) {
+						item.fixAutoDimensions(extUC);
+					}
+				}
+			}
+			item.shown = false;
+		}
+	};
+	
 	var ucShowListener = function (uc) {
 		try {
 			var ucListItem = this.isRegisteredUC(uc)
@@ -321,27 +346,7 @@ gxui.UserControlManager = function () {
 			}
 
 			if (allShown && afterShowEvent) {
-				afterShowEvent.fire();
-				this.addControlsToContainer();
-				for (var i = 0, len = ucList.length; i < len; i++) {
-					var item = ucList[i],
-						extUC = item.getUnderlyingControl();
-
-					if (extUC) {
-						if (!item.unmanagedLayout && !extUC.rendered)
-							extUC.render(item.getContainerControl());
-						else {
-							// Fire doLayout function in those controls that don't have a parent control.
-							if (extUC && !extUC.ownerCt && extUC.doLayout) {
-								extUC.doLayout();
-							}
-							if (item.fixAutoDimensions) {
-								item.fixAutoDimensions(extUC);
-							}
-						}
-					}
-					item.shown = false;
-				}
+				allShownHandler.call(this);
 			}
 		}
 		catch (e) {
@@ -349,7 +354,16 @@ gxui.UserControlManager = function () {
 		}
 	};
 
-	return {
+	gx.fx.obs.addObserver('gx.onobjectpostback', mgr, function () {
+		for (var i = 0, len = ucList.length; i < len; i++) {
+			if (ucList[i].shown === true) {
+				allShownHandler.call(mgr);
+				return;
+			}
+		}
+	});
+	
+	mgr = {
 		childControls: {},
 
 		getUCList: function () {
@@ -550,4 +564,6 @@ gxui.UserControlManager = function () {
 			return afterShowEvent;
 		}
 	};
+
+	return mgr;
 } ();
