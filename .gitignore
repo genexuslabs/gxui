@@ -1,0 +1,6 @@
+build/Release
+Helpers/Base/bin
+Helpers/Base/obj
+Helpers/Resolvers/bin
+Helpers/Resolvers/obj
+Helpers/Base/PropertyConstants.cs
