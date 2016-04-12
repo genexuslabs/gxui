@@ -243,7 +243,11 @@ Ext.define('gxui.GridExtension.Column', function () {
 				}
 
 				if (gx.lang.gxBoolean(this.gxGrid.UseThemeClasses) && cell.cssClass) {
-					metadata.tdCls += ' ' + cell.cssClass
+					metadata.tdCls += ' ' + cell.cssClass;
+				}
+
+				if (this.gxGrid.isCellEditable(cell) && this.gxGrid.EditableCellClass) {
+					metadata.tdCls += ' ' + this.gxGrid.EditableCellClass;
 				}
 
 				if (cell.link) {

@@ -767,7 +767,7 @@ Ext.define('gxui.GridExtension', {
 			var editable = false;
 			for (var i = 0, rows = this.properties.length; i < rows; i++) {
 				for (var j = 0, cols = this.properties[i].length; j < cols; j++) {
-					editable = editable || (!gx.lang.gxBoolean(this.properties[i][j].readOnly) && gx.lang.gxBoolean(this.properties[i][j].enabled));
+					editable = editable || this.isCellEditable(this.properties[i][j]);
 					if (editable) {
 						this.editable = editable;
 						return this.editable;
@@ -777,6 +777,10 @@ Ext.define('gxui.GridExtension', {
 		}
 
 		return this.editable;
+	},
+
+	isCellEditable: function (cell) {
+		return !gx.lang.gxBoolean(cell.readOnly) && gx.lang.gxBoolean(cell.enabled);
 	},
 
 	getActualColumnIndex: function (grid, colIndex) {

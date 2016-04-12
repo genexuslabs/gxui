@@ -37,6 +37,13 @@
 							</Metadata>
 							<Description>True to use the Theme classes asigned to the grid and columns, false to ignore them.</Description>
 						</Prop>
+						<Prop>
+							<Id>EditableCellClass</Id>
+							<Name>EditableCellClass</Name>
+							<Type>Text</Type>
+							<Default></Default>
+							<Description>Theme class for editable cells.</Description>
+						</Prop>
 					</Children>
 				</Group>
 				<Group>
