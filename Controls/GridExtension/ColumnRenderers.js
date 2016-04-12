@@ -1,7 +1,8 @@
 /// <reference path="..\..\Freezer\Ext\ext-all-dev.js" />
 
 Ext.define('gxui.GridExtension.Column', function () {
-	var pictureHelperRegex;
+	var pictureHelperRegex,
+		blankWhenZeroRegex = /^Z+(?:\.Z+)?$/;
 
 	return {
 		extend: 'Ext.grid.column.Column',
@@ -120,6 +121,9 @@ Ext.define('gxui.GridExtension.Column', function () {
 			var picture = colData.pic;
 			var numberFormat = "";
 			var integerPart = "0"
+			if (value === 0 && picture.match(blankWhenZeroRegex)) {
+				return "";
+			}
 			if (picture.indexOf(gx.thousandSeparator) >= 0) {
 				integerPart += ",000";
 			}
