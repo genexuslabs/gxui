@@ -81,7 +81,6 @@ Ext.define('gxui.UserControl', {
 			Ext.onReady(function () {
 				try {
 					this.renderControl();
-					this.rendered = true;
 				}
 				catch (e) {
 					gx.dbg.logEx(e, 'gxui.js', 'show');
@@ -107,6 +106,7 @@ Ext.define('gxui.UserControl', {
 
 	renderControl: function () {
 		this.onRender();
+		this.rendered = true;
 		this.addToContainer();
 		if (this.onAfterRender) {
 			var control = this.getUnderlyingControl();
