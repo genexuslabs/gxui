@@ -53,6 +53,16 @@
 							<Description>True to allow column locking ala Ms Excel's "Freeze Panes" option.</Description>
 						</Prop>
 						<Prop>
+							<Id>EnableTextSelection</Id>
+							<Name>EnableTextSelection</Name>
+							<Type>Boolean</Type>
+							<Default>false</Default>
+							<Metadata>
+								<Value name="FlagScope">DesignTime</Value>
+							</Metadata>
+							<Description>True to enable text selections.</Description>
+						</Prop>
+						<Prop>
 							<Id>SelectionModel</Id>
 							<Name>SelectionModel</Name>
 							<Type>Combo</Type>

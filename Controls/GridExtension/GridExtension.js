@@ -218,7 +218,8 @@ Ext.define('gxui.GridExtension', {
 			plugins: [],
 			disableSelection: !gx.lang.gxBoolean(this.gxAllowSelection),
 			trackOver: gx.lang.gxBoolean(this.gxAllowHovering),
-			stripeRows: (this.gxTitleBackstyle == gx.grid.styles.report)
+			stripeRows: (this.gxTitleBackstyle == gx.grid.styles.report),
+			enableTextSelection: gx.lang.gxBoolean(this.EnableTextSelection)
 		};
 
 		if (gx.lang.gxBoolean(this.ownerGrid.defaultDragable) && gx.lang.gxBoolean(this.gxAllowSelection))

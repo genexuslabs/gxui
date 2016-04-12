@@ -4,3 +4,9 @@ Helpers/Base/obj
 Helpers/Resolvers/bin
 Helpers/Resolvers/obj
 Helpers/Base/PropertyConstants.cs
+build/Debug/gxui/Artech.UC.gxui.dll
+build/Debug/gxui/Artech.UC.gxui.PropertiesResolvers.dll
+build
+Solution/GxUI.opensdf
+Solution/GxUI.sdf
+Solution/JsProject/Debug/GxUI.log
