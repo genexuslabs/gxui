@@ -11,9 +11,6 @@
 		<!--
 		  __Description__: takes the last revision number as the version number.
 		  -->
-		<SvnInfo LocalPath=".">
-			<Output TaskParameter="LastChangedRevision" PropertyName="Revision" />
-		</SvnInfo>
 
 		<Message Text="Revision number: $(Revision)"/>
 
@@ -66,7 +63,7 @@
 		  __Description__: Copy ExtJS files to shared folder
 		  -->
 		<Exec IgnoreExitCode="true"
-				  Command='$(RobocopyExe) Freezer\Ext "$(DeploySharedDir)\Ext" /s /r:3 /w:10 /xd .svn /np /purge'>
+				  Command='$(RobocopyExe) Freezer\Ext "$(DeploySharedDir)\Ext" /s /r:3 /w:10 /xd .svn .git /np /purge'>
 			<Output TaskParameter="ExitCode" ItemName="RobocopyExitCode"/>
 		</Exec>
 		<Error Text="Robocopy Error" Condition="'%(RobocopyExitCode.identity)'>7"/>

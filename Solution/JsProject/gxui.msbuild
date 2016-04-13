@@ -35,7 +35,7 @@
 		<MSBuild ContinueOnError="false"
 			Projects="..\..\gxui.msbuild"
 			Targets="$(Action)"
-			Properties="Configuration=$(Configuration);" />
+			Properties="Configuration=$(Configuration);Revision=$(Revision)" />
 	</Target>
 	
 	<Target Name="Rebuild" DependsOnTargets="Clean;Build"/>
