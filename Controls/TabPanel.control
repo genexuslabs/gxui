@@ -30,7 +30,7 @@
 	<PropertiesDefinition>TabPanel/design/TabPanelProperties.xml</PropertiesDefinition>
 	<DesignRender>TabPanel/design/TabPanelRender.xsl</DesignRender>
 	<DesignerRenderHelper>Artech.UC.gxui.Renders.TabPanel</DesignerRenderHelper>
-	<ResolverFactory>Artech.UC.gxui.PropertiesResolvers.TabPanel.ResolverFactory</ResolverFactory>
+	<ResolverFactory>Artech.UC.gxui.PropertiesResolvers.TabPanel.ResolverFactory, Artech.UC.gxui.PropertiesResolvers</ResolverFactory>
 	<ToolboxIcon>TabPanel/design/tabpanel.ico</ToolboxIcon>
 	<Events>
 		<Event>TabChanged</Event>

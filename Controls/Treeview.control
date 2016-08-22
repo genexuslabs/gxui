@@ -31,7 +31,7 @@
 	<PropertiesDefinition>Treeview/design/TreeviewProperties.xml</PropertiesDefinition>
 	<DesignRender>Treeview/design/TreeviewRender.xsl</DesignRender>
 	<DesignerRenderHelper>Artech.UC.gxui.Renders.UserControl</DesignerRenderHelper>
-	<ResolverFactory>Artech.UC.gxui.PropertiesResolvers.Treeview.ResolverFactory</ResolverFactory>
+	<ResolverFactory>Artech.UC.gxui.PropertiesResolvers.Treeview.ResolverFactory, Artech.UC.gxui.PropertiesResolvers</ResolverFactory>
 	<ToolboxIcon>Treeview/design/treeview.ico</ToolboxIcon>
 	<Events>
 		<Event>Click</Event>
