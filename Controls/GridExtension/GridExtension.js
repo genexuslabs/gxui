@@ -45,7 +45,15 @@ Ext.define('gxui.GridExtension', {
 
 			grid.getStore().loadRawData(this.properties);
 
-			this.updatePagingToolbar(grid.getDockedComponent('toolbar'));
+			var toolbar = grid.getDockedComponent('toolbar');
+			if (toolbar) {
+				this.updatePagingToolbar(toolbar);
+			}
+			else {
+				if (this.usePagingToolbar()) {
+					grid.addDocked(this.getPagingToolbarConfig());
+				}
+			}
 
 			this.keepSelection(grid);
 
