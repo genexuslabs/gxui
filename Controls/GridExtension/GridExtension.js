@@ -854,7 +854,12 @@ Ext.define('gxui.GridExtension', {
 				gx.fn.setHidden(this.gxCmpContext + hiddenName, pagingDirection);
 				eventName = this.gxCmpContext + "E" + hiddenName + '.';
 			}
-			gx.evt.execEvt(undefined, undefined, eventName, gx.evt.dummyCtrl, gridId);
+			if (gxui.getGeneXusBuild() >= 76147) {
+				gx.evt.execEvt(undefined, undefined, eventName, gx.evt.dummyCtrl, gridId);
+			}
+			else {
+				gx.evt.execEvt(eventName, gx.evt.dummyCtrl, gridId);
+			}
 		}
 	},
 
