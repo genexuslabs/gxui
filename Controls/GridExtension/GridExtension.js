@@ -854,7 +854,7 @@ Ext.define('gxui.GridExtension', {
 				gx.fn.setHidden(this.gxCmpContext + hiddenName, pagingDirection);
 				eventName = this.gxCmpContext + "E" + hiddenName + '.';
 			}
-			if (gxui.getGeneXusBuild() >= 76147) {
+			if (gx.evt.execEvt.length > 4) {
 				gx.evt.execEvt(undefined, undefined, eventName, gx.evt.dummyCtrl, gridId);
 			}
 			else {
