@@ -1010,14 +1010,8 @@ Ext.define('gxui.GridExtension', {
 	},
 
 	setCellValue: function (cell, value) {
-		if ((cell.IOType && cell.id) || cell.gxvar) {
-			var id;
-			if (cell.gxvar) {
-				id = gx.fn.screen_CtrlId(cell.fld);
-			}
-			else {
-				id = cell.id;
-			}
+		if (cell.IOType && cell.id) {
+			var id = cell.id;
 			cell = this.getCellById(id);
 			var recordIndex = this.m_grid.getStore().findBy(function (record) {
 				for (var i=0, len=record.raw.length; i<len; i++) {
