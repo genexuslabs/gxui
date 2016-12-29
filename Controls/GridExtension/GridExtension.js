@@ -351,12 +351,13 @@ Ext.define('gxui.GridExtension', {
 				mapping: function (i, converter) {
 					return function (obj) {
 						var hasReturn = obj[i].grid.instanciateRow(obj[i].gridRow);
-						var value;
+						var vStruct, value;
 						if (hasReturn && obj[i].column.gxControl.type != gx.html.controls.types.checkBox) {
 							var bkpObj = gx.O;
 							var pO = obj[i].grid.parentObject;
 							gx.setGxO(pO.CmpContext, pO.IsMasterPage);
-							value = pO.GXValidFnc[obj[i].column.gxId].val();
+							vStruct = pO.GXValidFnc[obj[i].column.gxId];
+							value = vStruct ? vStruct.val() : 0;
 							gx.setGxO(bkpObj.CmpContext, bkpObj.IsMasterPage);
 						}
 						else
@@ -990,8 +991,42 @@ Ext.define('gxui.GridExtension', {
 			e.grid.getView().refresh();
 	},
 
+	getCellValue: function (cellId) {
+		var cell = this.getCellById(cellId);
+		if (cell) {
+			return cell.value;
+		}
+	},
+
+	getCellById: function (cellId) {
+		var properties = this.properties;
+		for (var i = 0, rows = properties.length; i < rows; i++) {
+			for (var j = 0, cols = properties[i].length; j < cols; j++) {
+				if (properties[i][j].id == cellId) {
+					return properties[i][j];
+				}
+			}
+		}
+	},
 
 	setCellValue: function (cell, value) {
+		if (cell.IOType && cell.id) {
+			var id = cell.id;
+			cell = this.getCellById(id);
+			var recordIndex = this.m_grid.getStore().findBy(function (record) {
+				for (var i=0, len=record.raw.length; i<len; i++) {
+					if (record.raw[i].id == id) {
+						return true;
+					}
+				}
+			});
+			var record = this.m_grid.getStore().getAt(recordIndex);
+			record.set(this.resolveColumnName(cell.column), value);
+		}
+		this.setCellValue_Internal(cell, value);
+	},
+
+	setCellValue_Internal: function (cell, value) {
 		var gxControl = cell.column.gxControl,
 			controlTypes = gx.html.controls.types;
 
