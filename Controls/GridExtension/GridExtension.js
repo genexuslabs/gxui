@@ -357,7 +357,7 @@ Ext.define('gxui.GridExtension', {
 							var pO = obj[i].grid.parentObject;
 							gx.setGxO(pO.CmpContext, pO.IsMasterPage);
 							vStruct = pO.GXValidFnc[obj[i].column.gxId];
-							value = vStruct ? vStruct.val() : 0;
+							value = vStruct && vStruct.val ? vStruct.val() : 0;
 							gx.setGxO(bkpObj.CmpContext, bkpObj.IsMasterPage);
 						}
 						else
