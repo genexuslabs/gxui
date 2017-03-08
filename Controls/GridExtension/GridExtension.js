@@ -17,9 +17,13 @@ Ext.define('gxui.GridExtension', {
 			plugins = this.getPlugins(),
 			features = this.getFeatures();
 
-		// mask and unmask methods are overriden to avoid the default GX mask
-		this.mask = Ext.emptyFn;
-		this.unmask = Ext.emptyFn;
+		// mask and unmask methods are overriden to show the native Ext grid loading mask
+		this.mask = function () {
+			this.m_grid.setLoading(true);
+		};
+		this.unmask = function () {
+			this.m_grid.setLoading(false);
+		};
 
 		// create the Grid
 		this.m_grid = this.createGridPanel(cmConf, storeConf, smConf, viewConf, plugins, features);
