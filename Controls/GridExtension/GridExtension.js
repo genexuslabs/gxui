@@ -905,6 +905,10 @@ Ext.define('gxui.GridExtension', {
 		return cell.type == gxControlTypes.checkBox || (cell.type == gxControlTypes.image && cell.enabled && (cell.readOnly === undefined || cell.readOnly === true)) || (cell.type != gxControlTypes.image && !cell.enabled);
 	},
 
+	cellHasEvent: function (cell) {
+		return !!cell.clickEvent;
+	},
+
 	fireCellClickEvent: function (rowIndex, columnIndex) {
 		var grid = this.m_grid;
 		var actualColIndex = this.getActualColumnIndex(grid, columnIndex);

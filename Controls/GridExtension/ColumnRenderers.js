@@ -250,10 +250,6 @@ Ext.define('gxui.GridExtension.Column', function () {
 					metadata.tdCls += ' ' + cell.cssClass;
 				}
 
-				if (this.gxGrid.isCellEditable(cell) && this.gxGrid.EditableCellClass) {
-					metadata.tdCls += ' ' + this.gxGrid.EditableCellClass;
-				}
-
 				if (cell.link) {
 					v = Ext.String.format('<a href="{0}" alt="{2}" target="{3}">{1}</a>', cell.link || "", v || "", cell.alt || "", cell.linkTarget || "");
 				}
@@ -263,7 +259,7 @@ Ext.define('gxui.GridExtension.Column', function () {
 					style += this.extractCssProperties(["text-decoration", "color", "background-color", "font-weight"], cell.style);
 
 				// If the cell fires a user event and is enabled, wrap with an anchor tag.
-				if (cell.grid.grid.isCellEventEnabled(cell)) {
+				if (cell.grid.grid.isCellEventEnabled(cell) && cell.grid.grid.cellHasEvent(cell)) {
 					style += 'cursor:pointer;';
 				}
 
@@ -274,6 +270,11 @@ Ext.define('gxui.GridExtension.Column', function () {
 				if (cell.title) {
 					v = Ext.String.format("<span data-qtip='{0}'>{1}</span>", cell.title, v);
 				}
+
+				if (this.gxGrid.isCellEditable(cell) && this.gxGrid.EditableCellClass) {
+					v = Ext.String.format('<div class="{0}">{1}</div>', this.gxGrid.EditableCellClass, v || "");
+				}
+
 				return v;
 			}
 			return "";
