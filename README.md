@@ -8,7 +8,7 @@ Currently, GxUI provides the following user controls:
 
 * **GridExtension**
 
-  Custom render for Grid controls. Wraps `Ext.grid.Panel` so it can be used from GeneXus. Grids are an excellent way of showing large amounts of tabular data on the client side. Essentially a supercharged <table>, GridExtension makes it easy to fetch, sort and filter large amounts of data.
+  Custom render for Grid controls. Wraps `Ext.grid.Panel` so it can be used from GeneXus. Grids are an excellent way of showing large amounts of tabular data on the client side. Essentially a supercharged &lt;table&gt;, GridExtension makes it easy to fetch, sort and filter large amounts of data.
 
 * **Layout**
 
