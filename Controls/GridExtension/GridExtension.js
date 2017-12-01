@@ -700,7 +700,7 @@ Ext.define('gxui.GridExtension', {
 				var cell = this.getPropertiesCell(view.panel, rowIndex, columnIndex, false);
 
 				if (this.isCellEventEnabled(cell))
-					this.fireCellClickEvent(rowIndex, columnIndex);
+					this.fireCellClickEvent(view.panel, rowIndex, columnIndex);
 			},
 
 			'itemcontextmenu': function (view, record, rowEl, rowIndex, e) {
@@ -909,8 +909,7 @@ Ext.define('gxui.GridExtension', {
 		return !!cell.clickEvent;
 	},
 
-	fireCellClickEvent: function (rowIndex, columnIndex) {
-		var grid = this.m_grid;
+	fireCellClickEvent: function (grid, rowIndex, columnIndex) {
 		var actualColIndex = this.getActualColumnIndex(grid, columnIndex);
 		var actualRowIndex = this.getActualRowIndex(grid, rowIndex);
 		var cell = this.getPropertiesCell(grid, actualRowIndex, actualColIndex, true);
@@ -971,7 +970,7 @@ Ext.define('gxui.GridExtension', {
 
 			// Fire cell click event
 			if (gxControl.type == controlTypes.checkBox || gxControl.type == controlTypes.comboBox) {
-				this.fireCellClickEvent(e.rowIdx, e.colIdx)
+				this.fireCellClickEvent(e.grid, e.rowIdx, e.colIdx)
 			}
 
 			if (e.originalValue != e.value) {
