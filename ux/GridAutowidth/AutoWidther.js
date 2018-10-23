@@ -50,6 +50,7 @@ Ext.define('Skirtle.grid.AutoWidther', {
 
 				Ext.each(els, function (el) {
 					el = Ext.fly(el);
+					var firstColCell = Ext.get(Ext.query("td." + el.dom.className)[0]);
 
 					/* This is needed otherwise columns only get wider, not narrower.
 					* Using getWidth() or getStyle() doesn't necessarily give us the value we want.
@@ -58,7 +59,7 @@ Ext.define('Skirtle.grid.AutoWidther', {
 					originalColumnElWidth = el.dom.style.width;
 					el.setStyle('width', 'auto');
 
-					newWidth = Math.max(el.getWidth(), newWidth);
+					newWidth = Math.max(el.getWidth(), newWidth, firstColCell.getWidth());
 
 					// Put it back the way we found it
 					el.setStyle('width', originalColumnElWidth);
@@ -81,7 +82,13 @@ Ext.define('Skirtle.grid.AutoWidther', {
 			column.flex = null;
 		}
 
-		column.setWidth(config.newWidth, /* doLayout */!me.isPending());
+		if (me.isPending()) {
+			Ext.suspendLayouts();
+		}
+		column.setWidth(config.newWidth);
+		if (me.isPending()) {
+			Ext.resumeLayouts();
+		}
 
 		// Required if the column was previously flexed as setWidth thinks the width is already correct
 		column.width = config.newWidth;
@@ -145,7 +152,7 @@ Ext.define('Skirtle.grid.AutoWidther', {
 	getColumnResizers: function (column, config) {
 		// Grab the <th> rows (one per table) that are used to size the columns
 		// TODO: can't assume x- prefix
-		var els = this.grid.getEl().query('.x-grid-col-resizer-' + column.id);
+		var els = this.grid.getEl().query('col.x-grid-cell-' + column.id);
 
 		// Grouping feature - first table wraps everything and needs to be ignored
 		if (els.length > 1 && Ext.fly(els[0]).parent('table').contains(els[1])) {
@@ -165,7 +172,7 @@ Ext.define('Skirtle.grid.AutoWidther', {
 
 	getTableResizers: function () {
 		// TODO: can't assume x- prefix
-		var els = this.grid.getView().getEl().query('.x-grid-table-resizer');
+		var els = this.grid.getView().getEl().query('.x-grid-table');
 
 		// Grouping feature - first table wraps everything and can be ignored
 		if (els.length > 1 && Ext.fly(els[0]).contains(els[1])) {
