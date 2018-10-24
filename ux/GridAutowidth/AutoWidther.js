@@ -59,7 +59,7 @@ Ext.define('Skirtle.grid.AutoWidther', {
 					originalColumnElWidth = el.dom.style.width;
 					el.setStyle('width', 'auto');
 
-					newWidth = Math.max(el.getWidth(), newWidth, firstColCell.getWidth());
+					newWidth = Math.max(el.getWidth(), newWidth, firstColCell ? firstColCell.getWidth() : 0);
 
 					// Put it back the way we found it
 					el.setStyle('width', originalColumnElWidth);
@@ -73,7 +73,7 @@ Ext.define('Skirtle.grid.AutoWidther', {
 		config.newWidth = newWidth;
 
 		if (me.beforeColumnResize(column, config) === false
-            || me.fireEvent('beforecolumnresize', me, column, config) === false) {
+		|| me.fireEvent('beforecolumnresize', me, column, config) === false) {
 			return false;
 		}
 

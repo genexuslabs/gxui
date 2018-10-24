@@ -290,6 +290,9 @@ Ext.define('gxui.GridExtension', {
 			else if (v instanceof gx.date.gxdate)
 				gxdate = v
 			gxdate.Value.gxdate = gxdate;
+			if (gxdate.Value - new Date(0, 0, 0, 0, 0, 0, 0) === 0) {
+				return "";
+			}
 			return gxdate.Value;
 		},
 

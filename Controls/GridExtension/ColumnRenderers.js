@@ -90,9 +90,12 @@ Ext.define('gxui.GridExtension.Column', function () {
 					};
 
 				case types.date:
+					var gxDateObj = gx.date.gxdateObject(new Date());
 					return {
 						xtype: 'datefield',
-						format: this.mapDateFormat()
+						format: this.mapDateFormat(),
+						allowBlank: true,
+						emptyText: gxDateObj.emptyDateString(gx.dateFormat)
 					};
 
 				case types.dateTime:
@@ -206,6 +209,12 @@ Ext.define('gxui.GridExtension.Column', function () {
 		},
 
 		formatDate: function (value, vStruct) {
+			var gxdate;
+			if (!value) {
+				gxdate = gx.date.gxdateObject(new Date());
+				return gxdate.emptyDateString(gx.dateFormat);
+			}
+
 			var gxdate = value.gxdate;
 			if (value - new Date(0, 0, 0, 0, 0, 0, 0) === 0 && gxdate) {
 				var gxFormat = gxdate.SFmt,
