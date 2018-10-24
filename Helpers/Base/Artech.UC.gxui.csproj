@@ -80,7 +80,7 @@
       <HintPath>$(GX_PROGRAM_DIR)\Packages\Artech.Packages.Patterns.dll</HintPath>
     </Reference>
     <Reference Include="Jayrock-JSON">
-      <HintPath>..\..\..\..\GxwGX15\gxnet\bin\Jayrock-JSON.dll</HintPath>
+      <HintPath>$(GX_PROGRAM_DIR)\gxnet\bin\Jayrock-JSON.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
