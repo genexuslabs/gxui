@@ -36,9 +36,9 @@
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(MSBuildBinPath)\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Build</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(MSBuildBinPath)\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Rebuild</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(MSBuildBinPath)\msbuild.exe "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Clean</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Rebuild</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)gxui.msbuild" /t:BuildAndDeploy /p:Configuration=$(Configuration) /p:Action=Clean</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
@@ -197,6 +197,10 @@
     <None Include="..\..\Controls\KeyMap\design\KeyMap.png" />
     <None Include="..\..\Controls\KeyMap\design\KeyMapProperties.xml" />
     <None Include="..\..\Controls\KeyMap\design\KeyMapRender.xsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\..\gxuiGXCatalog.xml" />
+    <Xml Include="..\..\gxuiKBCatalog.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

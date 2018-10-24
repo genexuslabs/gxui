@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project path="" name="GxUI Library" author="Artech" version="2.0 beta (Build 1415)" copyright="GxUI Library $version&#xD;&#xA;Copyright (c) 2009, $author&#xD;&#xA;All rights reserved.&#xD;&#xA;&#xD;&#xA;GxUI Library is freely distributable under the terms of the BSD license.&#xD;&#xA;" output="$project\build\gxui" source="True" source-dir="$output" minify="False" min-dir="$output\min" doc="False" doc-dir="$output\docs" master="true" master-file="$output\yui-ext.js" zip="true" zip-file="$output\yuo-ext.$version.zip">
+<project path="" name="GxUI Library" author="Artech" version="2.0 beta (Build 2523)" copyright="GxUI Library $version&#xD;&#xA;Copyright (c) 2009, $author&#xD;&#xA;All rights reserved.&#xD;&#xA;&#xD;&#xA;GxUI Library is freely distributable under the terms of the BSD license.&#xD;&#xA;" output="$project\build\gxui" source="True" source-dir="$output" minify="False" min-dir="$output\min" doc="False" doc-dir="$output\docs" master="true" master-file="$output\yui-ext.js" zip="true" zip-file="$output\yuo-ext.$version.zip">
   <directory name="" />
   <file name="core\no-ext.js" path="core" />
   <file name="core\gxui.js" path="core" />
   <file name="Controls\Panel\PanelRender.js" path="Panel" />
-  <file name="Jayrock.dll" path="" />
-  <file name="Jayrock.Json.dll" path="" />
+  <file name="Jayrock-JSON.dll" path="" />
   <file name="UserControlRenders.dll" path="" />
   <file name="Controls\Panel\design\PanelRender.xsl" path="Panel\design" />
   <file name="Controls\Panel\design\panel-title-light-bg.gif" path="Panel\design" />

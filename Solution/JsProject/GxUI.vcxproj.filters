@@ -487,4 +487,12 @@
       <Filter>Docs</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\..\gxuiGXCatalog.xml">
+      <Filter>Build</Filter>
+    </Xml>
+    <Xml Include="..\..\gxuiKBCatalog.xml">
+      <Filter>Build</Filter>
+    </Xml>
+  </ItemGroup>
 </Project>

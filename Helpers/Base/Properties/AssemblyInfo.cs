@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Artech")]
 [assembly: AssemblyProduct("Artech.UC.gxui.Helpers")]
-[assembly: AssemblyCopyright("Copyright © Artech 2008")]
+[assembly: AssemblyCopyright("Copyright © Artech 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

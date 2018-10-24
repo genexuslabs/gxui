@@ -4,8 +4,8 @@ using System.Text;
 using System.Xml;
 using System.Xml.XPath;
 using Jayrock.Json;
-using Jayrock.Json.Conversion;
 using Artech.Genexus.Common.Parts.WebForm;
+using System.IO;
 
 namespace Artech.UC.gxui.Renders
 {
@@ -30,7 +30,7 @@ namespace Artech.UC.gxui.Renders
 				return SetSelectedTab(clickedElementId);
 
 			if (this.PanelsCount() > 0)
-				return SetSelectedTab(((JsonObject)GetPanelsArray()[0])["id"].ToString());
+				return SetSelectedTab(((JObject)GetPanelsArray()[0])["id"].ToString());
 			else
 				return "";
 		}
@@ -39,11 +39,11 @@ namespace Artech.UC.gxui.Renders
 		{
 			try
 			{
-				JsonArray panels = GetPanelsArray();
+				JArray panels = GetPanelsArray();
 
 				StringBuilder builder = new StringBuilder();
 				builder.AppendFormat("<Panels>");
-				foreach (JsonObject panel in panels)
+				foreach (JObject panel in panels)
 				{
 					builder.AppendFormat("<Panel><Id>{0}</Id><Selected>{1}</Selected></Panel>", panel["id"], panel["selected"]);
 				}
@@ -74,14 +74,14 @@ namespace Artech.UC.gxui.Renders
 		{
 			try
 			{
-				JsonArray panels = GetPanelsArray();
-				foreach (JsonObject panel in panels)
+				JArray panels = GetPanelsArray();
+				foreach (JObject panel in panels)
 				{
 					panel["selected"] = "false";
 					if (tabId.Equals(panel["id"]))
 						panel["selected"] = "true";
 				}
-				ControlInfo.Properties.SetPropertyValue("DesignTimeTabs", JsonConvert.ExportToString(panels));
+				ControlInfo.Properties.SetPropertyValue("DesignTimeTabs", panels.ToString());
 				return tabId;
 			}
 			catch (Exception e)
@@ -94,10 +94,10 @@ namespace Artech.UC.gxui.Renders
 		{
 			try
 			{
-				JsonArray panels = GetPanelsArray();
+				JArray panels = GetPanelsArray();
 
 				int maxPanelId = 0;
-				foreach (JsonObject panel in panels)
+				foreach (JObject panel in panels)
 				{
 					int currentPanelId = int.Parse(panel["id"].ToString().Substring(8));
 					if (currentPanelId > maxPanelId)
@@ -105,8 +105,11 @@ namespace Artech.UC.gxui.Renders
 				}
 
 				string panelId = "tabPanel" + (maxPanelId + 1).ToString();
-				panels.Add(new JsonObject(new string[] { "id", "selected" }, new string[] { panelId, "false" }));
-				ControlInfo.Properties.SetPropertyValue("DesignTimeTabs", JsonConvert.ExportToString(panels));
+				JObject obj = new JObject();
+				obj.Put("id", panelId);
+				obj.Put("selected", "false");
+				panels.Add(obj);
+				ControlInfo.Properties.SetPropertyValue("DesignTimeTabs", panels.ToString());
 				// Uncollapse the created panel
 				return panelId;
 			}
@@ -120,12 +123,12 @@ namespace Artech.UC.gxui.Renders
 		{
 			try
 			{
-				JsonArray panels = GetPanelsArray();
+				JArray panels = GetPanelsArray();
 
 				if (panels.Count > 0)
 				{
-					JsonObject selected = new JsonObject();
-					foreach (JsonObject panel in panels)
+					JObject selected = new JObject();
+					foreach (JObject panel in panels)
 					{
 						if (toRemove.Equals(panel["id"]))
 						{
@@ -134,7 +137,7 @@ namespace Artech.UC.gxui.Renders
 						}
 					}
 					panels.Remove(selected);
-					ControlInfo.Properties.SetPropertyValue("DesignTimeTabs", JsonConvert.ExportToString(panels));
+					ControlInfo.Properties.SetPropertyValue("DesignTimeTabs", panels.ToString());
 				}
 			}
 			catch (Exception e)
@@ -142,18 +145,23 @@ namespace Artech.UC.gxui.Renders
 			}
 		}
 
-		private JsonArray GetPanelsArray()
+		private JArray GetPanelsArray()
 		{
 			object propertyValue = ControlInfo.Properties.GetPropertyValue("DesignTimeTabs");
 			if (propertyValue == null || propertyValue.Equals(""))
 			{
-				JsonArray panels = new JsonArray();
-				panels.Add(new JsonObject(new string[] { "id", "selected" }, new string[] { "tabPanel1", "false" }));
+				JArray panels = new JArray();
+				JObject obj = new JObject();
+				obj.Put("id", "tabPanel1");
+				obj.Put("selected", "false");
+				panels.Add(obj);
 				return panels;
 			}
 			else
 			{
-				return JsonConvert.Import(propertyValue as string) as JsonArray;
+				JsonReader reader = new JsonTextReader(new StringReader(propertyValue as string));
+                JsonToken token = reader.ReadToken();
+                return (JArray)reader.DeserializeNext();
 			}
 		}
 	}

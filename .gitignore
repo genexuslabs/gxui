@@ -11,3 +11,8 @@ Solution/GxUI.opensdf
 Solution/GxUI.sdf
 Solution/JsProject/Debug/GxUI.log
 Solution/GxUI.v12.suo
+Solution/.vs
+Solution/JsProject/.vs
+Solution/JsProject/GxUI.vcxproj.user
+Helpers/PropertyConstants/Debug
+Solution/Helpers.suo
