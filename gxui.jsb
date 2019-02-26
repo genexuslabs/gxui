@@ -75,6 +75,7 @@
     <include name="core\gxui.js" />
     <include name="core\gxui.UserControl.js" />
     <include name="ux\NestedViewport\NestedViewport.js" />
+    <include name="ux\format\format.js" />
     <include name="Controls\Panel\PanelRender.js" />
     <include name="Controls\Toolbar\ToolbarRender.js" />
     <include name="Controls\Layout\LayoutRender.js" />
@@ -190,6 +191,7 @@
   <file name="Controls\Viewport\ViewportRender.js" path="Viewport" />
   <file name="ux\NestedViewport\NestedViewport.js" path="ux\NestedViewport" />
   <file name="ux\NestedViewport\NestedViewport.css" path="ux\NestedViewport" />
+  <file name="ux\format\format.js" path="ux\format" />
   <file name="Controls\Settings\design\SettingsRender.xsl" path="Settings\design" />
   <file name="Controls\Settings\design\settings.ico" path="Settings\design" />
   <file name="Controls\Settings\design\settings.xml" path="Settings\design" />
